@@ -53,10 +53,10 @@ const hotNews = [
 
 const quickTools = [
   { icon: MapIcon, labelKey: "tools.maps", href: "/tools/maps", color: "text-blue-400" },
-  { icon: Calculator, labelKey: "tools.calculators", href: "/tools", color: "text-orange-400" },
+  { icon: Calculator, labelKey: "tools.calculators", href: "/tools/calculators", color: "text-orange-400" },
   { icon: BookOpen, labelKey: "tools.guides", href: "/guides", color: "text-green-400" },
   { icon: Server, labelKey: "tools.serverStats", href: "/tools/server-stats", color: "text-purple-400" },
-  { icon: CalendarDays, labelKey: "tools.events", href: "/tools", color: "text-cyan-400" },
+  { icon: CalendarDays, labelKey: "tools.events", href: "/tools/events", color: "text-cyan-400" },
   { icon: Search, labelKey: "tools.clanFinder", href: "/tools/clan-finder", color: "text-pink-400" },
 ];
 
