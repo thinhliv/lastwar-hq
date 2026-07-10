@@ -53,7 +53,7 @@ const hotNews = [
 ];
 
 const quickTools = [
-  { icon: MapIcon, label: "Maps", href: "/tools", color: "text-blue-400" },
+  { icon: MapIcon, label: "Maps", href: "/tools/maps", color: "text-blue-400" },
   { icon: Calculator, label: "Calc", href: "/tools", color: "text-orange-400" },
   { icon: BookOpen, label: "Guides", href: "/tools", color: "text-green-400" },
   { icon: Server, label: "Server", href: "/tools", color: "text-purple-400" },
