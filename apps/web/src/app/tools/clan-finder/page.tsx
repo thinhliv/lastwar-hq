@@ -42,7 +42,7 @@ function formatDate(d: string): string {
 
 function daysSince(d: string): number {
   const date = new Date(d);
-  const now = new Date("2026-07-11");
+  const now = new Date();
   return Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
 }
 

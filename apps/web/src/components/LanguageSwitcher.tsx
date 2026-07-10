@@ -20,10 +20,9 @@ export default function LanguageSwitcher() {
     setCurrent(code);
     if (typeof window !== "undefined") {
       localStorage.setItem("locale", code);
+      window.dispatchEvent(new Event("lastwar_locale_changed"));
     }
     setOpen(false);
-    // Reload to apply language
-    window.location.reload();
   }
 
   return (

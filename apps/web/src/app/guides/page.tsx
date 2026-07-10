@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import {
   BookOpen,
@@ -133,6 +136,13 @@ const ALL_CATEGORIES: ("All" | GuideCategory)[] = [
 
 // ===== COMPONENT =====
 export default function GuidesPage() {
+  const [activeCategory, setActiveCategory] = useState<"All" | GuideCategory>("All");
+
+  const filteredGuides = useMemo(() => {
+    if (activeCategory === "All") return GUIDES;
+    return GUIDES.filter(g => g.category === activeCategory);
+  }, [activeCategory]);
+
   return (
     <div className="min-h-screen px-4 py-6">
       {/* Back */}
@@ -155,22 +165,23 @@ export default function GuidesPage() {
       {/* Category filter chips */}
       <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4">
         {ALL_CATEGORIES.map((cat) => (
-          <span
+          <button
             key={cat}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap ${
-              cat === "All"
+            onClick={() => setActiveCategory(cat)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+              activeCategory === cat
                 ? "bg-orange-500 text-white"
-                : "bg-white/5 text-slate-400 border border-white/10"
+                : "bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10"
             }`}
           >
             {cat}
-          </span>
+          </button>
         ))}
       </div>
 
       {/* Guides list */}
       <div className="space-y-3">
-        {GUIDES.map((guide) => {
+        {filteredGuides.map((guide) => {
           const meta = CATEGORY_META[guide.category];
           return (
             <article

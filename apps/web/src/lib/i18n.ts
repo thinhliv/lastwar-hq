@@ -104,28 +104,37 @@ const baseTranslations: Record<string, string> = {
   "home.tagline": "Global community for Last War: Survival",
 };
 
-// Translation cache — loaded dynamically
-const translationCache: Record<string, Record<string, string>> = {};
+import vi from "../translations/vi";
+import en from "../translations/en";
+
+const translationCache: Record<string, Record<string, string>> = { vi, en };
 
 /**
  * Get translation for a key in the user's language.
- * Dynamically loads translation file if available.
+ * Now completely synchronous but kept async signature for compatibility.
  */
 export async function t(key: string, locale?: string): Promise<string> {
   const lang = getBaseLanguage(locale || detectLocale());
+  return translationCache[lang]?.[key] || baseTranslations[key] || key;
+}
 
-  // Check cache
-  if (!translationCache[lang]) {
-    try {
-      // Dynamic import — only loads the needed language file
-      const mod = await import(`../translations/${lang}.ts`);
-      translationCache[lang] = mod.default || {};
-    } catch {
-      translationCache[lang] = {};
-    }
-  }
+export const LOCALE_CHANGE_EVENT = "lastwar_locale_changed";
 
-  return translationCache[lang][key] || baseTranslations[key] || key;
+/**
+ * Hook to force re-render when locale changes without full page reload.
+ */
+import { useState, useEffect } from "react";
+
+export function useI18n() {
+  const [locale, setLocale] = useState(typeof window !== "undefined" ? detectLocale() : "en");
+
+  useEffect(() => {
+    const handleLocaleChange = () => setLocale(detectLocale());
+    window.addEventListener(LOCALE_CHANGE_EVENT, handleLocaleChange);
+    return () => window.removeEventListener(LOCALE_CHANGE_EVENT, handleLocaleChange);
+  }, []);
+
+  return { locale, t: (key: string) => tSync(key, locale) };
 }
 
 /**

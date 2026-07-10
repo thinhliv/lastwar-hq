@@ -26,7 +26,7 @@ const SERVERS = serverData as RawServer[];
 // ===== HELPERS =====
 function daysSince(dateStr: string): number {
   const date = new Date(dateStr);
-  const now = new Date("2026-07-11");
+  const now = new Date();
   return Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
 }
 

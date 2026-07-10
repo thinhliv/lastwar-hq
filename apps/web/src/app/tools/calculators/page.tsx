@@ -16,9 +16,10 @@ import {
   Hammer,
 } from "lucide-react";
 import bossData from "@/data/restricted-area.json";
+import heroExpData from "@/data/hero-exp.json";
 
 // ===== TYPES =====
-type CalcTab = "boss" | "resource" | "troop";
+type CalcTab = "boss" | "resource" | "troop" | "hero";
 
 // ===== BOSS DATA =====
 // Keys are "0".."9" representing levels 1-10
@@ -129,6 +130,7 @@ export default function CalculatorsPage() {
       {/* Tab Bar */}
       <div className="flex gap-1 p-1 rounded-2xl glass mb-6">
         {([
+          { id: "hero", label: "Hero", icon: Zap },
           { id: "boss", label: "Boss", icon: Skull },
           { id: "resource", label: "Resource", icon: Pickaxe },
           { id: "troop", label: "Troop", icon: Shield },
@@ -149,9 +151,93 @@ export default function CalculatorsPage() {
       </div>
 
       {/* Tab Content */}
+      {tab === "hero" && <HeroCalculator />}
       {tab === "boss" && <BossCalculator />}
       {tab === "resource" && <ResourceCalculator />}
       {tab === "troop" && <TroopCalculator />}
+    </div>
+  );
+}
+
+// ===== HERO CALCULATOR =====
+function HeroCalculator() {
+  const [fromLevel, setFromLevel] = useState(1);
+  const [toLevel, setToLevel] = useState(175);
+
+  const maxLevel = heroExpData.length - 1; // Should be 175
+
+  // Ensure valid range
+  const safeFrom = Math.max(1, Math.min(fromLevel, maxLevel));
+  const safeTo = Math.max(safeFrom, Math.min(toLevel, maxLevel));
+
+  // Cumulative EXP is stored in array, so cost = exp[to] - exp[from]
+  // Wait, if heroExpData[L] is total exp to reach level L from 1
+  // then going from L1 to L2 takes expData[L2] - expData[L1]
+  const totalExp = heroExpData[safeTo] - heroExpData[safeFrom];
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
+        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+        Live data from cpt-hedge.com
+      </div>
+
+      {/* Inputs */}
+      <div className="p-4 rounded-2xl glass space-y-4">
+        <div>
+          <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+            Từ Cấp Độ: <span className="text-orange-400 font-bold">{safeFrom}</span>
+          </label>
+          <input
+            type="range"
+            min={1}
+            max={maxLevel - 1}
+            value={safeFrom}
+            onChange={(e) => setFromLevel(Number(e.target.value))}
+            className="w-full accent-orange-500"
+          />
+        </div>
+        <div>
+          <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+            Đến Cấp Độ: <span className="text-orange-400 font-bold">{safeTo}</span>
+          </label>
+          <input
+            type="range"
+            min={2}
+            max={maxLevel}
+            value={safeTo}
+            onChange={(e) => setToLevel(Number(e.target.value))}
+            className="w-full accent-orange-500"
+          />
+        </div>
+      </div>
+
+      {/* Result */}
+      <div className="p-5 rounded-2xl bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/20">
+        <div className="flex items-center gap-2 mb-2">
+          <Zap className="w-4 h-4 text-orange-400" />
+          <span className="text-xs font-medium uppercase tracking-wide text-orange-400">
+            Tổng Hero EXP cần thiết
+          </span>
+        </div>
+        <div className="text-4xl font-black text-white">
+          {formatNumber(totalExp)}
+        </div>
+        <div className="text-sm text-slate-400 mt-1">
+          {totalExp.toLocaleString()} EXP
+        </div>
+      </div>
+
+      <div className="p-4 rounded-2xl glass">
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-2">
+          💡 Mẹo nâng cấp
+        </h3>
+        <ul className="space-y-1.5 text-xs text-slate-400">
+          <li>• Tập trung nâng cấp 5 hero chính (Squad 1) trước</li>
+          <li>• Mua Hero EXP từ Alliance Store mỗi ngày</li>
+          <li>• Farm Zombie trên bản đồ thế giới thường xuyên</li>
+        </ul>
+      </div>
     </div>
   );
 }

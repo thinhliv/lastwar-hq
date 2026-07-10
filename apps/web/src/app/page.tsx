@@ -21,6 +21,7 @@ import {
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import AuthModal from "@/components/auth/AuthModal";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { useI18n } from "@/lib/i18n";
 
 // ============ FAKE DATA ============
 const hotNews = [
@@ -51,12 +52,12 @@ const hotNews = [
 ];
 
 const quickTools = [
-  { icon: MapIcon, label: "Maps", href: "/tools/maps", color: "text-blue-400" },
-  { icon: Calculator, label: "Calc", href: "/tools", color: "text-orange-400" },
-  { icon: BookOpen, label: "Guides", href: "/guides", color: "text-green-400" },
-  { icon: Server, label: "Server", href: "/tools/server-stats", color: "text-purple-400" },
-  { icon: CalendarDays, label: "Events", href: "/tools", color: "text-cyan-400" },
-  { icon: Search, label: "Clan", href: "/tools", color: "text-pink-400" },
+  { icon: MapIcon, labelKey: "tools.maps", href: "/tools/maps", color: "text-blue-400" },
+  { icon: Calculator, labelKey: "tools.calculators", href: "/tools", color: "text-orange-400" },
+  { icon: BookOpen, labelKey: "tools.guides", href: "/guides", color: "text-green-400" },
+  { icon: Server, labelKey: "tools.serverStats", href: "/tools/server-stats", color: "text-purple-400" },
+  { icon: CalendarDays, labelKey: "tools.events", href: "/tools", color: "text-cyan-400" },
+  { icon: Search, labelKey: "tools.clanFinder", href: "/tools/clan-finder", color: "text-pink-400" },
 ];
 
 const latestGuides = [
@@ -96,6 +97,7 @@ const countries = [
 
 export default function HomePage() {
   const { user, loading } = useAuth();
+  const { t } = useI18n();
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
   const [newsIndex, setNewsIndex] = useState(0);
@@ -136,7 +138,7 @@ export default function HomePage() {
       <section className="px-4 pt-4">
         <div className="flex items-center gap-2 mb-3">
           <Flame className="w-5 h-5 text-orange-500" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">Tin nóng</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide">{t("home.hotNews")}</h2>
           <Link
             href="/news"
             className="ml-auto text-xs text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-0.5"
@@ -195,7 +197,7 @@ export default function HomePage() {
         <div className="flex items-center gap-2 mb-3">
           <Calculator className="w-5 h-5 text-blue-400" />
           <h2 className="text-sm font-bold uppercase tracking-wide">
-            Công cụ nhanh
+            {t("home.quickTools")}
           </h2>
         </div>
 
@@ -209,7 +211,7 @@ export default function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
                 <tool.icon className={`w-5 h-5 ${tool.color}`} />
               </div>
-              <span className="text-xs text-slate-300">{tool.label}</span>
+              <span className="text-xs text-slate-300 text-center">{t(tool.labelKey)}</span>
             </Link>
           ))}
         </div>
@@ -266,7 +268,7 @@ export default function HomePage() {
         <div className="flex items-center gap-2 mb-3">
           <MessageCircle className="w-5 h-5 text-green-400" />
           <h2 className="text-sm font-bold uppercase tracking-wide">
-            Chat gần đây
+            {t("home.recentChat")}
           </h2>
           <Link
             href="/chat"
@@ -295,7 +297,7 @@ export default function HomePage() {
         <div className="flex items-center gap-2 mb-3">
           <Trophy className="w-5 h-5 text-yellow-400" />
           <h2 className="text-sm font-bold uppercase tracking-wide">
-            Alliance của bạn
+            {t("home.yourAlliance")}
           </h2>
         </div>
 
@@ -342,7 +344,7 @@ export default function HomePage() {
         <div className="flex items-center gap-2 mb-3">
           <Sparkles className="w-5 h-5 text-purple-400" />
           <h2 className="text-sm font-bold uppercase tracking-wide">
-            Cộng đồng quốc gia
+            {t("home.countryCommunities")}
           </h2>
         </div>
 
