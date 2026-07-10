@@ -18,6 +18,8 @@ const en: Record<string, string> = {
   "tools.serverStats": "Server Stats",
   "tools.events": "Events",
   "tools.clanFinder": "Clan Finder",
+  "tools.advancedTools": "Advanced Tools",
+  "tools.heroTier": "Hero Tier List",
 };
 
 export default en;

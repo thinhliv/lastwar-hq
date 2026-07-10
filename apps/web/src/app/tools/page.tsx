@@ -8,6 +8,7 @@ import {
   Search,
   ArrowRight,
   Gauge,
+  Star,
 } from "lucide-react";
 
 const tools = [
@@ -72,6 +73,15 @@ const tools = [
     href: "/tools/calculators/advanced",
     color: "text-cyan-400",
     bgColor: "bg-cyan-500/10",
+    available: true,
+  },
+  {
+    icon: Star,
+    label: "Hero Tier List",
+    desc: "Bảng xếp hạng hero Season 6",
+    href: "/tools/hero-tier",
+    color: "text-yellow-400",
+    bgColor: "bg-yellow-500/10",
     available: true,
   },
 ];

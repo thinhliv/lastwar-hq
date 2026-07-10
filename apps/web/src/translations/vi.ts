@@ -18,6 +18,8 @@ const vi: Record<string, string> = {
   "tools.serverStats": "Thống kê server",
   "tools.events": "Sự kiện",
   "tools.clanFinder": "Tìm clan/server",
+  "tools.advancedTools": "Công cụ nâng cao",
+  "tools.heroTier": "Bảng xếp hạng Hero",
 };
 
 export default vi;
