@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/* ===== LASTWAR HQ DESIGN SYSTEM ===== */
+
+:root {
+  /* Core colors */
+  --color-primary: #f97316;       /* Military orange */
+  --color-primary-dark: #ea580c;
+  --color-primary-light: #fb923c;
+  --color-secondary: #3b82f6;     /* Blueprint blue */
+  --color-secondary-dark: #2563eb;
+  --color-secondary-light: #60a5fa;
+
+  /* Dark theme (default) */
+  --color-bg: #0f172a;            /* Slate 900 */
+  --color-bg-card: #1e293b;       /* Slate 800 */
+  --color-bg-elevated: #334155;   /* Slate 700 */
+  --color-border: #334155;
+  --color-text: #f1f5f9;          /* Slate 100 */
+  --color-text-muted: #94a3b8;    /* Slate 400 */
+  --color-text-dim: #64748b;      /* Slate 500 */
+  --color-accent: #f97316;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #eab308;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-primary: #f97316;
+  --color-primary-dark: #ea580c;
+  --color-primary-light: #fb923c;
+  --color-secondary: #3b82f6;
+  --color-secondary-dark: #2563eb;
+  --color-secondary-light: #60a5fa;
+  --color-card: #1e293b;
+  --color-elevated: #334155;
+  --color-border: #334155;
+  --color-muted: #94a3b8;
+  --color-dim: #64748b;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #eab308;
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-elevated);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-dim);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Safe area for mobile */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Animation for coming soon */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
