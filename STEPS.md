@@ -46,16 +46,16 @@ npx vercel --prod --yes
 
 ---
 
-### BƯỚC 2: Design System + Auth (Session 2 — ~2 tiếng)
+### BƯỚC 2: Design System + Auth (Session 2 — ~2 tiếng) ✅
 **Mục tiêu:** Giao diện nền + đăng nhập
 
-- [ ] Colors, fonts, components cơ bản (Button, Card, Input, Modal)
-- [ ] Dark mode default
-- [ ] Bottom navigation (🏠 🧮 💬 📰 👤)
-- [ ] Auth: Google + Email (Supabase Auth)
-- [ ] i18n setup (VN, EN, KR, JP, CN)
-- [ ] Trang chủ skeleton (5 sections rỗng)
-- [ ] Deploy
+- [x] Colors, fonts, components cơ bản (Button, Card, Input, Modal)
+- [x] Dark mode default
+- [x] Bottom navigation (🏠 🧮 💬 📰 👤) — active state cam quân sự
+- [x] Auth: Google + Email (Supabase Auth) — AuthModal glassmorphism
+- [x] i18n setup (VN, EN, KR, JP, CN — auto-detect tất cả ngôn ngữ)
+- [x] Trang chủ 5 sections: Tin nóng carousel, Tools grid, Chat preview, Alliance, Country
+- [x] Deploy footzone.vn
 
 ---
 
