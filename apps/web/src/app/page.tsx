@@ -15,14 +15,12 @@ import {
   Trophy,
   ChevronRight,
   Map as MapIcon,
-  Users,
   Newspaper,
   Sparkles,
 } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import AuthModal from "@/components/auth/AuthModal";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { signOut } from "@/lib/supabase";
 
 // ============ FAKE DATA ============
 const hotNews = [
@@ -55,26 +53,35 @@ const hotNews = [
 const quickTools = [
   { icon: MapIcon, label: "Maps", href: "/tools/maps", color: "text-blue-400" },
   { icon: Calculator, label: "Calc", href: "/tools", color: "text-orange-400" },
-  { icon: BookOpen, label: "Guides", href: "/tools", color: "text-green-400" },
-  { icon: Server, label: "Server", href: "/tools", color: "text-purple-400" },
+  { icon: BookOpen, label: "Guides", href: "/guides", color: "text-green-400" },
+  { icon: Server, label: "Server", href: "/tools/server-stats", color: "text-purple-400" },
   { icon: CalendarDays, label: "Events", href: "/tools", color: "text-cyan-400" },
   { icon: Search, label: "Clan", href: "/tools", color: "text-pink-400" },
 ];
 
-const chatPreviews = [
+const latestGuides = [
   {
-    name: "#global-s1234",
-    lastMsg: "Ai ket ban dao 5 ko?",
-    users: 1243,
-    time: "2m",
-    flag: "🌍",
+    id: 1,
+    title: "Best Hero Combinations for Season 6",
+    category: "Heroes",
+    readTime: "8 min",
+    date: "10/07/2026",
+    isNew: true,
   },
   {
-    name: "#war-room",
-    lastMsg: "Rally 14:00 at zone 523! All APCs ready",
-    users: 87,
-    time: "5m",
-    flag: "🏰",
+    id: 2,
+    title: "How to Optimize Your Base Layout",
+    category: "Beginner",
+    readTime: "6 min",
+    date: "09/07/2026",
+    isNew: true,
+  },
+  {
+    id: 3,
+    title: "Restricted Area: Complete Guide",
+    category: "Combat",
+    readTime: "10 min",
+    date: "05/07/2026",
   },
 ];
 
@@ -208,7 +215,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== SECTION 3: RECENT CHAT ===== */}
+      {/* ===== SECTION 3: LATEST GUIDES ===== */}
+      <section className="px-4 pt-6">
+        <div className="flex items-center gap-2 mb-3">
+          <BookOpen className="w-5 h-5 text-green-400" />
+          <h2 className="text-sm font-bold uppercase tracking-wide">
+            Guides mới
+          </h2>
+          <Link
+            href="/guides"
+            className="ml-auto text-xs text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-0.5"
+          >
+            Tất cả <ChevronRight className="w-3 h-3" />
+          </Link>
+        </div>
+
+        <div className="space-y-2">
+          {latestGuides.map((guide) => (
+            <Link
+              key={guide.id}
+              href="/guides"
+              className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all"
+            >
+              <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-green-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold text-sm truncate">{guide.title}</h3>
+                  {guide.isNew && (
+                    <span className="px-1.5 py-0.5 rounded bg-orange-500 text-white text-[8px] font-bold uppercase">
+                      New
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-[10px] text-slate-500">{guide.category}</span>
+                  <span className="text-[10px] text-slate-600">·</span>
+                  <span className="text-[10px] text-slate-500">{guide.readTime}</span>
+                </div>
+              </div>
+              <ChevronRight className="w-4 h-4 text-slate-600" />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== SECTION 3.5: CHAT PREVIEW ===== */}
       <section className="px-4 pt-6">
         <div className="flex items-center gap-2 mb-3">
           <MessageCircle className="w-5 h-5 text-green-400" />
@@ -223,31 +276,17 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="space-y-2">
-          {chatPreviews.map((chat) => (
-            <Link
-              key={chat.name}
-              href="/chat"
-              className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all"
-            >
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-lg">
-                {chat.flag}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-sm truncate">{chat.name}</h3>
-                  <span className="text-[10px] text-slate-500 ml-auto">
-                    {chat.time}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-400 truncate">{chat.lastMsg}</p>
-              </div>
-              <div className="flex items-center gap-1 text-[10px] text-slate-500">
-                <Users className="w-3 h-3" />
-                {chat.users}
-              </div>
-            </Link>
-          ))}
+        <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-3">
+          <MessageCircle className="w-8 h-8 text-slate-600" />
+          <p className="text-sm text-slate-400 text-center">
+            Sign in to join the conversation
+          </p>
+          <button
+            onClick={() => openAuth("login")}
+            className="px-6 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg shadow-orange-500/20"
+          >
+            Đăng nhập
+          </button>
         </div>
       </section>
 
