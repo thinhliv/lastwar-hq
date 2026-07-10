@@ -16,6 +16,7 @@ import {
   Hammer,
   Gauge,
   ArrowRight,
+  Package,
 } from "lucide-react";
 import bossData from "@/data/restricted-area.json";
 import heroExpData from "@/data/hero-exp.json";
@@ -159,7 +160,7 @@ export default function CalculatorsPage() {
       {tab === "troop" && <TroopCalculator />}
 
       {/* Advanced Tools Link */}
-      <div className="mt-6">
+      <div className="mt-6 space-y-2">
         <Link
           href="/tools/calculators/advanced"
           className="flex items-center justify-between p-4 rounded-2xl glass hover:border-orange-500/20 transition-all"
@@ -167,8 +168,21 @@ export default function CalculatorsPage() {
           <div className="flex items-center gap-2">
             <Gauge className="w-5 h-5 text-cyan-400" />
             <div>
-              <h3 className="font-semibold text-sm">Advanced Tools</h3>
-              <p className="text-xs text-slate-400">Speedup · Battle Sim · Build Planner</p>
+              <h3 className="font-semibold text-sm">Speedup · Battle · Build</h3>
+              <p className="text-xs text-slate-400">Advanced Tools suite</p>
+            </div>
+          </div>
+          <ArrowRight className="w-4 h-4 text-slate-500" />
+        </Link>
+        <Link
+          href="/tools/calculators/resource-planner"
+          className="flex items-center justify-between p-4 rounded-2xl glass hover:border-green-500/20 transition-all"
+        >
+          <div className="flex items-center gap-2">
+            <Package className="w-5 h-5 text-green-400" />
+            <div>
+              <h3 className="font-semibold text-sm">Resource Planner</h3>
+              <p className="text-xs text-slate-400">Gather · Train · Balance</p>
             </div>
           </div>
           <ArrowRight className="w-4 h-4 text-slate-500" />
