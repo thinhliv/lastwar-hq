@@ -15,19 +15,20 @@ import {
   Fuel,
   Hammer,
 } from "lucide-react";
+import bossData from "@/data/restricted-area.json";
 
 // ===== TYPES =====
 type CalcTab = "boss" | "resource" | "troop";
 
-// ===== BOSS CALCULATOR =====
-const BOSS_BASE_POWER = 50000;
-const BOSS_STAGE_MULTIPLIERS = [1, 1.3, 1.6, 2.0, 2.5];
-
-function calcBossPower(level: number, stage: number): number {
-  return Math.round(
-    BOSS_BASE_POWER * (1 + level * 0.15) * BOSS_STAGE_MULTIPLIERS[stage - 1]
-  );
-}
+// ===== BOSS DATA =====
+// Keys are "0".."9" representing levels 1-10
+const RESTRICTED_LEVELS = Object.keys(bossData)
+  .sort((a, b) => Number(a) - Number(b))
+  .map((k) => ({
+    levelKey: k,
+    displayLevel: Number(k) + 1,
+    stages: (bossData as Record<string, { stage: number; power: number }[]>)[k],
+  }));
 
 // ===== RESOURCE CALCULATOR =====
 const RESOURCE_TYPES = [
@@ -48,7 +49,7 @@ const RESOURCE_TIPS: Record<string, string[]> = {
     "Nâng cấp Oil Well ở HQ level 15+",
     "Chiếm Oil Rig trên world map",
     "Trade với alliance member qua Alliance Store",
-    "Event Ammo Bonanza дают x2 oil",
+    "Event Ammo Bonanza cho x2 oil",
   ],
   iron: [
     "Nâng cấp Iron Mine liên tục",
@@ -155,59 +156,93 @@ export default function CalculatorsPage() {
   );
 }
 
-// ===== BOSS CALCULATOR =====
+// ===== BOSS CALCULATOR (REAL DATA) =====
 function BossCalculator() {
-  const [level, setLevel] = useState(10);
+  const [levelIdx, setLevelIdx] = useState(0); // 0-9 → levels 1-10
   const [stage, setStage] = useState(1);
 
-  const power = useMemo(() => calcBossPower(level, stage), [level, stage]);
+  const currentLevel = RESTRICTED_LEVELS[levelIdx];
+  const maxStage = currentLevel.stages.length;
+  const stageData = currentLevel.stages.find((s) => s.stage === stage);
+  const power = stageData?.power ?? 0;
+
+  // Nearby stages for comparison (5 before, 5 after)
+  const stageIdx = currentLevel.stages.findIndex((s) => s.stage === stage);
+  const nearby = currentLevel.stages.slice(
+    Math.max(0, stageIdx - 5),
+    Math.min(currentLevel.stages.length, stageIdx + 6)
+  );
+
+  function selectLevel(newIdx: number) {
+    setLevelIdx(newIdx);
+    const newMax = RESTRICTED_LEVELS[newIdx].stages.length;
+    if (stage > newMax) setStage(1);
+  }
 
   return (
     <div className="space-y-5">
+      {/* Data source badge */}
+      <div className="flex items-center gap-1.5 text-[10px] text-slate-500">
+        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+        Live data from cpt-hedge.com
+      </div>
+
       {/* Level Selector */}
       <div className="p-4 rounded-2xl glass">
         <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
-          Boss Level
+          Restricted Area Level
         </label>
-        <div className="flex items-center gap-3">
-          <input
-            type="range"
-            min={1}
-            max={20}
-            value={level}
-            onChange={(e) => setLevel(Number(e.target.value))}
-            className="flex-1 accent-orange-500"
-          />
-          <span className="text-2xl font-black text-orange-400 w-12 text-center">
-            {level}
-          </span>
+        <div className="grid grid-cols-5 gap-2">
+          {RESTRICTED_LEVELS.map((lv, i) => (
+            <button
+              key={lv.levelKey}
+              onClick={() => selectLevel(i)}
+              className={`py-2.5 rounded-xl text-sm font-bold transition-all ${
+                levelIdx === i
+                  ? "bg-orange-500/20 text-orange-400 border border-orange-500/40"
+                  : "bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10"
+              }`}
+            >
+              {lv.displayLevel}
+            </button>
+          ))}
         </div>
-        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
-          <span>1</span>
-          <span>20</span>
+        <div className="mt-2 text-[10px] text-slate-600 text-center">
+          {maxStage} stages · Level {currentLevel.displayLevel}
         </div>
       </div>
 
       {/* Stage Selector */}
       <div className="p-4 rounded-2xl glass">
         <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
-          Stage
+          Stage: <span className="text-orange-400 font-bold">{stage}</span>
+          <span className="text-slate-600"> / {maxStage}</span>
         </label>
-        <div className="flex gap-2">
-          {[1, 2, 3, 4, 5].map((s) => (
+        <input
+          type="range"
+          min={1}
+          max={maxStage}
+          value={stage}
+          onChange={(e) => setStage(Number(e.target.value))}
+          className="w-full accent-orange-500"
+        />
+        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+          <span>1</span>
+          <span>{maxStage}</span>
+        </div>
+        {/* Quick stage jump */}
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {[1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].filter((s) => s <= maxStage).map((s) => (
             <button
               key={s}
               onClick={() => setStage(s)}
-              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${
+              className={`px-2 py-1 rounded-lg text-[10px] font-medium transition-all ${
                 stage === s
-                  ? "bg-orange-500/20 text-orange-400 border border-orange-500/40"
-                  : "bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10"
+                  ? "bg-orange-500/20 text-orange-400"
+                  : "bg-white/5 text-slate-500 hover:bg-white/10"
               }`}
             >
               {s}
-              <span className="block text-[9px] font-normal text-slate-500 mt-0.5">
-                x{BOSS_STAGE_MULTIPLIERS[s - 1]}
-              </span>
             </button>
           ))}
         </div>
@@ -218,26 +253,67 @@ function BossCalculator() {
         <div className="flex items-center gap-2 mb-2">
           <Swords className="w-4 h-4 text-orange-400" />
           <span className="text-xs font-medium uppercase tracking-wide text-orange-400">
-            Power Required
+            Boss Power — Lv.{currentLevel.displayLevel} Stage {stage}
           </span>
         </div>
         <div className="text-4xl font-black text-white">
           {formatNumber(power)}
         </div>
         <div className="text-sm text-slate-400 mt-1">
-          ≈ {power.toLocaleString()} power
+          {power.toLocaleString()} power
+        </div>
+      </div>
+
+      {/* Nearby Stages Comparison */}
+      <div className="p-4 rounded-2xl glass">
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-3">
+          📊 Stages lân cận
+        </h3>
+        <div className="space-y-1">
+          {nearby.map((s) => {
+            const isCurrent = s.stage === stage;
+            const diff = s.power - power;
+            const diffStr = diff === 0 ? "" : diff > 0 ? `+${formatNumber(diff)}` : formatNumber(diff);
+            return (
+              <div
+                key={s.stage}
+                className={`flex items-center justify-between py-2 px-3 rounded-lg text-sm transition-all ${
+                  isCurrent
+                    ? "bg-orange-500/15 border border-orange-500/30"
+                    : "hover:bg-white/5"
+                }`}
+              >
+                <button
+                  onClick={() => setStage(s.stage)}
+                  className="flex items-center gap-2 flex-1 text-left"
+                >
+                  <span className={`font-mono text-xs w-8 ${isCurrent ? "text-orange-400 font-bold" : "text-slate-500"}`}>
+                    {s.stage}
+                  </span>
+                  <span className={`font-medium ${isCurrent ? "text-white" : "text-slate-300"}`}>
+                    {formatNumber(s.power)}
+                  </span>
+                </button>
+                {!isCurrent && diffStr && (
+                  <span className={`text-[10px] font-mono ${diff > 0 ? "text-red-400" : "text-green-400"}`}>
+                    {diffStr}
+                  </span>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Quick Tips */}
       <div className="p-4 rounded-2xl glass">
         <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-2">
-          💡 Mẹo đánh Boss
+          💡 Mẹo đánh Restricted Area
         </h3>
         <ul className="space-y-1.5 text-xs text-slate-400">
           <li>• Cần power cao hơn 20-30% boss để thắng an toàn</li>
           <li>• Stage càng cao, reward càng xịn nhưng khó hơn</li>
-          <li>• Dùng hero counter type boss để tăng damage</li>
+          <li>• Levels 1-4 có 50 stages, levels 5-10 có 100 stages</li>
           <li>• Rally cùng alliance để đánh boss level cao</li>
         </ul>
       </div>

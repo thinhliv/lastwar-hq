@@ -41,10 +41,10 @@ const tools = [
     icon: Server,
     label: "Server Stats",
     desc: "Power ranking, alliance ranking",
-    href: "#",
+    href: "/tools/clan-finder",
     color: "text-purple-400",
     bgColor: "bg-purple-500/10",
-    available: false,
+    available: true,
   },
   {
     icon: CalendarDays,
