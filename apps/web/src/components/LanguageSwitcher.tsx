@@ -1,19 +1,30 @@
 "use client";
 
 import { Globe } from "lucide-react";
-import { useState } from "react";
-
-const locales = [
-  { code: "vi", label: "Tiếng Việt", flag: "🇻🇳" },
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "ko", label: "한국어", flag: "🇰🇷" },
-  { code: "ja", label: "日本語", flag: "🇯🇵" },
-  { code: "zh", label: "中文", flag: "🇨🇳" },
-];
+import { useState, useEffect } from "react";
+import { detectLocale, getPopularLanguages, getLanguageName, getLanguageFlag, getBaseLanguage } from "../lib/i18n";
 
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState(locales[0]);
+  const [current, setCurrent] = useState("vi");
+
+  // Auto-detect on mount
+  useEffect(() => {
+    const detected = detectLocale();
+    setCurrent(getBaseLanguage(detected));
+  }, []);
+
+  const popular = getPopularLanguages();
+
+  function selectLanguage(code: string) {
+    setCurrent(code);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("locale", code);
+    }
+    setOpen(false);
+    // Reload to apply language
+    window.location.reload();
+  }
 
   return (
     <div className="relative">
@@ -22,7 +33,10 @@ export default function LanguageSwitcher() {
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass hover:bg-white/10 transition-colors"
       >
         <Globe className="w-4 h-4 text-orange-500" />
-        <span className="text-sm">{current.flag}</span>
+        <span className="text-sm">{getLanguageFlag(current)}</span>
+        <span className="text-xs text-slate-400 hidden sm:inline">
+          {getLanguageName(current)}
+        </span>
       </button>
 
       {open && (
@@ -31,24 +45,24 @@ export default function LanguageSwitcher() {
             className="fixed inset-0 z-40"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute right-0 top-full mt-2 z-50 glass rounded-xl py-1 min-w-[160px] shadow-xl">
-            {locales.map((locale) => (
+          <div className="absolute right-0 top-full mt-2 z-50 glass rounded-xl py-1 min-w-[180px] shadow-xl max-h-[300px] overflow-y-auto">
+            {popular.map((lang) => (
               <button
-                key={locale.code}
-                onClick={() => {
-                  setCurrent(locale);
-                  setOpen(false);
-                }}
+                key={lang.code}
+                onClick={() => selectLanguage(lang.code)}
                 className={`w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-white/10 transition-colors ${
-                  current.code === locale.code
-                    ? "text-orange-500"
-                    : "text-slate-300"
+                  current === lang.code ? "text-orange-500" : "text-slate-300"
                 }`}
               >
-                <span>{locale.flag}</span>
-                <span>{locale.label}</span>
+                <span>{lang.flag}</span>
+                <span>{lang.label}</span>
               </button>
             ))}
+            <div className="border-t border-white/10 mt-1 pt-1 px-4 py-2">
+              <p className="text-xs text-slate-500">
+                🌐 Auto-detect: {getLanguageName(current)}
+              </p>
+            </div>
           </div>
         </>
       )}

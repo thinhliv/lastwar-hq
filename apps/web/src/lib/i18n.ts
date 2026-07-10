@@ -1,62 +1,137 @@
 // LASTWAR HQ — i18n setup
-// 5 languages: Vietnamese, English, Korean, Japanese, Chinese
+// Auto-detect ALL languages from device/browser
+// Uses browser Intl API to get localized names for any language
 
-export const locales = ["vi", "en", "ko", "ja", "zh"] as const;
-export type Locale = (typeof locales)[number];
+/**
+ * Auto-detect the user's preferred language.
+ * Priority: localStorage → navigator → browser → default
+ */
+export function detectLocale(): string {
+  // 1. User's saved preference
+  if (typeof window !== "undefined") {
+    const saved = localStorage.getItem("locale");
+    if (saved) return saved;
+  }
 
-export const localeNames: Record<Locale, { label: string; flag: string }> = {
-  vi: { label: "Tiếng Việt", flag: "🇻🇳" },
-  en: { label: "English", flag: "🇺🇸" },
-  ko: { label: "한국어", flag: "🇰🇷" },
-  ja: { label: "日本語", flag: "🇯🇵" },
-  zh: { label: "中文", flag: "🇨🇳" },
+  // 2. Navigator language (works on web + mobile webview)
+  if (typeof navigator !== "undefined") {
+    const navLang = navigator.language || (navigator as any).userLanguage;
+    if (navLang) return navLang;
+  }
+
+  // 3. Default fallback
+  return "en";
+}
+
+/**
+ * Get all available languages from the device/browser.
+ * Returns array of language codes the user understands.
+ */
+export function getDeviceLanguages(): string[] {
+  if (typeof navigator !== "undefined") {
+    const langs = navigator.languages || [navigator.language];
+    return [...langs];
+  }
+  return ["en"];
+}
+
+/**
+ * Get a language code suitable for our translation keys.
+ * Maps full locale (e.g. "vi-VN", "zh-TW") to base language.
+ */
+export function getBaseLanguage(locale: string): string {
+  return locale.split("-")[0].toLowerCase();
+}
+
+/**
+ * Get the display name of a language IN that language.
+ * Uses Intl.DisplayNames API — supports ALL world languages.
+ */
+export function getLanguageName(code: string): string {
+  try {
+    const display = new Intl.DisplayNames([code], { type: "language" });
+    return display.of(code) || code;
+  } catch {
+    return code;
+  }
+}
+
+/**
+ * Get the flag emoji for a language/locale.
+ */
+export function getLanguageFlag(locale: string): string {
+  const flagMap: Record<string, string> = {
+    vi: "🇻🇳", en: "🇺🇸", ko: "🇰🇷", ja: "🇯🇵", zh: "🇨🇳",
+    fr: "🇫🇷", de: "🇩🇪", es: "🇪🇸", it: "🇮🇹", pt: "🇵🇹",
+    ru: "🇷🇺", th: "🇹🇭", id: "🇮🇩", ms: "🇲🇾", tr: "🇹🇷",
+    ar: "🇸🇦", hi: "🇮🇳", pl: "🇵🇱", nl: "🇳🇱", uk: "🇺🇦",
+    sv: "🇸🇪", no: "🇳🇴", da: "🇩🇰", fi: "🇫🇮", cs: "🇨🇿",
+    el: "🇬🇷", he: "🇮🇱", hu: "🇭🇺", ro: "🇷🇴", sk: "🇸🇰",
+  };
+  const base = getBaseLanguage(locale);
+  return flagMap[base] || "🌐";
+}
+
+/**
+ * Get the 20 most common languages for the switcher dropdown.
+ * Users can still use ANY language via auto-detect.
+ * These are just the quick-pick options.
+ */
+export function getPopularLanguages(): { code: string; label: string; flag: string }[] {
+  const popular = [
+    "vi", "en", "zh", "ko", "ja", "es", "fr", "de", "pt", "ru",
+    "th", "id", "ar", "hi", "it", "tr", "pl", "nl", "uk", "ms",
+  ];
+  return popular.map(code => ({
+    code,
+    label: getLanguageName(code),
+    flag: getLanguageFlag(code),
+  }));
+}
+
+/**
+ * Translate UI strings.
+ * Falls back to English, then to the key itself.
+ * Real translations will be loaded from translation files in later steps.
+ */
+const baseTranslations: Record<string, string> = {
+  "nav.home": "Home",
+  "nav.tools": "Tools",
+  "nav.chat": "Chat",
+  "nav.news": "News",
+  "nav.profile": "Profile",
+  "home.comingSoon": "Coming Soon",
+  "home.tagline": "Global community for Last War: Survival",
 };
 
-// Placeholder translations — will be expanded in later steps
-export const messages: Record<Locale, Record<string, string>> = {
-  vi: {
-    "nav.home": "Trang chủ",
-    "nav.tools": "Công cụ",
-    "nav.chat": "Chat",
-    "nav.news": "Tin tức",
-    "nav.profile": "Hồ sơ",
-    "home.comingSoon": "Sắp ra mắt",
-    "home.tagline": "Cộng đồng toàn cầu cho game Last War: Survival",
-  },
-  en: {
-    "nav.home": "Home",
-    "nav.tools": "Tools",
-    "nav.chat": "Chat",
-    "nav.news": "News",
-    "nav.profile": "Profile",
-    "home.comingSoon": "Coming Soon",
-    "home.tagline": "Global community for Last War: Survival",
-  },
-  ko: {
-    "nav.home": "홈",
-    "nav.tools": "도구",
-    "nav.chat": "채팅",
-    "nav.news": "뉴스",
-    "nav.profile": "프로필",
-    "home.comingSoon": "곧 출시",
-    "home.tagline": "Last War: Survival 글로벌 커뮤니티",
-  },
-  ja: {
-    "nav.home": "ホーム",
-    "nav.tools": "ツール",
-    "nav.chat": "チャット",
-    "nav.news": "ニュース",
-    "nav.profile": "プロフィール",
-    "home.comingSoon": "近日公開",
-    "home.tagline": "Last War: Survival グローバルコミュニティ",
-  },
-  zh: {
-    "nav.home": "首页",
-    "nav.tools": "工具",
-    "nav.chat": "聊天",
-    "nav.news": "新闻",
-    "nav.profile": "个人资料",
-    "home.comingSoon": "即将推出",
-    "home.tagline": "Last War: Survival 全球社区",
-  },
-};
+// Translation cache — loaded dynamically
+const translationCache: Record<string, Record<string, string>> = {};
+
+/**
+ * Get translation for a key in the user's language.
+ * Dynamically loads translation file if available.
+ */
+export async function t(key: string, locale?: string): Promise<string> {
+  const lang = getBaseLanguage(locale || detectLocale());
+
+  // Check cache
+  if (!translationCache[lang]) {
+    try {
+      // Dynamic import — only loads the needed language file
+      const mod = await import(`../translations/${lang}.ts`);
+      translationCache[lang] = mod.default || {};
+    } catch {
+      translationCache[lang] = {};
+    }
+  }
+
+  return translationCache[lang][key] || baseTranslations[key] || key;
+}
+
+/**
+ * Synchronous translate — uses cached translations only.
+ */
+export function tSync(key: string, locale?: string): string {
+  const lang = getBaseLanguage(locale || detectLocale());
+  return translationCache[lang]?.[key] || baseTranslations[key] || key;
+}
