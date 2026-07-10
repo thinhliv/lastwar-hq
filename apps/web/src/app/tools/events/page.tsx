@@ -405,6 +405,36 @@ export default function EventsPage() {
         })}
       </div>
 
+      {/* Event Calculators Link */}
+      <div className="mt-6 grid grid-cols-1 gap-2">
+        <Link
+          href="/tools/events/ammo-bonanza"
+          className="flex items-center justify-between p-4 rounded-2xl glass hover:border-yellow-500/20 transition-all"
+        >
+          <div className="flex items-center gap-2">
+            <Zap className="w-5 h-5 text-yellow-400" />
+            <div>
+              <h3 className="font-semibold text-sm">Ammo Bonanza Calculator</h3>
+              <p className="text-xs text-slate-400">Tính ammo + tối ưu stage</p>
+            </div>
+          </div>
+          <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
+        </Link>
+        <Link
+          href="/tools/events/desert-treasure"
+          className="flex items-center justify-between p-4 rounded-2xl glass hover:border-purple-500/20 transition-all"
+        >
+          <div className="flex items-center gap-2">
+            <Gift className="w-5 h-5 text-purple-400" />
+            <div>
+              <h3 className="font-semibold text-sm">Desert Treasure Calculator</h3>
+              <p className="text-xs text-slate-400">Kế hoạch đào kho báu</p>
+            </div>
+          </div>
+          <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
+        </Link>
+      </div>
+
       {sorted.length === 0 && (
         <div className="flex flex-col items-center gap-2 py-12 text-slate-500">
           <CalendarDays className="w-8 h-8 opacity-40" />
