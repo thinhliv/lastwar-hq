@@ -7,6 +7,7 @@ import {
   CalendarDays,
   Search,
   ArrowRight,
+  Gauge,
 } from "lucide-react";
 
 const tools = [
@@ -50,10 +51,10 @@ const tools = [
     icon: CalendarDays,
     label: "Events",
     desc: "Countdown timer, lịch sự kiện",
-    href: "#",
+    href: "/tools/events",
     color: "text-cyan-400",
     bgColor: "bg-cyan-500/10",
-    available: false,
+    available: true,
   },
   {
     icon: Search,
@@ -62,6 +63,15 @@ const tools = [
     href: "/tools/clan-finder",
     color: "text-pink-400",
     bgColor: "bg-pink-500/10",
+    available: true,
+  },
+  {
+    icon: Gauge,
+    label: "Advanced Tools",
+    desc: "Speedup, Battle Sim, Build Planner",
+    href: "/tools/calculators/advanced",
+    color: "text-cyan-400",
+    bgColor: "bg-cyan-500/10",
     available: true,
   },
 ];

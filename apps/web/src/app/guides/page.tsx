@@ -184,9 +184,10 @@ export default function GuidesPage() {
         {filteredGuides.map((guide) => {
           const meta = CATEGORY_META[guide.category];
           return (
-            <article
+            <Link
               key={guide.id}
-              className="rounded-2xl glass overflow-hidden hover:border-orange-500/20 transition-all"
+              href={`/guides/${guide.id}`}
+              className="block rounded-2xl glass overflow-hidden hover:border-orange-500/20 transition-all"
             >
               {/* Thumbnail */}
               <div
@@ -230,7 +231,7 @@ export default function GuidesPage() {
                   </span>
                 </div>
               </div>
-            </article>
+            </Link>
           );
         })}
       </div>

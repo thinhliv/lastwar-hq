@@ -204,7 +204,7 @@ export default function HomePage() {
         <div className="grid grid-cols-3 gap-3">
           {quickTools.map((tool) => (
             <Link
-              key={tool.label}
+              key={tool.labelKey}
               href={tool.href}
               className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-orange-500/30 hover:bg-white/10 transition-all active:scale-95"
             >
