@@ -23,10 +23,10 @@ const tools = [
     icon: Calculator,
     label: "Calculators",
     desc: "Boss, Resource, Troop, Speedup",
-    href: "#",
+    href: "/tools/calculators",
     color: "text-orange-400",
     bgColor: "bg-orange-500/10",
-    available: false,
+    available: true,
   },
   {
     icon: BookOpen,
@@ -59,10 +59,10 @@ const tools = [
     icon: Search,
     label: "Clan Finder",
     desc: "Tìm server/clan phù hợp",
-    href: "#",
+    href: "/tools/clan-finder",
     color: "text-pink-400",
     bgColor: "bg-pink-500/10",
-    available: false,
+    available: true,
   },
 ];
 

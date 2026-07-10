@@ -1,0 +1,511 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import {
+  Swords,
+  Pickaxe,
+  Shield,
+  ChevronLeft,
+  Skull,
+  Clock,
+  Zap,
+  Coins,
+  Wheat,
+  Fuel,
+  Hammer,
+} from "lucide-react";
+
+// ===== TYPES =====
+type CalcTab = "boss" | "resource" | "troop";
+
+// ===== BOSS CALCULATOR =====
+const BOSS_BASE_POWER = 50000;
+const BOSS_STAGE_MULTIPLIERS = [1, 1.3, 1.6, 2.0, 2.5];
+
+function calcBossPower(level: number, stage: number): number {
+  return Math.round(
+    BOSS_BASE_POWER * (1 + level * 0.15) * BOSS_STAGE_MULTIPLIERS[stage - 1]
+  );
+}
+
+// ===== RESOURCE CALCULATOR =====
+const RESOURCE_TYPES = [
+  { id: "food", label: "Food", icon: Wheat, color: "text-green-400", rate: 1000 },
+  { id: "oil", label: "Oil", icon: Fuel, color: "text-purple-400", rate: 1000 },
+  { id: "iron", label: "Iron", icon: Hammer, color: "text-blue-400", rate: 1000 },
+  { id: "gold", label: "Gold", icon: Coins, color: "text-yellow-400", rate: 1000 },
+] as const;
+
+const RESOURCE_TIPS: Record<string, string[]> = {
+  food: [
+    "Nâng cấp Farm buildings để tăng sản lượng",
+    "Farm resource tiles ở zone lvl 3+",
+    "Dùng Food Production buff item trước war",
+    "Alliance Gathering Rally cho boost x2",
+  ],
+  oil: [
+    "Nâng cấp Oil Well ở HQ level 15+",
+    "Chiếm Oil Rig trên world map",
+    "Trade với alliance member qua Alliance Store",
+    "Event Ammo Bonanza дают x2 oil",
+  ],
+  iron: [
+    "Nâng cấp Iron Mine liên tục",
+    "Farm Iron node ở zone cao",
+    "Mua từ Alliance Store bằng alliance points",
+    "Event Desert Treasure có nhiều iron",
+  ],
+  gold: [
+    "Hoàn thành daily quests + weekly missions",
+    "Sell excess resource ở Trading Post",
+    "Rank reward cuối mùa",
+    "Alliance War victory chest",
+  ],
+};
+
+function calcResourceTime(amount: number, productionRate: number, level: number): number {
+  if (amount <= 0 || level <= 0) return 0;
+  return amount / (productionRate * level);
+}
+
+// ===== TROOP CALCULATOR =====
+const TROOP_TYPES = [
+  { id: "infantry", label: "Infantry", icon: Shield, color: "text-blue-400", basePower: 120, baseCost: 80 },
+  { id: "cavalry", label: "Cavalry", icon: Zap, color: "text-orange-400", basePower: 180, baseCost: 120 },
+  { id: "archer", label: "Archer", icon: Swords, color: "text-green-400", basePower: 150, baseCost: 100 },
+  { id: "siege", label: "Siege", icon: Pickaxe, color: "text-red-400", basePower: 300, baseCost: 200 },
+] as const;
+
+function calcTroopPower(basePower: number, level: number, count: number): number {
+  return Math.round(count * basePower * (1 + level * 0.2));
+}
+
+function calcTroopCost(baseCost: number, level: number, count: number): number {
+  return Math.round(count * baseCost * level);
+}
+
+// ===== FORMAT HELPERS =====
+function formatNumber(n: number): string {
+  if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(2) + "B";
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(2) + "M";
+  if (n >= 1_000) return (n / 1_000).toFixed(1) + "K";
+  return n.toLocaleString();
+}
+
+function formatHours(h: number): string {
+  if (h <= 0) return "0h";
+  if (h < 1) return `${Math.round(h * 60)}m`;
+  if (h < 24) return `${h.toFixed(1)}h`;
+  const days = Math.floor(h / 24);
+  const remH = Math.round(h % 24);
+  return `${days}d ${remH}h`;
+}
+
+// ===== MAIN COMPONENT =====
+export default function CalculatorsPage() {
+  const [tab, setTab] = useState<CalcTab>("boss");
+
+  return (
+    <div className="min-h-screen px-4 py-6">
+      {/* Back link */}
+      <Link
+        href="/tools"
+        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        Tools
+      </Link>
+
+      <div className="flex items-center gap-2 mb-1">
+        <Skull className="w-6 h-6 text-orange-400" />
+        <h1 className="text-2xl font-bold">Calculators</h1>
+      </div>
+      <p className="text-slate-400 text-sm mb-5">
+        Tính toán sức mạnh, tài nguyên và quân đội
+      </p>
+
+      {/* Tab Bar */}
+      <div className="flex gap-1 p-1 rounded-2xl glass mb-6">
+        {([
+          { id: "boss", label: "Boss", icon: Skull },
+          { id: "resource", label: "Resource", icon: Pickaxe },
+          { id: "troop", label: "Troop", icon: Shield },
+        ] as { id: CalcTab; label: string; icon: typeof Skull }[]).map((t) => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              tab === t.id
+                ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+                : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+            }`}
+          >
+            <t.icon className="w-4 h-4" />
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Tab Content */}
+      {tab === "boss" && <BossCalculator />}
+      {tab === "resource" && <ResourceCalculator />}
+      {tab === "troop" && <TroopCalculator />}
+    </div>
+  );
+}
+
+// ===== BOSS CALCULATOR =====
+function BossCalculator() {
+  const [level, setLevel] = useState(10);
+  const [stage, setStage] = useState(1);
+
+  const power = useMemo(() => calcBossPower(level, stage), [level, stage]);
+
+  return (
+    <div className="space-y-5">
+      {/* Level Selector */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Boss Level
+        </label>
+        <div className="flex items-center gap-3">
+          <input
+            type="range"
+            min={1}
+            max={20}
+            value={level}
+            onChange={(e) => setLevel(Number(e.target.value))}
+            className="flex-1 accent-orange-500"
+          />
+          <span className="text-2xl font-black text-orange-400 w-12 text-center">
+            {level}
+          </span>
+        </div>
+        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+          <span>1</span>
+          <span>20</span>
+        </div>
+      </div>
+
+      {/* Stage Selector */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Stage
+        </label>
+        <div className="flex gap-2">
+          {[1, 2, 3, 4, 5].map((s) => (
+            <button
+              key={s}
+              onClick={() => setStage(s)}
+              className={`flex-1 py-3 rounded-xl text-sm font-bold transition-all ${
+                stage === s
+                  ? "bg-orange-500/20 text-orange-400 border border-orange-500/40"
+                  : "bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10"
+              }`}
+            >
+              {s}
+              <span className="block text-[9px] font-normal text-slate-500 mt-0.5">
+                x{BOSS_STAGE_MULTIPLIERS[s - 1]}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Result */}
+      <div className="p-5 rounded-2xl bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/20">
+        <div className="flex items-center gap-2 mb-2">
+          <Swords className="w-4 h-4 text-orange-400" />
+          <span className="text-xs font-medium uppercase tracking-wide text-orange-400">
+            Power Required
+          </span>
+        </div>
+        <div className="text-4xl font-black text-white">
+          {formatNumber(power)}
+        </div>
+        <div className="text-sm text-slate-400 mt-1">
+          ≈ {power.toLocaleString()} power
+        </div>
+      </div>
+
+      {/* Quick Tips */}
+      <div className="p-4 rounded-2xl glass">
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-2">
+          💡 Mẹo đánh Boss
+        </h3>
+        <ul className="space-y-1.5 text-xs text-slate-400">
+          <li>• Cần power cao hơn 20-30% boss để thắng an toàn</li>
+          <li>• Stage càng cao, reward càng xịn nhưng khó hơn</li>
+          <li>• Dùng hero counter type boss để tăng damage</li>
+          <li>• Rally cùng alliance để đánh boss level cao</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// ===== RESOURCE CALCULATOR =====
+function ResourceCalculator() {
+  const [resType, setResType] = useState<string>("food");
+  const [amount, setAmount] = useState(100000);
+  const [level, setLevel] = useState(10);
+
+  const selectedRes = RESOURCE_TYPES.find((r) => r.id === resType)!;
+  const hours = useMemo(
+    () => calcResourceTime(amount, selectedRes.rate, level),
+    [amount, selectedRes.rate, level]
+  );
+
+  const tips = RESOURCE_TIPS[resType] || [];
+
+  return (
+    <div className="space-y-5">
+      {/* Resource Type */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Loại tài nguyên
+        </label>
+        <div className="grid grid-cols-4 gap-2">
+          {RESOURCE_TYPES.map((r) => (
+            <button
+              key={r.id}
+              onClick={() => setResType(r.id)}
+              className={`flex flex-col items-center gap-1 py-3 rounded-xl transition-all ${
+                resType === r.id
+                  ? "bg-white/10 border border-orange-500/30"
+                  : "bg-white/5 border border-white/10 hover:bg-white/10"
+              }`}
+            >
+              <r.icon className={`w-5 h-5 ${r.color}`} />
+              <span className="text-[10px] text-slate-300">{r.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Amount Input */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Số lượng cần
+        </label>
+        <div className="flex items-center gap-2">
+          <selectedRes.icon className={`w-5 h-5 ${selectedRes.color}`} />
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(Math.max(0, Number(e.target.value)))}
+            className="flex-1 bg-transparent text-2xl font-bold text-white outline-none placeholder-slate-600"
+            placeholder="0"
+            min={0}
+          />
+        </div>
+        <div className="flex gap-2 mt-2">
+          {[10000, 100000, 500000, 1000000].map((v) => (
+            <button
+              key={v}
+              onClick={() => setAmount(v)}
+              className="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] text-slate-400 hover:bg-white/10 hover:text-slate-200 transition-colors"
+            >
+              {formatNumber(v)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Production Level */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Production Level: <span className="text-orange-400 font-bold">{level}</span>
+        </label>
+        <input
+          type="range"
+          min={1}
+          max={30}
+          value={level}
+          onChange={(e) => setLevel(Number(e.target.value))}
+          className="w-full accent-orange-500"
+        />
+        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+          <span>Lv.1</span>
+          <span>Rate: {formatNumber(selectedRes.rate * level)}/h</span>
+          <span>Lv.30</span>
+        </div>
+      </div>
+
+      {/* Result */}
+      <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border border-blue-500/20">
+        <div className="flex items-center gap-2 mb-2">
+          <Clock className="w-4 h-4 text-blue-400" />
+          <span className="text-xs font-medium uppercase tracking-wide text-blue-400">
+            Thời gian farm ước tính
+          </span>
+        </div>
+        <div className="text-4xl font-black text-white">
+          {formatHours(hours)}
+        </div>
+        <div className="text-sm text-slate-400 mt-1">
+          {formatNumber(selectedRes.rate * level)}/h × Lv.{level}
+        </div>
+      </div>
+
+      {/* Tips */}
+      <div className="p-4 rounded-2xl glass">
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-2">
+          💡 Cách thu thập {selectedRes.label}
+        </h3>
+        <ul className="space-y-1.5">
+          {tips.map((tip, i) => (
+            <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
+              <span className="text-orange-500 flex-shrink-0">▸</span>
+              {tip}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// ===== TROOP CALCULATOR =====
+function TroopCalculator() {
+  const [troopType, setTroopType] = useState<string>("infantry");
+  const [level, setLevel] = useState(5);
+  const [count, setCount] = useState(1000);
+
+  const selected = TROOP_TYPES.find((t) => t.id === troopType)!;
+  const power = useMemo(
+    () => calcTroopPower(selected.basePower, level, count),
+    [selected.basePower, level, count]
+  );
+  const cost = useMemo(
+    () => calcTroopCost(selected.baseCost, level, count),
+    [selected.baseCost, level, count]
+  );
+
+  return (
+    <div className="space-y-5">
+      {/* Troop Type */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Loại quân
+        </label>
+        <div className="grid grid-cols-4 gap-2">
+          {TROOP_TYPES.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setTroopType(t.id)}
+              className={`flex flex-col items-center gap-1 py-3 rounded-xl transition-all ${
+                troopType === t.id
+                  ? "bg-white/10 border border-orange-500/30"
+                  : "bg-white/5 border border-white/10 hover:bg-white/10"
+              }`}
+            >
+              <t.icon className={`w-5 h-5 ${t.color}`} />
+              <span className="text-[10px] text-slate-300">{t.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Level */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Cấp độ: <span className="text-orange-400 font-bold">Lv.{level}</span>
+        </label>
+        <input
+          type="range"
+          min={1}
+          max={10}
+          value={level}
+          onChange={(e) => setLevel(Number(e.target.value))}
+          className="w-full accent-orange-500"
+        />
+        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+          <span>1</span>
+          <span>Power bonus: +{level * 20}%</span>
+          <span>10</span>
+        </div>
+      </div>
+
+      {/* Count */}
+      <div className="p-4 rounded-2xl glass">
+        <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
+          Số lượng
+        </label>
+        <div className="flex items-center gap-2">
+          <selected.icon className={`w-5 h-5 ${selected.color}`} />
+          <input
+            type="number"
+            value={count}
+            onChange={(e) => setCount(Math.max(0, Number(e.target.value)))}
+            className="flex-1 bg-transparent text-2xl font-bold text-white outline-none"
+            placeholder="0"
+            min={0}
+          />
+        </div>
+        <div className="flex gap-2 mt-2">
+          {[100, 500, 1000, 5000, 10000].map((v) => (
+            <button
+              key={v}
+              onClick={() => setCount(v)}
+              className="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] text-slate-400 hover:bg-white/10 hover:text-slate-200 transition-colors"
+            >
+              {formatNumber(v)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Results */}
+      <div className="grid grid-cols-2 gap-3">
+        {/* Power */}
+        <div className="p-4 rounded-2xl bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/20">
+          <div className="flex items-center gap-1.5 mb-1">
+            <Zap className="w-3.5 h-3.5 text-orange-400" />
+            <span className="text-[10px] font-medium uppercase tracking-wide text-orange-400">
+              Total Power
+            </span>
+          </div>
+          <div className="text-2xl font-black text-white">
+            {formatNumber(power)}
+          </div>
+        </div>
+
+        {/* Cost */}
+        <div className="p-4 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-orange-500/5 border border-yellow-500/20">
+          <div className="flex items-center gap-1.5 mb-1">
+            <Coins className="w-3.5 h-3.5 text-yellow-400" />
+            <span className="text-[10px] font-medium uppercase tracking-wide text-yellow-400">
+              Train Cost
+            </span>
+          </div>
+          <div className="text-2xl font-black text-white">
+            {formatNumber(cost)}
+          </div>
+        </div>
+      </div>
+
+      {/* Per-unit stats */}
+      <div className="p-4 rounded-2xl glass">
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-3">
+          Chi tiết per-unit
+        </h3>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="text-slate-500">Power/unit</span>
+            <span className="font-mono text-orange-400">
+              {Math.round(selected.basePower * (1 + level * 0.2))}
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-500">Cost/unit</span>
+            <span className="font-mono text-yellow-400">
+              {Math.round(selected.baseCost * level)}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
