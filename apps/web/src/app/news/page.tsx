@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   Newspaper,
   Bookmark,
@@ -143,9 +144,10 @@ export default function NewsPage() {
       {/* Articles List */}
       <div className="space-y-3">
         {filteredArticles.map((article) => (
-          <article
+          <Link
             key={article.id}
-            className="rounded-2xl glass overflow-hidden hover:border-orange-500/20 transition-all"
+            href={`/news/${article.id}`}
+            className="block rounded-2xl glass overflow-hidden hover:border-orange-500/20 transition-all"
           >
             {/* Thumbnail */}
             <div className="h-28 bg-gradient-to-br from-slate-800/50 to-slate-900/50 flex items-center justify-center text-5xl">
@@ -196,7 +198,7 @@ export default function NewsPage() {
                 </button>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
 
