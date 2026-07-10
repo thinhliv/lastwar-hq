@@ -9,6 +9,7 @@ import {
   ArrowRight,
   Gauge,
   Star,
+  Castle,
 } from "lucide-react";
 
 const tools = [
@@ -82,6 +83,15 @@ const tools = [
     href: "/tools/hero-tier",
     color: "text-yellow-400",
     bgColor: "bg-yellow-500/10",
+    available: true,
+  },
+  {
+    icon: Castle,
+    label: "Alliances",
+    desc: "Tìm và tham gia alliance",
+    href: "/tools/alliance",
+    color: "text-orange-400",
+    bgColor: "bg-orange-500/10",
     available: true,
   },
 ];
