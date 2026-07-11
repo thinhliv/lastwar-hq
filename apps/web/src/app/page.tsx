@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import AuthModal from "@/components/auth/AuthModal";
+import VisitorCounter from "@/components/VisitorCounter";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { useI18n } from "@/lib/i18n";
 
@@ -435,7 +436,8 @@ export default function HomePage() {
 
       {/* ===== FOOTER ===== */}
       <footer className="text-center py-4 px-4">
-        <div className="flex items-center justify-center gap-2 mb-1">
+        <VisitorCounter />
+        <div className="flex items-center justify-center gap-2 mb-1 mt-2">
           <Swords className="w-3 h-3 text-slate-600" />
           <span className="text-[10px] text-slate-600">
             footzone.vn · © 2026 LASTWAR HQ
