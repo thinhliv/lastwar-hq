@@ -142,6 +142,24 @@ export default function AdvancedCalcPage() {
       {tab === "speedup" && <SpeedupCalculator />}
       {tab === "battle" && <BattleSimulator />}
       {tab === "build" && <BuildPlanner />}
+
+      {/* Links to more calculators */}
+      <div className="mt-6 space-y-2">
+        <Link href="/tools/calculators/resource-planner" className="flex items-center justify-between p-3 rounded-2xl glass hover:border-green-500/20 transition-all">
+          <div className="flex items-center gap-2">
+            <Package className="w-5 h-5 text-green-400" />
+            <h3 className="font-semibold text-sm">Resource Planner</h3>
+          </div>
+          <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
+        </Link>
+        <Link href="/tools/calculators/building-planner" className="flex items-center justify-between p-3 rounded-2xl glass hover:border-orange-500/20 transition-all">
+          <div className="flex items-center gap-2">
+            <Hammer className="w-5 h-5 text-orange-400" />
+            <h3 className="font-semibold text-sm">Building Planner</h3>
+          </div>
+          <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
+        </Link>
+      </div>
     </div>
   );
 }

@@ -22,6 +22,7 @@ const SEARCH_INDEX: SearchItem[] = [
   { label: "Ammo Bonanza Calc", href: "/tools/events/ammo-bonanza", category: "Tools", icon: "⚡", keywords: "ammo bonanza calculator event" },
   { label: "Desert Treasure Calc", href: "/tools/events/desert-treasure", category: "Tools", icon: "🏜️", keywords: "desert treasure calculator event" },
   { label: "Resource Planner", href: "/tools/calculators/resource-planner", category: "Tools", icon: "📦", keywords: "resource planner gather train balance" },
+  { label: "Building Planner", href: "/tools/calculators/building-planner", category: "Tools", icon: "🏗️", keywords: "building upgrade planner cost time" },
   { label: "Server Stats", href: "/tools/server-stats", category: "Tools", icon: "📊", keywords: "server stats population" },
   { label: "Clan Finder", href: "/tools/clan-finder", category: "Tools", icon: "🔍", keywords: "clan server find search" },
   { label: "Alliances", href: "/tools/alliance", category: "Tools", icon: "🏰", keywords: "alliance guild join create" },

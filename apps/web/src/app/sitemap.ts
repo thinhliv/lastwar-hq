@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools/events/ammo-bonanza`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/tools/events/desert-treasure`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/tools/calculators/resource-planner`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/tools/calculators/building-planner`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/tools/hero-tier`, lastModified, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tools/maps`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/tools/server-stats`, lastModified, changeFrequency: "weekly", priority: 0.6 },

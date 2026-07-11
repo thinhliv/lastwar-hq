@@ -236,7 +236,7 @@ export default function HomePage() {
         </div>
 
         <div className="space-y-2">
-          <Link href="/tools/events" className="block p-3 rounded-2xl bg-gradient-to-r from-green-500/10 to-emerald-500/5 border border-green-500/20 hover:border-green-500/30 transition-all">
+          <Link href="/tools/events/ammo-bonanza" className="block p-3 rounded-2xl bg-gradient-to-r from-green-500/10 to-emerald-500/5 border border-green-500/20 hover:border-green-500/30 transition-all">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
                 <Zap className="w-5 h-5 text-green-400" />
@@ -249,7 +249,7 @@ export default function HomePage() {
                     LIVE
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-500">x2 ammo trong mọi hoạt động</p>
+                <p className="text-[10px] text-slate-500">x2 ammo · Bấm để tính phần thưởng</p>
               </div>
               <span className="text-[10px] font-mono text-green-400">23h còn lại</span>
             </div>
@@ -274,14 +274,14 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link href="/tools/events" className="block p-3 rounded-2xl bg-gradient-to-r from-blue-500/10 to-cyan-500/5 border border-blue-500/20 hover:border-blue-500/30 transition-all">
+          <Link href="/tools/events/desert-treasure" className="block p-3 rounded-2xl bg-gradient-to-r from-blue-500/10 to-cyan-500/5 border border-blue-500/20 hover:border-blue-500/30 transition-all">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
                 <Pickaxe className="w-5 h-5 text-blue-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-sm">Mining Rush Week</h3>
-                <p className="text-[10px] text-slate-500">x2 resource production trên world map</p>
+                <h3 className="font-bold text-sm">Desert Treasure</h3>
+                <p className="text-[10px] text-slate-500">Kho báu sa mạc · Bấm để lên kế hoạch</p>
               </div>
               <span className="text-[10px] font-mono text-blue-400">3d còn lại</span>
             </div>
