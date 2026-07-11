@@ -18,7 +18,6 @@ function getClient(): SupabaseClient {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      detectSessionInUrl: false,
     },
   });
   return _client;
