@@ -35,7 +35,7 @@ const HEROES: Hero[] = [
   { id: 4, name: "Kim", title: "Silent Death", rarity: "SSR", role: "Attack", tier: "S", bestAt: "PvP", synergy: ["Murphy", "Grace"], trend: "stable", notes: "Single-target burst cao nhất. Cần setup từ stun/slow để tối ưu.", icon: "🗡️" },
   { id: 5, name: "Freya", title: "The Healer", rarity: "SSR", role: "Support", tier: "S", bestAt: "PvE", synergy: ["Schuyler", "Volkov"], trend: "stable", notes: "Best sustain hero. Heal 15%/turn. PvE king cho Restricted Area.", icon: "💚" },
   { id: 6, name: "Schuyler", title: "Guardian Shield", rarity: "SSR", role: "Defense", tier: "S", bestAt: "PvE", synergy: ["Freya", "Grace"], trend: "up", notes: "Shield 5000 damage, 100% uptime. Freya + Schuyler = bất tử PvE.", icon: "🛡️" },
-  { id: 7, name: "Stallion", title: "Cavalry Commander", rarity: "SSR", role: "Attack", tier: "A", bestAt: "PvP", synergy: ["Grace"], trend: "up", notes: "Cavalry specialist. Season 6 jungle buff làm anh ta mạnh hơn.", icon: "🐎" },
+  { id: 7, name: "Stallion", title: "Cavalry Ch? huy", rarity: "SSR", role: "Attack", tier: "A", bestAt: "PvP", synergy: ["Grace"], trend: "up", notes: "Cavalry specialist. Season 6 jungle buff làm anh ta mạnh hơn.", icon: "🐎" },
   // SR
   { id: 8, name: "Avery", title: "Rising Star", rarity: "SR", role: "Attack", tier: "A", bestAt: "Both", synergy: ["Duncan"], trend: "stable", notes: "Best F2P attacker. Dễ lấy qua events. Upgrade skill 8+ để max potential.", icon: "⭐" },
   { id: 9, name: "Duncan", title: "The Tactician", rarity: "SR", role: "Support", tier: "A", bestAt: "Both", synergy: ["Avery"], trend: "stable", notes: "Buff +15% damage cho team. Shards có sẵn trong shop. Budget Grace.", icon: "📋" },
@@ -70,14 +70,14 @@ const ROLE_ICONS: Record<string, string> = {
 
 // ===== COMPONENT =====
 export default function HeroTierListPage() {
-  const [filterRarity, setFilterRarity] = useState<"All" | "SSR" | "SR" | "R">("All");
-  const [filterRole, setFilterRole] = useState<"All" | "Attack" | "Defense" | "Support" | "Hybrid">("All");
+  const [filterRarity, setFilterRarity] = useState<"Tất cả" | "SSR" | "SR" | "R">("Tất cả");
+  const [filterRole, setFilterRole] = useState<"Tất cả" | "Attack" | "Defense" | "Support" | "Hybrid">("Tất cả");
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
     return HEROES
-      .filter((h) => filterRarity === "All" || h.rarity === filterRarity)
-      .filter((h) => filterRole === "All" || h.role === filterRole)
+      .filter((h) => filterRarity === "Tất cả" || h.rarity === filterRarity)
+      .filter((h) => filterRole === "Tất cả" || h.role === filterRole)
       .filter((h) => !query || h.name.toLowerCase().includes(query.toLowerCase()) || h.title.toLowerCase().includes(query.toLowerCase()))
       .sort((a, b) => TIER_ORDER[a.tier] - TIER_ORDER[b.tier]);
   }, [filterRarity, filterRole, query]);
@@ -99,12 +99,12 @@ export default function HeroTierListPage() {
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
       >
         <ChevronLeft className="w-4 h-4" />
-        Tools
+        Công cụ
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <Star className="w-6 h-6 text-yellow-400" />
-        <h1 className="text-2xl font-bold">Hero Tier List</h1>
+        <h1 className="text-2xl font-bold">Bảng xếp hạng Hero</h1>
       </div>
       <p className="text-slate-400 text-sm mb-4">
         Bảng xếp hạng hero — Season 6 meta
@@ -124,7 +124,7 @@ export default function HeroTierListPage() {
 
       {/* Rarity Filter */}
       <div className="flex gap-2 mb-2">
-        {(["All", "SSR", "SR", "R"] as const).map((r) => (
+        {(["Tất cả", "SSR", "SR", "R"] as const).map((r) => (
           <button
             key={r}
             onClick={() => setFilterRarity(r)}
@@ -141,7 +141,7 @@ export default function HeroTierListPage() {
 
       {/* Role Filter */}
       <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4">
-        {(["All", "Attack", "Defense", "Support", "Hybrid"] as const).map((r) => (
+        {(["Tất cả", "Attack", "Defense", "Support", "Hybrid"] as const).map((r) => (
           <button
             key={r}
             onClick={() => setFilterRole(r)}
@@ -164,7 +164,7 @@ export default function HeroTierListPage() {
             <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-gradient-to-r ${TIER_COLORS[tier]} border mb-2`}>
               <span className="font-black text-lg">{tier}</span>
               <span className="text-[10px] uppercase tracking-wide opacity-70">
-                {heroes.length} hero{heroes.length !== 1 ? "s" : ""}
+                {heroes.length} hero
               </span>
             </div>
 
@@ -206,7 +206,7 @@ export default function HeroTierListPage() {
                       {/* Synergy */}
                       {hero.synergy.length > 0 && (
                         <div className="flex items-center gap-1 mt-1.5 flex-wrap">
-                          <span className="text-[9px] text-slate-600 uppercase">Synergy:</span>
+                          <span className="text-[9px] text-slate-600 uppercase">Kết hợp:</span>
                           {hero.synergy.map((s) => (
                             <span key={s} className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-blue-500/10 text-blue-400">
                               {s}

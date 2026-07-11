@@ -45,7 +45,7 @@ const GUIDES: Guide[] = [
     content:
       "Season 6 mang đến nhiều thay đổi về meta hero. Bài viết này phân tích từng combo hero hàng đầu dựa trên data thực tế từ top players:\n\n## 1. Grace + Volkov — Bộ đôi SSR mạnh nhất\nGrace tăng damage cho toàn đội trong khi Volkov xử lý tank. Hiệu quả trong cả PvE và PvP.\n- **Grace**: Skill chính là buffs toàn đội +25% attack\n- **Volkov**: Tank chính với taunt và damage reflect\n- **Synergy**: Grace buff → Volkov sống lâu hơn → damage multiply\n\n## 2. Murphy + Kim — Combo điều khiển\nMurphy stun 3s kết hợp với burst damage từ Kim tạo ra one-shot potential.\n- **Murphy**: AoE stun 3s, range rộng\n- **Kim**: Single-target burst, tối đa khi enemy bị stun\n- **Best for**: PvP, Alliance War\n\n## 3. Freya + Schuyler — Best sustain combo\nFreya heal + Schuyler shield tạo đội hình gần như bất tử trong PvE.\n- **Freya**: Hoàn máu 15% mỗi turn\n- **Schuyler**: Shield hấp thụ 5000 damage\n- **Best for**: Restricted Area, boss farming\n\n## 4. Avery + Duncan — Budget F2P combo\nVẫn mạnh đủ để đẩy rank cao nếu upgrade đúng cách.\n- **Avery**: SR hero, dễ lấy qua events\n- **Duncan**: SR hero, shards có sẵn trong shop\n- **Tip**: Cần upgrade skill lvl 8+ để hiệu quả tối đa\n\n## Lưu ý quan trọng\n- Tier list thay đổi theo meta, theo dõi update mới nhất\n- Hero combo phải phù hợp với troop type bạn đang dùng\n- Đầu tư vào 1-2 combo thay vì dàn trải",
     readTime: "8 min",
-    author: "CommanderPhoenix",
+    author: "Chỉ huyPhoenix",
     date: "10/07/2026",
     isNew: true,
   },

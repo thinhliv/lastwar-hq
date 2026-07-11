@@ -50,7 +50,7 @@ function getEventDates() {
       description: "Nhận x2 đạn dược trong mọi hoạt động chiến đấu. Cơ hội vàng để tích trữ ammo cho war!",
       category: "resource" as const,
       startDate: daysFromNow(-1, -2), // Started 26h ago → ACTIVE
-      endDate: daysFromNow(1, 2),     // Ends in ~26h
+      endDate: daysFromNow(1, 2),     // C�n ~26h
       icon: Zap,
       tips: [
         "Tập trung farm ammo liên tục 48 giờ",
@@ -63,7 +63,7 @@ function getEventDates() {
       name: "Desert Treasure",
       description: "Sự kiện tìm kho báu sa mạc. Thu thập map pieces, giải mã tọa độ và săn kho báu hiếm.",
       category: "special" as const,
-      startDate: daysFromNow(2),     // Starts in 2 days
+      startDate: daysFromNow(2),     // B?t d?u sau 2 days
       endDate: daysFromNow(5),
       icon: Gift,
       tips: [
@@ -161,10 +161,10 @@ function getEventDates() {
 
 // ===== CATEGORY CONFIG =====
 const CATEGORY_META = {
-  combat: { label: "Combat", icon: Swords, color: "text-red-400", bgColor: "bg-red-500/10", borderColor: "border-red-500/20" },
-  resource: { label: "Resource", icon: Pickaxe, color: "text-green-400", bgColor: "bg-green-500/10", borderColor: "border-green-500/20" },
-  special: { label: "Special", icon: Gift, color: "text-purple-400", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
-  seasonal: { label: "Seasonal", icon: Trophy, color: "text-orange-400", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" },
+  combat: { label: "Chiến đấu", icon: Swords, color: "text-red-400", bgColor: "bg-red-500/10", borderColor: "border-red-500/20" },
+  resource: { label: "Tài nguyên", icon: Pickaxe, color: "text-green-400", bgColor: "bg-green-500/10", borderColor: "border-green-500/20" },
+  special: { label: "Đặc biệt", icon: Gift, color: "text-purple-400", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
+  seasonal: { label: "Theo mùa", icon: Trophy, color: "text-orange-400", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" },
 } as const;
 
 type CategoryKey = keyof typeof CATEGORY_META;
@@ -238,12 +238,12 @@ export default function EventsPage() {
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
       >
         <ChevronLeft className="w-4 h-4" />
-        Tools
+        Công cụ
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <AlarmClock className="w-6 h-6 text-cyan-400" />
-        <h1 className="text-2xl font-bold">Events</h1>
+        <h1 className="text-2xl font-bold">Sự kiện</h1>
       </div>
       <p className="text-slate-400 text-sm mb-4">
         Lịch sự kiện và countdown timer
@@ -414,7 +414,7 @@ export default function EventsPage() {
           <div className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-yellow-400" />
             <div>
-              <h3 className="font-semibold text-sm">Ammo Bonanza Calculator</h3>
+              <h3 className="font-semibold text-sm">Máy tính Ammo Bonanza</h3>
               <p className="text-xs text-slate-400">Tính ammo + tối ưu stage</p>
             </div>
           </div>
@@ -427,7 +427,7 @@ export default function EventsPage() {
           <div className="flex items-center gap-2">
             <Gift className="w-5 h-5 text-purple-400" />
             <div>
-              <h3 className="font-semibold text-sm">Desert Treasure Calculator</h3>
+              <h3 className="font-semibold text-sm">Máy tính Desert Treasure</h3>
               <p className="text-xs text-slate-400">Kế hoạch đào kho báu</p>
             </div>
           </div>

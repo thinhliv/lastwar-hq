@@ -25,7 +25,7 @@ const SERVERS = serverData as RawServer[];
 
 // ===== RANGE FILTERS =====
 const RANGE_FILTERS = [
-  { id: "all", label: "All", min: 0, max: Infinity },
+  { id: "all", label: "Tất cả", min: 0, max: Infinity },
   { id: "1-50", label: "1-50", min: 1, max: 50 },
   { id: "51-100", label: "51-100", min: 51, max: 100 },
   { id: "101-150", label: "101-150", min: 101, max: 150 },
@@ -89,21 +89,21 @@ export default function ClanFinderPage() {
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
       >
         <ChevronLeft className="w-4 h-4" />
-        Tools
+        Công cụ
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <Search className="w-6 h-6 text-pink-400" />
-        <h1 className="text-2xl font-bold">Server / Clan Finder</h1>
+        <h1 className="text-2xl font-bold">Tìm Server / Alliance</h1>
       </div>
       <p className="text-slate-400 text-sm mb-3">
-        Tìm server và alliance từ {SERVERS.length.toLocaleString()} servers
+        Tìm server và alliance từ {SERVERS.length.toLocaleString()} server
       </p>
 
       {/* Data source badge */}
       <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-4">
         <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-        Live data from coordinateslist.com
+        Live data từ coordinateslist.com
       </div>
 
       {/* Search Bar */}
@@ -113,7 +113,7 @@ export default function ClanFinderPage() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Server number hoặc alliance code..."
+          placeholder="Số server hoặc mã alliance..."
           className="w-full pl-10 pr-10 py-3 rounded-2xl glass text-sm text-white placeholder-slate-500 outline-none focus:border-orange-500/30"
         />
         {query && (
@@ -145,7 +145,7 @@ export default function ClanFinderPage() {
 
       {/* Result count */}
       <div className="text-xs text-slate-500 mb-3">
-        {filtered.length.toLocaleString()} server{filtered.length !== 1 ? "s" : ""} found
+        {filtered.length.toLocaleString()} server tìm thấy
       </div>
 
       {/* Results - virtualized-ish (limit to first 50 for perf) */}
@@ -263,7 +263,7 @@ function ServerCard({
             onClick={() => setExpanded(true)}
             className="px-2.5 py-1.5 rounded-lg text-xs text-slate-500 bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
           >
-            +{server.alliances.length - 6} more
+            +{server.alliances.length - 6} nữa
           </button>
         )}
       </div>

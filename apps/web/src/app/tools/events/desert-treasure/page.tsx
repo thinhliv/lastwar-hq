@@ -228,10 +228,10 @@ export default function DesertTreasurePage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="px-2 py-2 text-left font-bold text-slate-300">Tier</th>
-                <th className="px-2 py-2 text-left font-bold text-slate-300">Resources</th>
+                <th className="px-2 py-2 text-left font-bold text-slate-300">Hạng</th>
+                <th className="px-2 py-2 text-left font-bold text-slate-300">Tài nguyên</th>
                 <th className="px-2 py-2 text-left font-bold text-slate-300">Speedup</th>
-                <th className="px-2 py-2 text-left font-bold text-slate-300">Shards</th>
+                <th className="px-2 py-2 text-left font-bold text-slate-300">Mảnh ghép</th>
                 <th className="px-2 py-2 text-right font-bold text-slate-300">Tỉ lệ</th>
               </tr>
             </thead>

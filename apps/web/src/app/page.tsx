@@ -67,25 +67,25 @@ const quickTools = [
 const latestGuides = [
   {
     id: 1,
-    title: "Best Hero Combinations for Season 6",
-    category: "Heroes",
-    readTime: "8 min",
+    title: "Combo Hero tốt nhất Season 6",
+    category: "Hero",
+    readTime: "8 phút",
     date: "10/07/2026",
     isNew: true,
   },
   {
     id: 2,
-    title: "How to Optimize Your Base Layout",
-    category: "Beginner",
-    readTime: "6 min",
+    title: "Tối ưu hóa bố cục base",
+    category: "Cơ bản",
+    readTime: "6 phút",
     date: "09/07/2026",
     isNew: true,
   },
   {
     id: 3,
-    title: "Restricted Area: Complete Guide",
-    category: "Combat",
-    readTime: "10 min",
+    title: "Restricted Area: Hướng dẫn đầy đủ",
+    category: "Chiến đấu",
+    readTime: "10 phút",
     date: "05/07/2026",
   },
 ];
@@ -115,7 +115,7 @@ export default function HomePage() {
     ? user.user_metadata?.full_name ||
       user.user_metadata?.name ||
       user.email?.split("@")[0] ||
-      "Commander"
+      "Chỉ huy"
     : null;
 
   const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
@@ -247,7 +247,7 @@ export default function HomePage() {
                   <h3 className="font-bold text-sm">Ammo Bonanza</h3>
                   <span className="flex items-center gap-0.5 text-[9px] text-green-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    LIVE
+                    TRỰC TIẾP
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-500">x2 ammo · Bấm để tính phần thưởng</p>
@@ -266,7 +266,7 @@ export default function HomePage() {
                   <h3 className="font-bold text-sm">Restricted Area Weekend</h3>
                   <span className="flex items-center gap-0.5 text-[9px] text-red-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                    LIVE
+                    TRỰC TIẾP
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-500">Double drops mọi boss stage</p>
@@ -320,7 +320,7 @@ export default function HomePage() {
                   <h3 className="font-semibold text-sm truncate">{guide.title}</h3>
                   {guide.isNew && (
                     <span className="px-1.5 py-0.5 rounded bg-orange-500 text-white text-[8px] font-bold uppercase">
-                      New
+                      Mới
                     </span>
                   )}
                 </div>
@@ -354,7 +354,7 @@ export default function HomePage() {
         <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-3">
           <MessageCircle className="w-8 h-8 text-slate-600" />
           <p className="text-sm text-slate-400 text-center">
-            Sign in to join the conversation
+            Đăng nhập để tham gia chat
           </p>
           <button
             onClick={() => openAuth("login")}
@@ -386,7 +386,7 @@ export default function HomePage() {
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-sm">Vietnam Warriors</h3>
-                <p className="text-xs text-slate-400">Rank #12 · 30/30 members</p>
+                <p className="text-xs text-slate-400">Rank #12 · 30/30 thành viên</p>
               </div>
               <Link
                 href="/chat"

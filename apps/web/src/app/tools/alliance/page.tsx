@@ -85,12 +85,12 @@ export default function AlliancePage() {
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
       >
         <ChevronLeft className="w-4 h-4" />
-        Tools
+        Công cụ
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <Castle className="w-6 h-6 text-orange-400" />
-        <h1 className="text-2xl font-bold">Alliances</h1>
+        <h1 className="text-2xl font-bold">Alliance</h1>
       </div>
       <p className="text-slate-400 text-sm mb-4">
         Tìm và tham gia alliance trên Server của bạn
@@ -105,7 +105,7 @@ export default function AlliancePage() {
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-sm">Vietnam Warriors</h3>
-              <p className="text-xs text-slate-400">Rank #1 · Server 42 · 30/30 members</p>
+              <p className="text-xs text-slate-400">Rank #1 · Server 42 · 30/30 thành viên</p>
             </div>
             <Link
               href="/chat"
@@ -150,9 +150,9 @@ export default function AlliancePage() {
           🔓 Đang tuyển
         </button>
         {([
-          { id: "rank", label: "By Rank" },
-          { id: "power", label: "By Power" },
-          { id: "members", label: "By Members" },
+          { id: "rank", label: "Theo Rank" },
+          { id: "power", label: "Theo Sức mạnh" },
+          { id: "members", label: "Theo Thành viên" },
         ] as const).map((s) => (
           <button
             key={s.id}
@@ -168,7 +168,7 @@ export default function AlliancePage() {
         ))}
       </div>
 
-      {/* Alliance Ranking */}
+      {/* B?ng x?p h?ng Alliance */}
       <div className="space-y-2.5">
         {filtered.map((alliance) => (
           <AllianceCard key={alliance.id} alliance={alliance} />
@@ -188,8 +188,8 @@ export default function AlliancePage() {
           💡 Thông tin Alliance
         </h3>
         <ul className="space-y-1.5 text-xs text-slate-400">
-          <li className="flex items-start gap-1.5"><span className="text-orange-500">▸</span> Max 30 members per alliance</li>
-          <li className="flex items-start gap-1.5"><span className="text-orange-500">▸</span> Roles: R5 (Leader), R4 (Officer), Member</li>
+          <li className="flex items-start gap-1.5"><span className="text-orange-500">▸</span> Tối đa 30 thành viên mỗi alliance</li>
+          <li className="flex items-start gap-1.5"><span className="text-orange-500">▸</span> Vai trò: R5 (Leader), R4 (Officer), Member</li>
           <li className="flex items-start gap-1.5"><span className="text-orange-500">▸</span> R4+ có thể duyệt thành viên mới và quản lý chat</li>
           <li className="flex items-start gap-1.5"><span className="text-orange-500">▸</span> Tham gia alliance để nhận buff và tham gia Alliance War</li>
         </ul>
@@ -246,7 +246,7 @@ function AllianceCard({ alliance }: { alliance: Alliance }) {
         {/* Recruiting Badge */}
         {alliance.isRecruiting && (
           <span className="px-2 py-1 rounded-lg bg-green-500/15 text-green-400 text-[9px] font-bold uppercase">
-            🔓 Open
+            🔓 Mở
           </span>
         )}
       </div>

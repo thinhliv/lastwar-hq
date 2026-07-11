@@ -39,7 +39,7 @@ export default function ProfilePage() {
     ? user.user_metadata?.full_name ||
       user.user_metadata?.name ||
       user.email?.split("@")[0] ||
-      "Commander"
+      "Ch? huy"
     : null;
 
   const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
@@ -138,14 +138,14 @@ export default function ProfilePage() {
         ))}
       </div>
 
-      {/* Game Profile Section */}
+      {/* Hồ sơ game Section */}
       <div className="mt-4">
         <button
           onClick={() => setShowGameSettings(!showGameSettings)}
           className="w-full flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all"
         >
           <Gamepad2 className="w-4 h-4 text-orange-400" />
-          <span className="text-sm text-slate-300 flex-1 text-left">Game Profile</span>
+          <span className="text-sm text-slate-300 flex-1 text-left">Hồ sơ game</span>
           <span className="text-[10px] text-slate-500">
             {gameName ? `${gameName} · S${serverId}` : "Chưa thiết lập"}
           </span>
@@ -191,7 +191,7 @@ export default function ProfilePage() {
               />
             </div>
             <button className="w-full py-2 rounded-lg bg-orange-500/20 text-orange-400 text-sm font-medium hover:bg-orange-500/30 transition-colors">
-              Lưu Game Profile
+              Lưu Hồ sơ game
             </button>
           </div>
         )}

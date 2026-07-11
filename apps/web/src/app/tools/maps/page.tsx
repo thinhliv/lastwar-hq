@@ -38,10 +38,10 @@ const ZONE_COLORS: Record<ZoneType, string> = {
 };
 
 const ZONE_LABELS: Record<ZoneType, string> = {
-  alliance: "Alliance Territory",
-  neutral: "Neutral Zone",
-  fortress: "Fortress",
-  capital: "Capital",
+  alliance: "Lãnh thổ Alliance",
+  neutral: "Khu trung lập",
+  fortress: "Pháo đài",
+  capital: "Thủ đô",
   resource: "Resource Area",
 };
 
@@ -64,11 +64,11 @@ function generateSeasonData(season: number): SeasonData {
       let type: ZoneType = "neutral";
       let alliance: string | undefined;
 
-      // Capital at center
+      // Thủ đô at center
       if (Math.abs(x - cx) < 1 && Math.abs(y - cy) < 1) {
         type = "capital";
       }
-      // Fortress ring around capital
+      // Pháo đài ring around capital
       else if (dist < 2.5) {
         type = "fortress";
       }
@@ -159,7 +159,7 @@ export default function MapsPage() {
       {/* Header */}
       <div className="flex items-center gap-2 mb-1">
         <MapIcon className="w-6 h-6 text-blue-400" />
-        <h1 className="text-2xl font-bold">Season Maps</h1>
+        <h1 className="text-2xl font-bold">Bản đồ mùa giảis</h1>
       </div>
       <p className="text-slate-400 text-sm mb-4">
         Khám phá bản đồ lĩnh thổ từng mùa giải
@@ -343,7 +343,7 @@ export default function MapsPage() {
         </div>
       </div>
 
-      {/* Legend */}
+      {/* Chú thích */}
       <div className="mt-4 p-4 rounded-2xl glass">
         <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-3">
           Chú thích
@@ -365,7 +365,7 @@ export default function MapsPage() {
         </div>
       </div>
 
-      {/* Zone Info Panel */}
+      {/* Thông tin khu vực Panel */}
       {selectedZone && (
         <div className="fixed bottom-24 left-4 right-4 z-40 mx-auto max-w-md">
           <div className="rounded-2xl glass border border-orange-500/20 p-4 shadow-2xl animate-in">

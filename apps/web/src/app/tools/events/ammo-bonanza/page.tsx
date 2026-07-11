@@ -76,7 +76,7 @@ export default function AmmoBonanzaPage() {
     <div className="min-h-screen px-4 py-6">
       <Link href="/tools/events" className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3">
         <ChevronLeft className="w-4 h-4" />
-        Events
+        Sự kiện
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
@@ -89,7 +89,7 @@ export default function AmmoBonanzaPage() {
 
       {/* Buff Toggles */}
       <div className="p-4 rounded-2xl glass mb-4 space-y-3">
-        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300">Active Buffs</h3>
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300">Buff đang bật</h3>
         <div className="grid grid-cols-3 gap-2">
           <button
             onClick={() => setHasAllianceBuff(!hasAllianceBuff)}
@@ -160,7 +160,7 @@ export default function AmmoBonanzaPage() {
         <div className="text-4xl font-black text-yellow-400 mb-3">{formatNum(totalAmmo)}</div>
         <div className="grid grid-cols-2 gap-3">
           <div className="p-2.5 rounded-xl bg-white/5">
-            <p className="text-[10px] text-slate-500 uppercase">Stages</p>
+            <p className="text-[10px] text-slate-500 uppercase">Số màn</p>
             <p className="text-lg font-bold">{stagesCompleted.length}/10</p>
           </div>
           <div className="p-2.5 rounded-xl bg-white/5">
@@ -220,7 +220,7 @@ export default function AmmoBonanzaPage() {
         <div className="flex items-center gap-2">
           <Gift className="w-5 h-5 text-purple-400" />
           <div>
-            <h3 className="font-semibold text-sm">Desert Treasure Calculator</h3>
+            <h3 className="font-semibold text-sm">Máy tính Desert Treasure</h3>
             <p className="text-xs text-slate-400">Tính phần thưởng kho báu sa mạc</p>
           </div>
         </div>

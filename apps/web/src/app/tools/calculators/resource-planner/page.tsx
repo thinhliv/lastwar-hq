@@ -116,12 +116,12 @@ export default function ResourcePlannerPage() {
     <div className="min-h-screen px-4 py-6">
       <Link href="/tools/calculators/advanced" className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3">
         <ChevronLeft className="w-4 h-4" />
-        Advanced Tools
+        C�ng c? n�ng cao
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <Package className="w-6 h-6 text-green-400" />
-        <h1 className="text-2xl font-bold">Resource Planner</h1>
+        <h1 className="text-2xl font-bold">L?p k? ho?ch t�i nguy�n</h1>
       </div>
       <p className="text-slate-400 text-sm mb-5">
         Kế hoạch tài nguyên và troop training
@@ -153,7 +153,7 @@ export default function ResourcePlannerPage() {
           <div className="p-4 rounded-2xl glass space-y-4">
             <div>
               <label className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2 block">
-                APC Tier: <span className="text-green-400 font-bold">T{apcTier.slice(1)}</span>
+                Cấp APC: <span className="text-green-400 font-bold">T{apcTier.slice(1)}</span>
               </label>
               <div className="flex gap-2">
                 {[1, 5, 7, 9, 10].map((t) => (
@@ -332,7 +332,7 @@ export default function ResourcePlannerPage() {
             {/* Quick Adjust */}
             <div className="mt-4 grid grid-cols-2 gap-3">
               <div>
-                <label className="text-[10px] text-slate-400 uppercase">APC Tier</label>
+                <label className="text-[10px] text-slate-400 uppercase">Cấp APC</label>
                 <div className="flex gap-1 mt-1">
                   {[1, 5, 7, 9, 10].map((t) => (
                     <button
@@ -346,7 +346,7 @@ export default function ResourcePlannerPage() {
                 </div>
               </div>
               <div>
-                <label className="text-[10px] text-slate-400 uppercase">Train Tier</label>
+                <label className="text-[10px] text-slate-400 uppercase">Cấp đào tạo</label>
                 <div className="flex gap-1 mt-1">
                   {[8, 9, 10].map((t) => (
                     <button

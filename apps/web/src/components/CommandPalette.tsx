@@ -14,26 +14,26 @@ interface SearchItem {
 
 const SEARCH_INDEX: SearchItem[] = [
   // Tools
-  { label: "Calculators", href: "/tools/calculators", category: "Tools", icon: "🧮", keywords: "boss hero resource troop calc" },
-  { label: "Advanced Tools", href: "/tools/calculators/advanced", category: "Tools", icon: "⚙️", keywords: "speedup battle build planner sim" },
-  { label: "Hero Tier List", href: "/tools/hero-tier", category: "Tools", icon: "⭐", keywords: "hero tier ssr sr rank meta" },
-  { label: "Season Maps", href: "/tools/maps", category: "Tools", icon: "🗺️", keywords: "map territory zone" },
-  { label: "Events", href: "/tools/events", category: "Tools", icon: "📅", keywords: "event countdown timer calendar" },
-  { label: "Ammo Bonanza Calc", href: "/tools/events/ammo-bonanza", category: "Tools", icon: "⚡", keywords: "ammo bonanza calculator event" },
-  { label: "Desert Treasure Calc", href: "/tools/events/desert-treasure", category: "Tools", icon: "🏜️", keywords: "desert treasure calculator event" },
-  { label: "Resource Planner", href: "/tools/calculators/resource-planner", category: "Tools", icon: "📦", keywords: "resource planner gather train balance" },
-  { label: "Building Planner", href: "/tools/calculators/building-planner", category: "Tools", icon: "🏗️", keywords: "building upgrade planner cost time" },
-  { label: "Server Stats", href: "/tools/server-stats", category: "Tools", icon: "📊", keywords: "server stats population" },
-  { label: "Clan Finder", href: "/tools/clan-finder", category: "Tools", icon: "🔍", keywords: "clan server find search" },
-  { label: "Alliances", href: "/tools/alliance", category: "Tools", icon: "🏰", keywords: "alliance guild join create" },
+  { label: "Máy tính", href: "/tools/calculators", category: "Công cụ", icon: "🧮", keywords: "boss hero resource troop calc" },
+  { label: "Công cụ nâng cao", href: "/tools/calculators/advanced", category: "Công cụ", icon: "⚙️", keywords: "speedup battle build planner sim" },
+  { label: "Bảng xếp hạng Hero", href: "/tools/hero-tier", category: "Công cụ", icon: "⭐", keywords: "hero tier ssr sr rank meta" },
+  { label: "Bản đồ mùa giải", href: "/tools/maps", category: "Công cụ", icon: "🗺️", keywords: "map territory zone" },
+  { label: "Sự kiện", href: "/tools/events", category: "Công cụ", icon: "📅", keywords: "event countdown timer calendar" },
+  { label: "Máy tính Ammo Bonanza", href: "/tools/events/ammo-bonanza", category: "Công cụ", icon: "⚡", keywords: "ammo bonanza calculator event" },
+  { label: "Máy tính Desert Treasure", href: "/tools/events/desert-treasure", category: "Công cụ", icon: "🏜️", keywords: "desert treasure calculator event" },
+  { label: "Lập kế hoạch tài nguyên", href: "/tools/calculators/resource-planner", category: "Công cụ", icon: "📦", keywords: "resource planner gather train balance" },
+  { label: "Lập kế hoạch nâng cấp", href: "/tools/calculators/building-planner", category: "Công cụ", icon: "🏗️", keywords: "building upgrade planner cost time" },
+  { label: "Thống kê Server", href: "/tools/server-stats", category: "Công cụ", icon: "📊", keywords: "server stats population" },
+  { label: "Tìm Clan", href: "/tools/clan-finder", category: "Công cụ", icon: "🔍", keywords: "clan server find search" },
+  { label: "Alliance", href: "/tools/alliance", category: "Công cụ", icon: "🏰", keywords: "alliance guild join create" },
   // Content
-  { label: "Strategy Guides", href: "/guides", category: "Content", icon: "📖", keywords: "guide strategy tips tutorial" },
-  { label: "News & Updates", href: "/news", category: "Content", icon: "📰", keywords: "news update patch announcement" },
+  { label: "Hướng dẫn chiến thuật", href: "/guides", category: "Nội dung", icon: "📖", keywords: "guide strategy tips tutorial" },
+  { label: "Tin tức & Cập nhật", href: "/news", category: "Nội dung", icon: "📰", keywords: "news update patch announcement" },
   // Nav
-  { label: "Chat", href: "/chat", category: "Navigate", icon: "💬", keywords: "chat message global alliance" },
-  { label: "Profile", href: "/profile", category: "Navigate", icon: "👤", keywords: "profile account settings" },
-  { label: "Settings", href: "/settings", category: "Navigate", icon: "⚙️", keywords: "settings language notification" },
-  { label: "Home", href: "/", category: "Navigate", icon: "🏠", keywords: "home main dashboard" },
+  { label: "Chat", href: "/chat", category: "Điều hướng", icon: "💬", keywords: "chat message global alliance" },
+  { label: "Hồ sơ", href: "/profile", category: "Điều hướng", icon: "👤", keywords: "profile account settings" },
+  { label: "Cài đặt", href: "/settings", category: "Điều hướng", icon: "⚙️", keywords: "settings language notification" },
+  { label: "Trang chủ", href: "/", category: "Điều hướng", icon: "🏠", keywords: "home main dashboard" },
 ];
 
 export default function CommandPalette({

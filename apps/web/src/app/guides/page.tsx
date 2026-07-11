@@ -46,7 +46,7 @@ const GUIDES: Guide[] = [
     content:
       "Season 6 mang đến nhiều thay đổi về meta hero. Bài viết này phân tích từng combo hero hàng đầu dựa trên data thực tế từ top players:\n\n1. **Grace + Volkov** — Bộ đôi SSR mạnh nhất hiện tại, Grace tăng damage cho toàn đội trong khi Volkov xử lý tank. Hiệu quả trong cả PvE và PvP.\n\n2. **Murphy + Kim** — Combo điều khiển hoàn hảo. Murphy stun 3s kết hợp với burst damage từ Kim tạo ra one-shot potential.\n\n3. **Freya + Schuyler** — Best sustain combo. Freya heal + Schuyler shield tạo đội hình gần như bất tử trong PvE.\n\n4. **Avery + Duncan** — Budget combo cho F2P players. Vẫn mạnh đủ để đẩy rank cao nếu upgrade đúng cách.\n\nLưu ý: Tier list thay đổi theo meta. Theo dõi update mới nhất để điều chỉnh đội hình.",
     readTime: "8 min",
-    author: "CommanderPhoenix",
+    author: "Ch? huyPhoenix",
     date: "10/07/2026",
     isNew: true,
   },
@@ -156,7 +156,7 @@ export default function GuidesPage() {
 
       <div className="flex items-center gap-2 mb-1">
         <BookOpen className="w-6 h-6 text-green-400" />
-        <h1 className="text-2xl font-bold">Strategy Guides</h1>
+        <h1 className="text-2xl font-bold">Hu?ng d?n chi?n thu?t</h1>
       </div>
       <p className="text-slate-400 text-sm mb-6">
         Hướng dẫn chi tiết từ cộng đồng Last War

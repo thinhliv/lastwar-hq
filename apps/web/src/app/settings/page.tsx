@@ -40,7 +40,7 @@ export default function SettingsPage() {
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
       >
         <ChevronLeft className="w-4 h-4" />
-        Profile
+        Hồ sơ
       </Link>
 
       <h1 className="text-2xl font-bold mb-6">⚙️ Cài đặt</h1>
@@ -87,7 +87,7 @@ export default function SettingsPage() {
         <div className="p-4 rounded-2xl glass space-y-3">
           <ToggleRow
             icon={Bell}
-            label="Push notifications"
+            label="Thông báo đẩy"
             desc="Nhận thông báo về events, tin nhắn"
             value={notifEnabled}
             onChange={setNotifEnabled}
@@ -113,7 +113,7 @@ export default function SettingsPage() {
         <div className="p-4 rounded-2xl glass">
           <ToggleRow
             icon={Moon}
-            label="Dark Mode"
+            label="Chế độ tối"
             desc="Giao diện tối"
             value={darkMode}
             onChange={setDarkMode}
@@ -164,7 +164,7 @@ export default function SettingsPage() {
           <button className="w-full flex items-center gap-3 text-left">
             <MessageCircle className="w-4 h-4 text-slate-400" />
             <span className="text-sm text-slate-300 flex-1">Discord</span>
-            <span className="text-[10px] text-slate-500">coming soon</span>
+            <span className="text-[10px] text-slate-500">Sắp ra mắt</span>
           </button>
         </div>
       </div>

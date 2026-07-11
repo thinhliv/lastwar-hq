@@ -69,21 +69,21 @@ export default function ServerStatsPage() {
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
       >
         <ChevronLeft className="w-4 h-4" />
-        Tools
+        Công cụ
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <Server className="w-6 h-6 text-purple-400" />
-        <h1 className="text-2xl font-bold">Server Statistics</h1>
+        <h1 className="text-2xl font-bold">Thống kê Server</h1>
       </div>
       <p className="text-slate-400 text-sm mb-4">
-        Thống kê từ {totalServers.toLocaleString()} servers
+        Thống kê từ {totalServers.toLocaleString()} server
       </p>
 
       {/* Data source */}
       <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-6">
         <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-        Live data from coordinateslist.com
+        Live data từ coordinateslist.com
       </div>
 
       {/* ===== STAT CARDS ===== */}
@@ -94,12 +94,12 @@ export default function ServerStatsPage() {
             <div className="w-8 h-8 rounded-lg bg-orange-500/15 flex items-center justify-center">
               <Server className="w-4 h-4 text-orange-400" />
             </div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-wide">Total</span>
+            <span className="text-[10px] text-slate-500 uppercase tracking-wide">Tổng</span>
           </div>
           <p className="text-2xl font-black text-white">
             {totalServers.toLocaleString()}
           </p>
-          <p className="text-[10px] text-slate-500 mt-0.5">Servers tracked</p>
+          <p className="text-[10px] text-slate-500 mt-0.5">Server đang theo dõi</p>
         </div>
 
         {/* Newest Server */}
@@ -108,11 +108,11 @@ export default function ServerStatsPage() {
             <div className="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center">
               <TrendingUp className="w-4 h-4 text-green-400" />
             </div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-wide">Newest</span>
+            <span className="text-[10px] text-slate-500 uppercase tracking-wide">Mới nhất</span>
           </div>
           <p className="text-2xl font-black text-white">S{highestServer.server}</p>
           <p className="text-[10px] text-slate-500 mt-0.5">
-            Updated {highestServer.lastUpdate}
+            Cập nhật {highestServer.lastUpdate}
           </p>
         </div>
 
@@ -122,13 +122,13 @@ export default function ServerStatsPage() {
             <div className="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center">
               <Activity className="w-4 h-4 text-blue-400" />
             </div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-wide">7 days</span>
+            <span className="text-[10px] text-slate-500 uppercase tracking-wide">7 ngày</span>
           </div>
           <p className="text-2xl font-black text-white">
             {updated7d.toLocaleString()}
           </p>
           <p className="text-[10px] text-slate-500 mt-0.5">
-            Recently updated
+            Cập nhật gần đây
           </p>
         </div>
 
@@ -138,13 +138,13 @@ export default function ServerStatsPage() {
             <div className="w-8 h-8 rounded-lg bg-purple-500/15 flex items-center justify-center">
               <Calendar className="w-4 h-4 text-purple-400" />
             </div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-wide">30 days</span>
+            <span className="text-[10px] text-slate-500 uppercase tracking-wide">30 ngày</span>
           </div>
           <p className="text-2xl font-black text-white">
             {updated30d.toLocaleString()}
           </p>
           <p className="text-[10px] text-slate-500 mt-0.5">
-            Active servers
+            Server hoạt động
           </p>
         </div>
       </div>
@@ -154,7 +154,7 @@ export default function ServerStatsPage() {
         <div className="flex items-center gap-2 mb-3">
           <Award className="w-5 h-5 text-yellow-400" />
           <h2 className="text-sm font-bold uppercase tracking-wide">
-            Top 10 — Most Alliances
+            Top 10 — Nhiều Alliance nhất
           </h2>
         </div>
         <div className="space-y-2">
@@ -196,7 +196,7 @@ export default function ServerStatsPage() {
         <div className="flex items-center gap-2 mb-3">
           <Search className="w-5 h-5 text-blue-400" />
           <h2 className="text-sm font-bold uppercase tracking-wide">
-            Search Server
+            Tìm kiếm Server
           </h2>
         </div>
         <div className="relative">
@@ -205,7 +205,7 @@ export default function ServerStatsPage() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Server number hoặc alliance code..."
+            placeholder="Số server hoặc mã alliance..."
             className="w-full pl-10 pr-4 py-3 rounded-2xl glass text-sm text-white placeholder-slate-500 outline-none focus:border-orange-500/30"
           />
         </div>
@@ -219,7 +219,7 @@ export default function ServerStatsPage() {
             ) : (
               <>
                 <p className="text-xs text-slate-500 mb-2">
-                  {filtered.length} result{filtered.length !== 1 ? "s" : ""}
+                  {filtered.length} kết quả
                 </p>
                 {filtered.map((srv) => (
                   <div

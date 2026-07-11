@@ -23,7 +23,7 @@ const BUILDINGS: Record<BuildingType, { name: string; icon: string; desc: string
   factory: { name: "Factory", icon: "🏭", desc: "Train xe cơ giới", color: "text-blue-400" },
   warehouse: { name: "Warehouse", icon: "📦", desc: "Bảo vệ tài nguyên", color: "text-green-400" },
   hospital: { name: "Hospital", icon: "🏥", desc: "Chữa thương troop", color: "text-pink-400" },
-  lab: { name: "Phòng nghiên cứu", icon: "🔬", desc: "Nghiên cứu công nghệ", color: "text-purple-400" },
+  lab: { name: "Research Lab", icon: "🔬", desc: "Nghiên cứu công nghệ", color: "text-purple-400" },
   wall: { name: "City Wall", icon: "🧱", desc: "Phòng thủ thành phố", color: "text-yellow-400" },
   radar: { name: "Radar Station", icon: "📡", desc: "Phát hiện enemy", color: "text-cyan-400" },
 };
@@ -109,12 +109,12 @@ export default function BuildingPlannerPage() {
     <div className="min-h-screen px-4 py-6">
       <Link href="/tools/calculators/advanced" className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3">
         <ChevronLeft className="w-4 h-4" />
-        C�ng c? n�ng cao
+        Advanced Tools
       </Link>
 
       <div className="flex items-center gap-2 mb-1">
         <Home className="w-6 h-6 text-orange-400" />
-        <h1 className="text-2xl font-bold">L?p k? ho?ch n�ng c?p</h1>
+        <h1 className="text-2xl font-bold">Building Planner</h1>
       </div>
       <p className="text-slate-400 text-sm mb-5">
         Tính chi phí và thời gian nâng cấp nhà
@@ -164,7 +164,7 @@ export default function BuildingPlannerPage() {
             />
           </div>
           <div>
-            <label className="text-[10px] text-slate-400 uppercase">Cấp độ mục tiêu</label>
+            <label className="text-[10px] text-slate-400 uppercase">Target level</label>
             <input
               type="number"
               value={targetLevel}
@@ -220,7 +220,7 @@ export default function BuildingPlannerPage() {
       {targetLevel <= currentLevel ? (
         <div className="p-6 rounded-2xl bg-red-500/5 border border-red-500/10 text-center">
           <AlertCircle className="w-6 h-6 text-red-400 mx-auto mb-2" />
-          <p className="text-sm text-red-400">Cấp độ mục tiêu phải cao hơn level hiện tại!</p>
+          <p className="text-sm text-red-400">Target level phải cao hơn level hiện tại!</p>
         </div>
       ) : (
         <>
@@ -311,15 +311,15 @@ export default function BuildingPlannerPage() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-orange-400 font-bold">3.</span>
-                <span><b className="text-slate-300">Phòng nghiên cứu</b> — Tech boost dài hạn</span>
+                <span><b className="text-slate-300">Research Lab</b> — Tech boost dài hạn</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-orange-400 font-bold">4.</span>
-                <span><b className="text-slate-300">Nhà kho</b> — Bảo vệ tài nguyên khi bị attack</span>
+                <span><b className="text-slate-300">Warehouse</b> — Bảo vệ tài nguyên khi bị attack</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-orange-400 font-bold">5.</span>
-                <span><b className="text-slate-300">Bệnh viện</b> — Giảm loss troop khi chiến đấu</span>
+                <span><b className="text-slate-300">Hospital</b> — Giảm loss troop khi chiến đấu</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-orange-400 font-bold">6.</span>

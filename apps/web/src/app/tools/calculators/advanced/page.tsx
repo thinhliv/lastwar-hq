@@ -39,19 +39,19 @@ function formatHours(h: number): string {
 
 // ===== SPEEDUP TYPES =====
 const SPEEDUP_TYPES = [
-  { id: "universal", label: "Universal", icon: Zap, color: "text-purple-400", desc: "Dùng cho mọi thứ" },
-  { id: "building", label: "Building", icon: Hammer, color: "text-orange-400", desc: "Upgrade building" },
-  { id: "research", label: "Research", icon: Gauge, color: "text-blue-400", desc: "Tech research" },
-  { id: "training", label: "Training", icon: Shield, color: "text-green-400", desc: "Train troop" },
+  { id: "universal", label: "Đa năng", icon: Zap, color: "text-purple-400", desc: "Dùng cho mọi thứ" },
+  { id: "building", label: "Xây dựng", icon: Hammer, color: "text-orange-400", desc: "Upgrade building" },
+  { id: "research", label: "Nghiên cứu", icon: Gauge, color: "text-blue-400", desc: "Tech research" },
+  { id: "training", label: "Train", icon: Shield, color: "text-green-400", desc: "Train troop" },
 ] as const;
 
 const SPEEDUP_ITEMS = [
-  { id: "5m", label: "5 min", value: 5 / 60 },
-  { id: "1h", label: "1 hour", value: 1 },
-  { id: "3h", label: "3 hours", value: 3 },
-  { id: "8h", label: "8 hours", value: 8 },
-  { id: "24h", label: "24 hours", value: 24 },
-  { id: "7d", label: "7 days", value: 24 * 7 },
+  { id: "5m", label: "5 phút", value: 5 / 60 },
+  { id: "1h", label: "1 giờ", value: 1 },
+  { id: "3h", label: "3 giờ", value: 3 },
+  { id: "8h", label: "8 giờ", value: 8 },
+  { id: "24h", label: "24 giờ", value: 24 },
+  { id: "7d", label: "7 ngày", value: 24 * 7 },
 ] as const;
 
 // ===== TROOP DATA for Battle Sim =====
@@ -69,10 +69,10 @@ const TROOP_TIERS = [
 ];
 
 const TROOP_TYPES = [
-  { id: "infantry", label: "Infantry", icon: Shield, color: "text-blue-400" },
-  { id: "cavalry", label: "Cavalry", icon: Zap, color: "text-orange-400" },
-  { id: "archer", label: "Archer", icon: Swords, color: "text-green-400" },
-  { id: "siege", label: "Siege", icon: Hammer, color: "text-red-400" },
+  { id: "infantry", label: "Bộ binh", icon: Shield, color: "text-blue-400" },
+  { id: "cavalry", label: "Kỵ binh", icon: Zap, color: "text-orange-400" },
+  { id: "archer", label: "Cung thủ", icon: Swords, color: "text-green-400" },
+  { id: "siege", label: "Công thành", icon: Hammer, color: "text-red-400" },
 ] as const;
 
 // Troop type advantages (rock-paper-scissors)
@@ -87,12 +87,12 @@ const TYPE_ADVANTAGE: Record<string, string> = {
 const BUILDINGS = [
   { id: "hq", label: "Headquarters", baseTime: 1, maxLevel: 30, icon: "🏰", priority: "critical" },
   { id: "barracks", label: "Barracks", baseTime: 0.5, maxLevel: 30, icon: "⚔️", priority: "high" },
-  { id: "wall", label: "Wall", baseTime: 0.8, maxLevel: 30, icon: "🧱", priority: "high" },
-  { id: "farm", label: "Farm", baseTime: 0.3, maxLevel: 30, icon: "🌾", priority: "medium" },
-  { id: "oilwell", label: "Oil Well", baseTime: 0.3, maxLevel: 30, icon: "🛢️", priority: "medium" },
-  { id: "ironmine", label: "Iron Mine", baseTime: 0.3, maxLevel: 30, icon: "⛏️", priority: "medium" },
-  { id: "warehouse", label: "Warehouse", baseTime: 0.4, maxLevel: 30, icon: "📦", priority: "low" },
-  { id: "research", label: "Research Lab", baseTime: 0.6, maxLevel: 30, icon: "🔬", priority: "high" },
+  { id: "wall", label: "Tường thành", baseTime: 0.8, maxLevel: 30, icon: "🧱", priority: "high" },
+  { id: "farm", label: "Nông trại", baseTime: 0.3, maxLevel: 30, icon: "🌾", priority: "medium" },
+  { id: "oilwell", label: "Giếng dầu", baseTime: 0.3, maxLevel: 30, icon: "🛢️", priority: "medium" },
+  { id: "ironmine", label: "Mỏ sắt", baseTime: 0.3, maxLevel: 30, icon: "⛏️", priority: "medium" },
+  { id: "warehouse", label: "Kho", baseTime: 0.4, maxLevel: 30, icon: "📦", priority: "low" },
+  { id: "research", label: "Phòng nghiên cứu", baseTime: 0.6, maxLevel: 30, icon: "🔬", priority: "high" },
 ];
 
 // ===== MAIN COMPONENT =====
@@ -111,18 +111,18 @@ export default function AdvancedCalcPage() {
 
       <div className="flex items-center gap-2 mb-1">
         <Gauge className="w-6 h-6 text-cyan-400" />
-        <h1 className="text-2xl font-bold">Advanced Tools</h1>
+        <h1 className="text-2xl font-bold">Công cụ nâng cao</h1>
       </div>
       <p className="text-slate-400 text-sm mb-5">
-        Speedup, Battle Simulator, Build Planner
+        Speedup, Mô phỏng chiến đấu, L�n k? ho?ch x�y d?ng
       </p>
 
       {/* Tab Bar */}
       <div className="flex gap-1 p-1 rounded-2xl glass mb-6">
         {([
           { id: "speedup", label: "Speedup", icon: Zap },
-          { id: "battle", label: "Battle Sim", icon: Swords },
-          { id: "build", label: "Build Plan", icon: Hammer },
+          { id: "battle", label: "Mô phỏng", icon: Swords },
+          { id: "build", label: "Build", icon: Hammer },
         ] as { id: CalcTab; label: string; icon: typeof Zap }[]).map((t) => (
           <button
             key={t.id}
@@ -148,14 +148,14 @@ export default function AdvancedCalcPage() {
         <Link href="/tools/calculators/resource-planner" className="flex items-center justify-between p-3 rounded-2xl glass hover:border-green-500/20 transition-all">
           <div className="flex items-center gap-2">
             <Package className="w-5 h-5 text-green-400" />
-            <h3 className="font-semibold text-sm">Resource Planner</h3>
+            <h3 className="font-semibold text-sm">L?p k? ho?ch t�i nguy�n</h3>
           </div>
           <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
         </Link>
         <Link href="/tools/calculators/building-planner" className="flex items-center justify-between p-3 rounded-2xl glass hover:border-orange-500/20 transition-all">
           <div className="flex items-center gap-2">
             <Hammer className="w-5 h-5 text-orange-400" />
-            <h3 className="font-semibold text-sm">Building Planner</h3>
+            <h3 className="font-semibold text-sm">L?p k? ho?ch n�ng c?p</h3>
           </div>
           <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
         </Link>
@@ -233,7 +233,7 @@ function SpeedupCalculator() {
         />
         <div className="flex justify-between text-[10px] text-slate-600 mt-1">
           <span>1h</span>
-          <span>30 days</span>
+          <span>30 ngày</span>
         </div>
         {/* Quick presets */}
         <div className="flex gap-2 mt-3">
@@ -416,7 +416,7 @@ function BattleSimulator() {
           </div>
           {/* Count */}
           <div>
-            <label className="text-[10px] text-slate-400 uppercase">Count</label>
+            <label className="text-[10px] text-slate-400 uppercase">Số lượng</label>
             <input type="number" value={attackerCount} onChange={(e) => setAttackerCount(Math.max(0, Number(e.target.value)))} className="w-full bg-white/5 rounded-lg px-3 py-2 text-lg font-bold text-white outline-none mt-1" min={0} />
           </div>
         </div>
@@ -455,7 +455,7 @@ function BattleSimulator() {
             <input type="range" min={1} max={10} value={defenderTier} onChange={(e) => setDefenderTier(Number(e.target.value))} className="w-full accent-blue-500" />
           </div>
           <div>
-            <label className="text-[10px] text-slate-400 uppercase">Count</label>
+            <label className="text-[10px] text-slate-400 uppercase">Số lượng</label>
             <input type="number" value={defenderCount} onChange={(e) => setDefenderCount(Math.max(0, Number(e.target.value)))} className="w-full bg-white/5 rounded-lg px-3 py-2 text-lg font-bold text-white outline-none mt-1" min={0} />
           </div>
         </div>
@@ -507,14 +507,14 @@ function BattleSimulator() {
         {/* Stats */}
         <div className="grid grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-red-500/5">
-            <p className="text-[10px] text-slate-500 uppercase mb-1">Attacker Power</p>
+            <p className="text-[10px] text-slate-500 uppercase mb-1">Sức mạnh tấn công</p>
             <p className="text-lg font-bold text-red-400">{formatNumber(result.atkEffectivePower)}</p>
-            <p className="text-[10px] text-slate-500 mt-1">Estimated losses: <span className="text-red-400">{formatNumber(result.atkLosses)}</span></p>
+            <p className="text-[10px] text-slate-500 mt-1">Thiệt hại ước tính: <span className="text-red-400">{formatNumber(result.atkLosses)}</span></p>
           </div>
           <div className="p-3 rounded-xl bg-blue-500/5">
-            <p className="text-[10px] text-slate-500 uppercase mb-1">Defender Power</p>
+            <p className="text-[10px] text-slate-500 uppercase mb-1">Sức mạnh phòng thủ</p>
             <p className="text-lg font-bold text-blue-400">{formatNumber(result.defEffectivePower)}</p>
-            <p className="text-[10px] text-slate-500 mt-1">Estimated losses: <span className="text-blue-400">{formatNumber(result.defLosses)}</span></p>
+            <p className="text-[10px] text-slate-500 mt-1">Thiệt hại ước tính: <span className="text-blue-400">{formatNumber(result.defLosses)}</span></p>
           </div>
         </div>
 
@@ -634,7 +634,7 @@ function BuildPlanner() {
         <ul className="space-y-1.5 text-xs text-slate-400">
           <li>• Luôn upgrade HQ trước — nó mở khóa level tối đa cho building khác</li>
           <li>• Wall và Barracks ưu tiên sau HQ để boost defense</li>
-          <li>• Research Lab upgrade sớm để unlock tech mạnh</li>
+          <li>• Phòng nghiên cứu upgrade sớm để unlock tech mạnh</li>
           <li>• Resource buildings upgrade song song khi có builder rảnh</li>
           <li>• Dùng speedup building cho HQ, để builder tự chạy cho building thấp</li>
         </ul>

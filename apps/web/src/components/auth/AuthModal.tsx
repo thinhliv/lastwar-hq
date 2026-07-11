@@ -162,7 +162,7 @@ export default function AuthModal({
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Email quản trị"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

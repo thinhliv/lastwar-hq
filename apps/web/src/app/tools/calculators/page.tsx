@@ -36,8 +36,8 @@ const RESTRICTED_LEVELS = Object.keys(bossData)
 
 // ===== RESOURCE CALCULATOR =====
 const RESOURCE_TYPES = [
-  { id: "food", label: "Food", icon: Wheat, color: "text-green-400", rate: 1000 },
-  { id: "oil", label: "Oil", icon: Fuel, color: "text-purple-400", rate: 1000 },
+  { id: "food", label: "Thực phẩm", icon: Wheat, color: "text-green-400", rate: 1000 },
+  { id: "oil", label: "Dầu mỏ", icon: Fuel, color: "text-purple-400", rate: 1000 },
   { id: "iron", label: "Iron", icon: Hammer, color: "text-blue-400", rate: 1000 },
   { id: "gold", label: "Gold", icon: Coins, color: "text-yellow-400", rate: 1000 },
 ] as const;

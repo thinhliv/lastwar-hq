@@ -32,11 +32,11 @@ const ARTICLES: NewsArticle[] = [
     id: 1,
     title: "Season 5 chính thức ra mắt — Map mới, Hero mới!",
     excerpt: "Bản cập nhật lớn nhất năm 2026 mang đến bản đồ Season 5 hoàn toàn mới với 6 alliance territory, hero SSR mới Grace, và hệ thống APC tier 9.",
-    fullContent: "Season 5 đã chính thức ra mắt! Đây là bản cập nhật lớn nhất năm 2026 với hàng loạt thay đổi đáng chú ý:\n\n## Map Mới — 6 Alliance Territory\n\nBản đồ Season 5 mở rộng với 6 alliance territory zones, tăng 50% diện tích so với Season 4. Điều này cho phép nhiều alliance hơn cùng tham gia chiến trường.\n\n### Điểm mới trên map:\n- 2 fortress mới ở trung tâm\n- Resource zones mở rộng\n- New choke points tạo strategic depth\n- Terrain đa dạng hơn (jungle, mountain, plain)\n\n## Hero SSR Mới — Grace\n\nGrace là hero SSR loại Support mới, mang đến meta thay đổi lớn:\n- **Skill chính**: Buff +25% attack cho toàn đội\n- **Skill phụ**: Heal 10% HP mỗi turn\n- **Best synergy**: Volkov (tank), Murphy (stun)\n\nGrace có thể thu thập qua:\n- Hero Summon Festival (limited time)\n- Season 5 pass rewards\n- Top ranking rewards\n\n## APC Tier 9\n\nHệ thống APC Tier 9 mở khóa cho HQ level 28+:\n- Tăng 40% power so với Tier 8\n- New visual design\n- Cần resource: 500K oil + 300K iron + 50K steel\n\n## Thay Đổi Khác\n\n- Level cap tăng lên 175\n- New restricted area levels (9 & 10)\n- Alliance war matching improved\n- Bug fixes và optimization\n\n## Chuẩn Bị Cho Season 5\n\n1. **Stockpile resources ngay!** Season mới tốn rất nhiều\n2. **Upgrade APC scout** — Fog of War quan trọng\n3. **Coordinate territory với alliance**\n4. **Save gems cho Hero Summon Festival**\n\nSeason 5 hứa hẹn sẽ là season hoành tráng nhất. Chuẩn bị kỹ và chiến đấu hết mình!",
+    fullContent: "Season 5 đã chính thức ra mắt! Đây là bản cập nhật lớn nhất năm 2026 với hàng loạt thay đổi đáng chú ý:\n\n## Map Mới — 6 Alliance Territory\n\nBản đồ Season 5 mở rộng với 6 alliance territory zones, tăng 50% diện tích so với Season 4. Điều này cho phép nhiều alliance hơn cùng tham gia chiến trường.\n\n### Điểm mới trên map:\n- 2 fortress mới ở trung tâm\n- Resource zones mở rộng\n- New choke points tạo strategic depth\n- Terrain đa dạng hơn (jungle, mountain, plain)\n\n## Hero SSR Mới — Grace\n\nGrace là hero SSR loại Support mới, mang đến meta thay đổi lớn:\n- **Skill chính**: Buff +25% attack cho toàn đội\n- **Skill phụ**: Heal 10% HP mỗi turn\n- **Best synergy**: Volkov (tank), Murphy (stun)\n\nGrace có thể thu thập qua:\n- Hero Summon Festival (limited time)\n- Season 5 pass rewards\n- Top ranking rewards\n\n## Cấp APC 9\n\nHệ thống Cấp APC 9 mở khóa cho HQ level 28+:\n- Tăng 40% power so với Tier 8\n- New visual design\n- Cần resource: 500K oil + 300K iron + 50K steel\n\n## Thay Đổi Khác\n\n- Level cap tăng lên 175\n- New restricted area levels (9 & 10)\n- Alliance war matching improved\n- Bug fixes và optimization\n\n## Chuẩn Bị Cho Season 5\n\n1. **Stockpile resources ngay!** Season mới tốn rất nhiều\n2. **Upgrade APC scout** — Fog of War quan trọng\n3. **Coordinate territory với alliance**\n4. **Save gems cho Hero Summon Festival**\n\nSeason 5 hứa hẹn sẽ là season hoành tráng nhất. Chuẩn bị kỹ và chiến đấu hết mình!",
     date: "10/07/2026",
     category: "Update",
     thumbnail: "🔥",
-    readTime: "5 min read",
+    readTime: "5 phút đọc",
     source: "Official Announcement",
   },
   {
@@ -47,7 +47,7 @@ const ARTICLES: NewsArticle[] = [
     date: "09/07/2026",
     category: "Event",
     thumbnail: "💥",
-    readTime: "4 min read",
+    readTime: "4 phút đọc",
     source: "Event Announcement",
   },
   {
@@ -58,7 +58,7 @@ const ARTICLES: NewsArticle[] = [
     date: "08/07/2026",
     category: "Patch Notes",
     thumbnail: "🔧",
-    readTime: "6 min read",
+    readTime: "6 phút đọc",
     source: "Official Patch Notes",
   },
   {
@@ -69,7 +69,7 @@ const ARTICLES: NewsArticle[] = [
     date: "07/07/2026",
     category: "Maintenance",
     thumbnail: "🛠️",
-    readTime: "3 min read",
+    readTime: "3 phút đọc",
     source: "Server Team",
   },
   {
@@ -80,7 +80,7 @@ const ARTICLES: NewsArticle[] = [
     date: "05/07/2026",
     category: "Event",
     thumbnail: "🏜️",
-    readTime: "5 min read",
+    readTime: "5 phút đọc",
     source: "Event Announcement",
   },
 ];
@@ -211,7 +211,7 @@ export default function NewsArticlePage() {
         </div>
       )}
 
-      {/* Auto-translate notice */}
+      {/* Tự động dịch notice */}
       <div className="mt-4 flex items-center gap-2 p-2.5 rounded-xl bg-blue-500/5 border border-blue-500/10">
         <Globe className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
         <p className="text-[10px] text-slate-400">

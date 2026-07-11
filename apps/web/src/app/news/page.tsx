@@ -133,7 +133,7 @@ export default function NewsPage() {
         ))}
       </div>
 
-      {/* Auto-translate banner */}
+      {/* T? d?ng d?ch banner */}
       <div className="mb-4 flex items-center gap-2 p-2.5 rounded-xl bg-blue-500/5 border border-blue-500/10">
         <Globe className="w-4 h-4 text-blue-400 flex-shrink-0" />
         <p className="text-xs text-slate-400">

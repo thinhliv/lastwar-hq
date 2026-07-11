@@ -15,7 +15,7 @@ import {
 const tools = [
   {
     icon: MapIcon,
-    label: "Maps",
+    label: "Bản đồ",
     desc: "Bản đồ tương tác từng mùa",
     href: "/tools/maps",
     color: "text-blue-400",
@@ -24,7 +24,7 @@ const tools = [
   },
   {
     icon: Calculator,
-    label: "Calculators",
+    label: "Máy tính",
     desc: "Boss, Resource, Troop, Speedup",
     href: "/tools/calculators",
     color: "text-orange-400",
@@ -33,7 +33,7 @@ const tools = [
   },
   {
     icon: BookOpen,
-    label: "Guides",
+    label: "Hướng dẫn",
     desc: "Wiki cộng đồng, video, đánh giá",
     href: "/guides",
     color: "text-green-400",
@@ -42,7 +42,7 @@ const tools = [
   },
   {
     icon: Server,
-    label: "Server Stats",
+    label: "Thống kê Server",
     desc: "Power ranking, alliance ranking",
     href: "/tools/server-stats",
     color: "text-purple-400",
@@ -51,7 +51,7 @@ const tools = [
   },
   {
     icon: CalendarDays,
-    label: "Events",
+    label: "Sự kiện",
     desc: "Countdown timer, lịch sự kiện",
     href: "/tools/events",
     color: "text-cyan-400",
@@ -60,7 +60,7 @@ const tools = [
   },
   {
     icon: Search,
-    label: "Clan Finder",
+    label: "Tìm Clan",
     desc: "Tìm server/clan phù hợp",
     href: "/tools/clan-finder",
     color: "text-pink-400",
@@ -69,7 +69,7 @@ const tools = [
   },
   {
     icon: Gauge,
-    label: "Advanced Tools",
+    label: "Công cụ nâng cao",
     desc: "Speedup, Battle Sim, Build Planner",
     href: "/tools/calculators/advanced",
     color: "text-cyan-400",
@@ -78,7 +78,7 @@ const tools = [
   },
   {
     icon: Star,
-    label: "Hero Tier List",
+    label: "Bảng xếp hạng Hero",
     desc: "Bảng xếp hạng hero Season 6",
     href: "/tools/hero-tier",
     color: "text-yellow-400",
@@ -87,7 +87,7 @@ const tools = [
   },
   {
     icon: Castle,
-    label: "Alliances",
+    label: "Alliance",
     desc: "Tìm và tham gia alliance",
     href: "/tools/alliance",
     color: "text-orange-400",

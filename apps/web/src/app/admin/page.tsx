@@ -42,7 +42,7 @@ const ANALYTICS = {
   topPages: [
     { path: "/", views: 12450, label: "Trang chủ" },
     { path: "/tools/calculators", views: 8230, label: "Calculators" },
-    { path: "/tools/hero-tier", views: 6890, label: "Hero Tier List" },
+    { path: "/tools/hero-tier", views: 6890, label: "B?ng x?p h?ng Hero" },
     { path: "/tools/events", views: 5430, label: "Events" },
     { path: "/tools/maps", views: 4120, label: "Maps" },
     { path: "/guides", views: 3870, label: "Guides" },
@@ -63,7 +63,7 @@ const ANALYTICS = {
     { source: "Other", percent: 5, color: "bg-slate-500" },
   ],
   recentActivity: [
-    { user: "Player_VN", action: "Đã xem Hero Tier List", time: "2 phút trước", icon: "👁️" },
+    { user: "Player_VN", action: "Đã xem B?ng x?p h?ng Hero", time: "2 phút trước", icon: "👁️" },
     { user: "Killer_99", action: "Đăng nhập", time: "5 phút trước", icon: "🔑" },
     { user: "Alliance_RU", action: "Tạo alliance mới", time: "10 phút trước", icon: "🏰" },
     { user: "ProGamer", action: "Dùng Ammo Bonanza Calc", time: "15 phút trước", icon: "⚡" },
@@ -110,12 +110,12 @@ export default function AdminPage() {
   }
 
   const navItems: { id: AdminTab; label: string; icon: typeof LayoutDashboard }[] = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { id: "analytics", label: "Analytics", icon: BarChart3 },
-    { id: "content", label: "Content", icon: FileText },
-    { id: "users", label: "Users", icon: Users },
-    { id: "events", label: "Events", icon: Calendar },
-    { id: "settings", label: "Settings", icon: Settings },
+    { id: "dashboard", label: "Tổng quan", icon: LayoutDashboard },
+    { id: "analytics", label: "Thống kê", icon: BarChart3 },
+    { id: "content", label: "Nội dung", icon: FileText },
+    { id: "users", label: "Người dùng", icon: Users },
+    { id: "events", label: "Sự kiện", icon: Calendar },
+    { id: "settings", label: "Cài đặt", icon: Settings },
   ];
 
   return (
@@ -134,7 +134,7 @@ export default function AdminPage() {
             </div>
             <div>
               <h1 className="text-sm font-black text-orange-500">LASTWAR</h1>
-              <p className="text-[9px] text-slate-500 uppercase tracking-wide">Admin Panel</p>
+              <p className="text-[9px] text-slate-500 uppercase tracking-wide">Bảng quản trị</p>
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function AdminPage() {
               className="px-3 py-1.5 rounded-lg bg-white/5 text-xs text-slate-400 hover:text-white hover:bg-white/10 flex items-center gap-1"
             >
               <Globe className="w-3.5 h-3.5" />
-              View Site
+              Xem trang
             </a>
           </div>
         </header>
@@ -232,10 +232,10 @@ export default function AdminPage() {
 // ===== DASHBOARD TAB =====
 function DashboardTab() {
   const stats = [
-    { label: "Total Visitors", value: ANALYTICS.totalVisitors.toLocaleString(), icon: Eye, color: "text-blue-400", bgColor: "bg-blue-500/10", trend: "+12.5%" },
-    { label: "Online Now", value: ANALYTICS.onlineNow.toString(), icon: Activity, color: "text-green-400", bgColor: "bg-green-500/10", trend: "live" },
-    { label: "Page Views", value: ANALYTICS.pageViews.toLocaleString(), icon: MousePointerClick, color: "text-orange-400", bgColor: "bg-orange-500/10", trend: "+8.3%" },
-    { label: "Today Visitors", value: ANALYTICS.todayVisitors.toLocaleString(), icon: TrendingUp, color: "text-purple-400", bgColor: "bg-purple-500/10", trend: "+15.2%" },
+    { label: "T?ng kh�ch", value: ANALYTICS.totalVisitors.toLocaleString(), icon: Eye, color: "text-blue-400", bgColor: "bg-blue-500/10", trend: "+12.5%" },
+    { label: "�ang online", value: ANALYTICS.onlineNow.toString(), icon: Activity, color: "text-green-400", bgColor: "bg-green-500/10", trend: "live" },
+    { label: "Lu?t xem", value: ANALYTICS.pageViews.toLocaleString(), icon: MousePointerClick, color: "text-orange-400", bgColor: "bg-orange-500/10", trend: "+8.3%" },
+    { label: "Kh�ch h�m nay", value: ANALYTICS.todayVisitors.toLocaleString(), icon: TrendingUp, color: "text-purple-400", bgColor: "bg-purple-500/10", trend: "+15.2%" },
   ];
 
   return (
@@ -265,11 +265,11 @@ function DashboardTab() {
 
       {/* Two Column */}
       <div className="grid lg:grid-cols-2 gap-4">
-        {/* Top Pages */}
+        {/* Trang xem nhi?u */}
         <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
           <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300 mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-orange-400" />
-            Top Pages
+            Trang xem nhi?u
           </h3>
           <div className="space-y-2">
             {ANALYTICS.topPages.map((page, i) => (
@@ -368,7 +368,7 @@ function AnalyticsTab() {
           { label: "Hôm nay", value: ANALYTICS.todayVisitors, icon: Clock },
           { label: "Tuần này", value: ANALYTICS.weekVisitors, icon: TrendingUp },
           { label: "Tháng này", value: ANALYTICS.monthVisitors, icon: Calendar },
-          { label: "Bounce Rate", value: `${ANALYTICS.bounceRate}%`, icon: Activity, isText: true },
+          { label: "T? l? tho�t", value: `${ANALYTICS.bounceRate}%`, icon: Activity, isText: true },
         ].map((s) => (
           <div key={s.label} className="p-4 rounded-2xl bg-white/5 border border-white/5">
             <s.icon className="w-4 h-4 text-slate-500 mb-2" />
@@ -466,9 +466,9 @@ function ContentTab() {
             <tr>
               <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase">Tiêu đề</th>
               <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase hidden sm:table-cell">{section === "guides" ? "Danh mục" : "Ngày"}</th>
-              <th className="px-3 py-2 text-right font-bold text-slate-400 uppercase">Views</th>
-              <th className="px-3 py-2 text-center font-bold text-slate-400 uppercase">Status</th>
-              <th className="px-3 py-2 text-right font-bold text-slate-400 uppercase">Action</th>
+              <th className="px-3 py-2 text-right font-bold text-slate-400 uppercase">Lượt xem</th>
+              <th className="px-3 py-2 text-center font-bold text-slate-400 uppercase">Trạng thái</th>
+              <th className="px-3 py-2 text-right font-bold text-slate-400 uppercase">Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -508,12 +508,12 @@ function ContentTab() {
 // ===== USERS TAB =====
 function UsersTab() {
   const mockUsers = [
-    { id: 1, name: "Thịnh (Admin)", email: "thinhliv@gmail.com", role: "Admin", joined: "07/07", status: "active" },
-    { id: 2, name: "Player_VN", email: "player1@gmail.com", role: "User", joined: "08/07", status: "active" },
-    { id: 3, name: "Killer_99", email: "killer99@yahoo.com", role: "User", joined: "08/07", status: "active" },
-    { id: 4, name: "Alliance_RU", email: "rualliance@mail.com", role: "Mod", joined: "09/07", status: "active" },
-    { id: 5, name: "ProGamer", email: "pro@gamer.com", role: "User", joined: "09/07", status: "banned" },
-    { id: 6, name: "Newbie2026", email: "newbie@gmail.com", role: "User", joined: "10/07", status: "active" },
+    { id: 1, name: "Thịnh (Admin)", email: "thinhliv@gmail.com", role: "Admin", joined: "07/07", status: "�ang ho?t d?ng" },
+    { id: 2, name: "Player_VN", email: "player1@gmail.com", role: "User", joined: "08/07", status: "�ang ho?t d?ng" },
+    { id: 3, name: "Killer_99", email: "killer99@yahoo.com", role: "User", joined: "08/07", status: "�ang ho?t d?ng" },
+    { id: 4, name: "Alliance_RU", email: "rualliance@mail.com", role: "Mod", joined: "09/07", status: "�ang ho?t d?ng" },
+    { id: 5, name: "ProGamer", email: "pro@gamer.com", role: "User", joined: "09/07", status: "�� kh�a" },
+    { id: 6, name: "Newbie2026", email: "newbie@gmail.com", role: "User", joined: "10/07", status: "�ang ho?t d?ng" },
   ];
 
   return (
@@ -522,17 +522,17 @@ function UsersTab() {
         <div className="p-3 rounded-xl bg-blue-500/10">
           <Users className="w-4 h-4 text-blue-400 mb-1" />
           <p className="text-xl font-black">6</p>
-          <p className="text-[10px] text-slate-500 uppercase">Total Users</p>
+          <p className="text-[10px] text-slate-500 uppercase">T?ng ngu?i d�ng</p>
         </div>
         <div className="p-3 rounded-xl bg-green-500/10">
           <Activity className="w-4 h-4 text-green-400 mb-1" />
           <p className="text-xl font-black">5</p>
-          <p className="text-[10px] text-slate-500 uppercase">Active</p>
+          <p className="text-[10px] text-slate-500 uppercase">Đang hoạt động</p>
         </div>
         <div className="p-3 rounded-xl bg-red-500/10">
           <Ban className="w-4 h-4 text-red-400 mb-1" />
           <p className="text-xl font-black">1</p>
-          <p className="text-[10px] text-slate-500 uppercase">Banned</p>
+          <p className="text-[10px] text-slate-500 uppercase">Đã khóa</p>
         </div>
       </div>
 
@@ -540,11 +540,11 @@ function UsersTab() {
         <table className="w-full text-xs">
           <thead className="bg-white/5">
             <tr>
-              <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase">User</th>
-              <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase hidden sm:table-cell">Role</th>
-              <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase hidden md:table-cell">Joined</th>
-              <th className="px-3 py-2 text-center font-bold text-slate-400 uppercase">Status</th>
-              <th className="px-3 py-2 text-right font-bold text-slate-400 uppercase">Action</th>
+              <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase">Người dùng</th>
+              <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase hidden sm:table-cell">Vai trò</th>
+              <th className="px-3 py-2 text-left font-bold text-slate-400 uppercase hidden md:table-cell">Tham gia</th>
+              <th className="px-3 py-2 text-center font-bold text-slate-400 uppercase">Trạng thái</th>
+              <th className="px-3 py-2 text-right font-bold text-slate-400 uppercase">Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -566,7 +566,7 @@ function UsersTab() {
                 <td className="px-3 py-2.5 text-slate-500 hidden md:table-cell">{u.joined}</td>
                 <td className="px-3 py-2.5 text-center">
                   <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase ${
-                    u.status === "active" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                    u.status === "�ang ho?t d?ng" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
                   }`}>
                     {u.status}
                   </span>
@@ -576,7 +576,7 @@ function UsersTab() {
                     <button className="p-1.5 rounded hover:bg-white/10">
                       <Edit className="w-3.5 h-3.5 text-blue-400" />
                     </button>
-                    {u.status === "active" ? (
+                    {u.status === "�ang ho?t d?ng" ? (
                       <button className="p-1.5 rounded hover:bg-red-500/10">
                         <Ban className="w-3.5 h-3.5 text-red-400" />
                       </button>
@@ -599,9 +599,9 @@ function UsersTab() {
 // ===== EVENTS TAB =====
 function EventsTab() {
   const events = [
-    { name: "Ammo Bonanza", status: "active", ends: "23h còn lại", participants: 342 },
-    { name: "Restricted Area Weekend", status: "active", ends: "6h còn lại", participants: 218 },
-    { name: "Desert Treasure", status: "active", ends: "3d còn lại", participants: 156 },
+    { name: "Ammo Bonanza", status: "�ang ho?t d?ng", ends: "23h còn lại", participants: 342 },
+    { name: "Restricted Area Weekend", status: "�ang ho?t d?ng", ends: "6h còn lại", participants: 218 },
+    { name: "Desert Treasure", status: "�ang ho?t d?ng", ends: "3d còn lại", participants: 156 },
     { name: "Mining Rush Week", status: "scheduled", ends: "Bắt đầu 15/07", participants: 0 },
   ];
 
@@ -618,7 +618,7 @@ function EventsTab() {
             <div className="flex items-start justify-between mb-2">
               <h3 className="font-bold text-sm">{ev.name}</h3>
               <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase ${
-                ev.status === "active" ? "bg-green-500/20 text-green-400" : "bg-yellow-500/20 text-yellow-400"
+                ev.status === "�ang ho?t d?ng" ? "bg-green-500/20 text-green-400" : "bg-yellow-500/20 text-yellow-400"
               }`}>
                 {ev.status}
               </span>
@@ -676,23 +676,23 @@ function SettingsTab() {
             className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm mt-1" />
         </div>
         <div>
-          <label className="text-[10px] text-slate-500 uppercase">Domain</label>
+          <label className="text-[10px] text-slate-500 uppercase">Tên miền</label>
           <input value={settings.siteUrl} onChange={(e) => setSettings({ ...settings, siteUrl: e.target.value })}
             className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm mt-1" />
         </div>
         <div>
-          <label className="text-[10px] text-slate-500 uppercase">Admin Email</label>
+          <label className="text-[10px] text-slate-500 uppercase">Email qu?n tr?</label>
           <input value={settings.adminEmail} onChange={(e) => setSettings({ ...settings, adminEmail: e.target.value })}
             className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm mt-1" />
         </div>
       </div>
 
       <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3">
-        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300">Toggles</h3>
+        <h3 className="text-xs font-bold uppercase tracking-wide text-slate-300">T�y ch?n</h3>
         {[
           { key: "maintenanceMode", label: "🔧 Chế độ bảo trì", desc: "Tạm khóa site cho user thường" },
           { key: "registrationOpen", label: "✨ Cho phép đăng ký", desc: "User mới có thể tạo tài khoản" },
-          { key: "autoTranslate", label: "🌐 Auto-translate", desc: "Tự động dịch chat toàn cầu" },
+          { key: "autoTranslate", label: "🌐 T? d?ng d?ch", desc: "Tự động dịch chat toàn cầu" },
         ].map((t) => (
           <div key={t.key} className="flex items-center justify-between">
             <div>

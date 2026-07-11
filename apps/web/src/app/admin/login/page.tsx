@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
           <h1 className="text-2xl font-black">
             <span className="text-orange-500">⚔️ LASTWAR</span>
           </h1>
-          <p className="text-xs text-slate-500 mt-1">Admin Control Panel</p>
+          <p className="text-xs text-slate-500 mt-1">B?ng di?u khi?n Admin</p>
         </div>
 
         {/* Form */}
