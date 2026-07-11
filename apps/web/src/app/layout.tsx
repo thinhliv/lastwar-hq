@@ -5,6 +5,7 @@ import BottomNav from "@/components/BottomNav";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import SearchTrigger from "@/components/SearchTrigger";
 import { AdminProvider } from "@/lib/admin-auth";
+import FeedbackBox from "@/components/FeedbackBox";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,6 +30,7 @@ export default function RootLayout({
         <AuthProvider>
           <AdminProvider>
             <SearchTrigger />
+            <FeedbackBox />
             <main className="flex-1 pb-20">{children}</main>
             <BottomNav />
           </AdminProvider>
