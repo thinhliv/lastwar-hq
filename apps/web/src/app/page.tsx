@@ -1,456 +1,194 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import {
   Swords,
-  Bell,
-  Flame,
-  Calculator,
-  BookOpen,
-  Server,
-  CalendarDays,
-  Search,
-  MessageCircle,
-  Trophy,
-  ChevronRight,
-  Map as MapIcon,
-  Newspaper,
-  Sparkles,
-  Zap,
   Skull,
-  Pickaxe,
+  Zap,
+  Server,
+  ArrowRight,
+  ShieldCheck,
+  Database,
+  ChevronRight,
 } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import AuthModal from "@/components/auth/AuthModal";
-import VisitorCounter from "@/components/VisitorCounter";
-import { useAuth } from "@/components/auth/AuthProvider";
-import { useI18n } from "@/lib/i18n";
+import bossData from "@/data/restricted-area.json";
+import heroExpData from "@/data/hero-exp.json";
+import serverData from "@/data/servers.json";
 
-// ============ FAKE DATA ============
-const hotNews = [
-  {
-    id: 1,
-    title: "Season 5 chính thức ra mắt!",
-    desc: "Bản cập nhật lớn nhất năm — map mới, hero mới, tính năng mới",
-    tag: "UPDATE",
-    color: "from-orange-500/20 to-red-500/10",
-    time: "2 giờ trước",
-  },
-  {
-    id: 2,
-    title: "Event: Ammo Bonanza diễn ra cuối tuần",
-    desc: "Nhận x2 đạn dược trong 48 giờ. Chuẩn bị kho ngay!",
-    tag: "EVENT",
-    color: "from-blue-500/20 to-cyan-500/10",
-    time: "5 giờ trước",
-  },
-  {
-    id: 3,
-    title: "Bảo trì server 12/07 — 02:00-04:00 UTC",
-    desc: "Sửa lỗi crash khi vào alliance war, tối ưu hiệu suất",
-    tag: "MAINT",
-    color: "from-purple-500/20 to-pink-500/10",
-    time: "1 ngày trước",
-  },
-];
+// ===== REAL STATS (computed from bundled datasets, no fake numbers) =====
+const boss = bossData as Record<string, { stage: number; power: number }[]>;
+const servers = serverData as { server: string; lastUpdate: string; alliances: string[] }[];
 
-const quickTools = [
-  { icon: MapIcon, labelKey: "tools.maps", href: "/tools/maps", color: "text-blue-400" },
-  { icon: Calculator, labelKey: "tools.calculators", href: "/tools/calculators", color: "text-orange-400" },
-  { icon: BookOpen, labelKey: "tools.guides", href: "/guides", color: "text-green-400" },
-  { icon: Server, labelKey: "tools.serverStats", href: "/tools/server-stats", color: "text-purple-400" },
-  { icon: CalendarDays, labelKey: "tools.events", href: "/tools/events", color: "text-cyan-400" },
-  { icon: Search, labelKey: "tools.clanFinder", href: "/tools/clan-finder", color: "text-pink-400" },
-];
+const RA_LEVELS = Object.keys(boss).length;
+const RA_STAGES = Object.values(boss).reduce((sum, s) => sum + s.length, 0);
+const MAX_BOSS_POWER = Math.max(
+  ...Object.values(boss).flatMap((stages) => stages.map((s) => s.power))
+);
+const HERO_MAX_LEVEL = heroExpData.length - 1;
+const SERVER_COUNT = servers.length;
+const LAST_UPDATE = servers
+  .map((s) => s.lastUpdate)
+  .sort()
+  .at(-1);
 
-const latestGuides = [
-  {
-    id: 1,
-    title: "Combo Hero tốt nhất Season 6",
-    category: "Hero",
-    readTime: "8 phút",
-    date: "10/07/2026",
-    isNew: true,
-  },
-  {
-    id: 2,
-    title: "Tối ưu hóa bố cục base",
-    category: "Cơ bản",
-    readTime: "6 phút",
-    date: "09/07/2026",
-    isNew: true,
-  },
-  {
-    id: 3,
-    title: "Restricted Area: Hướng dẫn đầy đủ",
-    category: "Chiến đấu",
-    readTime: "10 phút",
-    date: "05/07/2026",
-  },
-];
+function compact(n: number): string {
+  if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(1) + "B";
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M";
+  if (n >= 1_000) return (n / 1_000).toFixed(0) + "K";
+  return String(n);
+}
 
-const countries = [
-  { flag: "🇻🇳", name: "Việt Nam", code: "VN" },
-  { flag: "🇰🇷", name: "한국", code: "KR" },
-  { flag: "🇯🇵", name: "日本", code: "JP" },
-  { flag: "🇺🇸", name: "USA", code: "US" },
-  { flag: "🇨🇳", name: "中国", code: "CN" },
-  { flag: "🇩🇪", name: "Deutschland", code: "DE" },
+const featured = [
+  {
+    href: "/tools/calculators",
+    icon: Skull,
+    accent: "text-orange-400",
+    ring: "from-orange-500/15 to-red-500/5 border-orange-500/20",
+    title: "Boss Restricted Area",
+    desc: `Tra cứu sức mạnh boss chính xác — ${RA_LEVELS} level, ${RA_STAGES} stage.`,
+    stat: `${compact(MAX_BOSS_POWER)} power tối đa`,
+  },
+  {
+    href: "/tools/calculators",
+    icon: Zap,
+    accent: "text-yellow-400",
+    ring: "from-yellow-500/15 to-orange-500/5 border-yellow-500/20",
+    title: "Hero EXP",
+    desc: `Tính tổng EXP cần để nâng hero giữa hai cấp bất kỳ, tới Lv.${HERO_MAX_LEVEL}.`,
+    stat: `${HERO_MAX_LEVEL} cấp độ`,
+  },
+  {
+    href: "/tools/clan-finder",
+    icon: Server,
+    accent: "text-pink-400",
+    ring: "from-pink-500/15 to-purple-500/5 border-pink-500/20",
+    title: "Tìm Server / Alliance",
+    desc: "Tra danh bạ server và mã alliance, copy nhanh để tìm đồng đội.",
+    stat: `${SERVER_COUNT.toLocaleString()} server`,
+  },
 ];
 
 export default function HomePage() {
-  const { user, loading } = useAuth();
-  const { t } = useI18n();
-  const [authOpen, setAuthOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<"login" | "register">("login");
-  const [newsIndex, setNewsIndex] = useState(0);
-
-  function openAuth(mode: "login" | "register" = "login") {
-    setAuthMode(mode);
-    setAuthOpen(true);
-  }
-
-  const displayName = user
-    ? user.user_metadata?.full_name ||
-      user.user_metadata?.name ||
-      user.email?.split("@")[0] ||
-      "Chỉ huy"
-    : null;
-
-  const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mx-auto max-w-md">
       {/* ===== HEADER ===== */}
       <header className="sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-[#0f172a]/80 backdrop-blur-xl border-b border-white/5">
-        <button className="p-2 rounded-lg hover:bg-white/10 transition-colors relative">
-          <Bell className="w-5 h-5 text-slate-400" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-orange-500" />
-        </button>
-
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-black tracking-tight">
-            <span className="text-orange-500">⚔️ LASTWAR</span>
-          </span>
-        </div>
-
+        <span className="text-lg font-black tracking-tight text-orange-500">
+          ⚔️ LASTWAR HQ
+        </span>
         <LanguageSwitcher />
       </header>
 
-      {/* ===== SECTION 1: HOT NEWS CAROUSEL ===== */}
-      <section className="px-4 pt-4">
+      {/* ===== HERO ===== */}
+      <section className="px-4 pt-8 pb-2 text-center">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
+          <ShieldCheck className="w-3.5 h-3.5 text-green-400" />
+          <span className="text-[11px] font-medium text-green-400">
+            100% dữ liệu thật · không phỏng đoán
+          </span>
+        </div>
+        <h1 className="text-3xl font-black leading-tight mb-2">
+          Công cụ chính xác cho
+          <br />
+          <span className="text-orange-500">Last War: Survival</span>
+        </h1>
+        <p className="text-sm text-slate-400 leading-relaxed px-2">
+          Tra cứu Boss power, tính Hero EXP và tìm server/alliance — tất cả dựa
+          trên dữ liệu game thật, cập nhật từ cộng đồng.
+        </p>
+      </section>
+
+      {/* ===== REAL STAT STRIP ===== */}
+      <section className="px-4 pt-5">
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { value: SERVER_COUNT.toLocaleString(), label: "Server" },
+            { value: RA_STAGES.toString(), label: "Boss stage" },
+            { value: HERO_MAX_LEVEL.toString(), label: "Cấp hero" },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="p-3 rounded-2xl glass text-center"
+            >
+              <div className="text-xl font-black text-white">{s.value}</div>
+              <div className="text-[10px] text-slate-500 mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== FEATURED TOOLS ===== */}
+      <section className="px-4 pt-6">
         <div className="flex items-center gap-2 mb-3">
-          <Flame className="w-5 h-5 text-orange-500" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">{t("home.hotNews")}</h2>
+          <Swords className="w-5 h-5 text-orange-500" />
+          <h2 className="text-sm font-bold uppercase tracking-wide">Công cụ</h2>
           <Link
-            href="/news"
+            href="/tools"
             className="ml-auto text-xs text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-0.5"
           >
             Tất cả <ChevronRight className="w-3 h-3" />
           </Link>
         </div>
 
-        {/* Carousel */}
-        <div className="relative overflow-hidden rounded-2xl">
-          <div
-            className="flex transition-transform duration-300 ease-out"
-            style={{ transform: `translateX(-${newsIndex * 100}%)` }}
-          >
-            {hotNews.map((news) => (
-              <div key={news.id} className="min-w-full pr-1">
-                <div
-                  className={`bg-gradient-to-br ${news.color} bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4`}
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2 py-0.5 rounded-md bg-orange-500/20 text-orange-500 text-[10px] font-bold tracking-wide">
-                      {news.tag}
-                    </span>
-                    <span className="text-[10px] text-slate-500">
-                      {news.time}
-                    </span>
-                  </div>
-                  <h3 className="font-bold text-base mb-1">{news.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {news.desc}
+        <div className="space-y-3">
+          {featured.map((f) => (
+            <Link
+              key={f.title}
+              href={f.href}
+              className={`block p-4 rounded-2xl bg-gradient-to-br ${f.ring} border transition-all hover:scale-[1.01] active:scale-[0.99]`}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                  <f.icon className={`w-6 h-6 ${f.accent}`} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-base">{f.title}</h3>
+                  <p className="text-xs text-slate-400 leading-snug mt-0.5">
+                    {f.desc}
                   </p>
+                  <span className={`text-[11px] font-mono ${f.accent} mt-1 inline-block`}>
+                    {f.stat}
+                  </span>
                 </div>
+                <ArrowRight className="w-4 h-4 text-slate-600 flex-shrink-0" />
               </div>
-            ))}
-          </div>
-
-          {/* Dots */}
-          <div className="flex items-center justify-center gap-1.5 mt-2">
-            {hotNews.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setNewsIndex(i)}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === newsIndex
-                    ? "w-6 bg-orange-500"
-                    : "w-1.5 bg-slate-600 hover:bg-slate-500"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== SECTION 2: QUICK TOOLS GRID ===== */}
-      <section className="px-4 pt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Calculator className="w-5 h-5 text-blue-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
-            {t("home.quickTools")}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-3 gap-3">
-          {quickTools.map((tool) => (
-            <Link
-              key={tool.labelKey}
-              href={tool.href}
-              className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-orange-500/30 hover:bg-white/10 transition-all active:scale-95"
-            >
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                <tool.icon className={`w-5 h-5 ${tool.color}`} />
-              </div>
-              <span className="text-xs text-slate-300 text-center">{t(tool.labelKey)}</span>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* ===== SECTION 2.5: ACTIVE EVENTS PREVIEW ===== */}
-      <section className="px-4 pt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <CalendarDays className="w-5 h-5 text-cyan-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
-            Sự kiện đang chạy
-          </h2>
-          <Link
-            href="/tools/events"
-            className="ml-auto text-xs text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-0.5"
-          >
-            Tất cả <ChevronRight className="w-3 h-3" />
-          </Link>
-        </div>
-
-        <div className="space-y-2">
-          <Link href="/tools/events/ammo-bonanza" className="block p-3 rounded-2xl bg-gradient-to-r from-green-500/10 to-emerald-500/5 border border-green-500/20 hover:border-green-500/30 transition-all">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-bold text-sm">Ammo Bonanza</h3>
-                  <span className="flex items-center gap-0.5 text-[9px] text-green-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    TRỰC TIẾP
-                  </span>
-                </div>
-                <p className="text-[10px] text-slate-500">x2 ammo · Bấm để tính phần thưởng</p>
-              </div>
-              <span className="text-[10px] font-mono text-green-400">23h còn lại</span>
-            </div>
-          </Link>
-
-          <Link href="/tools/events" className="block p-3 rounded-2xl bg-gradient-to-r from-red-500/10 to-orange-500/5 border border-red-500/20 hover:border-red-500/30 transition-all">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
-                <Skull className="w-5 h-5 text-red-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-bold text-sm">Restricted Area Weekend</h3>
-                  <span className="flex items-center gap-0.5 text-[9px] text-red-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                    TRỰC TIẾP
-                  </span>
-                </div>
-                <p className="text-[10px] text-slate-500">Double drops mọi boss stage</p>
-              </div>
-              <span className="text-[10px] font-mono text-red-400">6h còn lại</span>
-            </div>
-          </Link>
-
-          <Link href="/tools/events/desert-treasure" className="block p-3 rounded-2xl bg-gradient-to-r from-blue-500/10 to-cyan-500/5 border border-blue-500/20 hover:border-blue-500/30 transition-all">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                <Pickaxe className="w-5 h-5 text-blue-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-sm">Desert Treasure</h3>
-                <p className="text-[10px] text-slate-500">Kho báu sa mạc · Bấm để lên kế hoạch</p>
-              </div>
-              <span className="text-[10px] font-mono text-blue-400">3d còn lại</span>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* ===== SECTION 3: LATEST GUIDES ===== */}
-      <section className="px-4 pt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <BookOpen className="w-5 h-5 text-green-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
-            Guides mới
-          </h2>
-          <Link
-            href="/guides"
-            className="ml-auto text-xs text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-0.5"
-          >
-            Tất cả <ChevronRight className="w-3 h-3" />
-          </Link>
-        </div>
-
-        <div className="space-y-2">
-          {latestGuides.map((guide) => (
-            <Link
-              key={guide.id}
-              href="/guides"
-              className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all"
-            >
-              <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-sm truncate">{guide.title}</h3>
-                  {guide.isNew && (
-                    <span className="px-1.5 py-0.5 rounded bg-orange-500 text-white text-[8px] font-bold uppercase">
-                      Mới
-                    </span>
-                  )}
-                </div>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[10px] text-slate-500">{guide.category}</span>
-                  <span className="text-[10px] text-slate-600">·</span>
-                  <span className="text-[10px] text-slate-500">{guide.readTime}</span>
-                </div>
-              </div>
-              <ChevronRight className="w-4 h-4 text-slate-600" />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== SECTION 3.5: CHAT PREVIEW ===== */}
-      <section className="px-4 pt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <MessageCircle className="w-5 h-5 text-green-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
-            {t("home.recentChat")}
-          </h2>
-          <Link
-            href="/chat"
-            className="ml-auto text-xs text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-0.5"
-          >
-            Tất cả <ChevronRight className="w-3 h-3" />
-          </Link>
-        </div>
-
-        <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-3">
-          <MessageCircle className="w-8 h-8 text-slate-600" />
-          <p className="text-sm text-slate-400 text-center">
-            Đăng nhập để tham gia chat
-          </p>
-          <button
-            onClick={() => openAuth("login")}
-            className="px-6 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg shadow-orange-500/20"
-          >
-            Đăng nhập
-          </button>
-        </div>
-      </section>
-
-      {/* ===== SECTION 4: YOUR ALLIANCE ===== */}
-      <section className="px-4 pt-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Trophy className="w-5 h-5 text-yellow-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
-            {t("home.yourAlliance")}
-          </h2>
-        </div>
-
-        {loading ? (
-          <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center">
-            <div className="w-5 h-5 border-2 border-orange-500/30 border-t-orange-500 rounded-full animate-spin" />
-          </div>
-        ) : displayName ? (
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-orange-500/10 to-yellow-500/5 bg-white/5 backdrop-blur-xl border border-white/10">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
-                <span className="text-xl">🏰</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-sm">Vietnam Warriors</h3>
-                <p className="text-xs text-slate-400">Rank #12 · 30/30 thành viên</p>
-              </div>
-              <Link
-                href="/chat"
-                className="px-3 py-1.5 rounded-lg bg-orange-500/20 text-orange-500 text-xs font-medium hover:bg-orange-500/30 transition-colors"
-              >
-                Chat
-              </Link>
+      {/* ===== HONESTY / DATA SOURCE ===== */}
+      <section className="px-4 pt-6 pb-8">
+        <Link
+          href="/about"
+          className="block p-4 rounded-2xl glass hover:border-orange-500/20 transition-all"
+        >
+          <div className="flex items-start gap-3">
+            <Database className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold mb-1">Dữ liệu đến từ đâu?</h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Boss & Hero EXP lấy từ cpt-hedge.com; danh bạ server từ
+                coordinateslist.com. Đây là snapshot cộng đồng
+                {LAST_UPDATE ? ` (mới nhất ${LAST_UPDATE})` : ""}, không phải
+                dữ liệu trực tiếp trong game.
+              </p>
+              <span className="text-[11px] text-orange-500 font-medium mt-1.5 inline-flex items-center gap-0.5">
+                Tìm hiểu thêm <ChevronRight className="w-3 h-3" />
+              </span>
             </div>
           </div>
-        ) : (
-          <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex flex-col items-center gap-3">
-            <Trophy className="w-8 h-8 text-slate-600" />
-            <p className="text-sm text-slate-400 text-center">
-              Đăng nhập để xem thông tin Alliance của bạn
-            </p>
-            <button
-              onClick={() => openAuth("login")}
-              className="px-6 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg shadow-orange-500/20"
-            >
-              Đăng nhập
-            </button>
-          </div>
-        )}
-      </section>
-
-      {/* ===== SECTION 5: COUNTRY COMMUNITIES ===== */}
-      <section className="px-4 pt-6 pb-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Sparkles className="w-5 h-5 text-purple-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
-            {t("home.countryCommunities")}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-3 gap-3">
-          {countries.map((c) => (
-            <button
-              key={c.code}
-              className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all active:scale-95"
-            >
-              <span className="text-3xl">{c.flag}</span>
-              <span className="text-xs text-slate-300">{c.name}</span>
-            </button>
-          ))}
-        </div>
+        </Link>
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="text-center py-4 px-4">
-        <VisitorCounter />
-        <div className="flex items-center justify-center gap-2 mb-1 mt-2">
+      <footer className="text-center py-4 px-4 border-t border-white/5">
+        <div className="flex items-center justify-center gap-2">
           <Swords className="w-3 h-3 text-slate-600" />
           <span className="text-[10px] text-slate-600">
-            footzone.vn · © 2026 LASTWAR HQ
+            footzone.vn · © 2026 LASTWAR HQ · Fan-made, không liên kết chính thức
           </span>
         </div>
       </footer>
-
-      {/* ===== AUTH MODAL ===== */}
-      <AuthModal
-        open={authOpen}
-        onClose={() => setAuthOpen(false)}
-        mode={authMode}
-      />
     </div>
   );
 }

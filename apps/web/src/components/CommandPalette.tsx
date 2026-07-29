@@ -13,27 +13,15 @@ interface SearchItem {
 }
 
 const SEARCH_INDEX: SearchItem[] = [
-  // Tools
-  { label: "Máy tính", href: "/tools/calculators", category: "Công cụ", icon: "🧮", keywords: "boss hero resource troop calc" },
-  { label: "Công cụ nâng cao", href: "/tools/calculators/advanced", category: "Công cụ", icon: "⚙️", keywords: "speedup battle build planner sim" },
-  { label: "Bảng xếp hạng Hero", href: "/tools/hero-tier", category: "Công cụ", icon: "⭐", keywords: "hero tier ssr sr rank meta" },
-  { label: "Bản đồ mùa giải", href: "/tools/maps", category: "Công cụ", icon: "🗺️", keywords: "map territory zone" },
-  { label: "Sự kiện", href: "/tools/events", category: "Công cụ", icon: "📅", keywords: "event countdown timer calendar" },
-  { label: "Máy tính Ammo Bonanza", href: "/tools/events/ammo-bonanza", category: "Công cụ", icon: "⚡", keywords: "ammo bonanza calculator event" },
-  { label: "Máy tính Desert Treasure", href: "/tools/events/desert-treasure", category: "Công cụ", icon: "🏜️", keywords: "desert treasure calculator event" },
-  { label: "Lập kế hoạch tài nguyên", href: "/tools/calculators/resource-planner", category: "Công cụ", icon: "📦", keywords: "resource planner gather train balance" },
-  { label: "Lập kế hoạch nâng cấp", href: "/tools/calculators/building-planner", category: "Công cụ", icon: "🏗️", keywords: "building upgrade planner cost time" },
-  { label: "Thống kê Server", href: "/tools/server-stats", category: "Công cụ", icon: "📊", keywords: "server stats population" },
-  { label: "Tìm Clan", href: "/tools/clan-finder", category: "Công cụ", icon: "🔍", keywords: "clan server find search" },
-  { label: "Alliance", href: "/tools/alliance", category: "Công cụ", icon: "🏰", keywords: "alliance guild join create" },
-  // Content
-  { label: "Hướng dẫn chiến thuật", href: "/guides", category: "Nội dung", icon: "📖", keywords: "guide strategy tips tutorial" },
-  { label: "Tin tức & Cập nhật", href: "/news", category: "Nội dung", icon: "📰", keywords: "news update patch announcement" },
+  // Tools (real data only)
+  { label: "Boss Restricted Area", href: "/tools/calculators", category: "Công cụ", icon: "💀", keywords: "boss restricted area power stage calc" },
+  { label: "Hero EXP", href: "/tools/calculators", category: "Công cụ", icon: "⚡", keywords: "hero exp level experience calc" },
+  { label: "Tìm Server / Alliance", href: "/tools/clan-finder", category: "Công cụ", icon: "🔍", keywords: "clan server alliance find search coordinates" },
+  { label: "Thống kê Server", href: "/tools/server-stats", category: "Công cụ", icon: "📊", keywords: "server stats directory alliance count" },
+  { label: "Tất cả công cụ", href: "/tools", category: "Công cụ", icon: "🧮", keywords: "tools all list" },
   // Nav
-  { label: "Chat", href: "/chat", category: "Điều hướng", icon: "💬", keywords: "chat message global alliance" },
-  { label: "Hồ sơ", href: "/profile", category: "Điều hướng", icon: "👤", keywords: "profile account settings" },
-  { label: "Cài đặt", href: "/settings", category: "Điều hướng", icon: "⚙️", keywords: "settings language notification" },
   { label: "Trang chủ", href: "/", category: "Điều hướng", icon: "🏠", keywords: "home main dashboard" },
+  { label: "Giới thiệu & Nguồn dữ liệu", href: "/about", category: "Điều hướng", icon: "ℹ️", keywords: "about data source info credit disclaimer" },
 ];
 
 export default function CommandPalette({

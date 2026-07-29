@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Calculators — Boss, Hero, Resource, Troop | LASTWAR HQ",
+  title: "Calculators — Boss & Hero EXP",
   description:
-    "Bộ công cụ tính toán cho Last War: Survival. Tính boss damage, hero EXP, resource production, troop cost.",
+    "Tra cứu sức mạnh boss Restricted Area và tính Hero EXP cho Last War: Survival. Dữ liệu thật từ cpt-hedge.com.",
 };
 
 export default function CalculatorsLayout({ children }: { children: React.ReactNode }) {

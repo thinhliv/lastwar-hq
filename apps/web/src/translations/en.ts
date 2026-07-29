@@ -3,9 +3,9 @@ const en: Record<string, string> = {
   // Nav
   "nav.home": "Home",
   "nav.tools": "Tools",
-  "nav.chat": "Chat",
-  "nav.news": "News",
-  "nav.profile": "Profile",
+  "nav.calculators": "Calc",
+  "nav.servers": "Servers",
+  "nav.about": "About",
 
   // Home
   "home.comingSoon": "Coming Soon",

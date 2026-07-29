@@ -100,10 +100,10 @@ export default function ClanFinderPage() {
         Tìm server và alliance từ {SERVERS.length.toLocaleString()} server
       </p>
 
-      {/* Data source badge */}
+      {/* Data source badge (honest: static snapshot, not live) */}
       <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-4">
-        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-        Live data từ coordinateslist.com
+        <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+        Snapshot cộng đồng từ coordinateslist.com
       </div>
 
       {/* Search Bar */}

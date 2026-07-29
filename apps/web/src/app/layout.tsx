@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
-import { AuthProvider } from "@/components/auth/AuthProvider";
 import SearchTrigger from "@/components/SearchTrigger";
-import { AdminProvider } from "@/lib/admin-auth";
-import FeedbackBox from "@/components/FeedbackBox";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,10 +10,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LASTWAR HQ — Tools & Community",
+  metadataBase: new URL("https://footzone.vn"),
+  title: {
+    default: "LASTWAR HQ — Công cụ Last War: Survival",
+    template: "%s | LASTWAR HQ",
+  },
   description:
-    "Cộng đồng toàn cầu cho game Last War: Survival. Tools, Chat, News, Guides và nhiều hơn nữa.",
+    "Công cụ tra cứu chính xác cho Last War: Survival: sức mạnh Boss Restricted Area, Hero EXP, và danh bạ server/alliance. Dữ liệu thật, không phỏng đoán.",
   manifest: "/manifest.json",
+  openGraph: {
+    title: "LASTWAR HQ — Công cụ Last War: Survival",
+    description:
+      "Boss power, Hero EXP và danh bạ server/alliance — dữ liệu thật cho Last War: Survival.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -27,14 +34,9 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#0f172a] text-slate-100">
-        <AuthProvider>
-          <AdminProvider>
-            <SearchTrigger />
-            <FeedbackBox />
-            <main className="flex-1 pb-20">{children}</main>
-            <BottomNav />
-          </AdminProvider>
-        </AuthProvider>
+        <SearchTrigger />
+        <main className="flex-1 pb-20">{children}</main>
+        <BottomNav />
       </body>
     </html>
   );
