@@ -1,13 +1,13 @@
 {
-  "name": "LASTWAR HQ — Tools & Community",
+  "name": "LASTWAR HQ — Công cụ Last War: Survival",
   "short_name": "LASTWAR HQ",
-  "description": "Cộng đồng toàn cầu cho game Last War: Survival. Tools, Chat, News, Guides.",
+  "description": "Công cụ tra cứu chính xác cho Last War: Survival: Boss power, Hero EXP và danh bạ server/alliance. Dữ liệu thật.",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0f172a",
   "theme_color": "#f97316",
-  "categories": ["games", "utilities", "social"],
+  "categories": ["games", "utilities"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -24,18 +24,13 @@
   ],
   "shortcuts": [
     {
-      "name": "Calculators",
+      "name": "Boss & Hero Calc",
       "url": "/tools/calculators",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Chat",
-      "url": "/chat",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "Events",
-      "url": "/tools/events",
+      "name": "Tìm Server",
+      "url": "/tools/clan-finder",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ]

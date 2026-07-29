@@ -3,9 +3,9 @@ const vi: Record<string, string> = {
   // Nav
   "nav.home": "Trang chủ",
   "nav.tools": "Công cụ",
-  "nav.chat": "Chat",
-  "nav.news": "Tin tức",
-  "nav.profile": "Hồ sơ",
+  "nav.calculators": "Máy tính",
+  "nav.servers": "Server",
+  "nav.about": "Giới thiệu",
 
   // Home
   "home.comingSoon": "Sắp ra mắt",

@@ -77,13 +77,13 @@ export default function ServerStatsPage() {
         <h1 className="text-2xl font-bold">Thống kê Server</h1>
       </div>
       <p className="text-slate-400 text-sm mb-4">
-        Thống kê từ {totalServers.toLocaleString()} server
+        Số liệu tổng hợp từ danh bạ {totalServers.toLocaleString()} server
       </p>
 
-      {/* Data source */}
+      {/* Data source (honest: static snapshot, no power data) */}
       <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-6">
-        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-        Live data từ coordinateslist.com
+        <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+        Snapshot danh bạ server từ coordinateslist.com · không gồm power ranking
       </div>
 
       {/* ===== STAT CARDS ===== */}

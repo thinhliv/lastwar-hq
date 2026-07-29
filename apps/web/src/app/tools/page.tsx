@@ -1,152 +1,90 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Map as MapIcon,
-  Calculator,
-  BookOpen,
-  Server,
-  CalendarDays,
-  Search,
-  ArrowRight,
-  Gauge,
-  Star,
-  Castle,
-} from "lucide-react";
+import { Skull, Zap, Server, BarChart3, ArrowRight } from "lucide-react";
+import bossData from "@/data/restricted-area.json";
+import heroExpData from "@/data/hero-exp.json";
+import serverData from "@/data/servers.json";
+
+export const metadata: Metadata = {
+  title: "Công cụ",
+  description:
+    "Boss Restricted Area, Hero EXP, tìm server/alliance và thống kê server cho Last War: Survival.",
+};
+
+const boss = bossData as Record<string, { stage: number; power: number }[]>;
+const RA_STAGES = Object.values(boss).reduce((sum, s) => sum + s.length, 0);
+const HERO_MAX = heroExpData.length - 1;
+const SERVER_COUNT = (serverData as unknown[]).length;
 
 const tools = [
   {
-    icon: MapIcon,
-    label: "Bản đồ",
-    desc: "Bản đồ tương tác từng mùa",
-    href: "/tools/maps",
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10",
-    available: true,
-  },
-  {
-    icon: Calculator,
-    label: "Máy tính",
-    desc: "Boss, Resource, Troop, Speedup",
+    icon: Skull,
+    label: "Boss Restricted Area",
+    desc: `Sức mạnh boss theo từng level & stage (${RA_STAGES} stage)`,
     href: "/tools/calculators",
     color: "text-orange-400",
     bgColor: "bg-orange-500/10",
-    available: true,
   },
   {
-    icon: BookOpen,
-    label: "Hướng dẫn",
-    desc: "Wiki cộng đồng, video, đánh giá",
-    href: "/guides",
-    color: "text-green-400",
-    bgColor: "bg-green-500/10",
-    available: true,
+    icon: Zap,
+    label: "Hero EXP",
+    desc: `Tính EXP nâng hero, tới Lv.${HERO_MAX}`,
+    href: "/tools/calculators",
+    color: "text-yellow-400",
+    bgColor: "bg-yellow-500/10",
   },
   {
     icon: Server,
-    label: "Thống kê Server",
-    desc: "Power ranking, alliance ranking",
-    href: "/tools/server-stats",
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/10",
-    available: true,
-  },
-  {
-    icon: CalendarDays,
-    label: "Sự kiện",
-    desc: "Countdown timer, lịch sự kiện",
-    href: "/tools/events",
-    color: "text-cyan-400",
-    bgColor: "bg-cyan-500/10",
-    available: true,
-  },
-  {
-    icon: Search,
-    label: "Tìm Clan",
-    desc: "Tìm server/clan phù hợp",
+    label: "Tìm Server / Alliance",
+    desc: `Danh bạ ${SERVER_COUNT.toLocaleString()} server + mã alliance`,
     href: "/tools/clan-finder",
     color: "text-pink-400",
     bgColor: "bg-pink-500/10",
-    available: true,
   },
   {
-    icon: Gauge,
-    label: "Công cụ nâng cao",
-    desc: "Speedup, Battle Sim, Build Planner",
-    href: "/tools/calculators/advanced",
-    color: "text-cyan-400",
-    bgColor: "bg-cyan-500/10",
-    available: true,
-  },
-  {
-    icon: Star,
-    label: "Bảng xếp hạng Hero",
-    desc: "Bảng xếp hạng hero Season 6",
-    href: "/tools/hero-tier",
-    color: "text-yellow-400",
-    bgColor: "bg-yellow-500/10",
-    available: true,
-  },
-  {
-    icon: Castle,
-    label: "Alliance",
-    desc: "Tìm và tham gia alliance",
-    href: "/tools/alliance",
-    color: "text-orange-400",
-    bgColor: "bg-orange-500/10",
-    available: true,
+    icon: BarChart3,
+    label: "Thống kê Server",
+    desc: "Số liệu tổng hợp từ danh bạ server",
+    href: "/tools/server-stats",
+    color: "text-purple-400",
+    bgColor: "bg-purple-500/10",
   },
 ];
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">🧮 Công cụ</h1>
+    <div className="min-h-screen mx-auto max-w-md px-4 py-6">
+      <h1 className="text-2xl font-bold mb-1">Công cụ</h1>
       <p className="text-slate-400 text-sm mb-6">
-        Calculators, Maps, Guides và nhiều hơn nữa
+        Mọi công cụ đều chạy trên dữ liệu game thật.
       </p>
 
-      <div className="grid grid-cols-2 gap-3">
-        {tools.map((tool) => {
-          const content = (
-            <div
-              className={`relative p-4 rounded-2xl ${tool.bgColor} backdrop-blur-xl border border-white/10 transition-all ${
-                tool.available
-                  ? "hover:border-orange-500/30 hover:bg-white/10 active:scale-95 cursor-pointer"
-                  : "opacity-70 hover:opacity-90"
-              }`}
-            >
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-3">
-                <tool.icon className={`w-6 h-6 ${tool.color}`} />
+      <div className="grid grid-cols-1 gap-3">
+        {tools.map((tool) => (
+          <Link key={tool.label} href={tool.href}>
+            <div className="relative p-4 rounded-2xl glass hover:border-orange-500/30 hover:bg-white/10 active:scale-[0.99] transition-all">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-12 h-12 rounded-xl ${tool.bgColor} flex items-center justify-center flex-shrink-0`}
+                >
+                  <tool.icon className={`w-6 h-6 ${tool.color}`} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-sm mb-0.5">{tool.label}</h3>
+                  <p className="text-xs text-slate-400">{tool.desc}</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-slate-600 flex-shrink-0" />
               </div>
-              <h3 className="font-semibold text-sm mb-0.5">{tool.label}</h3>
-              <p className="text-xs text-slate-400">{tool.desc}</p>
-
-              {tool.available ? (
-                <div className="mt-3 flex items-center gap-1 text-xs text-orange-500 font-medium">
-                  Mở <ArrowRight className="w-3 h-3" />
-                </div>
-              ) : (
-                <div className="absolute top-3 right-3">
-                  <span className="px-2 py-0.5 rounded-md bg-slate-700/50 text-slate-400 text-[9px] font-bold uppercase tracking-wide border border-white/5">
-                    Soon
-                  </span>
-                </div>
-              )}
             </div>
-          );
-
-          return tool.available ? (
-            <Link key={tool.label} href={tool.href}>
-              {content}
-            </Link>
-          ) : (
-            <div key={tool.label}>{content}</div>
-          );
-        })}
+          </Link>
+        ))}
       </div>
 
-      <div className="mt-8 text-center">
-        <p className="text-xs text-slate-600">
-          Thêm công cụ đang được phát triển 🚧
+      <div className="mt-8 p-4 rounded-2xl glass">
+        <p className="text-xs text-slate-400 leading-relaxed">
+          Chỉ liệt kê những công cụ có dữ liệu thật. Các tính năng cần dữ liệu
+          game bổ sung (calculator research, gear, event…) sẽ được thêm khi có
+          nguồn dữ liệu đáng tin cậy — thay vì hiển thị số liệu phỏng đoán.
         </p>
       </div>
     </div>
