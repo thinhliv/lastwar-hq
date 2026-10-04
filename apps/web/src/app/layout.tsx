@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://footzone.vn"),
+  metadataBase: new URL("https://monicabot.lol"),
   title: {
     default: "Monica Bot — Trợ Lý Tác Chiến Last War: Survival | Team Murphy",
     template: "%s | Monica Bot - Team Murphy",
