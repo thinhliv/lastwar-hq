@@ -44,7 +44,7 @@ export default function LiveStats() {
   const s = stats || { total: 0, today: 0, online: 0 };
 
   return (
-    <div className="w-full border-t border-white/5 bg-black/30 backdrop-blur-sm">
+    <div className="fixed bottom-[68px] md:bottom-0 inset-x-0 z-40 w-full border-t border-white/5 bg-[#0c0608]/95 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-center gap-6 sm:gap-10 text-[11px] sm:text-xs text-slate-400">
         <div className="flex items-center gap-1.5">
           <Eye className="w-3.5 h-3.5 text-emerald-400" />

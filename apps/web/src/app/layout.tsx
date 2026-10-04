@@ -48,8 +48,8 @@ export default function RootLayout({
         <SearchTrigger />
         <Navbar />
         <main className="flex-1 pb-20 md:pb-8 w-full overflow-x-hidden">{children}</main>
-        <LiveStats />
         <BottomNav />
+        <LiveStats />
       </body>
     </html>
   );
