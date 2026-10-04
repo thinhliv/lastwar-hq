@@ -1,47 +1,46 @@
 @import "tailwindcss";
 
-/* ===== LASTWAR HQ DESIGN SYSTEM ===== */
+/* ===== STYLE 8: CRIMSON DUEL WAR ROOM DESIGN SYSTEM ===== */
+/* Last War: Survival - Server vs Server & Capitol Conquest Theme */
 
 :root {
   /* Core colors */
-  --color-primary: #f97316;       /* Military orange */
-  --color-primary-dark: #ea580c;
-  --color-primary-light: #fb923c;
-  --color-secondary: #3b82f6;     /* Blueprint blue */
-  --color-secondary-dark: #2563eb;
-  --color-secondary-light: #60a5fa;
+  --color-primary: #ef4444;       /* Blood Crimson */
+  --color-primary-dark: #b91c1c;  /* Deep Crimson */
+  --color-primary-light: #f87171; /* Flame Red */
+  --color-gold: #f59e0b;          /* Victory / Ember Gold */
+  --color-gold-light: #fbbf24;
 
-  /* Dark theme (default) */
-  --color-bg: #0f172a;            /* Slate 900 */
-  --color-bg-card: #1e293b;       /* Slate 800 */
-  --color-bg-elevated: #334155;   /* Slate 700 */
-  --color-border: #334155;
-  --color-text: #f1f5f9;          /* Slate 100 */
+  /* Dark theme (Charred Armor & Blood War Canvas) */
+  --color-bg: #0c0608;            /* Deep obsidian charred base */
+  --color-bg-card: #15080c;       /* Dark crimson-tinted card */
+  --color-bg-elevated: #240c12;   /* Elevated war panel */
+  --color-border: rgba(239, 68, 68, 0.22);
+  --color-border-glow: rgba(239, 68, 68, 0.45);
+  --color-text: #fee2e2;          /* Soft rose-white */
   --color-text-muted: #94a3b8;    /* Slate 400 */
-  --color-text-dim: #64748b;      /* Slate 500 */
-  --color-accent: #f97316;
-  --color-success: #22c55e;
+  --color-text-dim: #64748b;
+  --color-accent: #ef4444;
+  --color-success: #10b981;
   --color-danger: #ef4444;
-  --color-warning: #eab308;
+  --color-warning: #f59e0b;
 }
 
 @theme inline {
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
-  --color-primary: #f97316;
-  --color-primary-dark: #ea580c;
-  --color-primary-light: #fb923c;
-  --color-secondary: #3b82f6;
-  --color-secondary-dark: #2563eb;
-  --color-secondary-light: #60a5fa;
-  --color-card: #1e293b;
-  --color-elevated: #334155;
-  --color-border: #334155;
+  --color-primary: #ef4444;
+  --color-primary-dark: #b91c1c;
+  --color-primary-light: #f87171;
+  --color-gold: #f59e0b;
+  --color-card: #15080c;
+  --color-elevated: #240c12;
+  --color-border: rgba(239, 68, 68, 0.22);
   --color-muted: #94a3b8;
   --color-dim: #64748b;
-  --color-success: #22c55e;
+  --color-success: #10b981;
   --color-danger: #ef4444;
-  --color-warning: #eab308;
+  --color-warning: #f59e0b;
   --font-sans: var(--font-inter);
 }
 
@@ -55,6 +54,10 @@ body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 85% 60%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+  background-attachment: fixed;
 }
 
 /* Scrollbar */
@@ -63,22 +66,30 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #090406;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-bg-elevated);
+  background: #7f1d1d;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-dim);
+  background: #dc2626;
 }
 
-/* Glassmorphism utility */
+/* Crimson War Glassmorphism utility */
 .glass {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  background: rgba(21, 8, 12, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.crimson-glow {
+  box-shadow: 0 0 25px rgba(220, 38, 38, 0.25);
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
 }
 
 /* Smooth scroll */
@@ -105,21 +116,18 @@ a, button {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* Animation for coming soon */
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+/* Fiery animations */
+@keyframes flame-pulse {
+  0%, 100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.6));
+  }
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-flame-pulse {
+  animation: flame-pulse 2.5s ease-in-out infinite;
 }

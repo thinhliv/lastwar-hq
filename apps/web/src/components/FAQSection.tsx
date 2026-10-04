@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle, Shield, AlertTriangle } from "lucide-react";
+import { ChevronDown, HelpCircle, Shield, AlertTriangle, Flame } from "lucide-react";
 import { TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 
 export default function FAQSection() {
@@ -22,7 +22,7 @@ export default function FAQSection() {
     },
     {
       q: "Phần mềm chạy trên thiết bị nào? Yêu cầu cấu hình ra sao?",
-      a: "Monica Bot hoạt động trên hệ điều hành Windows 10 / Windows 11 (64-bit). Cấu hình tối thiểu: Intel Core i3, RAM 4GB (khuyến nghị 8GB+ nếu mở nhiều tài khoản cùng lúc). Phần mềm hỗ trợ cả bản PC Client chính thức của Last War lẫn các trình giả lập.",
+      a: "Monica Bot hoạt động trên hệ điều hành Windows 10 / Windows 11 (64-bit). Cấu hình tối thiểu: Intel Core i3, RAM 4GB (khuyến nghị 8GB+ nếu mở nhiều tài khoản cùng lúc). Phần mềm hỗ trợ cả bản PC Client chính thức của Last War lẫn các trình giả lập phổ biến.",
     },
     {
       q: "Tôi có thể mua thêm cửa sổ (mở nhiều tài khoản cùng lúc) không?",
@@ -31,45 +31,45 @@ export default function FAQSection() {
   ];
 
   return (
-    <section id="faq" className="py-12 sm:py-16 bg-slate-950/40">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="faq" className="py-14 sm:py-20 bg-[#0a0406]/70 relative">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold mb-3">
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Giải Đáp Thắc Mắc</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
+            <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+            <span>GIẢI ĐÁP THẮC MẮC CHIẾN TƯỚNG</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-3">
             Câu Hỏi Thường Gặp (FAQ)
           </h2>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-red-100/70">
             Mọi thông tin cần biết trước khi mua và kích hoạt phần mềm.
           </p>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="space-y-3 mb-10">
+        <div className="space-y-3.5 mb-10">
           {faqs.map((faq, i) => {
             const isOpen = openIdx === i;
             return (
               <div
                 key={i}
-                className="rounded-2xl border border-white/10 bg-slate-900/60 overflow-hidden transition-colors"
+                className="rounded-2xl border border-red-500/20 bg-[#15080c]/80 overflow-hidden transition-all shadow-md"
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : i)}
                   className="w-full flex items-center justify-between p-4 sm:p-5 text-left gap-4"
                 >
-                  <span className="text-sm sm:text-base font-bold text-white">
+                  <span className={`text-sm sm:text-base font-bold ${isOpen ? "text-red-400" : "text-white"}`}>
                     {faq.q}
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 text-slate-400 transition-transform duration-200 flex-shrink-0 ${
-                      isOpen ? "rotate-180 text-amber-400" : ""
+                      isOpen ? "rotate-180 text-red-400" : ""
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-4 pb-5 sm:px-5 sm:pb-5 pt-0 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5">
+                  <div className="px-4 pb-5 sm:px-5 sm:pb-5 pt-0 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-red-500/15">
                     {faq.a}
                   </div>
                 )}
@@ -79,10 +79,10 @@ export default function FAQSection() {
         </div>
 
         {/* Disclaimer / Safety Box */}
-        <div className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 flex items-start gap-3 text-xs text-slate-400 leading-relaxed">
+        <div className="p-5 rounded-2xl bg-[#16080c]/50 border border-amber-500/25 flex items-start gap-3.5 text-xs text-slate-400 leading-relaxed">
           <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-slate-300 block mb-1">
+            <strong className="text-amber-300 block mb-1">
               Tuyên bố miễn trừ trách nhiệm (Disclaimer):
             </strong>
             Monica Bot là phần mềm tiện ích hỗ trợ trải nghiệm người chơi được phân phối bởi đại lý Team Murphy. Dự án không liên kết, tài trợ hay bảo trợ bởi Century Games, FirstFun hay bất kỳ nhà phát hành game chính thức nào. Người dùng vui lòng tuân thủ điều khoản của trò chơi.

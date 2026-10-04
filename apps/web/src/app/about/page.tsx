@@ -56,9 +56,9 @@ export default function AboutPage() {
       </div>
 
       {/* Team Murphy Reseller Profile */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-amber-500/30 mb-8 shadow-xl">
+      <div className="p-6 sm:p-8 rounded-3xl bg-[#15080c]/85 border border-red-500/30 mb-8 shadow-xl shadow-red-950/40">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold border border-red-500/30">
             <Users2 className="w-5 h-5" />
           </div>
           <div>
@@ -71,8 +71,8 @@ export default function AboutPage() {
           Team Murphy là đại lý được phân quyền cung cấp key bản quyền phần mềm hỗ trợ Monica Bot. Chúng tôi phụ trách tư vấn kỹ thuật, hướng dẫn cài đặt trên PC & giả lập, cung cấp profile tối ưu máy và hỗ trợ xử lý sự cố trong suốt quá trình sử dụng.
         </p>
 
-        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300">
-          <strong>Lưu ý quan trọng khi mua key:</strong> Khi mở Bot thanh toán Telegram (@tool_lastwar_buysell_bot), ở bước chọn nguồn giới thiệu xin vui lòng nhấp chọn <strong className="text-white underline">Team Murphy</strong> để kích hoạt gói hỗ trợ VIP từ đội ngũ chúng tôi.
+        <div className="p-4 rounded-2xl bg-red-950/50 border border-red-500/30 text-xs text-red-200">
+          <strong className="text-amber-300">Lưu ý quan trọng khi mua key:</strong> Khi mở Bot thanh toán Telegram (@tool_lastwar_buysell_bot), ở bước chọn nguồn giới thiệu xin vui lòng nhấp chọn <strong className="text-white underline">Team Murphy</strong> để kích hoạt gói hỗ trợ VIP từ đội ngũ chúng tôi.
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -80,7 +80,7 @@ export default function AboutPage() {
             href={TELEGRAM_BUY_BOT}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold text-xs uppercase"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase shadow-lg shadow-red-600/30"
           >
             <Send className="w-3.5 h-3.5" />
             <span>Mở Bot Thanh Toán</span>
@@ -89,7 +89,7 @@ export default function AboutPage() {
             href={TELEGRAM_SUPPORT_GROUP}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#200a12] hover:bg-[#2b0e19] text-amber-300 border border-red-500/30 font-bold text-xs"
           >
             <span>Nhóm Hỗ Trợ Telegram</span>
             <ExternalLink className="w-3.5 h-3.5" />

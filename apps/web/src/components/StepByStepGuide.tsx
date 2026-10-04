@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Send, CheckCircle2, AlertTriangle, ArrowRight } from "lucide-react";
+import { Send, CheckCircle2, AlertTriangle, ArrowRight, Flame, Crown } from "lucide-react";
 import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
 
 export default function StepByStepGuide() {
@@ -40,17 +40,18 @@ export default function StepByStepGuide() {
   ];
 
   return (
-    <section id="guide" className="py-12 sm:py-16 bg-slate-950/60 border-y border-white/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="guide" className="py-14 sm:py-20 bg-[#0d0508]/80 border-y border-red-500/20 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold mb-3">
-            <span>Quy Trình 4 Bước Đơn Giản</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
+            <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+            <span>QUY TRÌNH TIẾP NHẬN KEY</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white mb-3">
             Hướng Dẫn Mua & Kích Hoạt Key
           </h2>
-          <p className="text-sm text-slate-400">
-            Xem ảnh chụp thực tế từng bước để thực hiện nhanh chóng và chính xác.
+          <p className="text-sm text-red-100/70">
+            Xem ảnh chụp thực tế từng bước để kích hoạt nhanh chóng và chuẩn xác nhất.
           </p>
         </div>
 
@@ -59,10 +60,10 @@ export default function StepByStepGuide() {
           {steps.map((s) => (
             <div
               key={s.num}
-              className={`rounded-3xl p-6 bg-slate-900/80 border flex flex-col justify-between transition-all ${
+              className={`rounded-3xl p-6 sm:p-7 bg-[#15080c]/85 border flex flex-col justify-between transition-all ${
                 s.isWarning
-                  ? "border-amber-500/50 shadow-xl shadow-amber-500/10 ring-1 ring-amber-500/30"
-                  : "border-white/10"
+                  ? "border-amber-500/60 shadow-xl shadow-amber-950/40 ring-1 ring-amber-500/40 bg-gradient-to-b from-amber-950/30 to-[#15080c]"
+                  : "border-red-500/20 hover:border-red-500/40 shadow-lg shadow-black/40"
               }`}
             >
               <div>
@@ -71,7 +72,7 @@ export default function StepByStepGuide() {
                     className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm ${
                       s.isWarning
                         ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/30"
-                        : "bg-white/10 text-white"
+                        : "bg-red-500/20 text-red-400 border border-red-500/30"
                     }`}
                   >
                     0{s.num}
@@ -86,7 +87,7 @@ export default function StepByStepGuide() {
                 </p>
 
                 {/* Screenshot Frame */}
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-slate-950 my-4 shadow-inner">
+                <div className="relative rounded-2xl overflow-hidden border border-red-500/20 bg-black/60 my-4 shadow-inner">
                   <div className="relative w-full h-56 sm:h-64">
                     <Image
                       src={s.image}
@@ -99,18 +100,18 @@ export default function StepByStepGuide() {
                 </div>
               </div>
 
-              {/* Highlight callout */}
+              {/* Highlight Note */}
               <div
-                className={`mt-3 p-3 rounded-xl text-xs flex items-start gap-2 ${
+                className={`p-3 rounded-xl text-xs flex items-start gap-2 ${
                   s.isWarning
-                    ? "bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold"
-                    : "bg-white/5 border border-white/5 text-slate-400"
+                    ? "bg-amber-500/15 border border-amber-500/30 text-amber-200"
+                    : "bg-red-950/40 border border-red-500/20 text-slate-300"
                 }`}
               >
                 {s.isWarning ? (
-                  <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <Crown className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
                 )}
                 <span>{s.highlight}</span>
               </div>
@@ -118,22 +119,16 @@ export default function StepByStepGuide() {
           ))}
         </div>
 
-        {/* Big Bottom Action Box */}
-        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-amber-500/20 via-orange-500/15 to-slate-900 border border-amber-500/30 text-center max-w-3xl mx-auto shadow-2xl">
-          <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
-            Đã Sẵn Sàng Trải Nghiệm Monica Bot?
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-300 mb-6 max-w-lg mx-auto">
-            Nhấp nút bên dưới để mở Telegram Bot và bắt đầu chọn gói phù hợp ngay bây giờ. Đừng quên chọn nguồn <strong className="text-amber-400">Team Murphy</strong>!
-          </p>
+        {/* Bottom CTA Button */}
+        <div className="mt-12 text-center">
           <a
             href={TELEGRAM_BUY_BOT}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-sm uppercase tracking-wider shadow-xl shadow-orange-500/25 transition-all hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-red-600/35 transition-all hover:scale-105 active:scale-95 border border-red-400/30"
           >
             <Send className="w-4 h-4" />
-            <span>Mở Bot Thanh Toán Ngay</span>
+            <span>Mở Bot Telegram & Bắt Đầu Ngay</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

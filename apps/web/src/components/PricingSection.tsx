@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Flame, Send, Sparkles, ShieldAlert, Clock, QrCode, Coins } from "lucide-react";
+import { Check, Flame, Send, Sparkles, ShieldAlert, Clock, QrCode, Coins, Crown } from "lucide-react";
 import { VND_PLANS, USD_PLANS } from "@/data/plans";
 import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
 
@@ -11,28 +11,31 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
   const plans = currency === "VND" ? VND_PLANS : USD_PLANS;
 
   return (
-    <section id="pricing" className="py-12 sm:py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="pricing" className="py-14 sm:py-20 relative">
+      {/* Background radial glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-red-600/10 blur-[140px] pointer-events-none rounded-full" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Bảng Giá Niêm Yết Chính Thức</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
+            <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+            <span>CHI PHÍ ĐẦU TƯ TÁC CHIẾN</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white mb-3">
-            Chọn Gói Bản Quyền Monica Bot
+            Bảng Giá Bản Quyền Monica Bot
           </h2>
-          <p className="text-sm text-slate-400">
-            Kích hoạt tự động 24/7 qua Telegram Bot. Hỗ trợ đầy đủ PC Client và Giả lập.
+          <p className="text-sm text-red-100/70">
+            Kích hoạt tự động 24/7 qua Telegram Bot. Hỗ trợ đầy đủ PC Client và mọi trình giả lập.
           </p>
 
           {/* Currency Toggle */}
-          <div className="mt-6 inline-flex p-1 rounded-2xl bg-slate-900 border border-white/10 shadow-inner">
+          <div className="mt-6 inline-flex p-1 rounded-2xl bg-[#14080c] border border-red-500/30 shadow-inner">
             <button
               onClick={() => setCurrency("VND")}
               className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 currency === "VND"
-                  ? "bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-md"
+                  ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -42,7 +45,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               onClick={() => setCurrency("USD")}
               className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 currency === "USD"
-                  ? "bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-md"
+                  ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -52,63 +55,63 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
         </div>
 
         {/* IMPORTANT TEAM MURPHY NOTICE */}
-        <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-amber-500/15 border border-amber-500/30 backdrop-blur-md">
+        <div className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-red-950/60 via-[#1e0a10] to-red-950/60 border border-red-500/40 backdrop-blur-md shadow-xl shadow-red-950/30">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center flex-shrink-0 text-amber-400 font-black">
-                ★
+            <div className="flex items-start gap-3.5">
+              <div className="w-11 h-11 rounded-xl bg-red-600/25 border border-red-500/50 flex items-center justify-center flex-shrink-0 text-amber-400 font-black shadow-inner">
+                <Crown className="w-6 h-6 text-amber-400" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-amber-300">
+                <h4 className="text-sm font-black text-amber-300 uppercase tracking-wide">
                   Bước Bắt Buộc: Chọn Nguồn "Team Murphy" Khi Mua Trong Bot
                 </h4>
                 <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                  Khi Bot hỏi <span className="text-white font-semibold">"Bạn biết đến Tool qua Đại lý nào?"</span>, bạn hãy bấm chọn <strong className="text-amber-400 font-bold underline">Team Murphy</strong> để hệ thống ghi nhận hoa hồng và kích hoạt dịch vụ hỗ trợ kỹ thuật tận tâm 24/7 từ team mình!
+                  Khi Bot hỏi <span className="text-white font-bold">"Bạn biết đến Tool qua Đại lý nào?"</span>, bạn hãy bấm chọn <strong className="text-amber-400 font-extrabold underline">Team Murphy</strong> để hệ thống kích hoạt chính sách bảo hành và hỗ trợ kỹ thuật tận tâm 24/7 từ team mình!
                 </p>
               </div>
             </div>
             <a
               href="#guide"
-              className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-white whitespace-nowrap transition-colors"
+              className="px-4 py-2 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-xs font-bold text-red-200 whitespace-nowrap transition-colors"
             >
-              Xem ảnh mẫu
+              Xem ảnh hướng dẫn
             </a>
           </div>
         </div>
 
         {/* Payment info bar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-8">
           {currency === "VND" ? (
             <>
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-3">
-                <QrCode className="w-5 h-5 text-green-400 flex-shrink-0" />
+              <div className="p-4 rounded-xl bg-[#16080c]/80 border border-red-500/20 flex items-center gap-3">
+                <QrCode className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                 <div className="text-xs">
-                  <span className="font-semibold text-white">Thanh toán VietQR tự động:</span>
-                  <span className="text-slate-400 ml-1">Mã QR tạo riêng từng đơn, ngân hàng BIDV, nhận key trong 15 giây.</span>
+                  <span className="font-bold text-white">Thanh toán VietQR tự động:</span>
+                  <span className="text-slate-300 ml-1">Mã QR riêng từng đơn, ngân hàng BIDV, nhận key sau 15 giây.</span>
                 </div>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-amber-500/20 flex items-center gap-3">
+              <div className="p-4 rounded-xl bg-[#16080c]/80 border border-amber-500/30 flex items-center gap-3">
                 <ShieldAlert className="w-5 h-5 text-amber-400 flex-shrink-0" />
                 <div className="text-xs">
-                  <span className="font-semibold text-amber-300">Quy định vùng:</span>
-                  <span className="text-slate-300 ml-1">Key giá Việt Nam chỉ sử dụng trên lãnh thổ Việt Nam.</span>
+                  <span className="font-bold text-amber-300">Quy định vùng:</span>
+                  <span className="text-slate-300 ml-1">Key mua theo giá VND chỉ sử dụng trên lãnh thổ Việt Nam.</span>
                 </div>
               </div>
             </>
           ) : (
             <>
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-3">
+              <div className="p-4 rounded-xl bg-[#16080c]/80 border border-red-500/20 flex items-center gap-3">
                 <Coins className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 <div className="text-xs">
-                  <span className="font-semibold text-white">Automated Crypto Payment:</span>
-                  <span className="text-slate-400 ml-1">USDT Tron (TRC-20) or Solana. Instant key delivery ~1 min.</span>
+                  <span className="font-bold text-white">Automated Crypto Payment:</span>
+                  <span className="text-slate-300 ml-1">USDT Tron (TRC-20) or Solana. Instant key delivery ~1 min.</span>
                 </div>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-3">
+              <div className="p-4 rounded-xl bg-[#16080c]/80 border border-amber-500/30 flex items-center gap-3">
                 <Clock className="w-5 h-5 text-amber-400 flex-shrink-0" />
                 <div className="text-xs">
-                  <span className="font-semibold text-white">Exact Amount Notice:</span>
-                  <span className="text-slate-400 ml-1">Match amount to the cent (order ID). Valid for 30 minutes.</span>
+                  <span className="font-bold text-white">Exact Amount Notice:</span>
+                  <span className="text-slate-300 ml-1">Match amount to the cent (order ID). Valid for 30 minutes.</span>
                 </div>
               </div>
             </>
@@ -133,24 +136,24 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
                 key={p.id}
                 className={`relative rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 ${
                   p.isPopular
-                    ? "bg-gradient-to-b from-amber-500/15 via-slate-900/80 to-slate-950 border-2 border-amber-500/50 shadow-2xl shadow-amber-500/10 scale-[1.02]"
+                    ? "bg-gradient-to-b from-red-950/50 via-[#18080d] to-[#120508] border-2 border-red-500 shadow-2xl shadow-red-950/60 scale-[1.02]"
                     : p.isSale
-                    ? "bg-gradient-to-b from-orange-500/15 via-slate-900/80 to-slate-950 border border-orange-500/40"
-                    : "bg-slate-900/60 hover:bg-slate-900/90 border border-white/10"
+                    ? "bg-gradient-to-b from-amber-950/40 via-[#18080d] to-[#120508] border-2 border-amber-500/60 shadow-xl shadow-amber-950/40"
+                    : "bg-[#15080c]/85 hover:bg-[#1c0a10] border border-red-500/20 hover:border-red-500/40 shadow-lg"
                 }`}
               >
                 {/* Badges */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
                     {p.duration}
                   </span>
                   {p.isPopular && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 text-[11px] font-black uppercase">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] font-black uppercase shadow-md shadow-red-600/30">
                       <Flame className="w-3 h-3 fill-current" /> Phổ Biến Nhất
                     </span>
                   )}
                   {p.badge && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-[11px] font-bold">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[11px] font-black">
                       {p.badge}
                     </span>
                   )}
@@ -158,58 +161,50 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
 
                 {/* Title & Price */}
                 <div className="mb-6">
-                  <h3 className="text-xl font-black text-white mb-2">{p.name}</h3>
+                  <h3 className="text-lg font-black text-white mb-2">{p.name}</h3>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl sm:text-4xl font-black text-white">
+                    <span className={`text-3xl font-black ${p.isSale ? "text-amber-400" : "text-white"}`}>
                       {formattedPrice}
                     </span>
                     {formattedOrigPrice && (
-                      <span className="text-sm line-through text-slate-500 font-medium">
+                      <span className="text-sm text-slate-500 line-through">
                         {formattedOrigPrice}
                       </span>
                     )}
                   </div>
-                  {p.discountPercent && (
-                    <span className="text-[11px] font-semibold text-green-400 mt-1 block">
-                      Tiết kiệm {p.discountPercent}% so với giá gốc
-                    </span>
-                  )}
                 </div>
 
-                {/* Features */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {p.features.map((feat, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                      <div className="w-4 h-4 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5 stroke-[3]" />
-                      </div>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Features List */}
+                <div className="mb-6 pt-5 border-t border-red-500/15">
+                  <ul className="space-y-2.5 text-xs text-slate-300">
+                    {p.features.map((f, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-red-400 flex-shrink-0 mt-0.5" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                {/* Buy Button */}
+                {/* CTA Button */}
                 <a
                   href={TELEGRAM_BUY_BOT}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-2xl font-bold text-sm uppercase tracking-wide transition-all shadow-lg active:scale-95 ${
+                  className={`w-full flex items-center justify-center gap-2 py-3 rounded-2xl font-black text-xs uppercase tracking-wider transition-all hover:scale-102 active:scale-98 ${
                     p.isPopular
-                      ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 shadow-orange-500/25"
-                      : "bg-white/10 hover:bg-white/20 text-white border border-white/10"
+                      ? "bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white shadow-xl shadow-red-600/35 border border-red-400/40"
+                      : p.isSale
+                      ? "bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 shadow-xl shadow-amber-500/25 border border-amber-400/40"
+                      : "bg-red-950/40 hover:bg-red-900/50 text-white border border-red-500/30"
                   }`}
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Mua Trên Telegram</span>
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Mua Key Telegram (Team Murphy)</span>
                 </a>
               </div>
             );
           })}
-        </div>
-
-        {/* Footer info note */}
-        <div className="mt-8 text-center text-xs text-slate-500">
-          Cần mua thêm cửa sổ đa luồng (Add-on Windows) hoặc gia hạn key? Mở Bot Telegram chọn mục tương ứng.
         </div>
       </div>
     </section>

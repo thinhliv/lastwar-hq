@@ -25,15 +25,15 @@ export default function GuidePage() {
 
       {/* System Requirements */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 mb-12">
-        <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-white/10 shadow-xl">
+        <div className="p-6 sm:p-8 rounded-3xl bg-[#15080c]/85 border border-red-500/25 shadow-xl shadow-red-950/40">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <Monitor className="w-5 h-5 text-amber-400" />
+            <Monitor className="w-5 h-5 text-red-400" />
             <span>Yêu Cầu Hệ Thống Khuyến Nghị</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-              <Cpu className="w-5 h-5 text-cyan-400 mb-2" />
+            <div className="p-4 rounded-2xl bg-black/40 border border-red-500/20">
+              <Cpu className="w-5 h-5 text-red-400 mb-2" />
               <span className="text-[11px] text-slate-400 uppercase font-semibold block">
                 Bộ Xử Lý (CPU)
               </span>
@@ -42,8 +42,8 @@ export default function GuidePage() {
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-              <HardDrive className="w-5 h-5 text-green-400 mb-2" />
+            <div className="p-4 rounded-2xl bg-black/40 border border-red-500/20">
+              <HardDrive className="w-5 h-5 text-amber-400 mb-2" />
               <span className="text-[11px] text-slate-400 uppercase font-semibold block">
                 Bộ Nhớ (RAM)
               </span>
@@ -52,8 +52,8 @@ export default function GuidePage() {
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-              <Monitor className="w-5 h-5 text-purple-400 mb-2" />
+            <div className="p-4 rounded-2xl bg-black/40 border border-red-500/20">
+              <Monitor className="w-5 h-5 text-rose-400 mb-2" />
               <span className="text-[11px] text-slate-400 uppercase font-semibold block">
                 Hệ Điều Hành
               </span>
@@ -62,8 +62,8 @@ export default function GuidePage() {
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-              <ShieldCheck className="w-5 h-5 text-amber-400 mb-2" />
+            <div className="p-4 rounded-2xl bg-black/40 border border-red-500/20">
+              <ShieldCheck className="w-5 h-5 text-emerald-400 mb-2" />
               <span className="text-[11px] text-slate-400 uppercase font-semibold block">
                 Môi Trường Game
               </span>
@@ -90,9 +90,9 @@ export default function GuidePage() {
           href={TELEGRAM_SUPPORT_GROUP}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-cyan-400 hover:text-cyan-300 border border-cyan-500/30 text-xs sm:text-sm font-bold"
+          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#18080d] text-amber-400 hover:text-amber-300 border border-red-500/30 text-xs sm:text-sm font-bold shadow-lg"
         >
-          <span>Cần hỗ trợ cài đặt từ kỹ thuật viên? Vào nhóm Telegram</span>
+          <span>💬 Cần hỗ trợ cài đặt từ kỹ thuật viên? Vào nhóm Telegram Team Murphy</span>
         </a>
       </div>
     </div>

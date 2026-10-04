@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#0b1120] text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+      <body className="min-h-full flex flex-col bg-[#0c0608] text-slate-100 selection:bg-red-600 selection:text-white">
         <SearchTrigger />
         <Navbar />
         <main className="flex-1 pb-20 md:pb-8">{children}</main>
