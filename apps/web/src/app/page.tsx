@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -15,6 +16,7 @@ import {
   Download,
   ChevronRight,
   ExternalLink,
+  Key,
 } from "lucide-react";
 import PricingSection from "@/components/PricingSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -23,11 +25,13 @@ import VideoSection from "@/components/VideoSection";
 import UpcomingUpdateSection from "@/components/UpcomingUpdateSection";
 import FAQSection from "@/components/FAQSection";
 import MobileHomeView from "@/components/MobileHomeView";
+import DownloadModal from "@/components/DownloadModal";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
 
 export default function HomePage() {
   const { t } = useI18n();
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen text-slate-100 selection:bg-red-600 selection:text-white w-full overflow-x-hidden">
@@ -79,14 +83,13 @@ export default function HomePage() {
                     <span>{t("hero.btnBuy")}</span>
                   </a>
 
-                  <a
-                    href="/downloads/Setup_Monica.rar"
-                    download="Setup_Monica.rar"
+                  <button
+                    onClick={() => setIsDownloadModalOpen(true)}
                     className="min-h-[48px] flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 hover:text-amber-200 font-bold text-sm border border-amber-500/40 transition-all shadow-lg shadow-amber-950/30 group"
                   >
                     <Download className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
-                    <span>{t("hero.btnDownload")}</span>
-                  </a>
+                    <span>{t("hero.btnDownload")} (PC / Android / iOS)</span>
+                  </button>
 
                   <a
                     href="#video"
@@ -98,14 +101,14 @@ export default function HomePage() {
                 </div>
 
                 {/* Trust & Guarantee Callout */}
-                <div className="pt-4 border-t border-red-500/15 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400">
+                <div className="pt-4 border-t border-red-500/15 flex flex-wrap items-center justify-center lg:justify-start gap-5 text-xs text-slate-400">
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-slate-300">{t("hero.trust1")}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Coins className="w-3.5 h-3.5 text-cyan-400" />
-                    <span className="text-slate-300">{t("hero.trust2")}</span>
+                    <Key className="w-3.5 h-3.5 text-amber-400" />
+                    <span className="text-amber-300 font-bold">1 Key Dùng Chung PC & Android</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Crown className="w-3.5 h-3.5 text-amber-400" />
@@ -299,6 +302,11 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+
+      <DownloadModal
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+      />
     </div>
   );
 }

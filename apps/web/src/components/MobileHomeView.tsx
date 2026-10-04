@@ -25,10 +25,15 @@ import {
   ShieldCheck,
   Cpu,
   Swords,
+  Key,
+  Monitor,
+  Smartphone,
+  Apple,
 } from "lucide-react";
 import { VND_PLANS, USD_PLANS } from "@/data/plans";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
+import DownloadModal from "@/components/DownloadModal";
 
 type AppTab = "pricing" | "features" | "guide" | "faq";
 
@@ -37,22 +42,30 @@ export default function MobileHomeView() {
   const [activeTab, setActiveTab] = useState<AppTab>("pricing");
   const [currency, setCurrency] = useState<"VND" | "USD">("USD");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+
+  const [videoPlatform, setVideoPlatform] = useState<"mobile" | "pc">("mobile");
 
   // Dynamic video state from /api/upcoming-update
   const [upcomingData, setUpcomingData] = useState<{
     youtubeUrl: string;
+    mobileYoutubeUrl?: string;
     version: string;
+    mobileVersion?: string;
   }>({
     youtubeUrl: "https://youtu.be/tTURTqzi8nY",
+    mobileYoutubeUrl: "https://youtube.com/shorts/QBol43tCzl8?feature=share",
     version: "v2401 NEXT-GEN",
+    mobileVersion: "v2309 ANDROID",
   });
 
   useEffect(() => {
     fetch("/api/upcoming-update")
       .then((res) => res.json())
-      .then((data) => {
-        if (data && data.youtubeUrl) {
-          setUpcomingData(data);
+      .then((resData) => {
+        const d = resData?.data || resData;
+        if (d && (d.youtubeUrl || d.mobileYoutubeUrl)) {
+          setUpcomingData(d);
         }
       })
       .catch(() => {});
@@ -69,13 +82,23 @@ export default function MobileHomeView() {
 
   const extractYoutubeId = (url: string): string => {
     if (!url) return "tTURTqzi8nY";
-    const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
+    const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
     const match = url.match(regExp);
     return match ? match[1] : "tTURTqzi8nY";
   };
 
-  const youtubeId = extractYoutubeId(upcomingData.youtubeUrl);
-  const watchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
+  const pcYoutubeId = extractYoutubeId(upcomingData.youtubeUrl);
+  const mobileYoutubeId = extractYoutubeId(upcomingData.mobileYoutubeUrl || "QBol43tCzl8");
+
+  const currentYoutubeId = videoPlatform === "mobile" ? mobileYoutubeId : pcYoutubeId;
+  const currentWatchUrl =
+    videoPlatform === "mobile"
+      ? upcomingData.mobileYoutubeUrl || `https://www.youtube.com/shorts/${mobileYoutubeId}`
+      : `https://www.youtube.com/watch?v=${pcYoutubeId}`;
+  const currentVersion =
+    videoPlatform === "mobile"
+      ? upcomingData.mobileVersion || "v2309 ANDROID"
+      : upcomingData.version || "v2401 PC UPDATE";
 
   const plans = currency === "VND" ? VND_PLANS : USD_PLANS;
 
@@ -226,24 +249,27 @@ export default function MobileHomeView() {
               <span>{t("hero.btnBuy")}</span>
             </a>
 
-            <a
-              href="/downloads/Setup_Monica.rar"
-              download="Setup_Monica.rar"
+            <button
+              onClick={() => setIsDownloadModalOpen(true)}
               className="w-full min-h-[46px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-amber-500/15 hover:bg-amber-500/25 active:scale-98 text-amber-300 font-extrabold text-xs uppercase tracking-wide border border-amber-500/40 shadow-md shadow-amber-950/30 transition-transform"
             >
               <Download className="w-4 h-4 text-amber-400" />
-              <span>{t("hero.btnDownload")} (v2309)</span>
-            </a>
+              <span>{t("hero.btnDownload")} (PC / Android / iOS)</span>
+            </button>
           </div>
 
           {/* Trust Guarantee Chips */}
-          <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400 border-t border-red-500/15 pt-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-slate-400 border-t border-red-500/15 pt-3">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-slate-300 font-semibold">{t("hero.trust1")}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Crown className="w-3 h-3 text-amber-400" />
+              <Key className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-amber-300 font-bold">1 Key Dùng Chung PC & Android</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Crown className="w-3.5 h-3.5 text-amber-400" />
               <span className="text-amber-300 font-bold">{t("hero.trust3")}</span>
             </div>
           </div>
@@ -254,22 +280,49 @@ export default function MobileHomeView() {
       <section className="px-4 py-4 bg-[#0d0306]">
         <div className="rounded-2xl border-2 border-red-500/30 bg-[#14060a] p-3 shadow-xl shadow-red-950/60">
           {/* Tactical Video Header */}
-          <div className="flex items-center justify-between px-2.5 py-1.5 bg-[#1b080e] rounded-xl border border-red-500/20 mb-2.5 text-[11px]">
+          <div className="flex flex-wrap items-center justify-between gap-2 px-2.5 py-1.5 bg-[#1b080e] rounded-xl border border-red-500/20 mb-2.5 text-[11px]">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               <span className="font-black text-emerald-400 uppercase tracking-wide">
                 {t("upcoming.status")}
               </span>
             </div>
+
+            {/* Video Platform Switcher (Mobile / PC) */}
+            <div className="inline-flex p-0.5 rounded-lg bg-black/60 border border-red-500/25 gap-1">
+              <button
+                onClick={() => setVideoPlatform("mobile")}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-black transition-all ${
+                  videoPlatform === "mobile"
+                    ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Smartphone className="w-3 h-3" />
+                <span>Bản Mobile</span>
+              </button>
+              <button
+                onClick={() => setVideoPlatform("pc")}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-black transition-all ${
+                  videoPlatform === "pc"
+                    ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Monitor className="w-3 h-3" />
+                <span>Bản PC</span>
+              </button>
+            </div>
+
             <span className="font-black text-[10px] px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">
-              {upcomingData.version}
+              {currentVersion}
             </span>
           </div>
 
           {/* YouTube Video Player */}
           <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-red-500/25 shadow-inner">
             <iframe
-              src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=0&rel=0&modestbranding=1`}
+              src={`https://www.youtube-nocookie.com/embed/${currentYoutubeId}?autoplay=0&rel=0&modestbranding=1`}
               title="Monica Bot Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -281,7 +334,7 @@ export default function MobileHomeView() {
           {/* Video Quick Actions */}
           <div className="mt-2.5 pt-2 border-t border-red-500/15 flex items-center justify-between gap-2 text-xs">
             <a
-              href={watchUrl}
+              href={currentWatchUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 min-h-[38px] flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600/20 text-red-200 font-bold border border-red-500/30"
@@ -374,6 +427,16 @@ export default function MobileHomeView() {
                     {t("pricing.resellerAlertBody")}
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* KEY POLICY CALLOUT */}
+            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-950/40 via-[#18080d] to-red-950/40 border border-amber-500/35 flex items-start gap-3 text-xs shadow-md">
+              <div className="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                <Key className="w-3.5 h-3.5 text-amber-400" />
+              </div>
+              <div className="text-slate-300 leading-relaxed">
+                <strong className="text-amber-300 font-extrabold uppercase">1 Key dùng chung PC & Android:</strong> Kích hoạt được cho cả <strong className="text-white">PC và Android</strong>. Tại cùng 1 thời điểm chỉ chạy trên <strong className="text-amber-300">1 thiết bị duy nhất</strong>.
               </div>
             </div>
 
@@ -527,31 +590,74 @@ export default function MobileHomeView() {
         {/* --- TAB 3: GUIDE (COMPACT SUMMARY + LINK TO /guide) --- */}
         {activeTab === "guide" && (
           <div className="space-y-4">
-            {/* Download Box */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-950/50 via-[#16070c] to-red-950/40 border border-amber-500/40 shadow-xl">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
-                  <Download className="w-5 h-5" />
-                </div>
+            {/* Multi-Platform Download Box */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-950/50 via-[#16070c] to-red-950/40 border border-amber-500/40 shadow-xl space-y-3">
+              <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-black text-white flex items-center gap-1.5">
-                    <span>{t("guide.bannerTitle")}</span>
+                    <span>Tải Monica Bot v2309</span>
                     <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                      v2309
+                      Mới Nhất
                     </span>
                   </h3>
-                  <p className="text-[11px] text-slate-300">{t("guide.bannerDesc")}</p>
+                  <p className="text-[11px] text-slate-300 mt-0.5">Chọn phiên bản phù hợp với thiết bị của bạn:</p>
                 </div>
               </div>
 
-              <a
-                href="/downloads/Setup_Monica.rar"
-                download="Setup_Monica.rar"
-                className="w-full min-h-[44px] flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 active:scale-98 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-600/30"
-              >
-                <Download className="w-4 h-4" />
-                <span>{t("guide.btnDownload")} (Setup_Monica.rar)</span>
-              </a>
+              {/* Download Buttons Stack */}
+              <div className="space-y-2">
+                {/* PC */}
+                <a
+                  href="/downloads/Setup_Monica.rar"
+                  download="Setup_Monica.rar"
+                  className="w-full min-h-[42px] flex items-center justify-between px-3.5 py-2 rounded-xl bg-red-600/25 hover:bg-red-600/35 border border-red-500/40 text-white font-bold text-xs shadow"
+                >
+                  <div className="flex items-center gap-2">
+                    <Monitor className="w-4 h-4 text-red-400" />
+                    <span>Bản PC Windows (.rar)</span>
+                  </div>
+                  <span className="text-[11px] text-red-300 flex items-center gap-1">
+                    <Download className="w-3.5 h-3.5" /> 48MB
+                  </span>
+                </a>
+
+                {/* Android */}
+                <a
+                  href="/downloads/Monica_Android_2309.apk"
+                  download="Monica_Android_2309.apk"
+                  className="w-full min-h-[42px] flex items-center justify-between px-3.5 py-2 rounded-xl bg-emerald-600/25 hover:bg-emerald-600/35 border border-emerald-500/40 text-white font-bold text-xs shadow"
+                >
+                  <div className="flex items-center gap-2">
+                    <Smartphone className="w-4 h-4 text-emerald-400" />
+                    <span>Bản Mobile Android (.apk)</span>
+                  </div>
+                  <span className="text-[11px] text-emerald-300 flex items-center gap-1">
+                    <Download className="w-3.5 h-3.5" /> APK
+                  </span>
+                </a>
+
+                {/* iOS */}
+                <a
+                  href={TELEGRAM_SUPPORT_GROUP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[42px] flex items-center justify-between px-3.5 py-2 rounded-xl bg-sky-600/20 hover:bg-sky-600/30 border border-sky-500/40 text-white font-bold text-xs shadow"
+                >
+                  <div className="flex items-center gap-2">
+                    <Apple className="w-4 h-4 text-sky-400" />
+                    <span>Bản Mobile iOS (iPhone/iPad)</span>
+                  </div>
+                  <span className="text-[11px] text-sky-300 flex items-center gap-1">
+                    <Send className="w-3.5 h-3.5" /> Hỗ trợ
+                  </span>
+                </a>
+              </div>
+
+              {/* Key Policy Banner */}
+              <div className="p-2.5 rounded-xl bg-black/40 border border-amber-500/30 text-[11px] text-amber-200/90 flex items-center gap-2">
+                <Key className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>1 Key dùng chung PC & Android (chạy 1 máy tại 1 thời điểm).</span>
+              </div>
             </div>
 
             {/* Quick 4-Step Checklist */}
@@ -683,6 +789,11 @@ export default function MobileHomeView() {
           </div>
         )}
       </div>
+
+      <DownloadModal
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, Flame, Send, Sparkles, ShieldAlert, Clock, QrCode, Coins, Crown } from "lucide-react";
+import { Check, Flame, Send, Sparkles, ShieldAlert, Clock, QrCode, Coins, Crown, Key } from "lucide-react";
 import { VND_PLANS, USD_PLANS } from "@/data/plans";
 import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
@@ -134,6 +134,21 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               {t("nav.guide")}
             </a>
           </div>
+        </div>
+
+        {/* KEY POLICY CALLOUT (PC & ANDROID 1 KEY PER DEVICE) */}
+        <div className="mb-6 sm:mb-10 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/40 via-[#18080d] to-red-950/40 border border-amber-500/35 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-md">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0">
+              <Key className="w-4 h-4 text-amber-400" />
+            </div>
+            <span className="text-slate-300">
+              <strong className="text-amber-300 font-extrabold uppercase tracking-wide">Chính sách bản quyền:</strong> 1 Key kích hoạt dùng chung cho cả <strong className="text-white">PC & Android</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300">1 thiết bị duy nhất</strong>.
+            </span>
+          </div>
+          <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/35 whitespace-nowrap self-start sm:self-auto">
+            1 KEY / 1 THIẾT BỊ
+          </span>
         </div>
 
         {/* Payment info bar */}
