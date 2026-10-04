@@ -96,10 +96,10 @@ export default function VideoSection() {
                   <Tv className="w-8 h-8" />
                 </div>
                 <h3 className="text-lg font-black text-white mb-2">
-                  Video Hướng Dẫn Chi Tiết Đang Được Cập Nhật
+                  {t("video.updatingTitle")}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-400 max-w-md mb-6">
-                  Bạn có thể xem trước các video thực chiến ở tab 1, 2, 3 hoặc tải bộ cài đặt về máy để thử nghiệm.
+                  {t("video.updatingDesc")}
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <a
@@ -108,7 +108,7 @@ export default function VideoSection() {
                     className="min-h-[44px] flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs uppercase shadow-lg shadow-amber-500/20"
                   >
                     <Download className="w-4 h-4" />
-                    <span>Tải Tool Về Máy (46MB)</span>
+                    <span>{t("video.btnDownloadTool")}</span>
                   </a>
                   <a
                     href={TELEGRAM_SUPPORT_GROUP}

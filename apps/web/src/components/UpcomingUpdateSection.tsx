@@ -209,7 +209,7 @@ export default function UpcomingUpdateSection() {
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
                 <span className="text-slate-300 text-[11px] sm:text-xs">
-                  Official Reseller:{" "}
+                  {t("hero.previewReseller")}{" "}
                   <strong className="text-amber-300 font-extrabold">Team Murphy</strong>
                 </span>
               </div>
@@ -219,7 +219,7 @@ export default function UpcomingUpdateSection() {
                 rel="noopener noreferrer"
                 className="text-red-400 hover:text-red-300 font-bold whitespace-nowrap flex items-center gap-1 text-[11px] sm:text-xs min-h-[36px]"
               >
-                <span>Get VIP Access</span>
+                <span>{t("hero.previewActivate")}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>

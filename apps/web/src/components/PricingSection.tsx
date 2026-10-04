@@ -21,6 +21,52 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
 
   const plans = currency === "VND" ? VND_PLANS : USD_PLANS;
 
+  const getLocalizedPlan = (p: (typeof plans)[0]) => {
+    const is7d = p.id.includes("7d");
+    const is30d = p.id.includes("30d") || p.id.includes("1m");
+    const is90d = p.id.includes("90d") || p.id.includes("3m");
+    const is180d = p.id.includes("180d") || p.id.includes("6m");
+    const is365d = p.id.includes("365d") || p.id.includes("1y");
+
+    const name = is7d
+      ? t("pricing.planTrial")
+      : is30d
+      ? t("pricing.plan1M")
+      : is90d
+      ? t("pricing.plan3M")
+      : is180d
+      ? t("pricing.plan6M")
+      : is365d
+      ? t("pricing.plan1Y")
+      : t("pricing.planLife");
+
+    const duration = is7d
+      ? t("pricing.dur7D")
+      : is30d
+      ? t("pricing.dur30D")
+      : is90d
+      ? t("pricing.dur90D")
+      : is180d
+      ? t("pricing.dur180D")
+      : is365d
+      ? t("pricing.dur365D")
+      : t("pricing.durLife");
+
+    const features = is7d
+      ? [t("pricing.fFullSuite"), t("pricing.fPcClient"), t("pricing.fVipSupport")]
+      : is30d
+      ? [t("pricing.fAutoEvents"), t("pricing.fMultiAcc"), t("pricing.fInstantKey")]
+      : is90d
+      ? [t("pricing.fSeasonReady"), t("pricing.fLowResource"), t("pricing.fPriorityPatch")]
+      : is180d
+      ? [t("pricing.fAllianceDom"), t("pricing.fLowResource"), t("pricing.fPriorityPatch")]
+      : is365d
+      ? [t("pricing.fAllYear"), t("pricing.fVipSupport"), t("pricing.fInstantKey")]
+      : [t("pricing.fPermanent"), t("pricing.fAllYear"), t("pricing.fDirectAdmin")];
+
+    return { name, duration, features };
+  };
+
   return (
     <section id="pricing" className="py-14 sm:py-20 relative overflow-hidden">
       {/* Background radial glow */}
@@ -77,7 +123,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
                   {t("pricing.selectResellerNote")}
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
-                  Select <strong className="text-amber-400 font-extrabold underline">Team Murphy</strong> when the bot prompts for distributor to activate 24/7 VIP warranty and dedicated support.
+                  {t("pricing.resellerAlertBody")}
                 </p>
               </div>
             </div>
@@ -97,15 +143,15 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               <div className="p-4 rounded-xl bg-[#16080c]/80 border border-red-500/20 flex items-center gap-3">
                 <QrCode className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                 <div className="text-xs sm:text-sm">
-                  <span className="font-bold text-white">Thanh toán VietQR tự động:</span>
-                  <span className="text-slate-300 ml-1">Mã QR riêng từng đơn, ngân hàng BIDV, nhận key sau 15 giây.</span>
+                  <span className="font-bold text-white">{t("pricing.vndPayTitle")}</span>
+                  <span className="text-slate-300 ml-1">{t("pricing.vndPayDesc")}</span>
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-[#16080c]/80 border border-amber-500/30 flex items-center gap-3">
                 <ShieldAlert className="w-5 h-5 text-amber-400 flex-shrink-0" />
                 <div className="text-xs sm:text-sm">
-                  <span className="font-bold text-amber-300">Quy định vùng:</span>
-                  <span className="text-slate-300 ml-1">Key mua theo giá VND chỉ sử dụng trên lãnh thổ Việt Nam.</span>
+                  <span className="font-bold text-amber-300">{t("pricing.vndRegionTitle")}</span>
+                  <span className="text-slate-300 ml-1">{t("pricing.vndRegionDesc")}</span>
                 </div>
               </div>
             </>
@@ -114,15 +160,15 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               <div className="p-4 rounded-xl bg-[#16080c]/80 border border-red-500/20 flex items-center gap-3">
                 <Coins className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 <div className="text-xs sm:text-sm">
-                  <span className="font-bold text-white">Automated Crypto Payment:</span>
-                  <span className="text-slate-300 ml-1">USDT Tron (TRC-20) or Solana. Instant key delivery ~1 min.</span>
+                  <span className="font-bold text-white">{t("pricing.cryptoTitle")}</span>
+                  <span className="text-slate-300 ml-1">{t("pricing.cryptoDesc")}</span>
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-[#16080c]/80 border border-amber-500/30 flex items-center gap-3">
                 <Clock className="w-5 h-5 text-amber-400 flex-shrink-0" />
                 <div className="text-xs sm:text-sm">
-                  <span className="font-bold text-white">Exact Amount Notice:</span>
-                  <span className="text-slate-300 ml-1">Match amount to the cent (order ID). Valid for 30 minutes.</span>
+                  <span className="font-bold text-white">{t("pricing.exactNoticeTitle")}</span>
+                  <span className="text-slate-300 ml-1">{t("pricing.exactNoticeDesc")}</span>
                 </div>
               </div>
             </>
@@ -132,6 +178,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {plans.map((p) => {
+            const loc = getLocalizedPlan(p);
             const formattedPrice =
               currency === "VND"
                 ? `${p.price.toLocaleString("vi-VN")}đ`
@@ -156,7 +203,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
                 {/* Badges */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
-                    {p.duration}
+                    {loc.duration}
                   </span>
                   {p.isPopular && (
                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] font-black uppercase shadow-md shadow-red-600/30">
@@ -172,7 +219,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
 
                 {/* Title & Price */}
                 <div className="mb-6">
-                  <h3 className="text-lg font-black text-white mb-2">{p.name}</h3>
+                  <h3 className="text-lg font-black text-white mb-2">{loc.name}</h3>
                   <div className="flex items-baseline gap-2">
                     <span className={`text-3xl font-black ${p.isSale ? "text-amber-400" : "text-white"}`}>
                       {formattedPrice}
@@ -188,7 +235,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
                 {/* Features List */}
                 <div className="mb-6 pt-5 border-t border-red-500/15">
                   <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
-                    {p.features.map((f, idx) => (
+                    {loc.features.map((f, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Check className="w-3.5 h-3.5 text-red-400 flex-shrink-0 mt-0.5" />
                         <span>{f}</span>

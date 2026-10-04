@@ -94,7 +94,7 @@ export default function FAQSection() {
               {t("faq.supportBanner")}
             </h4>
             <p className="text-xs text-slate-400 mt-1">
-              Hỗ trợ kỹ thuật 24/7 từ đội ngũ Team Murphy
+              {t("faq.supportDesc")}
             </p>
           </div>
           <a

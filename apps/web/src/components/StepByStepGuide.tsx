@@ -128,7 +128,7 @@ export default function StepByStepGuide() {
                   {s.isWarning && (
                     <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
                       <AlertTriangle className="w-3 h-3" />
-                      QUAN TRỌNG
+                      {t("guide.importantBadge")}
                     </span>
                   )}
                 </div>
@@ -177,7 +177,7 @@ export default function StepByStepGuide() {
             className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-sm uppercase tracking-wider shadow-2xl shadow-red-600/40 transition-all hover:scale-105 active:scale-95 border border-red-400/40"
           >
             <Send className="w-4 h-4" />
-            <span>Mở Bot Mua Key Telegram (Team Murphy)</span>
+            <span>{t("guide.btnOpenBot")}</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
