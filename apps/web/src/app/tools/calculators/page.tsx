@@ -47,7 +47,7 @@ export default function CalculatorsPage() {
   const [tab, setTab] = useState<CalcTab>("boss");
 
   return (
-    <div className="min-h-screen mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 w-full overflow-x-hidden">
       <Link
         href="/tools"
         className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-4 min-h-[36px]"

@@ -11,7 +11,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
   const plans = currency === "VND" ? VND_PLANS : USD_PLANS;
 
   return (
-    <section id="pricing" className="py-14 sm:py-20 relative">
+    <section id="pricing" className="py-14 sm:py-20 relative overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-red-600/10 blur-[140px] pointer-events-none rounded-full" />
 

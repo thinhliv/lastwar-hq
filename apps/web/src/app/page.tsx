@@ -27,7 +27,7 @@ import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen text-slate-100 selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen text-slate-100 selection:bg-red-600 selection:text-white w-full overflow-x-hidden">
       {/* ===== HERO SECTION (STYLE 8: CRIMSON DUEL WAR ROOM) ===== */}
       <section className="relative pt-8 pb-16 sm:pt-14 sm:pb-24 overflow-hidden border-b border-red-500/20 bg-gradient-to-b from-[#13060a] via-[#0d0407] to-[#080204]">
         {/* Burning Ember Glow Gradients */}
@@ -176,7 +176,7 @@ export default function HomePage() {
       <PricingSection />
 
       {/* ===== FREE COMMUNITY TOOLS SECTION ===== */}
-      <section className="py-14 sm:py-20 bg-[#090305] border-t border-red-500/20 relative">
+      <section className="py-14 sm:py-20 bg-[#090305] border-t border-red-500/20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
             <div>
@@ -252,7 +252,7 @@ export default function HomePage() {
       <FAQSection />
 
       {/* ===== GLOBAL FOOTER ===== */}
-      <footer className="py-12 border-t border-red-500/20 bg-[#060203] text-slate-400 text-xs">
+      <footer className="py-12 border-t border-red-500/20 bg-[#060203] text-slate-400 text-xs overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">

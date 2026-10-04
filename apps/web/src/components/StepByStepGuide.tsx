@@ -40,7 +40,7 @@ export default function StepByStepGuide() {
   ];
 
   return (
-    <section id="guide" className="py-14 sm:py-20 bg-[#0d0508]/80 border-y border-red-500/20 relative">
+    <section id="guide" className="py-14 sm:py-20 bg-[#0d0508]/80 border-y border-red-500/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">

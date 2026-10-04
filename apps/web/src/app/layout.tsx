@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -9,6 +9,15 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#0c0608",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://monicabot.lol"),
@@ -33,11 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#0c0608] text-slate-100 selection:bg-red-600 selection:text-white">
+    <html lang="vi" className={`${inter.variable} h-full antialiased overflow-x-hidden w-full`}>
+      <body className="min-h-full flex flex-col bg-[#0c0608] text-slate-100 selection:bg-red-600 selection:text-white overflow-x-hidden w-full relative">
         <SearchTrigger />
         <Navbar />
-        <main className="flex-1 pb-20 md:pb-8">{children}</main>
+        <main className="flex-1 pb-20 md:pb-8 w-full overflow-x-hidden">{children}</main>
         <BottomNav />
       </body>
     </html>

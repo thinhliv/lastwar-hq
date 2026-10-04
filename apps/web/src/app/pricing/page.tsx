@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen py-8">
+    <div className="min-h-screen py-8 w-full overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white text-center mb-3">
           Bảng Giá & Gói Cước Bản Quyền

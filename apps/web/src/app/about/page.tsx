@@ -45,7 +45,7 @@ const sources = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full overflow-x-hidden">
       <div className="text-center mb-10">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-2">
           Về Chúng Tôi — Team Murphy
