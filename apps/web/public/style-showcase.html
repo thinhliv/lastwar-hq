@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng So Sánh 6 Phong Cách Thiết Kế - Monica Bot Last War (Đại Lý Team Murphy)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS RESET & SYSTEM FOUNDATION */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --bg-global: #080a0f;
+      --card-global: #10141f;
+      --border-global: rgba(255, 255, 255, 0.1);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      background-color: var(--bg-global);
+      color: var(--text-main);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-bottom: 80px;
+    }
+
+    /* TOP GLOBAL CONTROLLER BAR */
+    .top-controller {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 10, 15, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-indicator {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-indicator .logo-badge {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .style-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      padding: 4px;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .style-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .style-tab-btn:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .style-tab-btn.active {
+      background: #ffffff;
+      color: #090d16;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      font-weight: 700;
+    }
+
+    .style-tab-btn .badge-pill {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.1);
+      font-weight: 700;
+    }
+    
+    .style-tab-btn.active .badge-pill {
+      background: rgba(9, 13, 22, 0.15);
+      color: #090d16;
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-choose {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-choose:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+    }
+
+    /* HERO INTRO BAR */
+    .showcase-header {
+      max-width: 1200px;
+      margin: 32px auto 20px;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .showcase-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-header p {
+      font-size: 15px;
+      color: #94a3b8;
+      max-width: 780px;
+      margin: 0 auto 18px;
+    }
+
+    .source-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .source-badge a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* STYLES CONTAINER */
+    .styles-container {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+
+    .style-panel {
+      display: none;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .style-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SPECIFICATIONS BANNER */
+    .spec-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 22px 28px;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .spec-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .spec-info h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spec-info p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .spec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .spec-tag {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+    }
+
+    .spec-palette {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .color-chip {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 4px;
+      font-size: 9px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* MOCKUP FRAME */
+    .mockup-window {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+      margin-bottom: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .window-header {
+      height: 44px;
+      background: rgba(15, 20, 30, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 14px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .window-address {
+      flex: 1;
+      max-width: 420px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .window-content {
+      padding: 48px 36px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .window-content {
+        padding: 28px 18px;
+      }
+    }
+
+    /* ==============================================================
+       STYLE 0: MINIMAX (getdesign.md Authentic Specification)
+       - Strict Monochrome Canvas (black/white)
+       - Pill geometry everywhere (9999px border radius, buttons NEVER squared)
+       - DM Sans display font with oversized 72px-80px & negative tracking
+       - Saturated gradient product cards (Coral M2.7, Magenta Music, Cyan Hailuo)
+       - 32px softened corners on featured product containers
+       - Hairline 1px borders
+       ============================================================== */
+    .style-minimax .window-content {
+      background: #090c15;
+      font-family: 'DM Sans', sans-serif;
+      color: #ffffff;
+      background-image: 
+        radial-gradient(circle at 80% 10%, rgba(255, 87, 87, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 20% 90%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
+    }
+
+    .minimax-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .minimax-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .minimax-nav-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .minimax-nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .minimax-nav-link {
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .minimax-nav-link:hover {
+      color: #ffffff;
+    }
+
+    .minimax-pill-btn-dark {
+      background: #ffffff;
+      color: #090c15;
+      border: none;
+      border-radius: 9999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.15s;
+    }
+
+    .minimax-pill-btn-dark:hover {
+      opacity: 0.9;
+    }
+
+    .minimax-hero {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 52px;
+    }
+
+    .minimax-promo-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 6px 18px;
+      font-size: 12px;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+
+    .minimax-promo-strip span.glow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 9999px;
+      background: #00f0ff;
+      box-shadow: 0 0 10px #00f0ff;
+    }
+
+    .minimax-hero-title {
+      font-size: 56px;
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .minimax-hero-title {
+        font-size: 34px;
+      }
+    }
+
+    .minimax-hero-subtitle {
+      font-size: 17px;
+      color: #94a3b8;
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    .minimax-hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .minimax-btn-primary {
+      background: #ffffff;
+      color: #090c15;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 30px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+      transition: transform 0.15s;
+    }
+
+    .minimax-btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .minimax-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 26px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+
+    .minimax-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    /* Vibrant Product Cards (MiniMax Signature Identity) */
+    .minimax-product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .minimax-product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .minimax-card-vibrant-coral {
+      background: linear-gradient(145deg, #1f1416 0%, #110e14 100%);
+      border: 1px solid rgba(255, 99, 71, 0.3);
+      border-radius: 32px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .minimax-card-vibrant-coral:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 99, 71, 0.6);
+    }
+
+    .minimax-card-vibrant-coral::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255, 99, 71, 0.35) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .minimax-card-vibrant-blue {
+      background: linear-gradient(145deg, #101a2c 0%, #0c121e 100%);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 32px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .minimax-card-vibrant-blue:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    .minimax-card-vibrant-blue::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .minimax-card-vibrant-magenta {
+      background: linear-gradient(145deg, #201229 0%, #130e1c 100%);
+      border: 1px solid rgba(217, 70, 239, 0.3);
+      border-radius: 32px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .minimax-card-vibrant-magenta:hover {
+      transform: translateY(-4px);
+      border-color: rgba(217, 70, 239, 0.6);
+    }
+
+    .minimax-card-vibrant-magenta::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(217, 70, 239, 0.35) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .minimax-card-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    .minimax-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .minimax-card-desc {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .minimax-card-price {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .minimax-card-price span.term {
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    /* ==============================================================
+       STYLE 1: TACTICAL MILITARY OPS / LAST WAR HUD
+       - Gunmetal Navy & Charcoal
+       - Hazard orange (#f59e0b) & Radar Green (#10b981)
+       - Monospace telemetry data, scanlines, crosshair grids
+       - Chamfered corner clip-paths, warning hazard stripes
+       - Fits Last War SLG battle station theme
+       ============================================================== */
+    .style-tactical .window-content {
+      background: #0b0f17;
+      font-family: 'JetBrains Mono', monospace;
+      color: #e2e8f0;
+      position: relative;
+    }
+
+    .tactical-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .tactical-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed rgba(245, 158, 11, 0.3);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      font-size: 11px;
+      color: #f59e0b;
+    }
+
+    .tactical-hud-badge {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid #f59e0b;
+      padding: 3px 10px;
+      color: #fbbf24;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .tactical-hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .tactical-hero-title span {
+      color: #f59e0b;
+      text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    }
+
+    .tactical-box {
+      background: #111724;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-left: 4px solid #f59e0b;
+      padding: 24px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .tactical-btn {
+      background: #f59e0b;
+      color: #0b0f17;
+      border: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px 26px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.15s;
+    }
+
+    .tactical-btn:hover {
+      background: #fbbf24;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+    }
+
+    /* ==============================================================
+       STYLE 2: LINEAR / VERCEL DARK GLASS (Silicon Valley Precision)
+       - Deep matte obsidian (#08080a)
+       - Micro hairline borders (1px solid rgba(255,255,255,0.08))
+       - Indigo / Violet soft ambient glow (#6366f1)
+       - Geist typography, clean minimalist luxury, ultra-smooth
+       ============================================================== */
+    .style-linear .window-content {
+      background: #070709;
+      font-family: 'Geist', sans-serif;
+      color: #ededed;
+      position: relative;
+    }
+
+    .linear-aura {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 480px;
+      height: 240px;
+      background: radial-gradient(ellipse, rgba(99, 102, 241, 0.18) 0%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    .linear-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: #a1a1aa;
+      margin-bottom: 24px;
+    }
+
+    .linear-pill-badge span.indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6366f1;
+      box-shadow: 0 0 8px #6366f1;
+    }
+
+    .linear-hero-title {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      background: linear-gradient(180deg, #ffffff 40%, #71717a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .linear-card {
+      background: rgba(18, 18, 22, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 26px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .linear-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .linear-btn-primary {
+      background: #ededed;
+      color: #070709;
+      border: none;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 11px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+
+    .linear-btn-primary:hover {
+      background: #ffffff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* ==============================================================
+       STYLE 3: RAYCAST CYBER COMMAND (Power-User Launcher)
+       - Deep space charcoal (#13131c)
+       - Cyan (#06b6d4) + Purple (#a855f7) dynamic neon gradients
+       - Kbd keyboard shortcuts badges (Ctrl+K, F1)
+       - High efficiency gaming bot feel
+       ============================================================== */
+    .style-raycast .window-content {
+      background: #11121c;
+      font-family: 'Inter', sans-serif;
+      color: #f3f4f6;
+    }
+
+    .raycast-searchbar {
+      background: #181926;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .raycast-kbd {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #cbd5e1;
+    }
+
+    .raycast-hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .raycast-hero-title span {
+      background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .raycast-btn {
+      background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+      color: #ffffff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.35);
+      transition: transform 0.15s;
+    }
+
+    .raycast-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ==============================================================
+       STYLE 4: LUXURY VIP GOLD SLG (Whale & Prestige King)
+       - Obsidian Carbon (#0a0a0d)
+       - Metallic Gold Gradients (#f59e0b to #d97706 & #fef08a)
+       - Cinzel royal display font, VIP crown seals, high-ticket prestige
+       ============================================================== */
+    .style-gold .window-content {
+      background: #09090c;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #fef08a;
+      position: relative;
+    }
+
+    .gold-crest {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #eab308;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .gold-crest::before, .gold-crest::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #eab308);
+    }
+
+    .gold-crest::after {
+      background: linear-gradient(90deg, #eab308, transparent);
+    }
+
+    .gold-hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      text-align: center;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #fffbeb 0%, #fde047 50%, #b45309 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-card {
+      background: linear-gradient(145deg, #161514 0%, #0d0c0c 100%);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(254, 240, 138, 0.15);
+      position: relative;
+    }
+
+    .gold-btn {
+      background: linear-gradient(180deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+      color: #1c1917;
+      border: 1px solid #fef08a;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      padding: 12px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(234, 179, 8, 0.3);
+      text-transform: uppercase;
+      transition: transform 0.15s;
+    }
+
+    .gold-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(234, 179, 8, 0.5);
+    }
+
+    /* ==============================================================
+       STYLE 5: NEO-BRUTALIST HIGH-CONVERSION (Táo Bạo & Chốt Đơn)
+       - High contrast stark dark canvas
+       - Hard Drop Shadows (4px 4px 0px #ccff00)
+       - Thick 2.5px solid borders
+       - Electric Lime (#ccff00) + Danger Orange (#ff5500)
+       - Raw conversion power, high readability
+       ============================================================== */
+    .style-brutalist .window-content {
+      background: #0f1115;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #ffffff;
+    }
+
+    .brutalist-badge {
+      display: inline-block;
+      background: #ccff00;
+      color: #000000;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 6px 14px;
+      border: 2.5px solid #ffffff;
+      box-shadow: 4px 4px 0px #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .brutalist-hero-title {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .brutalist-hero-title span {
+      background: #ccff00;
+      color: #000000;
+      padding: 0 8px;
+      display: inline-block;
+    }
+
+    .brutalist-card {
+      background: #181b22;
+      border: 2.5px solid #ffffff;
+      box-shadow: 6px 6px 0px #ccff00;
+      padding: 28px;
+      border-radius: 0;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .brutalist-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0px #ccff00;
+    }
+
+    .brutalist-btn {
+      background: #ccff00;
+      color: #000000;
+      border: 2.5px solid #ffffff;
+      box-shadow: 4px 4px 0px #ffffff;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .brutalist-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #ffffff;
+    }
+
+    /* COMPARISON MATRIX SECTION */
+    .matrix-section {
+      margin-top: 54px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px 28px;
+    }
+
+    .matrix-section h2 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .matrix-section p.subtitle {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .matrix-table-wrap {
+      overflow-x: auto;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+
+    .matrix-table th {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 16px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+    }
+
+    .matrix-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+    }
+
+    .matrix-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: #f1f5f9;
+    }
+
+    .matrix-table .style-name-cell {
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* TOAST ALERT */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(120px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999;
+    }
+
+    .toast-notice.show {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP GLOBAL CONTROLLER BAR -->
+  <header class="top-controller">
+    <div class="brand-indicator">
+      <div class="logo-badge">M</div>
+      <div>
+        <div class="brand-title">Monica Bot Storefront Design Lab</div>
+        <div class="brand-subtitle">Đại lý ủy quyền Team Murphy • Last War: Survival</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <nav class="style-tabs">
+      <button class="style-tab-btn active" onclick="switchStyle('minimax')">
+        <span>0. MiniMax (getdesign.md)</span>
+        <span class="badge-pill">Gốc</span>
+      </button>
+      <button class="style-tab-btn" onclick="switchStyle('tactical')">
+        <span>1. Tactical Military Ops</span>
+        <span class="badge-pill">SLG Game</span>
+      </button>
+      <button class="style-tab-btn" onclick="switchStyle('linear')">
+        <span>2. Linear Dark Glass</span>
+        <span class="badge-pill">Tối giản</span>
+      </button>
+      <button class="style-tab-btn" onclick="switchStyle('raycast')">
+        <span>3. Raycast Cyber Command</span>
+        <span class="badge-pill">Gamer</span>
+      </button>
+      <button class="style-tab-btn" onclick="switchStyle('gold')">
+        <span>4. Luxury VIP Gold SLG</span>
+        <span class="badge-pill">Hoàng Gia</span>
+      </button>
+      <button class="style-tab-btn" onclick="switchStyle('brutalist')">
+        <span>5. Neo-Brutalist SaaS</span>
+        <span class="badge-pill">Chốt Đơn</span>
+      </button>
+    </nav>
+
+    <!-- ACTION BUTTON -->
+    <div class="action-group">
+      <button class="btn-choose" onclick="confirmCurrentChoice()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        Chọn Style Này
+      </button>
+    </div>
+  </header>
+
+  <!-- INTRO HEADER -->
+  <div class="showcase-header">
+    <h1>Khám Phá & Chọn Lựa Phong Cách Thiết Kế Storefront</h1>
+    <p>So sánh phong cách <strong>MiniMax từ getdesign.md</strong> cùng 5 phong cách cao cấp được thiết kế riêng cho tool Monica Bot (Last War: Survival - Team Murphy).</p>
+    <div class="source-badge">
+      <span>Nguồn phân tích:</span>
+      <a href="https://getdesign.md/minimax/design-md" target="_blank">getdesign.md/minimax/design-md</a>
+      <span>• Model Family & Saturated Product Cards</span>
+    </div>
+  </div>
+
+  <main class="styles-container">
+
+    <!-- ==============================================================
+         TAB 0: MINIMAX (getdesign.md)
+         ============================================================== -->
+    <section id="panel-minimax" class="style-panel active style-minimax">
+      <!-- SPEC BANNER -->
+      <div class="spec-card">
+        <div class="spec-info">
+          <h3>
+            Style 0: MiniMax AI (getdesign.md Reference)
+            <span style="font-size: 11px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 2px 8px; border-radius: 9999px;">Chuẩn getdesign.md</span>
+          </h3>
+          <p>
+            Đặc trưng từ <strong>MiniMax DESIGN.md</strong>: Nền Canvas Đen Tối Giản (Monochrome Black & White) kết hợp các <strong>Thẻ Sản Phẩm Gradient Đậm Màu (Saturated Cards)</strong>.
+            Mọi nút bấm và huy hiệu đều có dạng <strong>Bo Tròn Con Nhộng (Pill Shape 9999px, tuyệt đối không dùng nút vuông)</strong>, góc thẻ bo tròn mềm mại 32px, tiêu đề lớn DM Sans với khoảng cách chữ co hẹp tinh tế.
+          </p>
+          <div class="spec-tags">
+            <span class="spec-tag">Geometry: Pill-Shape (9999px)</span>
+            <span class="spec-tag">Card Radius: 32px</span>
+            <span class="spec-tag">Font: DM Sans Display</span>
+            <span class="spec-tag">Accents: Coral M2.7 + Electric Blue + Magenta</span>
+          </div>
+        </div>
+        <div class="spec-palette">
+          <div class="color-chip" style="background: #090c15; color: #94a3b8;">#090C15</div>
+          <div class="color-chip" style="background: #ffffff; color: #000000;">#FFFFFF</div>
+          <div class="color-chip" style="background: linear-gradient(135deg, #ff6347, #e11d48); color: #ffffff;">#FF6347</div>
+          <div class="color-chip" style="background: linear-gradient(135deg, #38bdf8, #0284c7); color: #ffffff;">#38BDF8</div>
+        </div>
+      </div>
+
+      <!-- MOCKUP WINDOW -->
+      <div class="mockup-window">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-address">https://monicabot.vn — MiniMax AI Aesthetic</div>
+        </div>
+        <div class="window-content">
+          <!-- NAV -->
+          <div class="minimax-nav">
+            <div class="minimax-nav-brand">
+              <span>MONICA BOT</span>
+              <span class="minimax-nav-badge">Team Murphy Reseller</span>
+            </div>
+            <div class="minimax-nav-links">
+              <a href="#" class="minimax-nav-link">Tính năng</a>
+              <a href="#" class="minimax-nav-link">Bảng giá</a>
+              <a href="#" class="minimax-nav-link">Video HD</a>
+              <a href="https://t.me/gametoollastwar" target="_blank" class="minimax-nav-link">Hỗ trợ 24/7</a>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="minimax-pill-btn-dark">Mua Key Ngay →</a>
+            </div>
+          </div>
+
+          <!-- HERO -->
+          <div class="minimax-hero">
+            <div class="minimax-promo-strip">
+              <span class="glow-dot"></span>
+              <span>Phiên Bản v3.4.8 Đã Sẵn Sàng Cho Season Mới Last War</span>
+            </div>
+            <h2 class="minimax-hero-title">Tự Động Hóa SLG Số 1 Cho Last War: Survival</h2>
+            <p class="minimax-hero-subtitle">
+              Treo máy an toàn 24/7 trên PC & Giả lập. Tự động cướp xe tải UR, làm nhiệm vụ bí mật, chi viện liên minh và tối ưu hóa tài nguyên hoàn toàn tự động.
+            </p>
+            <div class="minimax-hero-actions">
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="minimax-btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+                Mua Key Bot Telegram (Chọn Team Murphy)
+              </a>
+              <a href="#demo" class="minimax-btn-secondary">
+                Xem 3 Video Hướng Dẫn
+              </a>
+            </div>
+          </div>
+
+          <!-- SIGNATURE MINIMAX VIBRANT PRODUCT CARDS -->
+          <div class="minimax-product-grid">
+            <!-- Card 1 (Coral Identity) -->
+            <div class="minimax-card-vibrant-coral">
+              <span class="minimax-card-pill" style="background: rgba(255, 99, 71, 0.2); color: #ff8570;">Gói Trải Nghiệm</span>
+              <h3 class="minimax-card-title">Gói 7 Ngày</h3>
+              <p class="minimax-card-desc">Thử nghiệm đầy đủ toàn bộ tính năng tự động cướp xe, nhiệm vụ bí mật trước khi đăng ký dài hạn.</p>
+              <div class="minimax-card-price">
+                99.000đ <span class="term">/ 7 ngày (hoặc $9 USDT)</span>
+              </div>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="minimax-btn-primary" style="width: 100%; justify-content: center;">
+                Kích Hoạt Gói 7 Ngày
+              </a>
+            </div>
+
+            <!-- Card 2 (Blue Identity - Most Popular) -->
+            <div class="minimax-card-vibrant-blue">
+              <span class="minimax-card-pill" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">Phổ Biến Nhất • Tiết Kiệm</span>
+              <h3 class="minimax-card-title">Gói 30 Ngày</h3>
+              <p class="minimax-card-desc">Treo máy full 1 tháng. Đầy đủ tính năng nâng cao, tự động cập nhật bản mới, hỗ trợ 1:1 qua nhóm Telegram.</p>
+              <div class="minimax-card-price">
+                299.000đ <span class="term">/ 30 ngày (hoặc $19 USDT)</span>
+              </div>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="minimax-btn-primary" style="width: 100%; justify-content: center; background: #38bdf8; color: #0c121e;">
+                Kích Hoạt Gói 30 Ngày
+              </a>
+            </div>
+
+            <!-- Card 3 (Magenta Identity - Lifetime Special) -->
+            <div class="minimax-card-vibrant-magenta">
+              <span class="minimax-card-pill" style="background: rgba(217, 70, 239, 0.2); color: #e879f9;">Ưu Đãi Vĩnh Viễn -33%</span>
+              <h3 class="minimax-card-title">Gói Vĩnh Viễn</h3>
+              <p class="minimax-card-desc">Sử dụng trọn đời, không bao giờ lo hết hạn. Nhận quyền lợi VIP, cập nhật tất cả mùa giải Last War tương lai.</p>
+              <div class="minimax-card-price">
+                2.679.330đ <span class="term">/ Trọn Đời (hoặc $200.33)</span>
+              </div>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="minimax-btn-primary" style="width: 100%; justify-content: center; background: #d946ef; color: #ffffff;">
+                Sở Hữu Key Vĩnh Viễn
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 1: TACTICAL MILITARY OPS (Last War Battle Station)
+         ============================================================== -->
+    <section id="panel-tactical" class="style-panel style-tactical">
+      <div class="spec-card">
+        <div class="spec-info">
+          <h3>
+            Style 1: Tactical Military Ops (Last War HUD)
+            <span style="font-size: 11px; background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 8px; border-radius: 9999px;">Đậm Chất SLG Chiến Tranh</span>
+          </h3>
+          <p>
+            Thiết kế mô phỏng <strong>Phòng Tác Chiến Quân Sự (Military Command Station)</strong>: Lưới ngắm tọa độ radar, vạch cảnh báo hazard stripes, góc vát góc vát sắc nét chamfered (polygon), màu Amber Tactical rực lửa cùng font Monospace telemetry kỹ thuật cao.
+            Rất phù hợp với tâm lý game thủ Last War muốn cảm giác "vũ khí tối tân thống trị server".
+          </p>
+          <div class="spec-tags">
+            <span class="spec-tag">Theme: SLG Military HUD</span>
+            <span class="spec-tag">Geometry: Chamfered Corners (45° clip-path)</span>
+            <span class="spec-tag">Font: JetBrains Mono + Plus Jakarta</span>
+            <span class="spec-tag">Accents: Tactical Amber #F59E0B + Radar Green #10B981</span>
+          </div>
+        </div>
+        <div class="spec-palette">
+          <div class="color-chip" style="background: #0b0f17; color: #94a3b8;">#0B0F17</div>
+          <div class="color-chip" style="background: #f59e0b; color: #000000;">#F59E0B</div>
+          <div class="color-chip" style="background: #10b981; color: #000000;">#10B981</div>
+          <div class="color-chip" style="background: #ef4444; color: #ffffff;">#EF4444</div>
+        </div>
+      </div>
+
+      <div class="mockup-window">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-address">https://monicabot.vn — Tactical Military Command</div>
+        </div>
+        <div class="window-content">
+          <div class="tactical-grid-bg"></div>
+          <div class="tactical-header-strip">
+            <div>[STATUS: ALL SYSTEMS OPERATIONAL] • SECTOR: LAST WAR SURVIVAL</div>
+            <div class="tactical-hud-badge">RESELLER UNIT: TEAM MURPHY</div>
+          </div>
+          <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2;">
+            <div style="color: #10b981; font-size: 12px; margin-bottom: 12px; letter-spacing: 0.15em;">
+              ▲ MONICA TACTICAL BOT CORE v3.4.8 ▲
+            </div>
+            <h2 class="tactical-hero-title">
+              HỆ THỐNG TÁC CHIẾN <span>TỰ ĐỘNG HÓA</span> LAST WAR
+            </h2>
+            <p style="color: #94a3b8; font-size: 14.5px; margin-bottom: 30px; font-family: 'DM Sans', sans-serif;">
+              Thiết bị trinh sát cướp xe UR 100% tài nguyên, tuần tra quét map liên minh và tự động hóa toàn bộ công việc căn cứ mà không cần canh màn hình.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 14px; margin-bottom: 40px; flex-wrap: wrap;">
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="tactical-btn">
+                [KÍCH HOẠT KEY NGAY] → TELEGRAM BOT
+              </a>
+              <a href="https://t.me/gametoollastwar" target="_blank" class="tactical-btn" style="background: #1e293b; color: #f8fafc; border: 1px solid #475569;">
+                [KÊNH HỖ TRỢ CHIẾN ĐỘI]
+              </a>
+            </div>
+          </div>
+
+          <!-- TACTICAL PRICING BOX -->
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 840px; margin: 0 auto; position: relative; z-index: 2;">
+            <div class="tactical-box">
+              <div style="font-size: 11px; color: #f59e0b; margin-bottom: 8px;">[MISSION CODE: 30-DAYS]</div>
+              <h3 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px;">GÓI TÁC CHIẾN 30 NGÀY</h3>
+              <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px; font-family: 'DM Sans', sans-serif;">Tự động quét xe vàng, nhiệm vụ bí mật, bảo vệ căn cứ 24/7 trong 1 tháng.</p>
+              <div style="font-size: 24px; font-weight: 800; color: #f59e0b; margin-bottom: 16px;">299.000 VNĐ / Tháng</div>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="tactical-btn" style="width: 100%; justify-content: center;">
+                DUYỆT LỆNH MUA (TEAM MURPHY)
+              </a>
+            </div>
+            <div class="tactical-box" style="border-left-color: #10b981;">
+              <div style="font-size: 11px; color: #10b981; margin-bottom: 8px;">[SUPREME: LIFETIME ACCESS]</div>
+              <h3 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px;">GÓI VĨNH VIỄN CHIẾN TƯỚNG</h3>
+              <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px; font-family: 'DM Sans', sans-serif;">Đặc quyền cập nhật trọn đời, hỗ trợ setup từ xa Ultraview nếu cần.</p>
+              <div style="font-size: 24px; font-weight: 800; color: #10b981; margin-bottom: 16px;">2.679.330 VNĐ (GIẢM 33%)</div>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="tactical-btn" style="width: 100%; justify-content: center; background: #10b981;">
+                KÍCH HOẠT VĨNH VIỄN
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 2: LINEAR DARK GLASS (Silicon Valley Precision)
+         ============================================================== -->
+    <section id="panel-linear" class="style-panel style-linear">
+      <div class="spec-card">
+        <div class="spec-info">
+          <h3>
+            Style 2: Linear Dark Glass (Silicon Valley Precision)
+            <span style="font-size: 11px; background: rgba(99, 102, 241, 0.2); color: #818cf8; padding: 2px 8px; border-radius: 9999px;">Tối Giản Đẳng Cấp</span>
+          </h3>
+          <p>
+            Lấy cảm hứng từ <strong>Linear.app và Vercel</strong>: Nền đen tuyền mờ sâu, ánh hào quang tím huyền ảo (Indigo Aura), viền siêu mảnh hairline 1px tinh xảo, font Geist hiện đại.
+            Tạo cảm giác phần mềm cực kỳ mượt mà, ổn định tuyệt đối và không hề có rủi ro lag hay virus.
+          </p>
+          <div class="spec-tags">
+            <span class="spec-tag">Aesthetic: Dark Luxury Glassmorphism</span>
+            <span class="spec-tag">Border: 1px hairline rgba(255,255,255,0.08)</span>
+            <span class="spec-tag">Font: Geist Variable</span>
+            <span class="spec-tag">Accents: Indigo #6366F1 + Pure White</span>
+          </div>
+        </div>
+        <div class="spec-palette">
+          <div class="color-chip" style="background: #070709; color: #94a3b8;">#070709</div>
+          <div class="color-chip" style="background: #18191e; color: #94a3b8;">#18191E</div>
+          <div class="color-chip" style="background: #6366f1; color: #ffffff;">#6366F1</div>
+          <div class="color-chip" style="background: #ededed; color: #000000;">#EDEDED</div>
+        </div>
+      </div>
+
+      <div class="mockup-window">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-address">https://monicabot.vn — Linear Glass Precision</div>
+        </div>
+        <div class="window-content">
+          <div class="linear-aura"></div>
+          <div style="text-align: center; max-width: 760px; margin: 0 auto 46px; position: relative; z-index: 2;">
+            <div class="linear-pill-badge">
+              <span class="indicator"></span>
+              <span>Đại lý chính thức: Team Murphy • Phiên bản 2026</span>
+            </div>
+            <h2 class="linear-hero-title">Đơn giản hóa hành trình Last War của bạn</h2>
+            <p style="color: #a1a1aa; font-size: 16px; line-height: 1.6; margin-bottom: 28px;">
+              Hệ thống tự động hóa chuẩn xác từng mili-giây. Được thiết kế cho các chỉ huy đòi hỏi sự ổn định tối đa và giao diện trực quan thanh thoát.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 12px;">
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="linear-btn-primary">
+                Mua Key Qua Bot Telegram →
+              </a>
+              <a href="https://t.me/gametoollastwar" target="_blank" class="linear-btn-primary" style="background: transparent; color: #ededed; border: 1px solid rgba(255,255,255,0.12);">
+                Nhóm Hỗ Trợ Kỹ Thuật
+              </a>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+            <div class="linear-card">
+              <div style="font-size: 13px; font-weight: 600; color: #ededed; margin-bottom: 6px;">7 Ngày Thử Nghiệm</div>
+              <div style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px;">99.000đ</div>
+              <p style="font-size: 12.5px; color: #71717a; line-height: 1.5; margin-bottom: 16px;">Đầy đủ quyền truy cập toàn bộ tính năng tự động.</p>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" style="color: #6366f1; font-size: 12px; font-weight: 600; text-decoration: none;">Chọn gói này →</a>
+            </div>
+            <div class="linear-card" style="border-color: rgba(99, 102, 241, 0.4);">
+              <div style="font-size: 13px; font-weight: 600; color: #818cf8; margin-bottom: 6px;">30 Ngày Chuẩn</div>
+              <div style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px;">299.000đ</div>
+              <p style="font-size: 12.5px; color: #71717a; line-height: 1.5; margin-bottom: 16px;">Sự lựa chọn của 80% chỉ huy Last War mỗi tháng.</p>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" style="color: #818cf8; font-size: 12px; font-weight: 600; text-decoration: none;">Chọn gói này →</a>
+            </div>
+            <div class="linear-card">
+              <div style="font-size: 13px; font-weight: 600; color: #ededed; margin-bottom: 6px;">Vĩnh Viễn Trọn Đời</div>
+              <div style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px;">2.679.330đ</div>
+              <p style="font-size: 12.5px; color: #71717a; line-height: 1.5; margin-bottom: 16px;">Tiết kiệm 33%, không phụ phí gia hạn về sau.</p>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" style="color: #6366f1; font-size: 12px; font-weight: 600; text-decoration: none;">Chọn gói này →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 3: RAYCAST CYBER COMMAND (Power-User Launcher)
+         ============================================================== -->
+    <section id="panel-raycast" class="style-panel style-raycast">
+      <div class="spec-card">
+        <div class="spec-info">
+          <h3>
+            Style 3: Raycast Cyber Command (Power-User Launcher)
+            <span style="font-size: 11px; background: rgba(6, 182, 212, 0.2); color: #06b6d4; padding: 2px 8px; border-radius: 9999px;">Tốc Độ & RGB Gaming</span>
+          </h3>
+          <p>
+            Phong cách bảng điều khiển <strong>Command Launcher siêu tốc</strong>: Thanh phím tắt keyboard tags (`Ctrl+K`, `F1`), hiệu ứng dải màu Neon Dual Gradient (Electric Cyan & Neon Violet), mang đậm năng lượng gaming công nghệ cao.
+          </p>
+          <div class="spec-tags">
+            <span class="spec-tag">Aesthetic: Cyber Command UI</span>
+            <span class="spec-tag">Shortcuts: Kbd Keycaps</span>
+            <span class="spec-tag">Font: Inter + JetBrains Mono</span>
+            <span class="spec-tag">Accents: Cyan #06B6D4 + Violet #A855F7</span>
+          </div>
+        </div>
+        <div class="spec-palette">
+          <div class="color-chip" style="background: #11121c; color: #94a3b8;">#11121C</div>
+          <div class="color-chip" style="background: #06b6d4; color: #000000;">#06B6D4</div>
+          <div class="color-chip" style="background: #a855f7; color: #ffffff;">#A855F7</div>
+          <div class="color-chip" style="background: #f43f5e; color: #ffffff;">#F43F5E</div>
+        </div>
+      </div>
+
+      <div class="mockup-window">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-address">https://monicabot.vn — Raycast Command Palette</div>
+        </div>
+        <div class="window-content">
+          <div class="raycast-searchbar">
+            <div style="display: flex; align-items: center; gap: 10px; color: #94a3b8; font-size: 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span>Tìm kiếm tác vụ auto Last War...</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <span class="raycast-kbd">Ctrl</span>
+              <span class="raycast-kbd">K</span>
+            </div>
+          </div>
+
+          <div style="text-align: center; max-width: 800px; margin: 0 auto 36px;">
+            <h2 class="raycast-hero-title">
+              Điều khiển Last War với <span>Tốc Độ Ánh Sáng</span>
+            </h2>
+            <p style="color: #94a3b8; font-size: 15px; margin-bottom: 24px;">
+              Tự động hóa toàn diện qua giao diện tối ưu hiệu suất. Nhập key trong 5 giây, kích hoạt tức thì.
+            </p>
+            <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="raycast-btn">
+              ⚡ Kích Hoạt Key Qua Bot Telegram (Team Murphy)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 4: LUXURY VIP GOLD SLG (Whale & Prestige King)
+         ============================================================== -->
+    <section id="panel-gold" class="style-panel style-gold">
+      <div class="spec-card">
+        <div class="spec-info">
+          <h3>
+            Style 4: Luxury VIP Gold SLG (Prestige Whale & Top 1)
+            <span style="font-size: 11px; background: rgba(234, 179, 8, 0.2); color: #facc15; padding: 2px 8px; border-radius: 9999px;">Đẳng Cấp Hoàng Gia VIP</span>
+          </h3>
+          <p>
+            Phong cách dành riêng cho các <strong>Chỉ Huy Top 1 Server & Whale Nạp Khủng</strong>: Nền đen Onyx huyền ảo, viền ánh vàng kim loại (Metallic Gold Sheen), huy hiệu vương miện hoàng gia, font Cinzel trang trọng.
+            Tạo độ uy tín vượt trội, nâng tầm giá trị gói Vĩnh Viễn của đại lý Team Murphy.
+          </p>
+          <div class="spec-tags">
+            <span class="spec-tag">Aesthetic: Imperial Gold Strategy</span>
+            <span class="spec-tag">Theme: VIP Prestige Seal</span>
+            <span class="spec-tag">Font: Cinzel Royal Display + Jakarta</span>
+            <span class="spec-tag">Accents: Metallic Gold #EAB308 + Warm Amber</span>
+          </div>
+        </div>
+        <div class="spec-palette">
+          <div class="color-chip" style="background: #09090c; color: #fde047;">#09090C</div>
+          <div class="color-chip" style="background: #eab308; color: #000000;">#EAB308</div>
+          <div class="color-chip" style="background: #ca8a04; color: #ffffff;">#CA8A04</div>
+          <div class="color-chip" style="background: #fef08a; color: #000000;">#FEF08A</div>
+        </div>
+      </div>
+
+      <div class="mockup-window">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-address">https://monicabot.vn — Imperial Gold Prestige</div>
+        </div>
+        <div class="window-content">
+          <div class="gold-crest">ĐẶC QUYỀN ĐẠI LÝ CHÍNH THỨC TEAM MURPHY</div>
+          <h2 class="gold-hero-title">ĐẲNG CẤP CHIẾN TƯỚNG TỐI CAO</h2>
+          <p style="text-align: center; color: #d4d4d8; font-size: 15px; max-width: 680px; margin: 0 auto 36px; line-height: 1.6;">
+            Công cụ hỗ trợ SLG hàng đầu cho các liên minh thống trị. Tiết kiệm hàng trăm giờ cày cuốc, giữ vững vị thế Top 1 Server.
+          </p>
+
+          <div style="max-width: 560px; margin: 0 auto; text-align: center;">
+            <div class="gold-card">
+              <div style="font-family: 'Cinzel', serif; font-size: 12px; color: #fde047; letter-spacing: 0.2em; margin-bottom: 8px;">ĐẶC QUYỀN TRỌN ĐỜI</div>
+              <h3 style="font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px;">VIP LIFETIME PRIVILEGE</h3>
+              <div style="font-size: 32px; font-weight: 900; color: #fde047; margin-bottom: 14px;">2.679.330 VNĐ</div>
+              <p style="font-size: 13.5px; color: #a1a1aa; margin-bottom: 22px;">Không giới hạn thời gian. Ưu tiên hỗ trợ kỹ thuật viên 1:1, bảo hành vĩnh viễn từ Team Murphy.</p>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="gold-btn" style="width: 100%; justify-content: center;">
+                SỞ HỮU NGAY KEY HOÀNG GIA →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 5: NEO-BRUTALIST HIGH-CONVERSION (Táo Bạo & Chốt Đơn)
+         ============================================================== -->
+    <section id="panel-brutalist" class="style-panel style-brutalist">
+      <div class="spec-card">
+        <div class="spec-info">
+          <h3>
+            Style 5: Neo-Brutalist High-Conversion (Táo Bạo & Trực Diện)
+            <span style="font-size: 11px; background: rgba(204, 255, 0, 0.2); color: #ccff00; padding: 2px 8px; border-radius: 9999px;">Tỉ Lệ Chốt Đơn Cực Cao</span>
+          </h3>
+          <p>
+            Phong cách <strong>Neo-Brutalist SaaS</strong> (pha trộn Raycast & Gumroad): Viền dày sắc sảo 2.5px, đổ bóng khối cứng (Hard Drop Shadow `4px 4px 0px #CCFF00`), màu Sạc Pin Neon Lime chói sáng.
+            Đập tan cảm giác lừa đảo, mang lại sự tin cậy tức thì, giá cả rõ ràng, khách vào web là bấm mua ngay không chần chừ.
+          </p>
+          <div class="spec-tags">
+            <span class="spec-tag">Aesthetic: Neo-Brutalist Tech</span>
+            <span class="spec-tag">Shadow: Hard 4px-6px Offset (No Blur)</span>
+            <span class="spec-tag">Border: 2.5px Solid High-Contrast</span>
+            <span class="spec-tag">Accents: Electric Lime #CCFF00 + Danger Orange</span>
+          </div>
+        </div>
+        <div class="spec-palette">
+          <div class="color-chip" style="background: #0f1115; color: #ccff00;">#0F1115</div>
+          <div class="color-chip" style="background: #ccff00; color: #000000;">#CCFF00</div>
+          <div class="color-chip" style="background: #ff5500; color: #ffffff;">#FF5500</div>
+          <div class="color-chip" style="background: #ffffff; color: #000000;">#FFFFFF</div>
+        </div>
+      </div>
+
+      <div class="mockup-window">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-address">https://monicabot.vn — Neo-Brutalist High-Conversion</div>
+        </div>
+        <div class="window-content">
+          <div style="text-align: center; max-width: 820px; margin: 0 auto 38px;">
+            <div class="brutalist-badge">⚡ BOT LAST WAR SỐ 1 VIỆT NAM • TEAM MURPHY ⚡</div>
+            <h2 class="brutalist-hero-title">
+              TREO MÁY CỰC NHẸ. <span>CƯỚP XE VÀNG 100%</span>
+            </h2>
+            <p style="color: #cbd5e1; font-size: 16px; font-weight: 500; margin-bottom: 26px;">
+              Không cần cày tay 12 tiếng mỗi ngày. Mua key qua Telegram nhận mã trong 15 giây, hỗ trợ tận răng!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 14px;">
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="brutalist-btn">
+                MUA KEY TỰ ĐỘNG NGAY BÂY GIỜ →
+              </a>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 760px; margin: 0 auto;">
+            <div class="brutalist-card">
+              <div style="font-weight: 800; color: #ccff00; font-size: 12px; margin-bottom: 6px;">[GÓI THÁNG TIÊU CHUẨN]</div>
+              <h3 style="font-size: 24px; font-weight: 900; margin-bottom: 4px;">GÓI 30 NGÀY</h3>
+              <div style="font-size: 28px; font-weight: 900; color: #ccff00; margin-bottom: 12px;">299.000 ĐỒNG</div>
+              <p style="font-size: 13.5px; color: #94a3b8; margin-bottom: 18px;">Treo liên tục 30 ngày, cướp full xe tải UR, quét sạch nhiệm vụ mật.</p>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="brutalist-btn" style="width: 100%; justify-content: center;">
+                CHỌN GÓI 299K
+              </a>
+            </div>
+            <div class="brutalist-card" style="box-shadow: 6px 6px 0px #ff5500;">
+              <div style="font-weight: 800; color: #ff5500; font-size: 12px; margin-bottom: 6px;">[GIẢM GIÁ SỐC 33%]</div>
+              <h3 style="font-size: 24px; font-weight: 900; margin-bottom: 4px;">GÓI VĨNH VIỄN</h3>
+              <div style="font-size: 28px; font-weight: 900; color: #ff5500; margin-bottom: 12px;">2.679.330 ĐỒNG</div>
+              <p style="font-size: 13.5px; color: #94a3b8; margin-bottom: 18px;">Mua 1 lần dùng mãi mãi. Cập nhật trọn đời cho mọi season Last War.</p>
+              <a href="https://t.me/tool_lastwar_buysell_bot" target="_blank" class="brutalist-btn" style="width: 100%; justify-content: center; background: #ff5500; color: #ffffff;">
+                CHỌN GÓI VĨNH VIỄN
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         COMPARISON MATRIX (BẢNG SO SÁNH TỔNG QUAN)
+         ============================================================== -->
+    <div class="matrix-section">
+      <h2>Bảng So Sánh 6 Phong Cách Thiết Kế</h2>
+      <p class="subtitle">Đánh giá nhanh ưu - nhược điểm và phong cách phù hợp nhất với định vị đại lý Team Murphy</p>
+      
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Phong cách</th>
+              <th>Cảm xúc thị giác</th>
+              <th>Màu chủ đạo</th>
+              <th>Điểm mạnh chuyển đổi</th>
+              <th>Đối tượng khách hàng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="style-name-cell">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#38bdf8;"></span>
+                0. MiniMax (getdesign.md)
+              </td>
+              <td>Hiện đại, công nghệ AI toàn cầu, thanh thoát</td>
+              <td>Đen Obsidian, Trắng, Gradient Coral & Cyan</td>
+              <td>Bo tròn con nhộng mềm mại, thẻ sản phẩm cực bắt mắt</td>
+              <td>Người thích giao diện công nghệ AI tinh tế, sạch sẽ</td>
+            </tr>
+            <tr>
+              <td class="style-name-cell">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span>
+                1. Tactical Military Ops
+              </td>
+              <td>Phòng tác chiến quân sự, hầm hố, chuẩn game SLG</td>
+              <td>Xám Gunmetal, Cam Hazard, Xanh Radar</td>
+              <td>Hợp 100% ngữ cảnh game Last War, kích thích tâm lý chiến đấu</td>
+              <td>Game thủ SLG yêu thích vũ khí, chiến thuật và độ ngầu</td>
+            </tr>
+            <tr>
+              <td class="style-name-cell">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#6366f1;"></span>
+                2. Linear Dark Glass
+              </td>
+              <td>Tối giản Silicon Valley, sang trọng, chiều sâu</td>
+              <td>Matte Midnight, Tím Indigo, Kính mờ Hairline</td>
+              <td>Tạo cảm giác phần mềm cao cấp, uy tín tuyệt đối không giật lag</td>
+              <td>Khách hàng chuộng sự chuyên nghiệp, ổn định và thanh lịch</td>
+            </tr>
+            <tr>
+              <td class="style-name-cell">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#06b6d4;"></span>
+                3. Raycast Cyber Command
+              </td>
+              <td>Nhanh, tiện ích, đậm chất phím tắt gamer</td>
+              <td>Đen Than Chì, Cyan & Violet Neon RGB</td>
+              <td>Nhấn mạnh tốc độ và sự tiện dụng, thao tác trong 1 nốt nhạc</td>
+              <td>Power-user, game thủ rành công nghệ, thích RGB</td>
+            </tr>
+            <tr>
+              <td class="style-name-cell">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#eab308;"></span>
+                4. Luxury VIP Gold SLG
+              </td>
+              <td>Hoàng gia, uy quyền, quý phái tài phiệt game</td>
+              <td>Đen Carbon, Vàng Kim Metallic Gold Sheen</td>
+              <td>Kích thích mua gói Vĩnh Viễn (Lifetime), nâng tầm đại lý VIP</td>
+              <td>Top 1 Server, Bang chủ, Whale nạp tiền không tiếc tay</td>
+            </tr>
+            <tr>
+              <td class="style-name-cell">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#ccff00;"></span>
+                5. Neo-Brutalist SaaS
+              </td>
+              <td>Trẻ trung, táo bạo, thông tin đập thẳng vào mắt</td>
+              <td>Đen tuyền, Xanh Neon Lime, Cam Cháy, Đổ bóng khối</td>
+              <td>Tỉ lệ bấm nút cực cao do độ tương phản và thông điệp dứt khoát</td>
+              <td>Khách muốn mua nhanh, ghét vòng vo, thích sự rõ ràng</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast-notice">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toast-msg">Đã ghi nhận lựa chọn!</span>
+  </div>
+
+  <script>
+    let currentStyleKey = 'minimax';
+    const styleNames = {
+      'minimax': 'Style 0: MiniMax AI (getdesign.md Reference)',
+      'tactical': 'Style 1: Tactical Military Ops (Last War HUD)',
+      'linear': 'Style 2: Linear Dark Glass (Silicon Valley Precision)',
+      'raycast': 'Style 3: Raycast Cyber Command',
+      'gold': 'Style 4: Luxury VIP Gold SLG',
+      'brutalist': 'Style 5: Neo-Brutalist High-Conversion'
+    };
+
+    function switchStyle(key) {
+      currentStyleKey = key;
+      
+      // Update tab buttons
+      const buttons = document.querySelectorAll('.style-tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(buttons).find(b => b.getAttribute('onclick').includes(key));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Update panels
+      const panels = document.querySelectorAll('.style-panel');
+      panels.forEach(p => p.classList.remove('active'));
+      const targetPanel = document.getElementById('panel-' + key);
+      if (targetPanel) targetPanel.classList.add('active');
+
+      // Scroll smoothly to panel
+      targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function confirmCurrentChoice() {
+      const name = styleNames[currentStyleKey];
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      
+      toastMsg.innerText = 'Bạn đã chọn: ' + name;
+      toast.classList.add('show');
+      
+      // Copy to clipboard
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(name);
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
