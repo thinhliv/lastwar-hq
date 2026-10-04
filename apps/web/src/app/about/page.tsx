@@ -45,12 +45,12 @@ const sources = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-10">
+    <div className="min-h-screen max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-black text-white mb-2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-2">
           Về Chúng Tôi — Team Murphy
         </h1>
-        <p className="text-sm text-slate-400 max-w-xl mx-auto">
+        <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
           Đại lý phân phối hỗ trợ Monica Bot cho cộng đồng game thủ Last War: Survival.
         </p>
       </div>

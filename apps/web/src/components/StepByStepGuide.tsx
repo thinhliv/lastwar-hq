@@ -41,16 +41,16 @@ export default function StepByStepGuide() {
 
   return (
     <section id="guide" className="py-14 sm:py-20 bg-[#0d0508]/80 border-y border-red-500/20 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
             <span>QUY TRÌNH TIẾP NHẬN KEY</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
             Hướng Dẫn Mua & Kích Hoạt Key
           </h2>
-          <p className="text-sm text-red-100/70">
+          <p className="text-sm sm:text-base text-red-100/70">
             Xem ảnh chụp thực tế từng bước để kích hoạt nhanh chóng và chuẩn xác nhất.
           </p>
         </div>

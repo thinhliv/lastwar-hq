@@ -14,17 +14,17 @@ export const metadata: Metadata = {
 export default function GuidePage() {
   return (
     <div className="min-h-screen py-8 text-slate-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-4 pb-8 text-center">
-        <h1 className="text-3xl sm:text-5xl font-black text-white mb-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 text-center">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-3">
           Hướng Dẫn Cài Đặt & Kích Hoạt Key
         </h1>
-        <p className="text-sm text-slate-400 max-w-xl mx-auto">
+        <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
           Quy trình cài đặt nhanh chóng, cấu hình nhẹ máy và mua bản quyền tự động với đại lý Team Murphy.
         </p>
       </div>
 
       {/* System Requirements */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 mb-12">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="p-6 sm:p-8 rounded-3xl bg-[#15080c]/85 border border-red-500/25 shadow-xl shadow-red-950/40">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
             <Monitor className="w-5 h-5 text-red-400" />

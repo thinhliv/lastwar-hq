@@ -54,12 +54,12 @@ const tools = [
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <div className="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Promotion Banner for Monica Bot */}
       <div className="mb-8 p-6 rounded-3xl bg-gradient-to-r from-amber-500/20 via-orange-500/15 to-slate-900 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xl">
         <div>
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[11px] font-bold mb-2">
-            <Sparkles className="w-3 h-3" />
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Phần Mềm Hỗ Trợ Chơi Game</span>
           </div>
           <h2 className="text-lg sm:text-xl font-black text-white">
@@ -72,7 +72,7 @@ export default function ToolsPage() {
         <div className="flex items-center gap-2">
           <Link
             href="/pricing"
-            className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase whitespace-nowrap transition-all shadow-md"
+            className="min-h-[44px] flex items-center justify-center px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase whitespace-nowrap transition-all shadow-md active:scale-95"
           >
             Bảng Giá
           </Link>
@@ -80,7 +80,7 @@ export default function ToolsPage() {
             href={TELEGRAM_BUY_BOT}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors active:scale-95"
             title="Mở Telegram Bot"
           >
             <Send className="w-4 h-4" />
@@ -88,12 +88,12 @@ export default function ToolsPage() {
         </div>
       </div>
 
-      <h1 className="text-2xl font-bold mb-1 text-white">Công cụ Tra Cứu Miễn Phí</h1>
-      <p className="text-slate-400 text-sm mb-6">
+      <h1 className="text-2xl sm:text-3xl font-black mb-1 text-white">Công cụ Tra Cứu Miễn Phí</h1>
+      <p className="text-slate-400 text-sm sm:text-base mb-6">
         Mọi công cụ đều chạy trên dữ liệu game thật cập nhật từ cộng đồng.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {tools.map((tool) => (
           <Link key={tool.label} href={tool.href} className="block">
             <div className="relative p-5 rounded-2xl bg-slate-900/60 border border-white/5 hover:border-amber-500/30 hover:bg-slate-900/90 transition-all">

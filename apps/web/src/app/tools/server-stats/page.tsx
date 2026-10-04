@@ -62,11 +62,11 @@ export default function ServerStatsPage() {
   }, [query]);
 
   return (
-    <div className="min-h-screen px-4 py-6">
+    <div className="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Back */}
       <Link
         href="/tools"
-        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
+        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-4 min-h-[36px]"
       >
         <ChevronLeft className="w-4 h-4" />
         Công cụ
@@ -74,29 +74,29 @@ export default function ServerStatsPage() {
 
       <div className="flex items-center gap-2 mb-1">
         <Server className="w-6 h-6 text-purple-400" />
-        <h1 className="text-2xl font-bold">Thống kê Server</h1>
+        <h1 className="text-2xl sm:text-3xl font-black text-white">Thống kê Server</h1>
       </div>
-      <p className="text-slate-400 text-sm mb-4">
+      <p className="text-slate-400 text-sm sm:text-base mb-4">
         Số liệu tổng hợp từ danh bạ {totalServers.toLocaleString()} server
       </p>
 
       {/* Data source (honest: static snapshot, no power data) */}
-      <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-6">
+      <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-6">
         <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
         Snapshot danh bạ server từ coordinateslist.com · không gồm power ranking
       </div>
 
       {/* ===== STAT CARDS ===== */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {/* Total Servers */}
-        <div className="p-4 rounded-2xl glass">
+        <div className="p-5 rounded-2xl glass">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 rounded-lg bg-orange-500/15 flex items-center justify-center">
               <Server className="w-4 h-4 text-orange-400" />
             </div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-wide">Tổng</span>
+            <span className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wide font-bold">Tổng</span>
           </div>
-          <p className="text-2xl font-black text-white">
+          <p className="text-2xl sm:text-3xl font-black text-white">
             {totalServers.toLocaleString()}
           </p>
           <p className="text-[10px] text-slate-500 mt-0.5">Server đang theo dõi</p>
@@ -157,14 +157,14 @@ export default function ServerStatsPage() {
             Top 10 — Nhiều Alliance nhất
           </h2>
         </div>
-        <div className="space-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {topAllianceServers.map((srv, i) => (
             <div
               key={srv.server}
-              className="flex items-center gap-3 p-3 rounded-xl glass hover:border-orange-500/20 transition-all"
+              className="flex items-center gap-3 p-3.5 rounded-xl glass hover:border-orange-500/20 transition-all min-h-[44px]"
             >
               <div
-                className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                   i === 0
                     ? "bg-yellow-500/20 text-yellow-400"
                     : i === 1
@@ -177,11 +177,11 @@ export default function ServerStatsPage() {
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-sm">Server {srv.server}</h3>
-                <p className="text-[10px] text-slate-500">{srv.lastUpdate}</p>
+                <h3 className="font-bold text-sm text-white">Server {srv.server}</h3>
+                <p className="text-[10px] text-slate-400">{srv.lastUpdate}</p>
               </div>
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5">
-                <Users className="w-3 h-3 text-orange-400" />
+                <Users className="w-3.5 h-3.5 text-orange-400" />
                 <span className="text-xs font-bold text-orange-400">
                   {srv.alliances.length}
                 </span>
@@ -195,69 +195,71 @@ export default function ServerStatsPage() {
       <div className="mb-4">
         <div className="flex items-center gap-2 mb-3">
           <Search className="w-5 h-5 text-blue-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wide">
+          <h2 className="text-sm font-bold uppercase tracking-wide text-white">
             Tìm kiếm Server
           </h2>
         </div>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Số server hoặc mã alliance..."
-            className="w-full pl-10 pr-4 py-3 rounded-2xl glass text-sm text-white placeholder-slate-500 outline-none focus:border-orange-500/30"
+            className="w-full pl-10 pr-4 py-3 rounded-2xl glass text-base sm:text-sm text-white placeholder-slate-500 outline-none focus:border-orange-500/30 min-h-[48px]"
           />
         </div>
 
         {query && (
-          <div className="mt-3 space-y-2">
+          <div className="mt-4">
             {filtered.length === 0 ? (
-              <p className="text-xs text-slate-500 text-center py-4">
+              <p className="text-xs text-slate-500 text-center py-6">
                 Không tìm thấy server nào.
               </p>
             ) : (
               <>
-                <p className="text-xs text-slate-500 mb-2">
-                  {filtered.length} kết quả
+                <p className="text-xs text-slate-400 mb-3 font-medium">
+                  {filtered.length} kết quả tìm thấy
                 </p>
-                {filtered.map((srv) => (
-                  <div
-                    key={srv.server}
-                    className="flex items-center gap-3 p-3 rounded-xl glass"
-                  >
-                    <div className="w-9 h-9 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
-                      <Server className="w-4 h-4 text-orange-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-sm">Server {srv.server}</h3>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[10px] text-slate-500">
-                          {srv.lastUpdate}
-                        </span>
-                        <span className="text-[10px] text-slate-600">·</span>
-                        <span className="text-[10px] text-slate-500">
-                          {srv.alliances.length} alliances
-                        </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {filtered.map((srv) => (
+                    <div
+                      key={srv.server}
+                      className="flex items-center gap-3 p-3.5 rounded-xl glass min-h-[48px]"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                        <Server className="w-4 h-4 text-orange-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-sm text-white">Server {srv.server}</h3>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="text-[10px] text-slate-400">
+                            {srv.lastUpdate}
+                          </span>
+                          <span className="text-[10px] text-slate-600">·</span>
+                          <span className="text-[10px] text-slate-400 font-semibold">
+                            {srv.alliances.length} clan
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1 max-w-[40%] justify-end">
+                        {srv.alliances.slice(0, 3).map((a) => (
+                          <span
+                            key={a}
+                            className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/5 text-slate-400"
+                          >
+                            {a}
+                          </span>
+                        ))}
+                        {srv.alliances.length > 3 && (
+                          <span className="text-[10px] text-slate-600 font-mono">
+                            +{srv.alliances.length - 3}
+                          </span>
+                        )}
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-1 max-w-[40%] justify-end">
-                      {srv.alliances.slice(0, 3).map((a) => (
-                        <span
-                          key={a}
-                          className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/5 text-slate-400"
-                        >
-                          {a}
-                        </span>
-                      ))}
-                      {srv.alliances.length > 3 && (
-                        <span className="text-[10px] text-slate-600">
-                          +{srv.alliances.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </>
             )}
           </div>

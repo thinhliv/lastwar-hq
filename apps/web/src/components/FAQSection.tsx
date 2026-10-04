@@ -32,16 +32,16 @@ export default function FAQSection() {
 
   return (
     <section id="faq" className="py-14 sm:py-20 bg-[#0a0406]/70 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
             <span>GIẢI ĐÁP THẮC MẮC CHIẾN TƯỚNG</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
             Câu Hỏi Thường Gặp (FAQ)
           </h2>
-          <p className="text-sm text-red-100/70">
+          <p className="text-sm sm:text-base text-red-100/70">
             Mọi thông tin cần biết trước khi mua và kích hoạt phần mềm.
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function FAQSection() {
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left gap-4"
+                  className="w-full min-h-[48px] flex items-center justify-between p-4 sm:p-5 text-left gap-4 active:bg-white/5 transition-colors"
                 >
                   <span className={`text-sm sm:text-base font-bold ${isOpen ? "text-red-400" : "text-white"}`}>
                     {faq.q}

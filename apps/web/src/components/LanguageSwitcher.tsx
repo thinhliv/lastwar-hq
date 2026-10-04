@@ -29,11 +29,12 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass hover:bg-white/10 transition-colors"
+        className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl glass hover:bg-white/10 transition-colors min-h-[44px]"
+        aria-label="Chọn ngôn ngữ"
       >
-        <Globe className="w-4 h-4 text-orange-500" />
+        <Globe className="w-4 h-4 text-amber-500" />
         <span className="text-sm">{getLanguageFlag(current)}</span>
-        <span className="text-xs text-slate-400 hidden sm:inline">
+        <span className="text-xs text-slate-300 hidden sm:inline">
           {getLanguageName(current)}
         </span>
       </button>
@@ -44,16 +45,16 @@ export default function LanguageSwitcher() {
             className="fixed inset-0 z-40"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute right-0 top-full mt-2 z-50 glass rounded-xl py-1 min-w-[180px] shadow-xl max-h-[300px] overflow-y-auto">
+          <div className="absolute right-0 top-full mt-2 z-50 glass rounded-xl py-1 min-w-[190px] shadow-2xl max-h-[320px] overflow-y-auto border border-red-500/20 bg-[#120508]/95 backdrop-blur-xl">
             {popular.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => selectLanguage(lang.code)}
-                className={`w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-white/10 transition-colors ${
-                  current === lang.code ? "text-orange-500" : "text-slate-300"
+                className={`w-full flex items-center gap-2.5 px-4 py-2.5 min-h-[44px] text-sm hover:bg-white/10 transition-colors ${
+                  current === lang.code ? "text-amber-400 font-bold bg-white/5" : "text-slate-300"
                 }`}
               >
-                <span>{lang.flag}</span>
+                <span className="text-base">{lang.flag}</span>
                 <span>{lang.label}</span>
               </button>
             ))}

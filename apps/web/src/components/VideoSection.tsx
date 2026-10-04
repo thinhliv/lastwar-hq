@@ -45,16 +45,16 @@ export default function VideoSection() {
 
   return (
     <section id="video" className="py-14 sm:py-20 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
             <span>VIDEO THỰC CHIẾN TÁC TỬ</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
             Xem Monica Bot Hoạt Động Thực Tế
           </h2>
-          <p className="text-sm text-red-100/70">
+          <p className="text-sm sm:text-base text-red-100/70">
             Trực tiếp quan sát các tính năng tự động hỗ trợ tác chiến và cày cuốc trong game Last War.
           </p>
         </div>
@@ -65,13 +65,13 @@ export default function VideoSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              className={`min-h-[44px] px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center ${
                 activeTab === tab.id
                   ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/35 border border-red-400/40"
-                  : "bg-[#16080c]/80 hover:bg-[#200a12] text-slate-300 border border-red-500/20"
+                  : "bg-[#16080c]/80 hover:bg-[#200a12] text-slate-300 border border-red-500/20 active:bg-white/5"
               }`}
             >
-              {tab.title}
+              <span>{tab.title}</span>
               {tab.youtubeId && (
                 <span className="ml-2 w-2 h-2 rounded-full bg-amber-400 inline-block align-middle" />
               )}
@@ -87,6 +87,7 @@ export default function VideoSection() {
                 key={currentTab.youtubeId}
                 src={`https://www.youtube.com/embed/${currentTab.youtubeId}?rel=0&modestbranding=1`}
                 title={currentTab.title}
+                loading="lazy"
                 className="w-full h-full border-0 absolute inset-0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

@@ -82,11 +82,11 @@ export default function ClanFinderPage() {
   }, [query, rangeFilter]);
 
   return (
-    <div className="min-h-screen px-4 py-6">
+    <div className="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Back link */}
       <Link
         href="/tools"
-        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-3"
+        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 transition-colors mb-4 min-h-[36px]"
       >
         <ChevronLeft className="w-4 h-4" />
         Công cụ
@@ -94,32 +94,33 @@ export default function ClanFinderPage() {
 
       <div className="flex items-center gap-2 mb-1">
         <Search className="w-6 h-6 text-pink-400" />
-        <h1 className="text-2xl font-bold">Tìm Server / Alliance</h1>
+        <h1 className="text-2xl sm:text-3xl font-black text-white">Tìm Server / Alliance</h1>
       </div>
-      <p className="text-slate-400 text-sm mb-3">
+      <p className="text-slate-400 text-sm sm:text-base mb-3">
         Tìm server và alliance từ {SERVERS.length.toLocaleString()} server
       </p>
 
       {/* Data source badge (honest: static snapshot, not live) */}
-      <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-4">
+      <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
         <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
         Snapshot cộng đồng từ coordinateslist.com
       </div>
 
       {/* Search Bar */}
       <div className="relative mb-4">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Số server hoặc mã alliance..."
-          className="w-full pl-10 pr-10 py-3 rounded-2xl glass text-sm text-white placeholder-slate-500 outline-none focus:border-orange-500/30"
+          className="w-full pl-10 pr-10 py-3 rounded-2xl glass text-base sm:text-sm text-white placeholder-slate-500 outline-none focus:border-orange-500/30 min-h-[48px]"
         />
         {query && (
           <button
             onClick={() => setQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded-lg hover:bg-white/10 transition-colors"
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-white/10 transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
+            aria-label="Xóa tìm kiếm"
           >
             <Search className="w-4 h-4 text-slate-400 rotate-45" />
           </button>
@@ -132,7 +133,7 @@ export default function ClanFinderPage() {
           <button
             key={r.id}
             onClick={() => setRangeFilter(r.id)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
+            className={`min-h-[44px] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all flex items-center justify-center active:scale-95 ${
               rangeFilter === r.id
                 ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
                 : "bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10"
@@ -144,14 +145,14 @@ export default function ClanFinderPage() {
       </div>
 
       {/* Result count */}
-      <div className="text-xs text-slate-500 mb-3">
+      <div className="text-xs text-slate-400 mb-3 font-medium">
         {filtered.length.toLocaleString()} server tìm thấy
       </div>
 
       {/* Results - virtualized-ish (limit to first 50 for perf) */}
-      <div className="space-y-2.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filtered.length === 0 ? (
-          <div className="p-8 text-center">
+          <div className="p-8 text-center col-span-full">
             <Server className="w-10 h-10 text-slate-600 mx-auto mb-2" />
             <p className="text-sm text-slate-400">
               Không tìm thấy server nào.
@@ -170,7 +171,7 @@ export default function ClanFinderPage() {
       </div>
 
       {filtered.length > 50 && (
-        <div className="mt-4 text-center text-xs text-slate-600">
+        <div className="mt-4 text-center text-xs text-slate-500">
           Hiển thị 50/{filtered.length.toLocaleString()} servers. Thu hẹp tìm kiếm để xem thêm.
         </div>
       )}

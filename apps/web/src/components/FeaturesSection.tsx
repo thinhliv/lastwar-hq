@@ -57,16 +57,16 @@ export default function FeaturesSection() {
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-red-600/10 blur-[130px] pointer-events-none rounded-full" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
             <span>HỎA LỰC TỰ ĐỘNG HÓA</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
             Trang Bị Tác Chiến Cho Thủ Lĩnh Last War
           </h2>
-          <p className="text-sm text-red-100/70">
+          <p className="text-sm sm:text-base text-red-100/70">
             Monica Bot giải phóng 100% thời gian cày cuốc lặp lại, giúp bạn nắm chắc lợi thế điểm số trong các trận chiến lớn.
           </p>
         </div>
