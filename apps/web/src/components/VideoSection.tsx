@@ -17,27 +17,27 @@ export default function VideoSection() {
   const tabs: VideoTab[] = [
     {
       id: "overview",
-      title: "1. Giới Thiệu & Tính Năng",
-      description: "Xem video thực tế vận hành Monica Bot trên game Last War: Survival, quản lý tài nguyên, sự kiện và giao diện điều khiển.",
-      youtubeId: "bkm5aYR6aMk", // Video do bạn vừa tải lên
+      title: "1. Tổng Hợp Tính Năng",
+      description: "Video tổng hợp toàn bộ tính năng của Monica Bot trên game Last War: Survival — quản lý tài nguyên, sự kiện và bảng điều khiển.",
+      youtubeId: "bkm5aYR6aMk",
     },
     {
       id: "nvbm",
-      title: "2. Tự Động Nhiệm Vụ Bí Mật",
-      description: "Tự động quét và hoàn thành chuỗi Nhiệm Vụ Bí Mật (NVBM) tối ưu điểm thưởng.",
-      youtubeId: "", // Chờ link tiếp theo
+      title: "2. Hỗ Trợ & Cướp NVBM",
+      description: "Video hướng dẫn tính năng tự động hỗ trợ liên minh và săn cướp Nhiệm Vụ Bí Mật (NVBM) chuẩn xác.",
+      youtubeId: "Uvxba0yriJo",
     },
     {
-      id: "cuop_xe",
-      title: "3. Tự Động Cướp Xe Tải",
-      description: "Chiến thuật đoạt xe tải tài nguyên chuẩn xác, tự động tìm xe mục tiêu giàu tài nguyên.",
-      youtubeId: "", // Chờ link tiếp theo
+      id: "xe_tai",
+      title: "3. Quét Tìm Xe Tải",
+      description: "Video hướng dẫn thiết lập tính năng tự động quét radar tìm kiếm xe tải giàu tài nguyên trên bản đồ.",
+      youtubeId: "0KRAdDZI5Mk",
     },
     {
       id: "guide",
       title: "4. Cài Đặt & Nhận Key",
-      description: "Từng bước cài đặt file bot trên PC, quét mã VietQR và kích hoạt key tự động trong 15 giây.",
-      youtubeId: "", // Chờ video làm sau
+      description: "Video hướng dẫn tải file, cài đặt trên PC & giả lập và kích hoạt key tự động (đang chuẩn bị).",
+      youtubeId: "",
     },
   ];
 
@@ -52,10 +52,10 @@ export default function VideoSection() {
             <span>Video Trực Quan Thực Tế</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white mb-3">
-            Xem Monica Bot Hoạt Động
+            Xem Monica Bot Hoạt Động Thực Tế
           </h2>
           <p className="text-sm text-slate-400">
-            Trực tiếp quan sát các tính năng tự động và hướng dẫn chi tiết qua video thực tế.
+            Trực tiếp quan sát các tính năng tự động hỗ trợ tác chiến và cày cuốc trong game Last War.
           </p>
         </div>
 
@@ -84,6 +84,7 @@ export default function VideoSection() {
           <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/40 bg-slate-950 shadow-2xl shadow-black/80 aspect-video">
             {currentTab.youtubeId ? (
               <iframe
+                key={currentTab.youtubeId}
                 src={`https://www.youtube.com/embed/${currentTab.youtubeId}?rel=0&modestbranding=1`}
                 title={currentTab.title}
                 className="w-full h-full border-0 absolute inset-0"
@@ -99,14 +100,14 @@ export default function VideoSection() {
                   {currentTab.title}
                 </span>
                 <h4 className="text-base sm:text-xl font-bold text-white mb-2">
-                  Video Đang Được Cập Nhật
+                  Video Hướng Dẫn Sẽ Sớm Ra Mắt
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed mb-6 max-w-md">
                   {currentTab.description}
                 </p>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Sẽ cập nhật ngay khi bạn tải lên link tiếp theo</span>
+                  <span>Sẽ cập nhật ngay khi bạn tải lên video hướng dẫn cài đặt</span>
                 </div>
               </div>
             )}
