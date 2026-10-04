@@ -48,7 +48,9 @@ export default function RootLayout({
         <SearchTrigger />
         <Navbar />
         <main className="flex-1 w-full overflow-x-hidden">{children}</main>
-        <LiveStats />
+        <div className="pb-20 md:pb-0">
+          <LiveStats />
+        </div>
         <BottomNav />
       </body>
     </html>
