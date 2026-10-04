@@ -41,22 +41,22 @@ export default function LiveStats() {
     return () => clearInterval(interval);
   }, []);
 
-  if (!stats) return null;
+  const s = stats || { total: 0, today: 0, online: 0 };
 
   return (
     <div className="w-full border-t border-white/5 bg-black/30 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-center gap-6 sm:gap-10 text-[11px] sm:text-xs text-slate-400">
         <div className="flex items-center gap-1.5">
           <Eye className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Tổng: <strong className="text-white">{stats.total.toLocaleString()}</strong></span>
+          <span>Tổng: <strong className="text-white">{s.total.toLocaleString()}</strong></span>
         </div>
         <div className="flex items-center gap-1.5">
           <Activity className="w-3.5 h-3.5 text-amber-400" />
-          <span>Hôm nay: <strong className="text-white">{stats.today.toLocaleString()}</strong></span>
+          <span>Hôm nay: <strong className="text-white">{s.today.toLocaleString()}</strong></span>
         </div>
         <div className="flex items-center gap-1.5">
           <Users className="w-3.5 h-3.5 text-sky-400" />
-          <span>Online: <strong className="text-white">{stats.online}</strong></span>
+          <span>Online: <strong className="text-white">{s.online}</strong></span>
         </div>
       </div>
     </div>
