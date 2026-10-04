@@ -71,7 +71,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                 </span>
               </div>
               <p className="text-slate-300 mt-1 leading-relaxed">
-                Bản <strong className="text-white">PC</strong> và bản <strong className="text-white">Android</strong> dùng chung <strong>1 Key bản quyền</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300">1 thiết bị duy nhất</strong> (không chạy đồng thời cả 2 máy).
+                Bản <strong className="text-white">PC</strong> và bản <strong className="text-white">Android</strong> dùng chung <strong>1 Key bản quyền</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300">1 thiết bị duy nhất</strong> .
               </p>
             </div>
           </div>
@@ -87,13 +87,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm sm:text-base font-black text-white">Bản PC (Windows)</h4>
+                  <h4 className="text-sm sm:text-base font-black text-white">Bản PC</h4>
                   <span className="text-[10px] font-black px-2 py-0.2 rounded bg-red-500/20 text-red-300 border border-red-500/30">
                     v2309 · ~48 MB
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
-                  Chạy mượt trên Windows 10, 11 (hỗ trợ LDPlayer, BlueStacks, MuMu Player, v.v.)
+                  Chạy mượt trên Windows 10, 11
                 </p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               className="min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 shrink-0"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho PC (.rar)</span>
+              <span>Tải Cho PC</span>
             </a>
           </div>
 
@@ -116,13 +116,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm sm:text-base font-black text-white">Bản Mobile Android (APK)</h4>
+                  <h4 className="text-sm sm:text-base font-black text-white">Bản Mobile Android</h4>
                   <span className="text-[10px] font-black px-2 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                     v2309 · APK Chuẩn
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
-                  Cài đặt trực tiếp trên điện thoại & máy tính bảng Android (không cần PC giả lập)
+                  Cài đặt trực tiếp trên điện thoại & máy tính bảng Android
                 </p>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               className="min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 shrink-0"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho Android (.apk)</span>
+              <span>Tải Cho Android</span>
             </a>
           </div>
 
@@ -145,7 +145,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm sm:text-base font-black text-white">Bản Mobile iOS (iPhone/iPad)</h4>
+                  <h4 className="text-sm sm:text-base font-black text-white">Bản Mobile iOS</h4>
                   <span className="text-[10px] font-black px-2 py-0.2 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
                     Hỗ Trợ Riêng
                   </span>
@@ -163,7 +163,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               className="min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-sky-600/30 shrink-0"
             >
               <Send className="w-4 h-4" />
-              <span>Hỗ Trợ iOS (Telegram)</span>
+              <span>Hỗ Trợ iOS</span>
             </a>
           </div>
         </div>

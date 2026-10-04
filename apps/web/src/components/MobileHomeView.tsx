@@ -614,7 +614,7 @@ export default function MobileHomeView() {
                 >
                   <div className="flex items-center gap-2">
                     <Monitor className="w-4 h-4 text-red-400" />
-                    <span>Bản PC Windows (.rar)</span>
+                    <span>Bản PC Windows</span>
                   </div>
                   <span className="text-[11px] text-red-300 flex items-center gap-1">
                     <Download className="w-3.5 h-3.5" /> 48MB
@@ -629,7 +629,7 @@ export default function MobileHomeView() {
                 >
                   <div className="flex items-center gap-2">
                     <Smartphone className="w-4 h-4 text-emerald-400" />
-                    <span>Bản Mobile Android (.apk)</span>
+                    <span>Bản Mobile Android</span>
                   </div>
                   <span className="text-[11px] text-emerald-300 flex items-center gap-1">
                     <Download className="w-3.5 h-3.5" /> APK
@@ -645,7 +645,7 @@ export default function MobileHomeView() {
                 >
                   <div className="flex items-center gap-2">
                     <Apple className="w-4 h-4 text-sky-400" />
-                    <span>Bản Mobile iOS (iPhone/iPad)</span>
+                    <span>Bản Mobile iOS</span>
                   </div>
                   <span className="text-[11px] text-sky-300 flex items-center gap-1">
                     <Send className="w-3.5 h-3.5" /> Hỗ trợ
@@ -656,7 +656,7 @@ export default function MobileHomeView() {
               {/* Key Policy Banner */}
               <div className="p-2.5 rounded-xl bg-black/40 border border-amber-500/30 text-[11px] text-amber-200/90 flex items-center gap-2">
                 <Key className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>1 Key dùng chung PC & Android (chạy 1 máy tại 1 thời điểm).</span>
+                <span>1 Key dùng chung PC & Android.</span>
               </div>
             </div>
 

@@ -57,7 +57,7 @@ export default function GuidePage() {
                   </span>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Bản <strong className="text-white">PC (Windows)</strong> và bản <strong className="text-white">Mobile (Android)</strong> dùng chung <strong className="text-amber-300">1 Key bản quyền</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300 font-bold">1 thiết bị duy nhất</strong> (không chạy đồng thời cả PC và điện thoại trên 1 key).
+                  Bản <strong className="text-white">PC</strong> và bản <strong className="text-white">Mobile</strong> dùng chung <strong className="text-amber-300">1 Key bản quyền</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300 font-bold">1 thiết bị duy nhất</strong>.
                 </p>
               </div>
             </div>
@@ -90,13 +90,13 @@ export default function GuidePage() {
                 <Monitor className="w-6 h-6" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base font-black text-white">Bản PC (Windows)</h3>
+                <h3 className="text-base font-black text-white">Bản PC</h3>
                 <span className="text-[10px] font-black px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">
                   ~48 MB
                 </span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                Hỗ trợ Windows 10 & 11. Chạy trực tiếp hoặc trên giả lập LDPlayer, BlueStacks, MuMu Player.
+                Chạy mượt trên Windows 10, 11.
               </p>
             </div>
 
@@ -106,7 +106,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho PC (.rar)</span>
+              <span>Tải Cho PC</span>
             </a>
           </div>
 
@@ -123,7 +123,7 @@ export default function GuidePage() {
                 </span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                Cài trực tiếp file APK trên điện thoại & máy tính bảng Android (yêu cầu Android 9.0 trở lên).
+                Cài trực tiếp file APK trên điện thoại & máy tính bảng Android.
               </p>
             </div>
 
@@ -133,7 +133,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho Android (.apk)</span>
+              <span>Tải Cho Android</span>
             </a>
           </div>
 
@@ -161,7 +161,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-sky-600/30"
             >
               <Send className="w-4 h-4" />
-              <span>Hỗ Trợ iOS (Telegram)</span>
+              <span>Hỗ Trợ iOS</span>
             </a>
           </div>
         </div>
