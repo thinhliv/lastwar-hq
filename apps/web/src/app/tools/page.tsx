@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Skull, Zap, Server, BarChart3, ArrowRight } from "lucide-react";
+import { Skull, Zap, Server, BarChart3, ArrowRight, Sparkles, Send } from "lucide-react";
 import bossData from "@/data/restricted-area.json";
 import heroExpData from "@/data/hero-exp.json";
 import serverData from "@/data/servers.json";
+import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
 
 export const metadata: Metadata = {
-  title: "Công cụ",
+  title: "Công cụ Game Last War: Survival",
   description:
     "Boss Restricted Area, Hero EXP, tìm server/alliance và thống kê server cho Last War: Survival.",
 };
@@ -53,24 +54,57 @@ const tools = [
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen mx-auto max-w-md px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">Công cụ</h1>
+    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      {/* Promotion Banner for Monica Bot */}
+      <div className="mb-8 p-6 rounded-3xl bg-gradient-to-r from-amber-500/20 via-orange-500/15 to-slate-900 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xl">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[11px] font-bold mb-2">
+            <Sparkles className="w-3 h-3" />
+            <span>Phần Mềm Hỗ Trợ Chơi Game</span>
+          </div>
+          <h2 className="text-lg sm:text-xl font-black text-white">
+            Trợ Lý Tác Chiến Monica Bot — Team Murphy
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
+            Tự động rally, diệt zombie vàng, quản lý nhiều tài khoản (Đa ACC) nhẹ máy trên PC. Kích hoạt tự động sau 15 giây.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/pricing"
+            className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase whitespace-nowrap transition-all shadow-md"
+          >
+            Bảng Giá
+          </Link>
+          <a
+            href={TELEGRAM_BUY_BOT}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors"
+            title="Mở Telegram Bot"
+          >
+            <Send className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <h1 className="text-2xl font-bold mb-1 text-white">Công cụ Tra Cứu Miễn Phí</h1>
       <p className="text-slate-400 text-sm mb-6">
-        Mọi công cụ đều chạy trên dữ liệu game thật.
+        Mọi công cụ đều chạy trên dữ liệu game thật cập nhật từ cộng đồng.
       </p>
 
-      <div className="grid grid-cols-1 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {tools.map((tool) => (
-          <Link key={tool.label} href={tool.href}>
-            <div className="relative p-4 rounded-2xl glass hover:border-orange-500/30 hover:bg-white/10 active:scale-[0.99] transition-all">
-              <div className="flex items-center gap-3">
+          <Link key={tool.label} href={tool.href} className="block">
+            <div className="relative p-5 rounded-2xl bg-slate-900/60 border border-white/5 hover:border-amber-500/30 hover:bg-slate-900/90 transition-all">
+              <div className="flex items-center gap-4">
                 <div
                   className={`w-12 h-12 rounded-xl ${tool.bgColor} flex items-center justify-center flex-shrink-0`}
                 >
                   <tool.icon className={`w-6 h-6 ${tool.color}`} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-sm mb-0.5">{tool.label}</h3>
+                  <h3 className="font-bold text-sm text-white mb-0.5">{tool.label}</h3>
                   <p className="text-xs text-slate-400">{tool.desc}</p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-600 flex-shrink-0" />
@@ -80,11 +114,11 @@ export default function ToolsPage() {
         ))}
       </div>
 
-      <div className="mt-8 p-4 rounded-2xl glass">
+      <div className="mt-8 p-5 rounded-2xl bg-slate-900/40 border border-white/5">
         <p className="text-xs text-slate-400 leading-relaxed">
           Chỉ liệt kê những công cụ có dữ liệu thật. Các tính năng cần dữ liệu
           game bổ sung (calculator research, gear, event…) sẽ được thêm khi có
-          nguồn dữ liệu đáng tin cậy — thay vì hiển thị số liệu phỏng đoán.
+          nguồn dữ liệu đáng tin cậy.
         </p>
       </div>
     </div>

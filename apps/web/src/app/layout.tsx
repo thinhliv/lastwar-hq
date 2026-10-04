@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 import BottomNav from "@/components/BottomNav";
 import SearchTrigger from "@/components/SearchTrigger";
 
@@ -12,16 +13,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://footzone.vn"),
   title: {
-    default: "LASTWAR HQ — Công cụ Last War: Survival",
-    template: "%s | LASTWAR HQ",
+    default: "Monica Bot — Trợ Lý Tác Chiến Last War: Survival | Team Murphy",
+    template: "%s | Monica Bot - Team Murphy",
   },
   description:
-    "Công cụ tra cứu chính xác cho Last War: Survival: sức mạnh Boss Restricted Area, Hero EXP, và danh bạ server/alliance. Dữ liệu thật, không phỏng đoán.",
+    "Monica Bot đại lý chính thức Team Murphy: công cụ hỗ trợ tự động hóa thông minh cho game Last War: Survival trên PC & giả lập. Kích hoạt tự động qua Telegram bot trong 15 giây.",
   manifest: "/manifest.json",
   openGraph: {
-    title: "LASTWAR HQ — Công cụ Last War: Survival",
+    title: "Monica Bot — Trợ Lý Tác Chiến Last War: Survival | Team Murphy",
     description:
-      "Boss power, Hero EXP và danh bạ server/alliance — dữ liệu thật cho Last War: Survival.",
+      "Tối ưu sự kiện, tự động hóa farm & rally, quản lý nhiều tài khoản Last War: Survival an toàn và nhẹ máy. Mua key tự động qua Telegram Bot.",
     type: "website",
   },
 };
@@ -33,9 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#0f172a] text-slate-100">
+      <body className="min-h-full flex flex-col bg-[#0b1120] text-slate-100 selection:bg-amber-500 selection:text-slate-950">
         <SearchTrigger />
-        <main className="flex-1 pb-20">{children}</main>
+        <Navbar />
+        <main className="flex-1 pb-20 md:pb-8">{children}</main>
         <BottomNav />
       </body>
     </html>
