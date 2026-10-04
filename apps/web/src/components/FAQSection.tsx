@@ -33,17 +33,17 @@ export default function FAQSection() {
   ];
 
   return (
-    <section id="faq" className="py-14 sm:py-20 bg-[#0a0406]/70 relative overflow-hidden">
+    <section id="faq" className="py-8 sm:py-20 bg-[#0a0406]/70 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
-            <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+        <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-2.5">
+            <Flame className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-red-400 text-red-400" />
             <span>{t("faq.badge")}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-2 sm:mb-3">
             {t("faq.title")}
           </h2>
-          <p className="text-sm sm:text-base text-red-100/70">
+          <p className="text-xs sm:text-base text-red-100/70">
             {t("faq.desc")}
           </p>
         </div>

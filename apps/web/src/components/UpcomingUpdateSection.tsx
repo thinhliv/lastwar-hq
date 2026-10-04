@@ -35,7 +35,7 @@ export default function UpcomingUpdateSection() {
   return (
     <section
       id="upcoming"
-      className="relative py-14 sm:py-20 overflow-hidden bg-gradient-to-b from-[#0a0305] via-[#120508] to-[#080204] border-b border-red-500/25"
+      className="relative py-8 sm:py-16 overflow-hidden bg-gradient-to-b from-[#0a0305] via-[#120508] to-[#080204] border-b border-red-500/25"
     >
       {/* Ambient Cyber-Glows */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[350px] bg-red-600/15 blur-[120px] pointer-events-none rounded-full" />
@@ -52,9 +52,9 @@ export default function UpcomingUpdateSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-red-500/20 via-rose-500/15 to-amber-500/20 border border-red-500/40 text-red-300 text-xs font-black tracking-wider uppercase mb-4 shadow-lg shadow-red-950/40">
-            <Radio className="w-3.5 h-3.5 text-red-400 animate-pulse" />
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-red-500/20 via-rose-500/15 to-amber-500/20 border border-red-500/40 text-red-300 text-[11px] sm:text-xs font-black tracking-wider uppercase mb-3 shadow-lg shadow-red-950/40">
+            <Radio className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-400 animate-pulse" />
             <span>{t("upcoming.badge")}</span>
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping ml-1" />
           </div>
@@ -142,64 +142,66 @@ export default function UpcomingUpdateSection() {
             </div>
           </div>
 
-          {/* Right Column: Upcoming Feature Highlights */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-4">
-            {/* Feature Card 1 */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#14060a]/90 border border-red-500/25 hover:border-red-500/50 transition-all shadow-lg hover:-translate-y-0.5 group">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-red-500/20 border border-red-500/40 text-red-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="inline-block px-2 py-0.5 rounded bg-red-500/15 text-red-300 border border-red-500/30 text-[10px] font-black uppercase tracking-wider mb-1">
-                    {t("upcoming.tagCombat")}
+          {/* Right Column: Upcoming Feature Highlights (Horizontal snap scroll on mobile, stacked on desktop) */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-3">
+            <div className="flex overflow-x-auto snap-x scrollbar-none gap-3 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-1">
+              {/* Feature Card 1 */}
+              <div className="w-[78vw] max-w-[280px] shrink-0 snap-center sm:w-auto p-4 sm:p-5 rounded-2xl bg-[#14060a]/90 border border-red-500/25 hover:border-red-500/50 transition-all shadow-lg hover:-translate-y-0.5 group">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-red-500/20 border border-red-500/40 text-red-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <h3 className="text-base font-black text-white mb-1 group-hover:text-red-300 transition-colors">
-                    {t("upcoming.f1Title")}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {t("upcoming.f1Desc")}
-                  </p>
+                  <div>
+                    <div className="inline-block px-2 py-0.5 rounded bg-red-500/15 text-red-300 border border-red-500/30 text-[10px] font-black uppercase tracking-wider mb-1">
+                      {t("upcoming.tagCombat")}
+                    </div>
+                    <h3 className="text-sm sm:text-base font-black text-white mb-1 group-hover:text-red-300 transition-colors">
+                      {t("upcoming.f1Title")}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {t("upcoming.f1Desc")}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Feature Card 2 */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#14060a]/90 border border-amber-500/25 hover:border-amber-500/50 transition-all shadow-lg hover:-translate-y-0.5 group">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="inline-block px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-black uppercase tracking-wider mb-1">
-                    {t("upcoming.tagDefense")}
+              {/* Feature Card 2 */}
+              <div className="w-[78vw] max-w-[280px] shrink-0 snap-center sm:w-auto p-4 sm:p-5 rounded-2xl bg-[#14060a]/90 border border-amber-500/25 hover:border-amber-500/50 transition-all shadow-lg hover:-translate-y-0.5 group">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <h3 className="text-base font-black text-white mb-1 group-hover:text-amber-300 transition-colors">
-                    {t("upcoming.f2Title")}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {t("upcoming.f2Desc")}
-                  </p>
+                  <div>
+                    <div className="inline-block px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-black uppercase tracking-wider mb-1">
+                      {t("upcoming.tagDefense")}
+                    </div>
+                    <h3 className="text-sm sm:text-base font-black text-white mb-1 group-hover:text-amber-300 transition-colors">
+                      {t("upcoming.f2Title")}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {t("upcoming.f2Desc")}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Feature Card 3 */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#14060a]/90 border border-rose-500/25 hover:border-rose-500/50 transition-all shadow-lg hover:-translate-y-0.5 group">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="inline-block px-2 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 text-[10px] font-black uppercase tracking-wider mb-1">
-                    {t("upcoming.tagPerf")}
+              {/* Feature Card 3 */}
+              <div className="w-[78vw] max-w-[280px] shrink-0 snap-center sm:w-auto p-4 sm:p-5 rounded-2xl bg-[#14060a]/90 border border-rose-500/25 hover:border-rose-500/50 transition-all shadow-lg hover:-translate-y-0.5 group">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <Cpu className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <h3 className="text-base font-black text-white mb-1 group-hover:text-rose-300 transition-colors">
-                    {t("upcoming.f3Title")}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {t("upcoming.f3Desc")}
-                  </p>
+                  <div>
+                    <div className="inline-block px-2 py-0.5 rounded bg-rose-500/15 text-rose-300 border border-rose-500/30 text-[10px] font-black uppercase tracking-wider mb-1">
+                      {t("upcoming.tagPerf")}
+                    </div>
+                    <h3 className="text-sm sm:text-base font-black text-white mb-1 group-hover:text-rose-300 transition-colors">
+                      {t("upcoming.f3Title")}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {t("upcoming.f3Desc")}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

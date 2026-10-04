@@ -54,37 +54,41 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section id="features" className="py-14 sm:py-20 relative overflow-hidden">
+    <section id="features" className="py-8 sm:py-20 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-red-600/10 blur-[130px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
-            <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-2.5">
+            <Flame className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-red-400 text-red-400" />
             <span>{t("features.badge")}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-2 sm:mb-3">
             {t("features.title")}
           </h2>
-          <p className="text-sm sm:text-base text-red-100/70">
+          <p className="text-xs sm:text-base text-red-100/70">
             {t("features.desc")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
           {features.map((f, i) => (
             <div
               key={i}
-              className="p-7 rounded-3xl bg-[#16080c]/80 hover:bg-[#1f0a10]/95 border border-red-500/20 hover:border-red-500/50 transition-all hover:-translate-y-1 duration-300 shadow-xl shadow-black/40 hover:shadow-red-950/40"
+              className="p-3.5 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#16080c]/80 hover:bg-[#1f0a10]/95 border border-red-500/20 hover:border-red-500/50 transition-all hover:-translate-y-0.5 duration-300 shadow-lg shadow-black/40 hover:shadow-red-950/40 flex flex-col justify-between"
             >
-              <div
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center border mb-5 shadow-inner ${f.accent}`}
-              >
-                <f.icon className="w-6 h-6" />
+              <div>
+                <div
+                  className={`w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center border mb-2.5 sm:mb-5 shadow-inner ${f.accent}`}
+                >
+                  <f.icon className="w-4 h-4 sm:w-6 sm:h-6" />
+                </div>
+                <h3 className="text-xs sm:text-base font-extrabold text-white mb-1 sm:mb-2 line-clamp-2 leading-tight">
+                  {f.title}
+                </h3>
               </div>
-              <h3 className="text-base font-extrabold text-white mb-2">{f.title}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-[11px] sm:text-sm text-slate-300 leading-relaxed line-clamp-3 sm:line-clamp-none mt-1">
                 {f.desc}
               </p>
             </div>
