@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Database, Server, Skull, Zap, ExternalLink } from "lucide-react";
+import { ShieldCheck, Database, Server, Skull, Zap, ExternalLink, Send, Users2, ShieldAlert } from "lucide-react";
 import serverData from "@/data/servers.json";
 import bossData from "@/data/restricted-area.json";
 import heroExpData from "@/data/hero-exp.json";
+import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 
 export const metadata: Metadata = {
-  title: "Giới thiệu & Nguồn dữ liệu",
+  title: "Về Chúng Tôi — Team Murphy & Monica Bot",
   description:
-    "LASTWAR HQ là công cụ fan-made cho Last War: Survival, chạy hoàn toàn trên dữ liệu game thật. Xem nguồn dữ liệu và giới hạn.",
+    "Thông tin về Team Murphy: đại lý phân phối ủy quyền Monica Bot cho Last War: Survival, cam kết hỗ trợ người chơi và minh bạch dữ liệu.",
 };
 
 const servers = serverData as { server: string; lastUpdate: string }[];
@@ -44,87 +45,90 @@ const sources = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen mx-auto max-w-md px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">Giới thiệu</h1>
-      <p className="text-slate-400 text-sm mb-6">
-        LASTWAR HQ là công cụ do người chơi làm cho Last War: Survival.
-      </p>
-
-      {/* Promise */}
-      <div className="p-4 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-green-500/20 mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <ShieldCheck className="w-5 h-5 text-green-400" />
-          <h2 className="font-bold text-sm">Cam kết: chỉ dữ liệu thật</h2>
-        </div>
-        <p className="text-xs text-slate-300 leading-relaxed">
-          Mỗi con số trên trang này đến từ một tập dữ liệu thật, có nguồn rõ
-          ràng. Chúng tôi không hiển thị công thức phỏng đoán hay countdown giả.
-          Tính năng nào chưa có dữ liệu đáng tin cậy thì chưa xuất hiện — thay vì
-          bịa số.
+    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-10">
+      <div className="text-center mb-10">
+        <h1 className="text-3xl sm:text-4xl font-black text-white mb-2">
+          Về Chúng Tôi — Team Murphy
+        </h1>
+        <p className="text-sm text-slate-400 max-w-xl mx-auto">
+          Đại lý phân phối hỗ trợ Monica Bot cho cộng đồng game thủ Last War: Survival.
         </p>
       </div>
 
-      {/* Data sources */}
-      <div className="flex items-center gap-2 mb-3">
-        <Database className="w-5 h-5 text-slate-400" />
-        <h2 className="text-sm font-bold uppercase tracking-wide">Nguồn dữ liệu</h2>
-      </div>
-      <div className="space-y-2 mb-6">
-        {sources.map((s) => (
-          <div key={s.name} className="p-4 rounded-2xl glass">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
-                <s.icon className={`w-5 h-5 ${s.color}`} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-sm">{s.name}</h3>
-                <p className="text-xs text-slate-400">{s.detail}</p>
-              </div>
-              <span className="text-[10px] font-mono text-slate-500 flex-shrink-0">
-                {s.origin}
-              </span>
-            </div>
+      {/* Team Murphy Reseller Profile */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-amber-500/30 mb-8 shadow-xl">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+            <Users2 className="w-5 h-5" />
           </div>
-        ))}
+          <div>
+            <h2 className="text-lg font-bold text-white">Đại Lý Team Murphy</h2>
+            <p className="text-xs text-amber-400">Kênh hỗ trợ độc quyền của Monica Bot</p>
+          </div>
+        </div>
+
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+          Team Murphy là đại lý được phân quyền cung cấp key bản quyền phần mềm hỗ trợ Monica Bot. Chúng tôi phụ trách tư vấn kỹ thuật, hướng dẫn cài đặt trên PC & giả lập, cung cấp profile tối ưu máy và hỗ trợ xử lý sự cố trong suốt quá trình sử dụng.
+        </p>
+
+        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300">
+          <strong>Lưu ý quan trọng khi mua key:</strong> Khi mở Bot thanh toán Telegram (@tool_lastwar_buysell_bot), ở bước chọn nguồn giới thiệu xin vui lòng nhấp chọn <strong className="text-white underline">Team Murphy</strong> để kích hoạt gói hỗ trợ VIP từ đội ngũ chúng tôi.
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href={TELEGRAM_BUY_BOT}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold text-xs uppercase"
+          >
+            <Send className="w-3.5 h-3.5" />
+            <span>Mở Bot Thanh Toán</span>
+          </a>
+          <a
+            href={TELEGRAM_SUPPORT_GROUP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs"
+          >
+            <span>Nhóm Hỗ Trợ Telegram</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
 
-      {/* Limitations */}
-      <div className="p-4 rounded-2xl glass mb-6">
-        <h2 className="text-sm font-bold mb-2">Giới hạn cần biết</h2>
-        <ul className="space-y-2 text-xs text-slate-400 leading-relaxed">
-          <li className="flex gap-2">
-            <span className="text-orange-500 flex-shrink-0">▸</span>
-            Dữ liệu là <b className="text-slate-300">snapshot</b> cộng đồng, không
-            phải dữ liệu trực tiếp trong game — có thể lệch khi game cập nhật.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-orange-500 flex-shrink-0">▸</span>
-            Danh bạ server phản ánh thời điểm coordinateslist.com được cập nhật,
-            không phải thời gian thực.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-orange-500 flex-shrink-0">▸</span>
-            Chưa có power ranking của server/alliance vì chưa có nguồn số liệu tin
-            cậy.
-          </li>
-        </ul>
+      {/* Free Tool Data Sources */}
+      <div className="mb-8">
+        <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <Database className="w-5 h-5 text-cyan-400" />
+          <span>Nguồn Dữ Liệu Công Cụ Miễn Phí</span>
+        </h2>
+        <div className="space-y-3">
+          {sources.map((s) => (
+            <div
+              key={s.name}
+              className="p-4 rounded-2xl bg-slate-900/60 border border-white/5 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <s.icon className={`w-5 h-5 ${s.color}`} />
+                <div>
+                  <h3 className="text-sm font-bold text-white">{s.name}</h3>
+                  <p className="text-xs text-slate-400">{s.detail}</p>
+                </div>
+              </div>
+              <span className="text-xs text-slate-500 font-mono">{s.origin}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Disclaimer */}
-      <div className="p-4 rounded-2xl border border-white/5">
-        <p className="text-[11px] text-slate-500 leading-relaxed">
-          LASTWAR HQ là dự án fan-made, không liên kết, tài trợ hay xác nhận bởi
-          nhà phát triển Last War: Survival. Mọi nhãn hiệu thuộc về chủ sở hữu.
-        </p>
-      </div>
-
-      <div className="mt-6 flex justify-center">
-        <Link
-          href="/tools"
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-orange-500 text-white text-sm font-medium hover:bg-orange-600 transition-colors"
-        >
-          Xem công cụ <ExternalLink className="w-3.5 h-3.5" />
-        </Link>
+      <div className="p-5 rounded-2xl bg-slate-950 border border-white/10 text-xs text-slate-400 leading-relaxed flex items-start gap-3">
+        <ShieldAlert className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+        <div>
+          <strong className="text-slate-300 block mb-1">Disclaimer (Miễn trừ trách nhiệm):</strong>
+          Trang web và phần mềm Monica Bot được phát triển và vận hành độc lập bởi cộng đồng game thủ và đại lý Team Murphy, không có liên kết chính thức hay tài trợ từ Century Games hoặc FirstFun.
+        </div>
       </div>
     </div>
   );
