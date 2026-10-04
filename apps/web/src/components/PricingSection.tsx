@@ -175,13 +175,8 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
           )}
         </div>
 
-        {/* Mobile Swipe Hint */}
-        <div className="sm:hidden flex items-center justify-center gap-1.5 text-[11px] text-amber-400 font-bold mb-3">
-          <span>👈 Vuốt ngang để chọn gói cước / Swipe for plans 👉</span>
-        </div>
-
-        {/* Pricing Cards Track (Horizontal swipe on mobile, grid on sm+) */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-3.5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {plans.map((p) => {
             const loc = getLocalizedPlan(p);
             const formattedPrice =
@@ -197,9 +192,9 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
             return (
               <div
                 key={p.id}
-                className={`w-[82vw] max-w-[310px] shrink-0 snap-center sm:w-auto relative rounded-3xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 ${
+                className={`relative rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 ${
                   p.isPopular
-                    ? "bg-gradient-to-b from-red-950/50 via-[#18080d] to-[#120508] border-2 border-red-500 shadow-2xl shadow-red-950/60 scale-[1.01]"
+                    ? "bg-gradient-to-b from-red-950/50 via-[#18080d] to-[#120508] border-2 border-red-500 shadow-2xl shadow-red-950/60 scale-[1.02]"
                     : p.isSale
                     ? "bg-gradient-to-b from-amber-950/40 via-[#18080d] to-[#120508] border-2 border-amber-500/60 shadow-xl shadow-amber-950/40"
                     : "bg-[#15080c]/85 hover:bg-[#1c0a10] border border-red-500/20 hover:border-red-500/40 shadow-lg"

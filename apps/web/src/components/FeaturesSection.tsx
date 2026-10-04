@@ -72,23 +72,21 @@ export default function FeaturesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f, i) => (
             <div
               key={i}
-              className="p-3.5 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#16080c]/80 hover:bg-[#1f0a10]/95 border border-red-500/20 hover:border-red-500/50 transition-all hover:-translate-y-0.5 duration-300 shadow-lg shadow-black/40 hover:shadow-red-950/40 flex flex-col justify-between"
+              className="p-7 rounded-3xl bg-[#16080c]/80 hover:bg-[#1f0a10]/95 border border-red-500/20 hover:border-red-500/50 transition-all hover:-translate-y-1 duration-300 shadow-xl shadow-black/40 hover:shadow-red-950/40"
             >
-              <div>
-                <div
-                  className={`w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center border mb-2.5 sm:mb-5 shadow-inner ${f.accent}`}
-                >
-                  <f.icon className="w-4 h-4 sm:w-6 sm:h-6" />
-                </div>
-                <h3 className="text-xs sm:text-base font-extrabold text-white mb-1 sm:mb-2 line-clamp-2 leading-tight">
-                  {f.title}
-                </h3>
+              <div
+                className={`w-12 h-12 rounded-2xl flex items-center justify-center border mb-5 shadow-inner ${f.accent}`}
+              >
+                <f.icon className="w-6 h-6" />
               </div>
-              <p className="text-[11px] sm:text-sm text-slate-300 leading-relaxed line-clamp-3 sm:line-clamp-none mt-1">
+              <h3 className="text-base font-extrabold text-white mb-2 leading-snug">
+                {f.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 {f.desc}
               </p>
             </div>

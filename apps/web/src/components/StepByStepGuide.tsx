@@ -8,7 +8,6 @@ import { useI18n } from "@/lib/i18n";
 
 export default function StepByStepGuide() {
   const { t } = useI18n();
-  const [activeStep, setActiveStep] = useState(1);
 
   const steps = [
     {
@@ -45,8 +44,6 @@ export default function StepByStepGuide() {
       highlight: t("step4.hl"),
     },
   ];
-
-  const currentMobileStep = steps.find((s) => s.num === activeStep) || steps[0];
 
   return (
     <section id="guide" className="py-8 sm:py-20 bg-[#0d0508]/80 border-y border-red-500/20 relative overflow-hidden">
@@ -102,112 +99,8 @@ export default function StepByStepGuide() {
           </div>
         </div>
 
-        {/* Mobile Step Stepper (md:hidden) */}
-        <div className="md:hidden mb-6">
-          {/* Step Selector Pills */}
-          <div className="flex items-center justify-between gap-1.5 mb-3 p-1 rounded-2xl bg-black/60 border border-red-500/25">
-            {steps.map((s) => (
-              <button
-                key={s.num}
-                onClick={() => setActiveStep(s.num)}
-                className={`flex-1 py-2 px-1 text-center rounded-xl text-xs font-black transition-all ${
-                  activeStep === s.num
-                    ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/35"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                0{s.num}
-              </button>
-            ))}
-          </div>
-
-          {/* Active Mobile Step Card */}
-          <div
-            className={`rounded-2xl border p-4 sm:p-6 transition-all shadow-xl ${
-              currentMobileStep.isWarning
-                ? "bg-[#18080d]/95 border-amber-500/40 shadow-amber-950/30"
-                : "bg-[#14060a]/90 border-red-500/20 shadow-red-950/20"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2.5">
-                <div
-                  className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs shadow-md ${
-                    currentMobileStep.isWarning
-                      ? "bg-amber-500 text-slate-950 shadow-amber-500/30"
-                      : "bg-gradient-to-tr from-red-600 to-rose-600 text-white shadow-red-600/30"
-                  }`}
-                >
-                  {currentMobileStep.num}
-                </div>
-                <h3 className="text-sm font-extrabold text-white">
-                  {currentMobileStep.title}
-                </h3>
-              </div>
-              {currentMobileStep.isWarning && (
-                <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
-                  <AlertTriangle className="w-2.5 h-2.5" />
-                  {t("guide.importantBadge")}
-                </span>
-              )}
-            </div>
-
-            <p className="text-xs text-slate-300 mb-3 leading-relaxed">
-              {currentMobileStep.desc}
-            </p>
-
-            {/* Screenshot Frame */}
-            <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-red-500/20 bg-black/40 mb-3 shadow-inner">
-              <Image
-                src={currentMobileStep.image}
-                alt={currentMobileStep.alt}
-                fill
-                className="object-contain p-2"
-                sizes="(max-width: 768px) 100vw, 500px"
-              />
-            </div>
-
-            {/* Highlight callout */}
-            <div
-              className={`p-2.5 rounded-xl text-xs flex items-start gap-2 mb-3 ${
-                currentMobileStep.isWarning
-                  ? "bg-amber-500/15 border border-amber-500/30 text-amber-200 font-semibold"
-                  : "bg-red-500/10 border border-red-500/20 text-red-200"
-              }`}
-            >
-              <CheckCircle2
-                className={`w-3.5 h-3.5 flex-shrink-0 mt-0.5 ${
-                  currentMobileStep.isWarning ? "text-amber-400" : "text-red-400"
-                }`}
-              />
-              <span className="text-[11px] sm:text-xs">{currentMobileStep.highlight}</span>
-            </div>
-
-            {/* Stepper Prev / Next Buttons */}
-            <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/5">
-              <button
-                onClick={() => setActiveStep((p) => Math.max(1, p - 1))}
-                disabled={activeStep === 1}
-                className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-slate-300 disabled:opacity-25 disabled:pointer-events-none flex items-center gap-1"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" /> Prev
-              </button>
-              <span className="text-[10px] font-mono font-bold text-slate-400">
-                {activeStep} / {steps.length}
-              </span>
-              <button
-                onClick={() => setActiveStep((p) => Math.min(steps.length, p + 1))}
-                disabled={activeStep === steps.length}
-                className="px-3 py-1.5 rounded-lg bg-red-600/20 border border-red-500/40 text-xs font-bold text-red-300 disabled:opacity-25 disabled:pointer-events-none flex items-center gap-1"
-              >
-                Next <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Steps Grid (hidden md:grid) */}
-        <div className="hidden md:grid md:grid-cols-2 gap-8 mb-12">
+        {/* All 4 Steps Grid (Vertical on mobile, 2x2 on desktop) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
           {steps.map((s) => (
             <div
               key={s.num}
