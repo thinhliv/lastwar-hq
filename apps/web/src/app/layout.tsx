@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import BottomNav from "@/components/BottomNav";
 import SearchTrigger from "@/components/SearchTrigger";
+import LiveStats from "@/components/LiveStats";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -47,6 +48,7 @@ export default function RootLayout({
         <SearchTrigger />
         <Navbar />
         <main className="flex-1 pb-20 md:pb-8 w-full overflow-x-hidden">{children}</main>
+        <LiveStats />
         <BottomNav />
       </body>
     </html>
