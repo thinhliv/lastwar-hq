@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Play, Tv, ShieldCheck, Download, ExternalLink, Flame } from "lucide-react";
+import HoverVideoPreview from "./HoverVideoPreview";
 import { TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
 
@@ -82,14 +83,7 @@ export default function VideoSection() {
         <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden border-2 border-red-500/30 bg-[#120508] p-3 sm:p-5 shadow-2xl shadow-red-950/60">
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/80 border border-red-500/20">
             {currentTab.youtubeId ? (
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${currentTab.youtubeId}?autoplay=0&rel=0`}
-                title={currentTab.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-                className="w-full h-full border-0"
-              />
+              <HoverVideoPreview youtubeId={currentTab.youtubeId} title={currentTab.title} />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-[#18080d] to-[#0c0406]">
                 <div className="w-16 h-16 rounded-3xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-4 shadow-lg shadow-amber-500/10">
