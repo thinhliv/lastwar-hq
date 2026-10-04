@@ -15,8 +15,8 @@ import {
   Skull,
   Server,
   Sparkles,
-  Crosshair,
   Crown,
+  Download,
 } from "lucide-react";
 import PricingSection from "@/components/PricingSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -58,7 +58,7 @@ export default function HomePage() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8">
                 <a
                   href={TELEGRAM_BUY_BOT}
                   target="_blank"
@@ -70,8 +70,17 @@ export default function HomePage() {
                 </a>
 
                 <a
+                  href="/downloads/Setup_Monica.rar"
+                  download="Setup_Monica.rar"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 hover:text-amber-200 font-bold text-sm border border-amber-500/40 transition-all shadow-lg shadow-amber-950/30 group"
+                >
+                  <Download className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+                  <span>Tải Tool (Setup_Monica.rar - 46MB)</span>
+                </a>
+
+                <a
                   href="#video"
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#1a080d]/90 hover:bg-[#250b13] text-white font-bold text-sm border border-red-500/30 transition-colors shadow-lg"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-[#1a080d]/90 hover:bg-[#250b13] text-white font-bold text-sm border border-red-500/30 transition-colors shadow-lg"
                 >
                   <Play className="w-4 h-4 fill-white text-white" />
                   <span>Xem 3 Video Demo</span>
@@ -79,7 +88,7 @@ export default function HomePage() {
 
                 <Link
                   href="/pricing"
-                  className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-5 py-4 rounded-2xl text-amber-300 hover:text-amber-200 font-bold text-sm transition-colors"
+                  className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-4 rounded-2xl text-amber-300 hover:text-amber-200 font-bold text-sm transition-colors"
                 >
                   <span>Bảng Giá</span>
                   <ChevronRight className="w-4 h-4" />

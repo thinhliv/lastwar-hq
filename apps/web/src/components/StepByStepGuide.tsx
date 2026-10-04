@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Send, CheckCircle2, AlertTriangle, ArrowRight, Flame, Crown } from "lucide-react";
+import { Send, CheckCircle2, AlertTriangle, ArrowRight, Flame, Crown, Download } from "lucide-react";
 import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
 
 export default function StepByStepGuide() {
@@ -53,6 +53,34 @@ export default function StepByStepGuide() {
           <p className="text-sm text-red-100/70">
             Xem ảnh chụp thực tế từng bước để kích hoạt nhanh chóng và chuẩn xác nhất.
           </p>
+        </div>
+
+        {/* Direct Download Banner */}
+        <div className="mb-10 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-amber-950/40 via-[#15080c] to-red-950/30 border border-amber-500/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-5">
+          <div className="flex items-center gap-4 text-center sm:text-left">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 border border-amber-500/30 shadow-lg shadow-amber-500/10">
+              <Download className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2 justify-center sm:justify-start">
+                Tải Bộ Cài Đặt Monica Bot
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold">
+                  Bản Mới Nhất
+                </span>
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+                File nén <code className="text-amber-300 font-mono">Setup_Monica.rar</code> (46.3 MB) — Dành cho máy tính Windows PC & các trình giả lập.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/downloads/Setup_Monica.rar"
+            download="Setup_Monica.rar"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm uppercase tracking-wide shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 flex-shrink-0"
+          >
+            <Download className="w-4 h-4" />
+            <span>Tải File .RAR (46MB)</span>
+          </a>
         </div>
 
         {/* Steps Grid */}

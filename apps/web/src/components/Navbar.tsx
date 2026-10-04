@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Send, Menu, X, Flame, ExternalLink, Shield } from "lucide-react";
+import { Send, Menu, X, Flame, ExternalLink, Shield, Download } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
@@ -71,7 +71,16 @@ export default function Navbar() {
         </nav>
 
         {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-2.5">
+          <a
+            href="/downloads/Setup_Monica.rar"
+            download="Setup_Monica.rar"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 font-bold text-xs border border-amber-500/30 transition-all hover:scale-105"
+            title="Tải bộ cài đặt Monica Bot (46.3 MB)"
+          >
+            <Download className="w-3.5 h-3.5 text-amber-400" />
+            <span>Tải Tool (46MB)</span>
+          </a>
           <LanguageSwitcher />
           <a
             href={TELEGRAM_BUY_BOT}
@@ -110,6 +119,14 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="/downloads/Setup_Monica.rar"
+            download="Setup_Monica.rar"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-amber-300 hover:bg-amber-500/10"
+          >
+            <Download className="w-4 h-4 text-amber-400" />
+            <span>Tải Bộ Cài Đặt (Setup_Monica.rar - 46MB)</span>
+          </a>
           <a
             href={TELEGRAM_SUPPORT_GROUP}
             target="_blank"
