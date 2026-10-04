@@ -47,9 +47,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#0c0608] text-slate-100 selection:bg-red-600 selection:text-white overflow-x-hidden w-full relative">
         <SearchTrigger />
         <Navbar />
-        <main className="flex-1 pb-20 md:pb-8 w-full overflow-x-hidden">{children}</main>
-        <BottomNav />
+        <main className="flex-1 w-full overflow-x-hidden">{children}</main>
         <LiveStats />
+        <BottomNav />
       </body>
     </html>
   );
