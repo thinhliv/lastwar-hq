@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://footzone.vn/sitemap.xml",
-    host: "https://footzone.vn",
+    sitemap: "https://monicabot.lol/sitemap.xml",
+    host: "https://monicabot.lol",
   };
 }
