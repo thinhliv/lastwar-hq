@@ -1,0 +1,24 @@
+{
+  "youtubeUrl": "https://youtu.be/tTURTqzi8nY",
+  "version": "v2401 NEXT-GEN",
+  "status": "In Development",
+  "title": "Upcoming Update Sneak Peek",
+  "description": "Exclusive preview of upcoming game-changing features in the next Monica Bot update.",
+  "highlights": [
+    {
+      "badge": "RADAR & COMBAT",
+      "title": "Smart Tactical Warfare",
+      "desc": "Real-time automated reaction for cross-server VS war rallies & capitol combat."
+    },
+    {
+      "badge": "DEFENSE MATRIX",
+      "title": "Instant Shield & Scout Warning",
+      "desc": "Ultra-fast peace bubble activation whenever an enemy scout or march locks on your base."
+    },
+    {
+      "badge": "MULTI-ACCOUNT",
+      "title": "Ultra-light Performance 2.0",
+      "desc": "Massively reduced CPU and memory usage for 24/7 uninterrupted multi-farming."
+    }
+  ]
+}

@@ -20,6 +20,7 @@ import PricingSection from "@/components/PricingSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import StepByStepGuide from "@/components/StepByStepGuide";
 import VideoSection from "@/components/VideoSection";
+import UpcomingUpdateSection from "@/components/UpcomingUpdateSection";
 import FAQSection from "@/components/FAQSection";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
@@ -163,6 +164,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ===== UPCOMING UPDATE SNEAK PEEK (WITH DYNAMIC YOUTUBE EMBED) ===== */}
+      <UpcomingUpdateSection />
 
       {/* ===== FEATURES SECTION ===== */}
       <FeaturesSection />
