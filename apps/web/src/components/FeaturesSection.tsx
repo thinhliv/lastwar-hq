@@ -1,53 +1,54 @@
+"use client";
+
 import {
   Layers,
-  Cpu,
   Shield,
-  Zap,
-  Globe2,
-  Clock,
   Swords,
-  Users2,
   Flame,
   Crosshair,
   Crown,
+  Globe2,
 } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export default function FeaturesSection() {
+  const { t } = useI18n();
+
   const features = [
     {
       icon: Crosshair,
-      title: "Săn Xe Tải UR 100% Chuẩn Xác",
-      desc: "Tự động phát hiện và cướp trọn gói xe tải UR vàng, mang về hàng chục triệu vàng và lúa sắt mỗi ngày cho liên minh.",
+      title: t("f1.title"),
+      desc: t("f1.desc"),
       accent: "text-red-400 bg-red-500/10 border-red-500/30",
     },
     {
       icon: Swords,
-      title: "Tự Động Rally & Sự Kiện VS",
-      desc: "Tham gia diệt Zombie Vàng, sự kiện thủ phủ và tối ưu hóa điểm số ngày thi đấu Server vs Server không ngừng nghỉ.",
+      title: t("f2.title"),
+      desc: t("f2.desc"),
       accent: "text-amber-400 bg-amber-500/10 border-amber-500/30",
     },
     {
       icon: Shield,
-      title: "Báo Động & Kích Khiên Tức Thì",
-      desc: "Phát hiện ngay khi căn cứ bị trinh sát hoặc tấn công, tự động kích hoạt khiên hòa bình bảo toàn tuyệt đối quân số.",
+      title: t("f3.title"),
+      desc: t("f3.desc"),
       accent: "text-rose-400 bg-rose-500/10 border-rose-500/30",
     },
     {
       icon: Layers,
-      title: "Treo Đa ACC Mượt Mà (PC / Giả Lập)",
-      desc: "Vận hành đồng thời tài khoản farm và tài khoản chiến đấu, phân bổ tài nguyên hợp lý mà không lo giật lag hay treo máy.",
+      title: t("f4.title"),
+      desc: t("f4.desc"),
       accent: "text-orange-400 bg-orange-500/10 border-orange-500/30",
     },
     {
       icon: Crown,
-      title: "Đặc Quyền Đại Lý Team Murphy",
-      desc: "Hỗ trợ kỹ thuật 1:1, chia sẻ preset cấu hình auto chuẩn cho từng mùa giải, bảo hành key và hỗ trợ chuyển máy nhanh chóng.",
+      title: t("f5.title"),
+      desc: t("f5.desc"),
       accent: "text-amber-300 bg-amber-500/15 border-amber-500/40",
     },
     {
       icon: Globe2,
-      title: "Giao Diện Đa Ngôn Ngữ Tiếng Việt",
-      desc: "Menu điều khiển trực quan bằng Tiếng Việt 100%, hỗ trợ thêm tiếng Anh, tiếng Trung, tiếng Nga cho liên minh quốc tế.",
+      title: t("f6.title"),
+      desc: t("f6.desc"),
       accent: "text-red-300 bg-red-500/10 border-red-500/25",
     },
   ];
@@ -61,13 +62,13 @@ export default function FeaturesSection() {
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
-            <span>HỎA LỰC TỰ ĐỘNG HÓA</span>
+            <span>{t("features.badge")}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
-            Trang Bị Tác Chiến Cho Thủ Lĩnh Last War
+            {t("features.title")}
           </h2>
           <p className="text-sm sm:text-base text-red-100/70">
-            Monica Bot giải phóng 100% thời gian cày cuốc lặp lại, giúp bạn nắm chắc lợi thế điểm số trong các trận chiến lớn.
+            {t("features.desc")}
           </p>
         </div>
 

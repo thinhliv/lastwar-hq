@@ -1,41 +1,46 @@
+"use client";
+
 import Image from "next/image";
-import { Send, CheckCircle2, AlertTriangle, ArrowRight, Flame, Crown, Download } from "lucide-react";
-import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
+import { Send, CheckCircle2, AlertTriangle, ArrowRight, Flame, Download } from "lucide-react";
+import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
+import { useI18n } from "@/lib/i18n";
 
 export default function StepByStepGuide() {
+  const { t } = useI18n();
+
   const steps = [
     {
       num: 1,
-      title: "Mở Bot Thanh Toán Telegram",
-      desc: "Nhấp vào nút Mua Key trên website để mở trực tiếp bot @tool_lastwar_buysell_bot trên Telegram của bạn.",
+      title: t("step1.title"),
+      desc: t("step1.desc"),
       image: "/images/bot/step-language.png",
-      alt: "Chọn ngôn ngữ trong bot",
-      highlight: "Hỗ trợ 5 ngôn ngữ: Tiếng Việt, English, Русский, 中文, العربية",
+      alt: "Telegram bot language selection",
+      highlight: t("step1.hl"),
     },
     {
       num: 2,
-      title: "Chọn Nhu Cầu Mua Hoặc Gia Hạn",
-      desc: "Chọn Mua Key Mới, Gia hạn key đang dùng, hoặc Mua thêm cửa sổ (đa mở tài khoản) tùy theo nhu cầu của bạn.",
+      title: t("step2.title"),
+      desc: t("step2.desc"),
       image: "/images/bot/step-menu.png",
-      alt: "Tùy chọn mua key hoặc gia hạn",
-      highlight: "Quy định: Key Việt Nam thanh toán VND chỉ áp dụng cho người dùng trong nước.",
+      alt: "Buy key or renew plan options",
+      highlight: t("step2.hl"),
     },
     {
       num: 3,
-      title: "BẮT BUỘC: Chọn 'Team Murphy'",
-      desc: "Khi Bot hỏi 'Bạn biết đến Tool qua Đại lý / Nguồn nào?', hãy nhấp chọn nút 'Team Murphy'.",
+      title: t("step3.title"),
+      desc: t("step3.desc"),
       image: "/images/bot/step-team-murphy.png",
-      alt: "Chọn đại lý Team Murphy",
-      highlight: "★ Bước quan trọng để ghi nhận giao dịch và kích hoạt đặc quyền hỗ trợ VIP 24/7 từ Team Murphy!",
+      alt: "Select Team Murphy reseller",
+      highlight: t("step3.hl"),
       isWarning: true,
     },
     {
       num: 4,
-      title: "Thanh Toán Tự Động & Nhận Key",
-      desc: "Quét mã VietQR chuyển khoản (Việt Nam) nhận key sau 15 giây, hoặc gửi Crypto USDT (Quốc tế) nhận key sau ~1 phút.",
+      title: t("step4.title"),
+      desc: t("step4.desc"),
       image: "/images/bot/pricing-usd.png",
-      alt: "Bảng giá và thanh toán",
-      highlight: "Key và hướng dẫn kích hoạt được gửi trực tiếp vào tin nhắn Telegram của bạn.",
+      alt: "Automatic payment and receive key",
+      highlight: t("step4.hl"),
     },
   ];
 
@@ -45,13 +50,13 @@ export default function StepByStepGuide() {
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
-            <span>QUY TRÌNH TIẾP NHẬN KEY</span>
+            <span>{t("guide.badge")}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
-            Hướng Dẫn Mua & Kích Hoạt Key
+            {t("guide.title")}
           </h2>
           <p className="text-sm sm:text-base text-red-100/70">
-            Xem ảnh chụp thực tế từng bước để kích hoạt nhanh chóng và chuẩn xác nhất.
+            {t("guide.desc")}
           </p>
         </div>
 
@@ -63,51 +68,69 @@ export default function StepByStepGuide() {
             </div>
             <div>
               <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2 justify-center sm:justify-start">
-                Tải Bộ Cài Đặt Monica Bot
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold">
-                  Bản Mới Nhất
+                <span>{t("guide.bannerTitle")}</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  v2309
                 </span>
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
-                File nén <code className="text-amber-300 font-mono">Setup_Monica.rar</code> (46.3 MB) — Dành cho máy tính Windows PC & các trình giả lập.
+                {t("guide.bannerDesc")}
               </p>
             </div>
           </div>
-          <a
-            href="/downloads/Setup_Monica.rar"
-            download="Setup_Monica.rar"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm uppercase tracking-wide shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 flex-shrink-0"
-          >
-            <Download className="w-4 h-4" />
-            <span>Tải File .RAR (46MB)</span>
-          </a>
+          <div className="flex items-center gap-3 w-full sm:w-auto flex-shrink-0">
+            <a
+              href="/downloads/Setup_Monica.rar"
+              download="Setup_Monica.rar"
+              className="w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-400 hover:to-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-600/30 transition-all hover:scale-105 active:scale-95"
+            >
+              <Download className="w-4 h-4" />
+              <span>{t("guide.btnDownload")}</span>
+            </a>
+            <a
+              href={TELEGRAM_SUPPORT_GROUP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center justify-center min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-semibold text-amber-300 hover:text-white bg-white/5 hover:bg-white/10 transition-colors border border-amber-500/20"
+            >
+              {t("guide.supportHelp")}
+            </a>
+          </div>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {steps.map((s) => (
             <div
               key={s.num}
-              className={`rounded-3xl p-6 sm:p-7 bg-[#15080c]/85 border flex flex-col justify-between transition-all ${
+              className={`rounded-3xl border p-6 flex flex-col justify-between transition-all hover:-translate-y-1 shadow-xl ${
                 s.isWarning
-                  ? "border-amber-500/60 shadow-xl shadow-amber-950/40 ring-1 ring-amber-500/40 bg-gradient-to-b from-amber-950/30 to-[#15080c]"
-                  : "border-red-500/20 hover:border-red-500/40 shadow-lg shadow-black/40"
+                  ? "bg-[#18080d]/90 border-amber-500/40 shadow-amber-950/30 ring-1 ring-amber-500/20"
+                  : "bg-[#14060a]/80 border-red-500/20 shadow-red-950/20"
               }`}
             >
               <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm ${
-                      s.isWarning
-                        ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/30"
-                        : "bg-red-500/20 text-red-400 border border-red-500/30"
-                    }`}
-                  >
-                    0{s.num}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm shadow-md ${
+                        s.isWarning
+                          ? "bg-amber-500 text-slate-950 shadow-amber-500/30"
+                          : "bg-gradient-to-tr from-red-600 to-rose-600 text-white shadow-red-600/30"
+                      }`}
+                    >
+                      {s.num}
+                    </div>
+                    <h3 className="text-base font-extrabold text-white">
+                      {s.title}
+                    </h3>
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white">
-                    {s.title}
-                  </h3>
+                  {s.isWarning && (
+                    <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3" />
+                      QUAN TRỌNG
+                    </span>
+                  )}
                 </div>
 
                 <p className="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
@@ -115,48 +138,46 @@ export default function StepByStepGuide() {
                 </p>
 
                 {/* Screenshot Frame */}
-                <div className="relative rounded-2xl overflow-hidden border border-red-500/20 bg-black/60 my-4 shadow-inner">
-                  <div className="relative w-full h-56 sm:h-64">
-                    <Image
-                      src={s.image}
-                      alt={s.alt}
-                      fill
-                      className="object-contain p-2"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-red-500/20 bg-black/40 mb-4 shadow-inner">
+                  <Image
+                    src={s.image}
+                    alt={s.alt}
+                    fill
+                    className="object-contain p-2 hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, 500px"
+                  />
                 </div>
               </div>
 
-              {/* Highlight Note */}
+              {/* Highlight callout */}
               <div
                 className={`p-3 rounded-xl text-xs flex items-start gap-2 ${
                   s.isWarning
-                    ? "bg-amber-500/15 border border-amber-500/30 text-amber-200"
-                    : "bg-red-950/40 border border-red-500/20 text-slate-300"
+                    ? "bg-amber-500/15 border border-amber-500/30 text-amber-200 font-semibold"
+                    : "bg-red-500/10 border border-red-500/20 text-red-200"
                 }`}
               >
-                {s.isWarning ? (
-                  <Crown className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-                ) : (
-                  <CheckCircle2 className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-                )}
+                <CheckCircle2
+                  className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
+                    s.isWarning ? "text-amber-400" : "text-red-400"
+                  }`}
+                />
                 <span>{s.highlight}</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA Button */}
-        <div className="mt-12 text-center">
+        {/* Big CTA to open bot */}
+        <div className="text-center">
           <a
             href={TELEGRAM_BUY_BOT}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-red-600/35 transition-all hover:scale-105 active:scale-95 border border-red-400/30"
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-sm uppercase tracking-wider shadow-2xl shadow-red-600/40 transition-all hover:scale-105 active:scale-95 border border-red-400/40"
           >
             <Send className="w-4 h-4" />
-            <span>Mở Bot Telegram & Bắt Đầu Ngay</span>
+            <span>Mở Bot Mua Key Telegram (Team Murphy)</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

@@ -1,146 +1,310 @@
-// LASTWAR HQ — i18n setup
-// Auto-detect ALL languages from device/browser
-// Uses browser Intl API to get localized names for any language
+// LASTWAR HQ / MONICA BOT — Multi-Language (i18n) Engine
+// Supports 16 languages with English (en) as primary default.
+// Automatic IP country detection via Vercel/Cloudflare headers & fallback.
+
+import { useState, useEffect } from "react";
+import { TRANSLATIONS, type TranslationKey } from "../translations/translations";
+
+export interface LanguageOption {
+  code: string;
+  label: string;
+  flag: string;
+  direction?: "ltr" | "rtl";
+}
+
+export const SUPPORTED_LANGUAGES: LanguageOption[] = [
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "zh-CN", label: "简体中文", flag: "🇨🇳" },
+  { code: "zh-TW", label: "繁體中文", flag: "🇹🇼" },
+  { code: "ko", label: "한국어", flag: "🇰🇷" },
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "th", label: "ภาษาไทย", flag: "🇹🇭" },
+  { code: "id", label: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "ms", label: "Bahasa Melayu", flag: "🇲🇾" },
+  { code: "ar", label: "العربية", flag: "🇸🇦", direction: "rtl" },
+  { code: "ru", label: "Русский", flag: "🇷🇺" },
+  { code: "tr", label: "Türkçe", flag: "🇹🇷" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "pt", label: "Português", flag: "🇧🇷" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "vi", label: "Tiếng Việt", flag: "🇻🇳" },
+];
 
 /**
- * Auto-detect the user's preferred language.
- * Priority: localStorage → navigator → browser → default
+ * Mapping ISO Country Codes to our 16 supported languages
  */
-export function detectLocale(): string {
-  // 1. User's saved preference
-  if (typeof window !== "undefined") {
-    const saved = localStorage.getItem("locale");
-    if (saved) return saved;
-  }
+export const COUNTRY_TO_LANG: Record<string, string> = {
+  // Vietnam
+  VN: "vi",
 
-  // 2. Navigator language (works on web + mobile webview)
-  if (typeof navigator !== "undefined") {
-    const navLang = navigator.language || (navigator as any).userLanguage;
-    if (navLang) return navLang;
-  }
+  // Indonesia
+  ID: "id",
 
-  // 3. Default fallback
+  // Malaysia & Brunei
+  MY: "ms",
+  BN: "ms",
+
+  // China, Singapore
+  CN: "zh-CN",
+  SG: "zh-CN",
+
+  // Taiwan, Hong Kong, Macau
+  TW: "zh-TW",
+  HK: "zh-TW",
+  MO: "zh-TW",
+
+  // South Korea
+  KR: "ko",
+
+  // Japan
+  JP: "ja",
+
+  // Thailand
+  TH: "th",
+
+  // Arab countries
+  SA: "ar",
+  AE: "ar",
+  EG: "ar",
+  QA: "ar",
+  KW: "ar",
+  OM: "ar",
+  BH: "ar",
+  IQ: "ar",
+  JO: "ar",
+  LB: "ar",
+  DZ: "ar",
+  MA: "ar",
+  TN: "ar",
+  YE: "ar",
+  LY: "ar",
+
+  // Russia & CIS
+  RU: "ru",
+  BY: "ru",
+  KZ: "ru",
+  KG: "ru",
+  UZ: "ru",
+  TJ: "ru",
+  AM: "ru",
+
+  // Turkey, Azerbaijan
+  TR: "tr",
+  AZ: "tr",
+
+  // France & French-speaking
+  FR: "fr",
+  BE: "fr",
+  CH: "fr",
+  MC: "fr",
+  SN: "fr",
+  CI: "fr",
+  CM: "fr",
+
+  // Germany, Austria
+  DE: "de",
+  AT: "de",
+  LI: "de",
+
+  // Brazil, Portugal
+  BR: "pt",
+  PT: "pt",
+  AO: "pt",
+  MZ: "pt",
+
+  // Spain, Latin America
+  ES: "es",
+  MX: "es",
+  AR: "es",
+  CO: "es",
+  CL: "es",
+  PE: "es",
+  VE: "es",
+  EC: "es",
+  GT: "es",
+  CU: "es",
+  DO: "es",
+  BO: "es",
+  UY: "es",
+  PY: "es",
+  CR: "es",
+  PA: "es",
+};
+
+export const LOCALE_CHANGE_EVENT = "monica_locale_changed";
+const USER_PREF_KEY = "monica_user_lang_pref";
+const DETECTED_LOCALE_KEY = "monica_detected_locale";
+
+/**
+ * Match browser language string to our supported languages
+ */
+export function matchBrowserLocale(langStr: string): string {
+  const norm = (langStr || "").toLowerCase();
+  if (norm.startsWith("vi")) return "vi";
+  if (norm.startsWith("zh-tw") || norm.startsWith("zh-hk") || norm.startsWith("zh-mo") || norm.startsWith("zh-hant")) return "zh-TW";
+  if (norm.startsWith("zh")) return "zh-CN";
+  if (norm.startsWith("ko")) return "ko";
+  if (norm.startsWith("ja")) return "ja";
+  if (norm.startsWith("th")) return "th";
+  if (norm.startsWith("id")) return "id";
+  if (norm.startsWith("ms")) return "ms";
+  if (norm.startsWith("ar")) return "ar";
+  if (norm.startsWith("ru")) return "ru";
+  if (norm.startsWith("tr")) return "tr";
+  if (norm.startsWith("fr")) return "fr";
+  if (norm.startsWith("de")) return "de";
+  if (norm.startsWith("pt")) return "pt";
+  if (norm.startsWith("es")) return "es";
   return "en";
 }
 
 /**
- * Get all available languages from the device/browser.
- * Returns array of language codes the user understands.
+ * Detect user's locale.
+ * Priority:
+ * 1. User's explicit manual selection in localStorage
+ * 2. Previously detected IP country cached
+ * 3. Browser navigator.language match
+ * 4. English ("en") fallback
  */
-export function getDeviceLanguages(): string[] {
+export function detectLocale(): string {
+  if (typeof window === "undefined") return "en";
+
+  // 1. Explicit user preference
+  const userPref = localStorage.getItem(USER_PREF_KEY);
+  if (userPref && TRANSLATIONS[userPref]) {
+    return userPref;
+  }
+
+  // 2. Cached auto-detected locale
+  const cached = localStorage.getItem(DETECTED_LOCALE_KEY) || localStorage.getItem("locale");
+  if (cached && TRANSLATIONS[cached]) {
+    return cached;
+  }
+
+  // 3. Browser locale
   if (typeof navigator !== "undefined") {
-    const langs = navigator.languages || [navigator.language];
-    return [...langs];
+    const navLang = navigator.language || (navigator as any).userLanguage || "";
+    return matchBrowserLocale(navLang);
   }
-  return ["en"];
+
+  return "en";
 }
 
 /**
- * Get a language code suitable for our translation keys.
- * Maps full locale (e.g. "vi-VN", "zh-TW") to base language.
+ * Fetch visitor's country from `/api/geo` and set language automatically if user hasn't chosen manually
  */
-export function getBaseLanguage(locale: string): string {
-  return locale.split("-")[0].toLowerCase();
-}
+export async function autoDetectAndApplyCountryLanguage(): Promise<string> {
+  if (typeof window === "undefined") return "en";
 
-/**
- * Get the display name of a language IN that language.
- * Uses Intl.DisplayNames API — supports ALL world languages.
- */
-export function getLanguageName(code: string): string {
+  // If user already chose manually, do NOT override
+  const userPref = localStorage.getItem(USER_PREF_KEY);
+  if (userPref && TRANSLATIONS[userPref]) {
+    return userPref;
+  }
+
   try {
-    const display = new Intl.DisplayNames([code], { type: "language" });
-    return display.of(code) || code;
+    const res = await fetch("/api/geo", { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      const country = data.country;
+      if (country && COUNTRY_TO_LANG[country]) {
+        const lang = COUNTRY_TO_LANG[country];
+        localStorage.setItem(DETECTED_LOCALE_KEY, lang);
+        localStorage.setItem("locale", lang);
+        window.dispatchEvent(new Event(LOCALE_CHANGE_EVENT));
+        return lang;
+      }
+    }
   } catch {
-    return code;
+    // ignore network errors
   }
+
+  // Fallback to browser locale
+  const browserLang = matchBrowserLocale(navigator.language);
+  localStorage.setItem(DETECTED_LOCALE_KEY, browserLang);
+  localStorage.setItem("locale", browserLang);
+  window.dispatchEvent(new Event(LOCALE_CHANGE_EVENT));
+  return browserLang;
+}
+
+export function getLanguageName(code: string): string {
+  const match = SUPPORTED_LANGUAGES.find((l) => l.code === code);
+  return match ? match.label : code;
+}
+
+export function getLanguageFlag(code: string): string {
+  const match = SUPPORTED_LANGUAGES.find((l) => l.code === code);
+  return match ? match.flag : "🌐";
+}
+
+export function getPopularLanguages(): LanguageOption[] {
+  return SUPPORTED_LANGUAGES;
 }
 
 /**
- * Get the flag emoji for a language/locale.
+ * Synchronous translate key for a given locale (defaults to detectLocale())
  */
-export function getLanguageFlag(locale: string): string {
-  const flagMap: Record<string, string> = {
-    vi: "🇻🇳", en: "🇺🇸", ko: "🇰🇷", ja: "🇯🇵", zh: "🇨🇳",
-    fr: "🇫🇷", de: "🇩🇪", es: "🇪🇸", it: "🇮🇹", pt: "🇵🇹",
-    ru: "🇷🇺", th: "🇹🇭", id: "🇮🇩", ms: "🇲🇾", tr: "🇹🇷",
-    ar: "🇸🇦", hi: "🇮🇳", pl: "🇵🇱", nl: "🇳🇱", uk: "🇺🇦",
-    sv: "🇸🇪", no: "🇳🇴", da: "🇩🇰", fi: "🇫🇮", cs: "🇨🇿",
-    el: "🇬🇷", he: "🇮🇱", hu: "🇭🇺", ro: "🇷🇴", sk: "🇸🇰",
-  };
-  const base = getBaseLanguage(locale);
-  return flagMap[base] || "🌐";
+export function tSync(key: TranslationKey, locale?: string): string {
+  const lang = locale || detectLocale();
+  const dict = TRANSLATIONS[lang] || TRANSLATIONS["en"];
+  if (dict && dict[key]) {
+    return dict[key];
+  }
+  // Fallback to English
+  if (TRANSLATIONS["en"] && TRANSLATIONS["en"][key]) {
+    return TRANSLATIONS["en"][key];
+  }
+  return key;
 }
 
 /**
- * Get the 20 most common languages for the switcher dropdown.
- * Users can still use ANY language via auto-detect.
- * These are just the quick-pick options.
+ * Async signature for compatibility
  */
-export function getPopularLanguages(): { code: string; label: string; flag: string }[] {
-  const popular = [
-    "vi", "en", "zh", "ko", "ja", "es", "fr", "de", "pt", "ru",
-    "th", "id", "ar", "hi", "it", "tr", "pl", "nl", "uk", "ms",
-  ];
-  return popular.map(code => ({
-    code,
-    label: getLanguageName(code),
-    flag: getLanguageFlag(code),
-  }));
+export async function t(key: TranslationKey, locale?: string): Promise<string> {
+  return tSync(key, locale);
 }
 
 /**
- * Translate UI strings.
- * Falls back to English, then to the key itself.
- * Real translations will be loaded from translation files in later steps.
+ * React hook for components to subscribe to locale changes
  */
-const baseTranslations: Record<string, string> = {
-  "nav.home": "Home",
-  "nav.tools": "Tools",
-  "nav.chat": "Chat",
-  "nav.news": "News",
-  "nav.profile": "Profile",
-  "home.comingSoon": "Coming Soon",
-  "home.tagline": "Global community for Last War: Survival",
-};
-
-import vi from "../translations/vi";
-import en from "../translations/en";
-
-const translationCache: Record<string, Record<string, string>> = { vi, en };
-
-/**
- * Get translation for a key in the user's language.
- * Now completely synchronous but kept async signature for compatibility.
- */
-export async function t(key: string, locale?: string): Promise<string> {
-  const lang = getBaseLanguage(locale || detectLocale());
-  return translationCache[lang]?.[key] || baseTranslations[key] || key;
-}
-
-export const LOCALE_CHANGE_EVENT = "lastwar_locale_changed";
-
-/**
- * Hook to force re-render when locale changes without full page reload.
- */
-import { useState, useEffect } from "react";
-
 export function useI18n() {
-  const [locale, setLocale] = useState(typeof window !== "undefined" ? detectLocale() : "en");
+  const [locale, setLocaleState] = useState<string>("en");
 
   useEffect(() => {
-    const handleLocaleChange = () => setLocale(detectLocale());
+    // Initial sync
+    setLocaleState(detectLocale());
+
+    // Auto-detect country via IP if user hasn't set manual preference yet
+    autoDetectAndApplyCountryLanguage();
+
+    const handleLocaleChange = () => {
+      setLocaleState(detectLocale());
+    };
+
     window.addEventListener(LOCALE_CHANGE_EVENT, handleLocaleChange);
-    return () => window.removeEventListener(LOCALE_CHANGE_EVENT, handleLocaleChange);
+    return () => {
+      window.removeEventListener(LOCALE_CHANGE_EVENT, handleLocaleChange);
+    };
   }, []);
 
-  return { locale, t: (key: string) => tSync(key, locale) };
-}
+  const changeLanguage = (newLang: string) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(USER_PREF_KEY, newLang);
+      localStorage.setItem("locale", newLang);
+      setLocaleState(newLang);
+      window.dispatchEvent(new Event(LOCALE_CHANGE_EVENT));
+    }
+  };
 
-/**
- * Synchronous translate — uses cached translations only.
- */
-export function tSync(key: string, locale?: string): string {
-  const lang = getBaseLanguage(locale || detectLocale());
-  return translationCache[lang]?.[key] || baseTranslations[key] || key;
+  const isRTL = locale === "ar";
+
+  return {
+    locale,
+    setLocale: changeLanguage,
+    t: (key: TranslationKey) => tSync(key, locale),
+    isRTL,
+    supportedLanguages: SUPPORTED_LANGUAGES,
+    currentLanguage: SUPPORTED_LANGUAGES.find((l) => l.code === locale) || SUPPORTED_LANGUAGES[0],
+  };
 }

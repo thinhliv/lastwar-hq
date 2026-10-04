@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Check, Flame, Send, Sparkles, ShieldAlert, Clock, QrCode, Coins, Crown } from "lucide-react";
 import { VND_PLANS, USD_PLANS } from "@/data/plans";
 import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
+import { useI18n } from "@/lib/i18n";
 
 export default function PricingSection({ compact = false }: { compact?: boolean }) {
-  const [currency, setCurrency] = useState<"VND" | "USD">("VND");
+  const { t, locale } = useI18n();
+  const [currency, setCurrency] = useState<"VND" | "USD">("USD");
+
+  // Automatically select VND for Vietnam visitors, USD for international
+  useEffect(() => {
+    if (locale === "vi") {
+      setCurrency("VND");
+    } else {
+      setCurrency("USD");
+    }
+  }, [locale]);
 
   const plans = currency === "VND" ? VND_PLANS : USD_PLANS;
 
@@ -20,27 +31,17 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
             <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
-            <span>CHI PHÍ ĐẦU TƯ TÁC CHIẾN</span>
+            <span>{t("pricing.badge")}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
-            Bảng Giá Bản Quyền Monica Bot
+            {t("pricing.title")}
           </h2>
           <p className="text-sm sm:text-base text-red-100/70">
-            Kích hoạt tự động 24/7 qua Telegram Bot. Hỗ trợ đầy đủ PC Client và mọi trình giả lập.
+            {t("pricing.desc")}
           </p>
 
           {/* Currency Toggle */}
           <div className="mt-6 inline-flex p-1 rounded-2xl bg-[#14080c] border border-red-500/30 shadow-inner gap-1">
-            <button
-              onClick={() => setCurrency("VND")}
-              className={`flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                currency === "VND"
-                  ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <span>🇻🇳 Khách Việt Nam (VND)</span>
-            </button>
             <button
               onClick={() => setCurrency("USD")}
               className={`flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition-all ${
@@ -50,6 +51,16 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               }`}
             >
               <span>🌍 International (USD)</span>
+            </button>
+            <button
+              onClick={() => setCurrency("VND")}
+              className={`flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                currency === "VND"
+                  ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-red-600/30"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              <span>🇻🇳 Việt Nam (VND)</span>
             </button>
           </div>
         </div>
@@ -63,10 +74,10 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               </div>
               <div>
                 <h4 className="text-sm sm:text-base font-black text-amber-300 uppercase tracking-wide">
-                  Bước Bắt Buộc: Chọn Nguồn "Team Murphy" Khi Mua Trong Bot
+                  {t("pricing.selectResellerNote")}
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
-                  Khi Bot hỏi <span className="text-white font-bold">"Bạn biết đến Tool qua Đại lý nào?"</span>, bạn hãy bấm chọn <strong className="text-amber-400 font-extrabold underline">Team Murphy</strong> để hệ thống kích hoạt chính sách bảo hành và hỗ trợ kỹ thuật tận tâm 24/7 từ team mình!
+                  Select <strong className="text-amber-400 font-extrabold underline">Team Murphy</strong> when the bot prompts for distributor to activate 24/7 VIP warranty and dedicated support.
                 </p>
               </div>
             </div>
@@ -74,7 +85,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
               href="#guide"
               className="px-4 py-2.5 min-h-[40px] flex items-center justify-center rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-xs font-bold text-red-200 whitespace-nowrap transition-colors"
             >
-              Xem ảnh hướng dẫn
+              {t("nav.guide")}
             </a>
           </div>
         </div>
@@ -149,7 +160,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
                   </span>
                   {p.isPopular && (
                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] font-black uppercase shadow-md shadow-red-600/30">
-                      <Flame className="w-3 h-3 fill-current" /> Phổ Biến Nhất
+                      <Flame className="w-3 h-3 fill-current" /> {t("pricing.popular")}
                     </span>
                   )}
                   {p.badge && (
@@ -200,7 +211,7 @@ export default function PricingSection({ compact = false }: { compact?: boolean 
                   }`}
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Mua Key Telegram (Team Murphy)</span>
+                  <span>{t("pricing.btnBuyNow")}</span>
                 </a>
               </div>
             );

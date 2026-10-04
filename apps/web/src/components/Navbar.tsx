@@ -6,17 +6,19 @@ import { Send, Menu, X, Flame, ExternalLink, Download } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
+import { useI18n } from "@/lib/i18n";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useI18n();
 
   const navLinks = [
-    { href: "/", label: "Trang Chủ" },
-    { href: "/pricing", label: "Bảng Giá" },
-    { href: "/guide", label: "Hướng Dẫn" },
-    { href: "/tools", label: "Công Cụ" },
-    { href: "/about", label: "Về Chúng Tôi" },
+    { href: "/", label: t("nav.home") },
+    { href: "/pricing", label: t("nav.pricing") },
+    { href: "/guide", label: t("nav.guide") },
+    { href: "/tools", label: t("nav.tools") },
+    { href: "/about", label: t("nav.about") },
   ];
 
   return (
@@ -61,7 +63,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all flex items-center gap-1.5 whitespace-nowrap border border-transparent hover:border-amber-500/20"
           >
-            <span>Hỗ Trợ</span>
+            <span>{t("nav.support")}</span>
             <ExternalLink className="w-3.5 h-3.5 text-amber-400/80" />
           </a>
         </nav>
@@ -73,11 +75,11 @@ export default function Navbar() {
             href="/downloads/Setup_Monica.rar"
             download="Setup_Monica.rar"
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 font-bold text-xs border border-amber-500/30 transition-all hover:scale-102 active:scale-98 whitespace-nowrap min-h-[40px]"
-            title="Tải bộ cài đặt Monica Bot (Setup_Monica.rar - 46.3 MB)"
+            title="Download Setup_Monica.rar (46.3 MB)"
           >
             <Download className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-            <span className="hidden xl:inline">Tải Tool (46MB)</span>
-            <span className="xl:hidden">Tải Tool</span>
+            <span className="hidden xl:inline">{t("nav.downloadDesc")}</span>
+            <span className="xl:hidden">{t("nav.download")}</span>
           </a>
 
           {/* Language Switcher */}
@@ -91,7 +93,7 @@ export default function Navbar() {
             className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/35 transition-all hover:scale-102 active:scale-95 border border-red-400/30 whitespace-nowrap min-h-[40px]"
           >
             <Send className="w-3.5 h-3.5 flex-shrink-0" />
-            <span>Mua Key</span>
+            <span>{t("nav.buyKey")}</span>
           </a>
 
           {/* Mobile & Tablet Hamburger Button (< 1024px) */}
@@ -109,7 +111,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden px-4 pt-3 pb-6 bg-[#120508]/98 backdrop-blur-2xl border-b border-red-500/25 shadow-2xl space-y-1.5">
           <div className="text-[11px] font-bold text-red-400/70 uppercase tracking-wider px-3 py-1">
-            Danh mục điều hướng
+            {t("nav.drawerTitle")}
           </div>
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -134,7 +136,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="flex items-center justify-between min-h-[44px] px-3.5 py-2.5 rounded-xl text-sm font-semibold text-amber-300 hover:bg-amber-500/10 transition-colors border border-transparent hover:border-amber-500/20"
           >
-            <span className="flex items-center gap-2">💬 Nhóm Hỗ Trợ Telegram</span>
+            <span className="flex items-center gap-2">💬 {t("nav.support")} Telegram</span>
             <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
           </a>
           <div className="pt-2 sm:hidden">
@@ -144,7 +146,7 @@ export default function Navbar() {
               className="flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20"
             >
               <Download className="w-4 h-4 text-amber-400" />
-              <span>Tải Bộ Cài Đặt (Setup_Monica.rar - 46MB)</span>
+              <span>{t("nav.downloadDesc")}</span>
             </a>
           </div>
         </div>

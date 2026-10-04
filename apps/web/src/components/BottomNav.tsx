@@ -4,9 +4,11 @@ import { Home, Tag, Send, BookOpen, Swords } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TELEGRAM_BUY_BOT } from "@/lib/telegram";
+import { useI18n } from "@/lib/i18n";
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const { t } = useI18n();
 
   const isHome = pathname === "/";
   const isPricing = pathname === "/pricing";
@@ -25,7 +27,7 @@ export default function BottomNav() {
             }`}
           >
             <Home className="w-4 h-4 flex-shrink-0" />
-            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">Trang chủ</span>
+            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">{t("nav.home")}</span>
           </Link>
 
           {/* Pricing */}
@@ -36,7 +38,7 @@ export default function BottomNav() {
             }`}
           >
             <Tag className="w-4 h-4 flex-shrink-0" />
-            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">Bảng giá</span>
+            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">{t("nav.pricing")}</span>
           </Link>
 
           {/* Center Telegram CTA */}
@@ -45,13 +47,13 @@ export default function BottomNav() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center min-h-[48px] w-full -mt-5 group"
-            title="Mua Key qua Telegram Bot"
+            title="Buy Key Telegram Bot"
           >
             <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-red-600 via-rose-600 to-amber-500 text-white flex items-center justify-center shadow-lg shadow-red-600/40 group-active:scale-95 transition-transform border border-red-400/30 flex-shrink-0">
               <Send className="w-4.5 h-4.5 ml-0.5" />
             </div>
             <span className="text-[9px] font-black text-red-400 mt-0.5 truncate max-w-full">
-              Mua Key
+              {t("nav.buyKey")}
             </span>
           </a>
 
@@ -63,7 +65,7 @@ export default function BottomNav() {
             }`}
           >
             <BookOpen className="w-4 h-4 flex-shrink-0" />
-            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">Hướng dẫn</span>
+            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">{t("nav.guide")}</span>
           </Link>
 
           {/* Tools */}
@@ -74,7 +76,7 @@ export default function BottomNav() {
             }`}
           >
             <Swords className="w-4 h-4 flex-shrink-0" />
-            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">Công cụ</span>
+            <span className="text-[10px] mt-0.5 truncate max-w-full font-medium">{t("nav.tools")}</span>
           </Link>
         </div>
       </div>
