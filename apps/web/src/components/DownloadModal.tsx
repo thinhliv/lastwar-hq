@@ -41,17 +41,17 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             </div>
             <div>
               <h3 className="text-base sm:text-lg font-black text-white uppercase tracking-wide">
-                Tải Monica Bot — Chọn Thiết Bị
+                {t("downloadModal.title")}
               </h3>
               <p className="text-[11px] sm:text-xs text-slate-400">
-                Phiên bản v2309 mới nhất · Đại lý chính thức Team Murphy
+                {t("downloadModal.subtitle")}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
             className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition-colors border border-white/10"
-            aria-label="Đóng"
+            aria-label={t("downloadModal.close")}
           >
             <X className="w-5 h-5" />
           </button>
@@ -65,13 +65,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             </div>
             <div className="text-xs">
               <div className="font-black text-amber-300 uppercase tracking-wide flex items-center gap-1.5">
-                <span>Chính sách dùng Key bản quyền:</span>
-                <span className="text-[10px] px-2 py-0.2 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                  DÙNG CHUNG KEY
+                <span>{t("downloadModal.keyPolicyTitle")}</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  {t("downloadModal.keyPolicyBadge")}
                 </span>
               </div>
               <p className="text-slate-300 mt-1 leading-relaxed">
-                Bản <strong className="text-white">PC</strong> và bản <strong className="text-white">Android</strong> dùng chung <strong>1 Key bản quyền</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300">1 thiết bị duy nhất</strong> .
+                {t("downloadModal.keyPolicyDesc")}
               </p>
             </div>
           </div>
@@ -87,13 +87,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm sm:text-base font-black text-white">Bản PC</h4>
-                  <span className="text-[10px] font-black px-2 py-0.2 rounded bg-red-500/20 text-red-300 border border-red-500/30">
-                    v2309 · ~48 MB
+                  <h4 className="text-sm sm:text-base font-black text-white">{t("downloadModal.pcTitle")}</h4>
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">
+                    {t("downloadModal.pcBadge")}
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
-                  Chạy mượt trên Windows 10, 11
+                  {t("downloadModal.pcDesc")}
                 </p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               className="min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 shrink-0"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho PC</span>
+              <span>{t("downloadModal.pcBtn")}</span>
             </a>
           </div>
 
@@ -116,13 +116,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm sm:text-base font-black text-white">Bản Mobile Android</h4>
-                  <span className="text-[10px] font-black px-2 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    v2309 · APK Chuẩn
+                  <h4 className="text-sm sm:text-base font-black text-white">{t("downloadModal.androidTitle")}</h4>
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    {t("downloadModal.androidBadge")}
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
-                  Cài đặt trực tiếp trên điện thoại & máy tính bảng Android
+                  {t("downloadModal.androidDesc")}
                 </p>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               className="min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 shrink-0"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho Android</span>
+              <span>{t("downloadModal.androidBtn")}</span>
             </a>
           </div>
 
@@ -145,13 +145,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h4 className="text-sm sm:text-base font-black text-white">Bản Mobile iOS</h4>
-                  <span className="text-[10px] font-black px-2 py-0.2 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                    Hỗ Trợ Riêng
+                  <h4 className="text-sm sm:text-base font-black text-white">{t("downloadModal.iosTitle")}</h4>
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                    {t("downloadModal.iosBadge")}
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
-                  Bản iOS vui lòng liên hệ kỹ thuật viên Telegram để nhận hướng dẫn cài đặt trực tiếp
+                  {t("downloadModal.iosDesc")}
                 </p>
               </div>
             </div>
@@ -163,21 +163,21 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
               className="min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-sky-600/30 shrink-0"
             >
               <Send className="w-4 h-4" />
-              <span>Hỗ Trợ iOS</span>
+              <span>{t("downloadModal.iosBtn")}</span>
             </a>
           </div>
         </div>
 
         {/* Bottom Helper */}
         <div className="pt-3 border-t border-red-500/15 flex items-center justify-between text-xs text-slate-400">
-          <span>Cần hỗ trợ kỹ thuật cài đặt?</span>
+          <span>{t("downloadModal.helpQuestion")}</span>
           <a
             href={TELEGRAM_SUPPORT_GROUP}
             target="_blank"
             rel="noopener noreferrer"
             className="text-amber-400 hover:underline font-bold flex items-center gap-1"
           >
-            Nhóm hỗ trợ Telegram <ExternalLink className="w-3.5 h-3.5" />
+            {t("downloadModal.helpTelegram")} <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>

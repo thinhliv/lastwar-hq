@@ -34,6 +34,7 @@ import { VND_PLANS, USD_PLANS } from "@/data/plans";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
 import DownloadModal from "@/components/DownloadModal";
+import HoverVideoPreview from "@/components/HoverVideoPreview";
 
 type AppTab = "pricing" | "features" | "guide" | "faq";
 
@@ -319,15 +320,12 @@ export default function MobileHomeView() {
             </span>
           </div>
 
-          {/* YouTube Video Player */}
+          {/* YouTube Video Player with 5s Hover Preview */}
           <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-red-500/25 shadow-inner">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${currentYoutubeId}?autoplay=0&rel=0&modestbranding=1`}
-              title="Monica Bot Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              className="w-full h-full border-0"
+            <HoverVideoPreview
+              youtubeId={currentYoutubeId}
+              title={videoPlatform === "mobile" ? "Monica Bot Android Mobile" : "Monica Bot PC Gameplay"}
+              isShort={videoPlatform === "mobile"}
             />
           </div>
 

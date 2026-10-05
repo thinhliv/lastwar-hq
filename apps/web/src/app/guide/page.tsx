@@ -29,7 +29,7 @@ export default function GuidePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 text-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
           <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
-          <span>HƯỚNG DẪN ĐA NỀN TẢNG (PC & MOBILE)</span>
+          <span>{t("guide.platformBadge")}</span>
         </div>
         <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-3">
           {t("guide.pageTitle")}
@@ -50,14 +50,14 @@ export default function GuidePage() {
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-base sm:text-lg font-black text-amber-300 uppercase tracking-wide">
-                    Chính Sách 1 Key Bản Quyền Monica Bot
+                    {t("guide.keyPolicyTitle")}
                   </h3>
                   <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    DÙNG CHUNG
+                    {t("guide.keyPolicyBadge")}
                   </span>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Bản <strong className="text-white">PC</strong> và bản <strong className="text-white">Mobile</strong> dùng chung <strong className="text-amber-300">1 Key bản quyền</strong>. Trong cùng một thời điểm, chỉ sử dụng bot cho <strong className="text-amber-300 font-bold">1 thiết bị duy nhất</strong>.
+                  {t("guide.keyPolicyDesc")}
                 </p>
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 shrink-0 self-stretch sm:self-auto"
             >
               <Send className="w-4 h-4 fill-white" />
-              <span>Mua Key Telegram</span>
+              <span>{t("guide.btnBuyKey")}</span>
             </a>
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function GuidePage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <h2 className="text-lg sm:text-xl font-black text-white mb-4 flex items-center gap-2">
           <Download className="w-5 h-5 text-red-400" />
-          <span>Tải Bản Cài Đặt Theo Thiết Bị (v2309)</span>
+          <span>{t("guide.downloadSectionTitle")}</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -90,13 +90,13 @@ export default function GuidePage() {
                 <Monitor className="w-6 h-6" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base font-black text-white">Bản PC</h3>
+                <h3 className="text-base font-black text-white">{t("downloadModal.pcTitle")}</h3>
                 <span className="text-[10px] font-black px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">
-                  ~48 MB
+                  {t("guide.pcBadge")}
                 </span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                Chạy mượt trên Windows 10, 11.
+                {t("guide.pcDesc")}
               </p>
             </div>
 
@@ -106,7 +106,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-600/30"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho PC</span>
+              <span>{t("downloadModal.pcBtn")}</span>
             </a>
           </div>
 
@@ -117,13 +117,13 @@ export default function GuidePage() {
                 <Smartphone className="w-6 h-6" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base font-black text-white">Bản Mobile Android</h3>
+                <h3 className="text-base font-black text-white">{t("downloadModal.androidTitle")}</h3>
                 <span className="text-[10px] font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  APK Chuẩn
+                  {t("guide.androidBadge")}
                 </span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                Cài trực tiếp file APK trên điện thoại & máy tính bảng Android.
+                {t("guide.androidDesc")}
               </p>
             </div>
 
@@ -133,7 +133,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30"
             >
               <Download className="w-4 h-4" />
-              <span>Tải Cho Android</span>
+              <span>{t("downloadModal.androidBtn")}</span>
             </a>
           </div>
 
@@ -144,13 +144,13 @@ export default function GuidePage() {
                 <Apple className="w-6 h-6" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base font-black text-white">Bản Mobile iOS</h3>
+                <h3 className="text-base font-black text-white">{t("downloadModal.iosTitle")}</h3>
                 <span className="text-[10px] font-black px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                  TestFlight
+                  {t("guide.iosBadge")}
                 </span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                Bản iOS vui lòng liên hệ kỹ thuật viên Telegram để nhận link cài đặt nội bộ & cấu hình chứng chỉ.
+                {t("guide.iosDesc")}
               </p>
             </div>
 
@@ -161,7 +161,7 @@ export default function GuidePage() {
               className="min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-sky-600/30"
             >
               <Send className="w-4 h-4" />
-              <span>Hỗ Trợ iOS</span>
+              <span>{t("guide.iosBtn")}</span>
             </a>
           </div>
         </div>

@@ -17,6 +17,7 @@ import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
 import { extractYouTubeId } from "@/lib/youtube";
 import upcomingData from "@/data/upcoming-update.json";
+import HoverVideoPreview from "@/components/HoverVideoPreview";
 
 export default function UpcomingUpdateSection() {
   const { t } = useI18n();
@@ -126,16 +127,13 @@ export default function UpcomingUpdateSection() {
                 </div>
               </div>
 
-              {/* YouTube Video Embed Frame */}
+              {/* YouTube Video Embed Frame with 5s Hover Preview */}
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/90 border border-red-500/25 shadow-inner">
                 {activeId ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${activeId}?autoplay=0&rel=0&modestbranding=1`}
-                    title="Monica Bot Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                    className="w-full h-full border-0"
+                  <HoverVideoPreview
+                    youtubeId={activeId}
+                    title={videoPlatform === "pc" ? "Monica Bot PC Update" : "Monica Bot Android Mobile"}
+                    isShort={videoPlatform === "mobile"}
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#1b070f] to-[#0d0306]">
