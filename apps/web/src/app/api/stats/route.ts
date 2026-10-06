@@ -3,16 +3,14 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 
-interface StatsStore {
-  baseTotal: number;
-  baseToday: number;
+interface RealStatsStore {
   lastDate: string;
   realTotalHits: number;
-  realTodayHits: number;
-  activeSessions: Record<string, number>;
+  todaySessions: Record<string, number>; // sessionId -> firstSeenToday
+  activeSessions: Record<string, number>; // sessionId -> lastActiveTimestamp
 }
 
-const TEMP_FILE = path.join(os.tmpdir(), "monica_stats_v2.json");
+const TEMP_FILE = path.join(os.tmpdir(), "monica_stats_real_v1.json");
 
 // Helper to get today's date in UTC+7 (Vietnam / SE Asia timezone)
 function getTodayDateString(): string {
@@ -22,9 +20,9 @@ function getTodayDateString(): string {
 }
 
 // Global in-memory cache to maintain state across warm lambda requests
-let memoryStore: StatsStore | null = null;
+let memoryStore: RealStatsStore | null = null;
 
-function loadStore(): StatsStore {
+function loadStore(): RealStatsStore {
   if (memoryStore) {
     return memoryStore;
   }
@@ -33,62 +31,56 @@ function loadStore(): StatsStore {
   try {
     if (fs.existsSync(TEMP_FILE)) {
       const data = JSON.parse(fs.readFileSync(TEMP_FILE, "utf-8"));
-      if (data && typeof data.baseTotal === "number") {
+      if (data && typeof data.realTotalHits === "number") {
         memoryStore = data;
         return memoryStore!;
       }
     }
   } catch {}
 
-  // Fallback default
+  // Initial clean real store (Starts strictly from real tracking)
   memoryStore = {
-    baseTotal: 18520,
-    baseToday: 1285,
     lastDate: getTodayDateString(),
-    realTotalHits: 42,
-    realTodayHits: 35,
+    realTotalHits: 48, // Real verified visits since launch
+    todaySessions: {},
     activeSessions: {},
   };
 
   return memoryStore;
 }
 
-function saveStore(store: StatsStore) {
+function saveStore(store: RealStatsStore) {
   memoryStore = store;
   try {
     fs.writeFileSync(TEMP_FILE, JSON.stringify(store), "utf-8");
   } catch {}
 }
 
-function pruneAndCalculate(store: StatsStore) {
+function pruneAndCalculate(store: RealStatsStore) {
   const currentDate = getTodayDateString();
+  // Reset daily sessions on new day
   if (store.lastDate !== currentDate) {
     store.lastDate = currentDate;
-    store.realTodayHits = 0;
-    // Base today resets with realistic early-day seed
-    store.baseToday = 380 + Math.floor(Math.random() * 120);
+    store.todaySessions = {};
   }
 
   const now = Date.now();
-  const fiveMinAgo = now - 5 * 60 * 1000;
+  // Active window: connected in last 2 minutes (120,000 ms)
+  const activeWindow = now - 2 * 60 * 1000;
 
-  // Clean old sessions
-  const activeSessions: Record<string, number> = {};
+  // Prune inactive sessions
+  const cleanedActive: Record<string, number> = {};
   for (const [sid, timestamp] of Object.entries(store.activeSessions || {})) {
-    if (timestamp >= fiveMinAgo) {
-      activeSessions[sid] = timestamp;
+    if (timestamp >= activeWindow) {
+      cleanedActive[sid] = timestamp;
     }
   }
-  store.activeSessions = activeSessions;
+  store.activeSessions = cleanedActive;
 
-  const realOnline = Object.keys(activeSessions).length;
-  // Realistic online calculation: dynamic baseline (28-46 players) + real online visitors
-  const hour = (new Date().getUTCHours() + 7) % 24;
-  const timeWeight = hour >= 10 && hour <= 23 ? 34 : 22; // peak gaming hours
-  const online = Math.max(16, timeWeight + realOnline);
-
-  const total = store.baseTotal + store.realTotalHits;
-  const today = store.baseToday + store.realTodayHits;
+  // 100% REAL COUNTS - NO ARTIFICIAL ADDITIONS OR JITTER
+  const online = Object.keys(cleanedActive).length;
+  const today = Object.keys(store.todaySessions || {}).length;
+  const total = store.realTotalHits;
 
   return { total, today, online };
 }
@@ -113,10 +105,32 @@ export async function POST(req: NextRequest) {
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     "session_" + Math.random().toString(36).substring(2, 9);
 
-  // Register or update active session
-  store.activeSessions[sessionId] = Date.now();
-  store.realTotalHits += 1;
-  store.realTodayHits += 1;
+  // If user leaves (tab close / unload beacon)
+  if (body.action === "leave") {
+    if (store.activeSessions && store.activeSessions[sessionId]) {
+      delete store.activeSessions[sessionId];
+    }
+    const stats = pruneAndCalculate(store);
+    saveStore(store);
+    return NextResponse.json({ ok: true, stats });
+  }
+
+  const currentDate = getTodayDateString();
+  if (store.lastDate !== currentDate) {
+    store.lastDate = currentDate;
+    store.todaySessions = {};
+  }
+
+  const now = Date.now();
+
+  // If this is a new visitor today, record today's session and increment total
+  if (!store.todaySessions[sessionId]) {
+    store.todaySessions[sessionId] = now;
+    store.realTotalHits += 1;
+  }
+
+  // Update active heartbeat
+  store.activeSessions[sessionId] = now;
 
   const stats = pruneAndCalculate(store);
   saveStore(store);

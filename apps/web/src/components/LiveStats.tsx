@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Eye, Users, Activity, Radio } from "lucide-react";
+import { Eye, Users, Activity } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
 interface Stats {
@@ -21,7 +21,7 @@ function AnimatedNumber({ value }: { value: number }) {
       setIsJumping(true);
       const start = displayValue;
       const end = value;
-      const duration = 1200; // 1.2s smooth rolling
+      const duration = 1000; // 1s smooth rolling
       const startTime = performance.now();
 
       const animate = (currentTime: number) => {
@@ -60,12 +60,12 @@ function AnimatedNumber({ value }: { value: number }) {
 
 export default function LiveStats() {
   const { t } = useI18n();
+  // 100% Real stats starting state
   const [stats, setStats] = useState<Stats>({
-    total: 18562,
-    today: 1320,
-    online: 38,
+    total: 0,
+    today: 0,
+    online: 1,
   });
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Session identification
@@ -98,37 +98,47 @@ export default function LiveStats() {
       .then((res) => {
         if (res?.stats) {
           setStats(res.stats);
-          setIsLoaded(true);
         }
       })
       .catch(() => {});
 
-    // 2. Fetch fresh stats periodically & heartbeat
-    const fetchFreshStats = () => {
-      fetch("/api/stats")
+    // 2. Heartbeat to keep session active (no fake jitter - 100% real numbers)
+    const sendHeartbeat = () => {
+      fetch("/api/stats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, page: window.location.pathname }),
+      })
         .then((r) => r.json())
         .then((res) => {
-          if (res?.total) {
-            setStats((prev) => {
-              // Subtle dynamic heartbeat fluctuation if server online is steady
-              const jitter = Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
-              return {
-                total: res.total,
-                today: res.today,
-                online: Math.max(18, res.online + jitter),
-              };
-            });
-            setIsLoaded(true);
+          if (res?.stats) {
+            setStats(res.stats);
           }
         })
         .catch(() => {});
     };
 
-    fetchFreshStats();
-    // Poll every 12 seconds for responsive "nhảy số" experience
-    const interval = setInterval(fetchFreshStats, 12000);
+    // Heartbeat every 15s
+    const interval = setInterval(sendHeartbeat, 15000);
 
-    return () => clearInterval(interval);
+    // 3. Inform server immediately when user closes or leaves tab
+    const handleBeforeUnload = () => {
+      try {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(
+            "/api/stats",
+            JSON.stringify({ sessionId, action: "leave" })
+          );
+        }
+      } catch {}
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   return (
@@ -148,7 +158,7 @@ export default function LiveStats() {
           </span>
         </div>
 
-        {/* 1. Total Views */}
+        {/* 1. Total Views (100% Real) */}
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-red-500/15 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0">
             <Eye className="w-3.5 h-3.5" />
@@ -161,7 +171,7 @@ export default function LiveStats() {
           </span>
         </div>
 
-        {/* 2. Today Views */}
+        {/* 2. Today Views (100% Real) */}
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0">
             <Activity className="w-3.5 h-3.5" />
@@ -174,7 +184,7 @@ export default function LiveStats() {
           </span>
         </div>
 
-        {/* 3. Online Active Users */}
+        {/* 3. Online Active Users (100% Real) */}
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
             <Users className="w-3.5 h-3.5" />
