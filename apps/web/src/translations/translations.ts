@@ -246,11 +246,17 @@ export type TranslationKey =
   | "guide.iosDesc"
   | "guide.iosBtn"
   | "guide.helpTelegram"
+  | "about.videoTitle"
+  | "about.videoDesc"
+  | "about.videoBadge"
   | "footer.copyright";
 
 export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
   // 1. English (Primary Default)
   en: {
+    "about.videoTitle": "Full Features Video Walkthrough",
+    "about.videoDesc": "Comprehensive long video demonstration of Monica Bot combat features · Last War: Survival",
+    "about.videoBadge": "In-Depth Full Video",
     "stats.total": "Total Visits",
     "stats.today": "Today's Visits",
     "stats.online": "Online Now",
@@ -500,6 +506,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 2. Tiếng Việt (vi)
   vi: {
+    "about.videoTitle": "Video Giới Thiệu Chi Tiết Tính Năng Monica Bot",
+    "about.videoDesc": "Clip dài tổng hợp toàn diện tính năng tác chiến · Game Last War: Survival",
+    "about.videoBadge": "Video Dài Chi Tiết",
     "stats.total": "Tổng lượt truy cập",
     "stats.today": "Hôm nay",
     "stats.online": "Đang online",
@@ -749,6 +758,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 3. 简体中文 (zh-CN)
   "zh-CN": {
+    "about.videoTitle": "Monica Bot 详细功能介绍演示视频",
+    "about.videoDesc": "完整长视频全面解析挂机实战功能 · Last War: Survival",
+    "about.videoBadge": "长视频详解",
     "stats.total": "总访问量",
     "stats.today": "今日访问",
     "stats.online": "当前在线",
@@ -998,6 +1010,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 4. 繁體中文 (zh-TW)
   "zh-TW": {
+    "about.videoTitle": "Monica Bot 詳細功能介紹展示影片",
+    "about.videoDesc": "完整長片全面解析掛機實戰功能 · Last War: Survival",
+    "about.videoBadge": "長片詳解",
     "stats.total": "總瀏覽次數",
     "stats.today": "今日瀏覽",
     "stats.online": "目前在線",
@@ -1247,6 +1262,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 5. 한국어 (ko)
   ko: {
+    "about.videoTitle": "Monica Bot 상세 기능 소개 영상",
+    "about.videoDesc": "실전 전투 기능 총정리 전체 영상 · Last War: Survival",
+    "about.videoBadge": "상세 전체 영상",
     "stats.total": "총 방문자수",
     "stats.today": "오늘 방문",
     "stats.online": "현재 접속중",
@@ -1496,6 +1514,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 6. 日本語 (ja)
   ja: {
+    "about.videoTitle": "Monica Bot 機能紹介・徹底解説動画",
+    "about.videoDesc": "実戦機能を完全網羅した長編解説動画 · Last War: Survival",
+    "about.videoBadge": "完全解説動画",
     "stats.total": "総アクセス数",
     "stats.today": "本日のアクセス",
     "stats.online": "現在オンライン",
@@ -1745,6 +1766,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 7. ภาษาไทย (th)
   th: {
+    "about.videoTitle": "วิดีโอแนะนำฟังก์ชันการทำงาน Monica Bot แบบละเอียด",
+    "about.videoDesc": "คลิปวิดีโอยาวสรุปฟังก์ชันการรบและระบบออโต้ทั้งหมด · Last War: Survival",
+    "about.videoBadge": "วิดีโอยาวฉบับเต็ม",
     "stats.total": "ยอดเข้าชมทั้งหมด",
     "stats.today": "ยอดเข้าชมวันนี้",
     "stats.online": "ออนไลน์ขณะนี้",
@@ -1994,6 +2018,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 8. العربية (ar)
   ar: {
+    "about.videoTitle": "فيديو تعريفي شامل لميزات Monica Bot",
+    "about.videoDesc": "فيديو توضيحي طويل وشامل لجميع ميزات القتال التلقائي · Last War: Survival",
+    "about.videoBadge": "فيديو تفصيلي كامل",
     "stats.total": "إجمالي الزيارات",
     "stats.today": "زيارات اليوم",
     "stats.online": "متصل الآن",
@@ -2243,6 +2270,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 9. Русский (ru)
   ru: {
+    "about.videoTitle": "Подробный видеообзор функций Monica Bot",
+    "about.videoDesc": "Полное подробное видео с демонстрацией всех боевых возможностей · Last War: Survival",
+    "about.videoBadge": "Полный видеообзор",
     "stats.total": "Всего визитов",
     "stats.today": "Сегодня",
     "stats.online": "Онлайн сейчас",
@@ -2492,6 +2522,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 10. Türkçe (tr)
   tr: {
+    "about.videoTitle": "Monica Bot Detaylı Özellik Tanıtım Videosu",
+    "about.videoDesc": "Tüm savaş özelliklerini kapsayan kapsamlı uzun video rehberi · Last War: Survival",
+    "about.videoBadge": "Ayrıntılı Tam Video",
     "stats.total": "Toplam Ziyaret",
     "stats.today": "Bugünkü Ziyaret",
     "stats.online": "Şu An Çevrimiçi",
@@ -2741,6 +2774,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 11. Français (fr)
   fr: {
+    "about.videoTitle": "Vidéo de présentation détaillée des fonctionnalités Monica Bot",
+    "about.videoDesc": "Démonstration vidéo complète des fonctions de combat · Last War: Survival",
+    "about.videoBadge": "Vidéo Complète Détaillée",
     "stats.total": "Total des visites",
     "stats.today": "Aujourd'hui",
     "stats.online": "En ligne actuellement",
@@ -2990,6 +3026,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 12. Deutsch (de)
   de: {
+    "about.videoTitle": "Ausführliches Feature-Präsentationsvideo zu Monica Bot",
+    "about.videoDesc": "Umfassendes langes Video zur Demonstration aller Kampffunktionen · Last War: Survival",
+    "about.videoBadge": "Ausführliches Gesamtvideo",
     "stats.total": "Gesamtbesuche",
     "stats.today": "Heutige Besuche",
     "stats.online": "Jetzt online",
@@ -3239,6 +3278,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 13. Português (pt)
   pt: {
+    "about.videoTitle": "Vídeo de Apresentação Detalhada dos Recursos do Monica Bot",
+    "about.videoDesc": "Vídeo longo completo com demonstração dos recursos de combate · Last War: Survival",
+    "about.videoBadge": "Vídeo Completo Detalhado",
     "stats.total": "Total de Visitas",
     "stats.today": "Visitas Hoje",
     "stats.online": "Online Agora",
@@ -3488,6 +3530,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 14. Español (es)
   es: {
+    "about.videoTitle": "Video de Presentación Detallada de Funciones de Monica Bot",
+    "about.videoDesc": "Demostración completa en video largo de las funciones de combate · Last War: Survival",
+    "about.videoBadge": "Video Completo Detalhado",
     "stats.total": "Total de Visitas",
     "stats.today": "Visitas de Hoy",
     "stats.online": "En Línea Ahora",
@@ -3737,6 +3782,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 15. Bahasa Indonesia (id)
   id: {
+    "about.videoTitle": "Video Pengenalan Fitur Lengkap Monica Bot",
+    "about.videoDesc": "Video panjang komprehensif demonstrasi fitur tempur · Last War: Survival",
+    "about.videoBadge": "Video Lengkap Detail",
     "stats.total": "Total Kunjungan",
     "stats.today": "Kunjungan Hari Ini",
     "stats.online": "Sedang Online",
@@ -3986,6 +4034,9 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
 
   // 16. Bahasa Melayu (ms)
   ms: {
+    "about.videoTitle": "Video Pengenalan Ciri Terperinci Monica Bot",
+    "about.videoDesc": "Video penuh komprehensif demonstrasi ciri pertempuran · Last War: Survival",
+    "about.videoBadge": "Video Penuh Terperinci",
     "stats.total": "Jumlah Lawatan",
     "stats.today": "Lawatan Hari Ini",
     "stats.online": "Sedang Dalam Talian",

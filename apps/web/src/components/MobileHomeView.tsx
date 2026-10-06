@@ -562,6 +562,23 @@ export default function MobileHomeView() {
               </p>
             </div>
 
+            {/* Featured Long Overview Video (Clip dài giới thiệu tính năng) */}
+            <div className="p-3 rounded-2xl bg-[#14060a]/95 border-2 border-red-500/35 shadow-xl shadow-red-950/60 mb-3">
+              <div className="flex items-center justify-between mb-2 px-1">
+                <span className="text-xs font-black text-white uppercase flex items-center gap-1.5">
+                  <Play className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+                  {t("about.videoTitle")}
+                </span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-bold border border-red-500/30">
+                  {t("about.videoBadge")}
+                </span>
+              </div>
+              <HoverVideoPreview
+                youtubeId="xusYAIiSwxg"
+                title={t("about.videoTitle")}
+              />
+            </div>
+
             {featureList.map((f, i) => (
               <div
                 key={i}

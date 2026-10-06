@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldCheck, Database, Server, Skull, Zap, ExternalLink, Send, Users2, ShieldAlert } from "lucide-react";
+import { ShieldCheck, Database, Server, Skull, Zap, ExternalLink, Send, Users2, ShieldAlert, Play, Flame } from "lucide-react";
 import serverData from "@/data/servers.json";
 import bossData from "@/data/restricted-area.json";
 import heroExpData from "@/data/hero-exp.json";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
+import HoverVideoPreview from "@/components/HoverVideoPreview";
 
 export default function AboutPage() {
   const { t } = useI18n();
@@ -44,13 +45,44 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full overflow-x-hidden">
-      <div className="text-center mb-10">
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider mb-3">
+          <Flame className="w-3.5 h-3.5 fill-red-400 text-red-400" />
+          <span>{t("about.videoBadge")}</span>
+        </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-2">
           {t("about.pageTitle")}
         </h1>
         <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
           {t("about.pageDesc")}
         </p>
+      </div>
+
+      {/* Featured Overview Video (Mục Giới Thiệu Tính Năng) */}
+      <div className="mb-10 p-4 sm:p-6 rounded-3xl bg-[#14060a]/95 border-2 border-red-500/40 shadow-2xl shadow-red-950/80">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-red-600 to-rose-600 text-white flex items-center justify-center shadow-lg shadow-red-600/30 shrink-0">
+              <Play className="w-5 h-5 fill-white ml-0.5" />
+            </div>
+            <div>
+              <h2 className="text-base sm:text-lg font-black text-white uppercase tracking-wide">
+                {t("about.videoTitle")}
+              </h2>
+              <p className="text-xs text-slate-300">
+                {t("about.videoDesc")}
+              </p>
+            </div>
+          </div>
+          <span className="px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-[11px] font-black uppercase tracking-wider border border-red-500/40">
+            🎬 {t("about.videoBadge")}
+          </span>
+        </div>
+
+        <HoverVideoPreview
+          youtubeId="xusYAIiSwxg"
+          title={t("about.videoTitle")}
+        />
       </div>
 
       {/* Team Murphy Reseller Profile */}

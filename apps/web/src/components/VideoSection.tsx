@@ -22,7 +22,7 @@ export default function VideoSection() {
       id: "overview",
       title: t("v1.title"),
       description: t("v1.desc"),
-      youtubeId: "bkm5aYR6aMk",
+      youtubeId: "xusYAIiSwxg",
     },
     {
       id: "nvbm",
@@ -40,7 +40,7 @@ export default function VideoSection() {
       id: "guide",
       title: t("v4.title"),
       description: t("v4.desc"),
-      youtubeId: "",
+      youtubeId: "bkm5aYR6aMk",
     },
   ];
 
