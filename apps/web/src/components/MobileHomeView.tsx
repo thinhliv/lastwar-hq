@@ -46,33 +46,6 @@ export default function MobileHomeView() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
-  const [videoPlatform, setVideoPlatform] = useState<"mobile" | "pc">("mobile");
-
-  // Dynamic video state from /api/upcoming-update
-  const [upcomingData, setUpcomingData] = useState<{
-    youtubeUrl: string;
-    mobileYoutubeUrl?: string;
-    version: string;
-    mobileVersion?: string;
-  }>({
-    youtubeUrl: "https://youtu.be/tTURTqzi8nY",
-    mobileYoutubeUrl: "https://youtube.com/shorts/QBol43tCzl8?feature=share",
-    version: "v2401 NEXT-GEN",
-    mobileVersion: "v2309 ANDROID",
-  });
-
-  useEffect(() => {
-    fetch("/api/upcoming-update")
-      .then((res) => res.json())
-      .then((resData) => {
-        const d = resData?.data || resData;
-        if (d && (d.youtubeUrl || d.mobileYoutubeUrl)) {
-          setUpcomingData(d);
-        }
-      })
-      .catch(() => {});
-  }, []);
-
   // Auto-switch currency based on IP locale
   useEffect(() => {
     if (locale === "vi") {
@@ -81,26 +54,6 @@ export default function MobileHomeView() {
       setCurrency("USD");
     }
   }, [locale]);
-
-  const extractYoutubeId = (url: string): string => {
-    if (!url) return "tTURTqzi8nY";
-    const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
-    const match = url.match(regExp);
-    return match ? match[1] : "tTURTqzi8nY";
-  };
-
-  const pcYoutubeId = extractYoutubeId(upcomingData.youtubeUrl);
-  const mobileYoutubeId = extractYoutubeId(upcomingData.mobileYoutubeUrl || "QBol43tCzl8");
-
-  const currentYoutubeId = videoPlatform === "mobile" ? mobileYoutubeId : pcYoutubeId;
-  const currentWatchUrl =
-    videoPlatform === "mobile"
-      ? upcomingData.mobileYoutubeUrl || `https://www.youtube.com/shorts/${mobileYoutubeId}`
-      : `https://www.youtube.com/watch?v=${pcYoutubeId}`;
-  const currentVersion =
-    videoPlatform === "mobile"
-      ? upcomingData.mobileVersion || "v2309 ANDROID"
-      : upcomingData.version || "v2401 PC UPDATE";
 
   const plans = currency === "VND" ? VND_PLANS : USD_PLANS;
 
@@ -274,82 +227,6 @@ export default function MobileHomeView() {
               <Crown className="w-3.5 h-3.5 text-amber-400" />
               <span className="text-amber-300 font-bold">{t("hero.trust3")}</span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FEATURED VIDEO SHOWCASE (GAMEPLAY IN ACTION) ===== */}
-      <section className="px-4 py-4 bg-[#0d0306]">
-        <div className="rounded-2xl border-2 border-red-500/30 bg-[#14060a] p-3 shadow-xl shadow-red-950/60">
-          {/* Tactical Video Header */}
-          <div className="flex flex-wrap items-center justify-between gap-2 px-2.5 py-1.5 bg-[#1b080e] rounded-xl border border-red-500/20 mb-2.5 text-[11px]">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span className="font-black text-emerald-400 uppercase tracking-wide">
-                {t("upcoming.status")}
-              </span>
-            </div>
-
-            {/* Video Platform Switcher (Mobile / PC) */}
-            <div className="inline-flex p-0.5 rounded-lg bg-black/60 border border-red-500/25 gap-1">
-              <button
-                onClick={() => setVideoPlatform("mobile")}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-black transition-all ${
-                  videoPlatform === "mobile"
-                    ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                <Smartphone className="w-3 h-3" />
-                <span>Bản Mobile</span>
-              </button>
-              <button
-                onClick={() => setVideoPlatform("pc")}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-black transition-all ${
-                  videoPlatform === "pc"
-                    ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                <Monitor className="w-3 h-3" />
-                <span>Bản PC</span>
-              </button>
-            </div>
-
-            <span className="font-black text-[10px] px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">
-              {currentVersion}
-            </span>
-          </div>
-
-          {/* YouTube Video Player with 5s Hover Preview */}
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-red-500/25 shadow-inner">
-            <HoverVideoPreview
-              youtubeId={currentYoutubeId}
-              title={videoPlatform === "mobile" ? "Monica Bot Android Mobile" : "Monica Bot PC Gameplay"}
-              isShort={videoPlatform === "mobile"}
-            />
-          </div>
-
-          {/* Video Quick Actions */}
-          <div className="mt-2.5 pt-2 border-t border-red-500/15 flex items-center justify-between gap-2 text-xs">
-            <a
-              href={currentWatchUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 min-h-[38px] flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600/20 text-red-200 font-bold border border-red-500/30"
-            >
-              <Play className="w-3 h-3 fill-red-400 text-red-400" />
-              <span>{t("upcoming.watchOnYT")}</span>
-            </a>
-            <a
-              href={TELEGRAM_SUPPORT_GROUP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 min-h-[38px] flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 text-amber-300 font-bold border border-amber-500/30"
-            >
-              <Send className="w-3 h-3 text-amber-400" />
-              <span>{t("upcoming.joinTelegram")}</span>
-            </a>
           </div>
         </div>
       </section>

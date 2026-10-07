@@ -21,7 +21,6 @@ import PricingSection from "@/components/PricingSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import StepByStepGuide from "@/components/StepByStepGuide";
 import VideoSection from "@/components/VideoSection";
-import UpcomingUpdateSection from "@/components/UpcomingUpdateSection";
 import TelegramAnnouncementSection from "@/components/TelegramAnnouncementSection";
 import FAQSection from "@/components/FAQSection";
 import DownloadModal from "@/components/DownloadModal";
@@ -159,9 +158,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ===== UPCOMING UPDATE SNEAK PEEK ===== */}
-      <UpcomingUpdateSection />
 
       {/* ===== TELEGRAM OFFICIAL ANNOUNCEMENTS (LIVE SYNC) ===== */}
       <TelegramAnnouncementSection />
