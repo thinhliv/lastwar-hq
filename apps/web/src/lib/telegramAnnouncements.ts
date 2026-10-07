@@ -23,7 +23,7 @@ export interface AnnouncementItem {
   telegramUrl: string;
 }
 
-const TEMP_FILE = path.join(os.tmpdir(), "monica_announcements_v1.json");
+const TEMP_FILE = path.join(os.tmpdir(), "monica_announcements_v2.json");
 
 // In-memory cache for warm lambda runs
 let inMemoryAnnouncements: AnnouncementItem[] | null = null;
@@ -129,19 +129,35 @@ export function extractYoutubeId(url: string): string | null {
 }
 
 /**
+ * Strictly filters out any community chat messages (e.g. tool_lastwar_chat)
+ * and only keeps posts from the official announcement channel (tool_lastwar_channel)
+ */
+export function filterOnlyOfficialAnnouncements(items: any[]): AnnouncementItem[] {
+  if (!Array.isArray(items)) return [];
+  return items.filter(
+    (item) =>
+      item &&
+      typeof item.id === "string" &&
+      item.id.startsWith("tool_lastwar_channel/") &&
+      !item.id.includes("chat")
+  );
+}
+
+/**
  * Reads announcements from cache, /tmp, or static seed file
  */
 export function loadAnnouncements(): AnnouncementItem[] {
   if (inMemoryAnnouncements && inMemoryAnnouncements.length > 0) {
-    return inMemoryAnnouncements;
+    return filterOnlyOfficialAnnouncements(inMemoryAnnouncements);
   }
 
   // 1. Try reading from /tmp
   try {
     if (fs.existsSync(TEMP_FILE)) {
       const data = JSON.parse(fs.readFileSync(TEMP_FILE, "utf-8"));
-      if (Array.isArray(data) && data.length > 0) {
-        inMemoryAnnouncements = data;
+      const filtered = filterOnlyOfficialAnnouncements(data);
+      if (filtered.length > 0) {
+        inMemoryAnnouncements = filtered;
         return inMemoryAnnouncements;
       }
     }
@@ -152,8 +168,9 @@ export function loadAnnouncements(): AnnouncementItem[] {
     const seedPath = path.join(process.cwd(), "src", "data", "announcements.json");
     if (fs.existsSync(seedPath)) {
       const data = JSON.parse(fs.readFileSync(seedPath, "utf-8"));
-      if (Array.isArray(data) && data.length > 0) {
-        inMemoryAnnouncements = data;
+      const filtered = filterOnlyOfficialAnnouncements(data);
+      if (filtered.length > 0) {
+        inMemoryAnnouncements = filtered;
         return inMemoryAnnouncements;
       }
     }
@@ -171,8 +188,9 @@ export function loadAnnouncements(): AnnouncementItem[] {
     );
     if (fs.existsSync(altSeedPath)) {
       const data = JSON.parse(fs.readFileSync(altSeedPath, "utf-8"));
-      if (Array.isArray(data) && data.length > 0) {
-        inMemoryAnnouncements = data;
+      const filtered = filterOnlyOfficialAnnouncements(data);
+      if (filtered.length > 0) {
+        inMemoryAnnouncements = filtered;
         return inMemoryAnnouncements;
       }
     }
@@ -185,12 +203,15 @@ export function loadAnnouncements(): AnnouncementItem[] {
  * Saves announcements to in-memory store and /tmp
  */
 export function saveAnnouncements(items: AnnouncementItem[]) {
+  // Strictly filter only official announcements
+  const cleanItems = filterOnlyOfficialAnnouncements(items);
+
   // Sort descending by date
-  items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  inMemoryAnnouncements = items;
+  cleanItems.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  inMemoryAnnouncements = cleanItems;
 
   try {
-    fs.writeFileSync(TEMP_FILE, JSON.stringify(items, null, 2), "utf-8");
+    fs.writeFileSync(TEMP_FILE, JSON.stringify(cleanItems, null, 2), "utf-8");
   } catch {}
 }
 

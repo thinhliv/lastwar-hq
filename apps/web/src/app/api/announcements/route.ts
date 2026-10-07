@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   loadAnnouncements,
   saveAnnouncements,
+  filterOnlyOfficialAnnouncements,
   parseBilingualPost,
   extractYoutubeId,
   buildTranslationsForAnnouncement,
@@ -102,7 +103,7 @@ export async function GET(req: NextRequest) {
     const forceSync = searchParams.get("sync") === "true";
     const limit = Math.min(parseInt(searchParams.get("limit") || "10", 10), 30);
 
-    let items = loadAnnouncements();
+    let items = filterOnlyOfficialAnnouncements(loadAnnouncements());
 
     // If store is empty or force sync requested, trigger scrape
     if (items.length === 0 || forceSync) {

@@ -32,20 +32,39 @@ export async function POST(req: NextRequest) {
   try {
     const update = await req.json();
 
-    // Support channel_post, message, edited_channel_post, edited_message
     const msg =
       update.channel_post ||
-      update.message ||
       update.edited_channel_post ||
+      update.message ||
       update.edited_message;
 
     if (!msg) {
       return NextResponse.json({ ok: true, ignored: "no message payload" });
     }
 
-    const messageId = msg.message_id;
-    const chatUsername = msg.chat?.username || "tool_lastwar_channel";
-    const postId = `${chatUsername}/${messageId}`;
+    const chat = msg.chat;
+    const chatUsername = (chat?.username || "").toLowerCase();
+    const forwardChat = msg.forward_from_chat;
+    const forwardChatUsername = (forwardChat?.username || "").toLowerCase();
+
+    // Check if post originates from or is forwarded from official announcement channel
+    const isFromChannel = chatUsername === "tool_lastwar_channel";
+    const isForwardFromChannel = forwardChatUsername === "tool_lastwar_channel";
+
+    // STRICT FILTER:
+    // Ignore any chat discussions (e.g. tool_lastwar_chat) and non-channel messages
+    if (!isFromChannel && !isForwardFromChannel) {
+      return NextResponse.json({
+        ok: true,
+        ignored: `Ignored chat: ${chatUsername || chat?.title || chat?.id}. Only announcements from @tool_lastwar_channel are synced.`,
+      });
+    }
+
+    // Canonical post ID strictly pinned to tool_lastwar_channel
+    const messageId = isForwardFromChannel && msg.forward_from_message_id
+      ? msg.forward_from_message_id
+      : msg.message_id;
+    const postId = `tool_lastwar_channel/${messageId}`;
     const dateStr = msg.date
       ? new Date(msg.date * 1000).toISOString()
       : new Date().toISOString();
