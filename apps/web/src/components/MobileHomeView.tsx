@@ -35,6 +35,7 @@ import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
 import { useI18n } from "@/lib/i18n";
 import DownloadModal from "@/components/DownloadModal";
 import HoverVideoPreview from "@/components/HoverVideoPreview";
+import TelegramAnnouncementSection from "@/components/TelegramAnnouncementSection";
 
 type AppTab = "pricing" | "features" | "guide" | "faq";
 
@@ -352,6 +353,9 @@ export default function MobileHomeView() {
           </div>
         </div>
       </section>
+
+      {/* ===== TELEGRAM LIVE ANNOUNCEMENTS ===== */}
+      <TelegramAnnouncementSection />
 
       {/* ===== STICKY APP TABS BAR (TELEGRAM WEBAPP STYLE) ===== */}
       <div className="sticky top-[56px] z-30 px-3 py-2 bg-[#0c0508]/95 backdrop-blur-xl border-y border-red-500/25 shadow-xl">

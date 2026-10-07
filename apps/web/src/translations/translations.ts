@@ -249,7 +249,17 @@ export type TranslationKey =
   | "about.videoTitle"
   | "about.videoDesc"
   | "about.videoBadge"
-  | "footer.copyright";
+  | "footer.copyright"
+  | "announcements.badge"
+  | "announcements.title"
+  | "announcements.desc"
+  | "announcements.liveSync"
+  | "announcements.viewOnTg"
+  | "announcements.viewAll"
+  | "announcements.autoTranslated"
+  | "announcements.readMore"
+  | "announcements.collapse";
+
 
 export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
   // 1. English (Primary Default)
@@ -502,6 +512,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Official Authorized Reseller:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Fan-made utility site for the Last War: Survival gaming community.",
+    "announcements.badge": "OFFICIAL ANNOUNCEMENTS",
+    "announcements.title": "Live Updates & Release Notes",
+    "announcements.desc": "Real-time automated synchronization directly from official Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "LIVE SYNC FROM TELEGRAM",
+    "announcements.viewOnTg": "View on Telegram",
+    "announcements.viewAll": "Browse Entire Telegram Channel",
+    "announcements.autoTranslated": "Auto-translated to your language",
+    "announcements.readMore": "Read more...",
+    "announcements.collapse": "Collapse",
   },
 
   // 2. Tiếng Việt (vi)
@@ -754,6 +773,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "Hỗ trợ kỹ thuật 24/7 từ đội ngũ Team Murphy",
     "footer.brandDesc": "Đại lý ủy quyền chính thức:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Fan-made utility site cho cộng đồng game thủ Last War: Survival.",
+    "announcements.badge": "KÊNH THÔNG BÁO CHÍNH THỨC",
+    "announcements.title": "Cập Nhật & Tính Năng Mới",
+    "announcements.desc": "Tự động đồng bộ theo thời gian thực từ kênh Telegram chính thức @tool_lastwar_channel",
+    "announcements.liveSync": "ĐỒNG BỘ TRỰC TIẾP TỪ TELEGRAM",
+    "announcements.viewOnTg": "Xem trên Telegram",
+    "announcements.viewAll": "Xem toàn bộ kênh Telegram",
+    "announcements.autoTranslated": "Đã dịch sang ngôn ngữ của bạn",
+    "announcements.readMore": "Xem thêm...",
+    "announcements.collapse": "Thu gọn",
   },
 
   // 3. 简体中文 (zh-CN)
@@ -1006,6 +1034,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "Team Murphy 专业团队提供 24/7 全天候技术支持",
     "footer.brandDesc": "官方授权一级代理：",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Last War: Survival 玩家非官方辅助工具站。",
+    "announcements.badge": "官方公告频道",
+    "announcements.title": "实时更新与版本说明",
+    "announcements.desc": "实时从官方 Telegram 频道 @tool_lastwar_channel 自动同步",
+    "announcements.liveSync": "TELEGRAM 实时同步",
+    "announcements.viewOnTg": "在 Telegram 上查看",
+    "announcements.viewAll": "浏览全部 Telegram 频道",
+    "announcements.autoTranslated": "已自动翻译为您的语言",
+    "announcements.readMore": "阅读更多...",
+    "announcements.collapse": "收起",
   },
 
   // 4. 繁體中文 (zh-TW)
@@ -1258,6 +1295,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "Team Murphy 專業團隊提供 24/7 全天候技術支援",
     "footer.brandDesc": "官方授權一級代理：",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Last War: Survival 玩家非官方輔助工具站。",
+    "announcements.badge": "官方公告頻道",
+    "announcements.title": "即時更新與版本說明",
+    "announcements.desc": "即時從官方 Telegram 頻道 @tool_lastwar_channel 自動同步",
+    "announcements.liveSync": "TELEGRAM 即時同步",
+    "announcements.viewOnTg": "在 Telegram 上查看",
+    "announcements.viewAll": "瀏覽全部 Telegram 頻道",
+    "announcements.autoTranslated": "已自動翻譯為您的語言",
+    "announcements.readMore": "閱讀更多...",
+    "announcements.collapse": "收起",
   },
 
   // 5. 한국어 (ko)
@@ -1510,6 +1556,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "공식 공인 총판 대행사:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Last War: Survival 커뮤니티 팬 유틸리티 웹사이트.",
+    "announcements.badge": "공식 공지 채널",
+    "announcements.title": "실시간 업데이트 및 릴리스 노트",
+    "announcements.desc": "공식 텔레그램 채널 @tool_lastwar_channel에서 실시간 자동 동기화",
+    "announcements.liveSync": "텔레그램 실시간 동기화",
+    "announcements.viewOnTg": "Telegram에서 보기",
+    "announcements.viewAll": "전체 텔레그램 채널 둘러보기",
+    "announcements.autoTranslated": "사용자의 언어로 자동 번역됨",
+    "announcements.readMore": "더 보기...",
+    "announcements.collapse": "접기",
   },
 
   // 6. 日本語 (ja)
@@ -1762,6 +1817,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "公式公認認定リセラー：",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Last War: Survival ファンメイド便利サイト。",
+    "announcements.badge": "公式お知らせチャンネル",
+    "announcements.title": "リアルタイム更新とリリースノート",
+    "announcements.desc": "公式Telegramチャンネル @tool_lastwar_channel からリアルタイム自動同期",
+    "announcements.liveSync": "TELEGRAMリアルタイム同期",
+    "announcements.viewOnTg": "Telegramで見る",
+    "announcements.viewAll": "Telegramチャンネル全体を見る",
+    "announcements.autoTranslated": "お使いの言語に自動翻訳されました",
+    "announcements.readMore": "続きを読む...",
+    "announcements.collapse": "折りたたむ",
   },
 
   // 7. ภาษาไทย (th)
@@ -2014,6 +2078,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "ตัวแทนจำหน่ายอย่างเป็นทางการ:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. เว็บไซต์อำนวยความสะดวกสำหรับคอมมูนิตี้เกม Last War: Survival",
+    "announcements.badge": "ช่องประกาศอย่างเป็นทางการ",
+    "announcements.title": "อัปเดตแบบเรียลไทม์และบันทึกประจำรุ่น",
+    "announcements.desc": "ซิงโครไนซ์อัตโนมัติแบบเรียลไทม์โดยตรงจาก Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "ซิงค์สดจาก TELEGRAM",
+    "announcements.viewOnTg": "ดูบน Telegram",
+    "announcements.viewAll": "เรียกดูช่อง Telegram ทั้งหมด",
+    "announcements.autoTranslated": "แปลเป็นภาษาของคุณโดยอัตโนมัติ",
+    "announcements.readMore": "อ่านเพิ่มเติม...",
+    "announcements.collapse": "ยุบ",
   },
 
   // 8. العربية (ar)
@@ -2266,6 +2339,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "الوكيل الرسمي المعتمد:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. موقع خدمات مجتمعية غير رسمي للعبة Last War: Survival.",
+    "announcements.badge": "قناة الإعلانات الرسمية",
+    "announcements.title": "تحديثات مباشرة وملاحظات الإصدار",
+    "announcements.desc": "مزامنة تلقائية في الوقت الفعلي مباشرة من قناة Telegram الرسمية @tool_lastwar_channel",
+    "announcements.liveSync": "مزامنة مباشرة من تيليجرام",
+    "announcements.viewOnTg": "عرض على تيليجرام",
+    "announcements.viewAll": "تصفح قناة تيليجرام بالكامل",
+    "announcements.autoTranslated": "تمت الترجمة تلقائياً إلى لغتك",
+    "announcements.readMore": "اقرأ المزيد...",
+    "announcements.collapse": "طي",
   },
 
   // 9. Русский (ru)
@@ -2518,6 +2600,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Официальный авторизованный дилер:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Неофициальный сайт утилит для сообщества Last War: Survival.",
+    "announcements.badge": "Официальный канал объявлений",
+    "announcements.title": "Обновления и примечания к выпуску",
+    "announcements.desc": "Автоматическая синхронизация в реальном времени из официального канала Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "ПРЯМАЯ СИНХРОНИЗАЦИЯ С TELEGRAM",
+    "announcements.viewOnTg": "Смотреть в Telegram",
+    "announcements.viewAll": "Открыть весь канал Telegram",
+    "announcements.autoTranslated": "Автоматически переведено на ваш язык",
+    "announcements.readMore": "Читать далее...",
+    "announcements.collapse": "Свернуть",
   },
 
   // 10. Türkçe (tr)
@@ -2770,6 +2861,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Resmi Yetkili Dağıtıcı Bayi:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Last War: Survival topluluğu için hazırlanmış resmi olmayan yardımcı site.",
+    "announcements.badge": "Resmi Duyuru Kanalı",
+    "announcements.title": "Canlı Güncellemeler ve Sürüm Notları",
+    "announcements.desc": "Resmi Telegram kanalı @tool_lastwar_channel'dan gerçek zamanlı otomatik senkronizasyon",
+    "announcements.liveSync": "TELEGRAM'DAN CANLI SENKRONİZASYON",
+    "announcements.viewOnTg": "Telegram'da Görüntüle",
+    "announcements.viewAll": "Tüm Telegram Kanalına Göz Atın",
+    "announcements.autoTranslated": "Dilinize otomatik olarak çevrildi",
+    "announcements.readMore": "Devamını oku...",
+    "announcements.collapse": "Daralt",
   },
 
   // 11. Français (fr)
@@ -3022,6 +3122,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Revendeur officiel agréé :",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Site utilitaire communautaire non officiel pour Last War: Survival.",
+    "announcements.badge": "Canal d'annonces officiel",
+    "announcements.title": "Mises à jour en direct et notes de version",
+    "announcements.desc": "Synchronisation automatique en temps réel depuis le canal Telegram officiel @tool_lastwar_channel",
+    "announcements.liveSync": "SYNCHRONISATION EN DIRECT DE TELEGRAM",
+    "announcements.viewOnTg": "Voir sur Telegram",
+    "announcements.viewAll": "Parcourir tout le canal Telegram",
+    "announcements.autoTranslated": "Traduit automatiquement dans votre langue",
+    "announcements.readMore": "Lire la suite...",
+    "announcements.collapse": "Réduire",
   },
 
   // 12. Deutsch (de)
@@ -3274,6 +3383,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Offiziell autorisierter Vertriebspartner:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Inoffizielle Fan-Utility-Webseite für Last War: Survival.",
+    "announcements.badge": "Offizieller Ankündigungskanal",
+    "announcements.title": "Live-Updates und Versionshinweise",
+    "announcements.desc": "Automatische Echtzeitsynchronisierung direkt vom offiziellen Telegram-Kanal @tool_lastwar_channel",
+    "announcements.liveSync": "LIVE-SYNCHRONISIERUNG VON TELEGRAM",
+    "announcements.viewOnTg": "Auf Telegram ansehen",
+    "announcements.viewAll": "Gesamten Telegram-Kanal ansehen",
+    "announcements.autoTranslated": "Automatisch in Ihre Sprache übersetzt",
+    "announcements.readMore": "Weiterlesen...",
+    "announcements.collapse": "Einklappen",
   },
 
   // 13. Português (pt)
@@ -3526,6 +3644,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Revendedor Oficial Autorizado:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Site utilitário não oficial para a comunidade de Last War: Survival.",
+    "announcements.badge": "Canal Oficial de Anúncios",
+    "announcements.title": "Atualizações ao Vivo e Notas de Versão",
+    "announcements.desc": "Sincronização automática em tempo real diretamente do canal oficial do Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "SINCRONIZAÇÃO AO VIVO DO TELEGRAM",
+    "announcements.viewOnTg": "Ver no Telegram",
+    "announcements.viewAll": "Navegar por todo o canal do Telegram",
+    "announcements.autoTranslated": "Traduzido automaticamente para o seu idioma",
+    "announcements.readMore": "Leia mais...",
+    "announcements.collapse": "Recolher",
   },
 
   // 14. Español (es)
@@ -3778,6 +3905,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Distribuidor Oficial Autorizado:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Sitio no oficial de utilidades para la comunidad de Last War: Survival.",
+    "announcements.badge": "Canal Oficial de Anuncios",
+    "announcements.title": "Actualizaciones en Vivo y Notas de Versión",
+    "announcements.desc": "Sincronización automática en tiempo real directamente desde el canal oficial de Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "SINCRONIZACIÓN EN VIVO DESDE TELEGRAM",
+    "announcements.viewOnTg": "Ver en Telegram",
+    "announcements.viewAll": "Explorar todo el canal de Telegram",
+    "announcements.autoTranslated": "Traducido automáticamente a tu idioma",
+    "announcements.readMore": "Leer más...",
+    "announcements.collapse": "Colapsar",
   },
 
   // 15. Bahasa Indonesia (id)
@@ -4030,6 +4166,15 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Reseller Resmi Terdaftar:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Situs utilitas penggemar untuk komunitas Last War: Survival.",
+    "announcements.badge": "Saluran Pengumuman Resmi",
+    "announcements.title": "Pembaruan Langsung & Catatan Rilis",
+    "announcements.desc": "Sinkronisasi otomatis real-time langsung dari saluran resmi Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "SINKRONISASI LANGSUNG DARI TELEGRAM",
+    "announcements.viewOnTg": "Lihat di Telegram",
+    "announcements.viewAll": "Jelajahi Seluruh Saluran Telegram",
+    "announcements.autoTranslated": "Diterjemahkan secara otomatis ke bahasa Anda",
+    "announcements.readMore": "Baca selengkapnya...",
+    "announcements.collapse": "Ciutkan",
   },
 
   // 16. Bahasa Melayu (ms)
@@ -4282,5 +4427,14 @@ export const TRANSLATIONS: Record<string, Record<TranslationKey, string>> = {
     "faq.supportDesc": "24/7 dedicated technical support by Team Murphy staff",
     "footer.brandDesc": "Wakil Jualan Sah Rasmi:",
     "footer.copyright": "© 2026 Team Murphy · Monica Bot Reseller. Laman utiliti komuniti tidak rasmi untuk Last War: Survival.",
+    "announcements.badge": "Saluran Pengumuman Rasmi",
+    "announcements.title": "Kemas Kini Langsung & Nota Keluaran",
+    "announcements.desc": "Penyegerakan automatik masa nyata terus dari saluran rasmi Telegram @tool_lastwar_channel",
+    "announcements.liveSync": "PENYEGERAKAN LANGSUNG DARI TELEGRAM",
+    "announcements.viewOnTg": "Lihat di Telegram",
+    "announcements.viewAll": "Layari Keseluruhan Saluran Telegram",
+    "announcements.autoTranslated": "Diterjemahkan secara automatik ke bahasa anda",
+    "announcements.readMore": "Baca lagi...",
+    "announcements.collapse": "Runtuhkan",
   },
 };
