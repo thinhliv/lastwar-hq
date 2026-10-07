@@ -108,10 +108,6 @@ export default function TelegramAnnouncementSection() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight uppercase">
               {t("announcements.title")}
             </h2>
-
-            <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl font-medium">
-              {t("announcements.desc")}
-            </p>
           </div>
 
           {/* Quick link to Channel */}
@@ -296,8 +292,8 @@ export default function TelegramAnnouncementSection() {
               <h4 className="text-sm font-black text-white">
                 {t("announcements.liveSync")}
               </h4>
-              <p className="text-xs text-slate-400">
-                {t("announcements.desc")}
+              <p className="text-xs text-amber-400/80 font-semibold">
+                @tool_lastwar_channel
               </p>
             </div>
           </div>
