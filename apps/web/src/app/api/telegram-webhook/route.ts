@@ -49,14 +49,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, ignored: "no message payload" });
     }
 
+    const CHANNEL_ID = -1003873041303;
+    const CHANNEL_USERNAME = "tool_lastwar_channel";
+
     const chat = msg.chat;
     const chatUsername = (chat?.username || "").toLowerCase();
-    const forwardChat = msg.forward_from_chat;
-    const forwardChatUsername = (forwardChat?.username || "").toLowerCase();
+    const chatId = chat?.id;
 
-    // Check if post originates from or is forwarded from official announcement channel
-    const isFromChannel = chatUsername === "tool_lastwar_channel";
-    const isForwardFromChannel = forwardChatUsername === "tool_lastwar_channel";
+    // Check forward origins (supporting both legacy API and Bot API 7.0+ forward_origin)
+    const forwardChat = msg.forward_origin?.chat || msg.forward_from_chat;
+    const forwardChatUsername = (forwardChat?.username || "").toLowerCase();
+    const forwardChatId = forwardChat?.id;
+
+    const isFromChannel =
+      chatId === CHANNEL_ID || chatUsername === CHANNEL_USERNAME;
+    const isForwardFromChannel =
+      forwardChatId === CHANNEL_ID || forwardChatUsername === CHANNEL_USERNAME;
 
     // STRICT FILTER:
     // Ignore any chat discussions (e.g. tool_lastwar_chat) and non-channel messages
@@ -68,8 +76,8 @@ export async function POST(req: NextRequest) {
     }
 
     // Canonical post ID strictly pinned to tool_lastwar_channel
-    const messageId = isForwardFromChannel && msg.forward_from_message_id
-      ? msg.forward_from_message_id
+    const messageId = isForwardFromChannel
+      ? (msg.forward_origin?.message_id || msg.forward_from_message_id || msg.message_id)
       : msg.message_id;
     const postId = `tool_lastwar_channel/${messageId}`;
     const dateStr = msg.date
@@ -174,7 +182,19 @@ export async function POST(req: NextRequest) {
 
     // Extract version badge if mentioned
     let versionBadge: string | undefined = undefined;
-    const vMatch = (viText || rawText).match(
+    const cleanForVersion = (viText || rawText)
+      .replace(/0️⃣/g, "0")
+      .replace(/1️⃣/g, "1")
+      .replace(/2️⃣/g, "2")
+      .replace(/3️⃣/g, "3")
+      .replace(/4️⃣/g, "4")
+      .replace(/5️⃣/g, "5")
+      .replace(/6️⃣/g, "6")
+      .replace(/7️⃣/g, "7")
+      .replace(/8️⃣/g, "8")
+      .replace(/9️⃣/g, "9");
+
+    const vMatch = cleanForVersion.match(
       /(?:Phiên bản|Version|Ver|Update)\s*([0-9a-zA-Z_\-]+)/i
     );
     if (vMatch) {
@@ -216,6 +236,21 @@ export async function POST(req: NextRequest) {
     // Keep top 30 announcements
     const trimmed = existing.slice(0, 30);
     saveAnnouncements(trimmed);
+
+    // If forwarded directly in private chat with bot, reply confirmation
+    if (chat?.type === "private" && chat?.id) {
+      try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chat.id,
+            text: `✅ Đã đồng bộ bài #${messageId} (${versionBadge || "Thông báo mới"}) lên website https://monicabot.lol thành công!`,
+            reply_to_message_id: msg.message_id,
+          }),
+        });
+      } catch {}
+    }
 
     return NextResponse.json({
       ok: true,
