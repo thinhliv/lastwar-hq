@@ -47,24 +47,39 @@ export default function TelegramAnnouncementSection() {
 
   useEffect(() => {
     let isMounted = true;
-    setLoading(true);
 
-    fetch(`/api/announcements?lang=${encodeURIComponent(locale)}&limit=6`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (isMounted && data?.announcements) {
-          setAnnouncements(data.announcements);
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to load announcements:", err);
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false);
-      });
+    const fetchLatest = (showLoading = false) => {
+      if (showLoading) setLoading(true);
+      fetch(`/api/announcements?lang=${encodeURIComponent(locale)}&limit=6`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (isMounted && data?.announcements) {
+            setAnnouncements(data.announcements);
+          }
+        })
+        .catch((err) => {
+          console.error("Failed to load announcements:", err);
+        })
+        .finally(() => {
+          if (isMounted && showLoading) setLoading(false);
+        });
+    };
+
+    fetchLatest(true);
+
+    // Auto-refresh in background every 60 seconds
+    const interval = setInterval(() => {
+      fetchLatest(false);
+    }, 60000);
+
+    // Refresh when user tabs back into the page
+    const onFocus = () => fetchLatest(false);
+    window.addEventListener("focus", onFocus);
 
     return () => {
       isMounted = false;
+      clearInterval(interval);
+      window.removeEventListener("focus", onFocus);
     };
   }, [locale]);
 

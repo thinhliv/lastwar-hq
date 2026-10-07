@@ -69,7 +69,19 @@ async function scrapeLatestFromChannel(): Promise<AnnouncementItem[]> {
       const { viText, enText } = parseBilingualPost(rawText);
 
       let versionBadge: string | undefined = undefined;
-      const vMatch = (viText || rawText).match(
+      const normalizedVersionText = (viText || rawText)
+        .replace(/0️⃣/g, "0")
+        .replace(/1️⃣/g, "1")
+        .replace(/2️⃣/g, "2")
+        .replace(/3️⃣/g, "3")
+        .replace(/4️⃣/g, "4")
+        .replace(/5️⃣/g, "5")
+        .replace(/6️⃣/g, "6")
+        .replace(/7️⃣/g, "7")
+        .replace(/8️⃣/g, "8")
+        .replace(/9️⃣/g, "9");
+
+      const vMatch = normalizedVersionText.match(
         /(?:Phiên bản|Version|Ver|Update)\s*([0-9a-zA-Z_\-]+)/i
       );
       if (vMatch) {
@@ -102,6 +114,10 @@ async function scrapeLatestFromChannel(): Promise<AnnouncementItem[]> {
   }
 }
 
+// In-memory scrape throttler: check Telegram channel at most every 45 seconds
+let lastScrapeTimestamp = 0;
+const CHANNEL_SCRAPE_TTL_MS = 45 * 1000;
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -110,17 +126,30 @@ export async function GET(req: NextRequest) {
     const limit = Math.min(parseInt(searchParams.get("limit") || "10", 10), 30);
 
     let items = filterOnlyOfficialAnnouncements(loadAnnouncements());
+    const shouldScrape =
+      forceSync ||
+      items.length === 0 ||
+      Date.now() - lastScrapeTimestamp > CHANNEL_SCRAPE_TTL_MS;
 
-    // If store is empty or force sync requested, trigger scrape
-    if (items.length === 0 || forceSync) {
-      const scraped = await scrapeLatestFromChannel();
-      if (scraped.length > 0) {
-        // Merge with existing
-        const map = new Map<string, AnnouncementItem>();
-        for (const it of scraped) map.set(it.id, it);
-        for (const it of items) map.set(it.id, it);
-        items = Array.from(map.values());
-        saveAnnouncements(items);
+    // Automatically scrape and sync latest posts from Telegram channel
+    if (shouldScrape) {
+      lastScrapeTimestamp = Date.now();
+      try {
+        const scraped = await scrapeLatestFromChannel();
+        if (scraped.length > 0) {
+          // Merge with existing, placing new scraped items at the top
+          const map = new Map<string, AnnouncementItem>();
+          for (const it of scraped) map.set(it.id, it);
+          for (const it of items) {
+            if (!map.has(it.id)) {
+              map.set(it.id, it);
+            }
+          }
+          items = Array.from(map.values());
+          saveAnnouncements(items);
+        }
+      } catch (scrapeErr) {
+        console.error("Auto channel sync failed:", scrapeErr);
       }
     }
 
