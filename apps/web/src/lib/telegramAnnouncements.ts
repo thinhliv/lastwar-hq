@@ -19,6 +19,8 @@ export interface AnnouncementItem {
   translations: Record<string, string>;
   imageUrl?: string | null;
   videoUrl?: string | null;
+  isVideo?: boolean;
+  videoDuration?: string | null;
   youtubeId?: string | null;
   telegramUrl: string;
 }

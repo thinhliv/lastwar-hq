@@ -28,6 +28,13 @@ async function getTelegramFilePath(fileId: string): Promise<string | null> {
   return null;
 }
 
+function formatDuration(seconds?: number): string | null {
+  if (typeof seconds !== "number" || isNaN(seconds) || seconds <= 0) return null;
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s < 10 ? "0" : ""}${s}`;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const update = await req.json();
@@ -73,9 +80,15 @@ export async function POST(req: NextRequest) {
 
     let imageUrl: string | null = null;
     let videoUrl: string | null = null;
+    let isVideo = false;
+    let videoDuration: string | null = null;
 
     // 1. Direct Telegram Video
     if (msg.video) {
+      isVideo = true;
+      if (msg.video.duration) {
+        videoDuration = formatDuration(msg.video.duration);
+      }
       const filePath = await getTelegramFilePath(msg.video.file_id);
       if (filePath) {
         videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
@@ -89,6 +102,10 @@ export async function POST(req: NextRequest) {
       }
     } else if (msg.animation) {
       // 2. Direct Telegram GIF / Animation (MP4)
+      isVideo = true;
+      if (msg.animation.duration) {
+        videoDuration = formatDuration(msg.animation.duration);
+      }
       const filePath = await getTelegramFilePath(msg.animation.file_id);
       if (filePath) {
         videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
@@ -102,6 +119,10 @@ export async function POST(req: NextRequest) {
       }
     } else if (msg.video_note) {
       // 3. Round video notes
+      isVideo = true;
+      if (msg.video_note.duration) {
+        videoDuration = formatDuration(msg.video_note.duration);
+      }
       const filePath = await getTelegramFilePath(msg.video_note.file_id);
       if (filePath) {
         videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
@@ -112,6 +133,7 @@ export async function POST(req: NextRequest) {
         msg.document.file_name?.match(/\.(mp4|mov|webm|m4v)$/i))
     ) {
       // 4. Video sent as uncompressed document
+      isVideo = true;
       const filePath = await getTelegramFilePath(msg.document.file_id);
       if (filePath) {
         videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
@@ -143,7 +165,7 @@ export async function POST(req: NextRequest) {
     const youtubeId = extractYoutubeId(rawText);
 
     // If there is no text and no media, ignore
-    if (!rawText && !imageUrl && !videoUrl && !youtubeId) {
+    if (!rawText && !imageUrl && !videoUrl && !youtubeId && !isVideo) {
       return NextResponse.json({ ok: true, ignored: "empty content" });
     }
 
@@ -172,6 +194,8 @@ export async function POST(req: NextRequest) {
       translations,
       imageUrl,
       videoUrl,
+      isVideo,
+      videoDuration,
       youtubeId,
       telegramUrl: `https://t.me/${postId}`,
     };

@@ -31,6 +31,8 @@ export interface AnnouncementItem {
   translations?: Record<string, string>;
   imageUrl?: string | null;
   videoUrl?: string | null;
+  isVideo?: boolean;
+  videoDuration?: string | null;
   youtubeId?: string | null;
   telegramUrl: string;
   isAutoTranslated?: boolean;
@@ -191,13 +193,15 @@ export default function TelegramAnnouncementSection() {
                     </div>
 
                     {/* Media: 1. Direct Telegram Video, 2. Direct Telegram Image, 3. YouTube Fallback */}
-                    {item.videoUrl ? (
+                    {item.isVideo || item.videoUrl ? (
                       <div className="mb-3">
                         <TelegramVideoPlayer
                           videoUrl={item.videoUrl}
                           posterUrl={item.imageUrl || undefined}
                           title={`Monica Bot Update #${item.postNumber || item.id}`}
                           telegramUrl={item.telegramUrl}
+                          duration={item.videoDuration}
+                          postId={item.id}
                         />
                       </div>
                     ) : item.imageUrl ? (

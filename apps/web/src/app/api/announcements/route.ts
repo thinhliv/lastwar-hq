@@ -39,11 +39,15 @@ async function scrapeLatestFromChannel(): Promise<AnnouncementItem[]> {
         /<div class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/
       );
       const photoMatch = block.match(/background-image:url\('([^']+)'\)/);
-      const videoMatch = block.match(/<video[^>]*src="([^"]+)"/);
+      const videoMatch = block.match(/<video[^>]*src="([^"]+)"/i);
+      const isVideoPlayer = /tgme_widget_message_video_player|message_video_play|message_video_duration/i.test(block);
+      const durationMatch = block.match(/class="[^"]*message_video_duration[^"]*"[^>]*>([^<]+)<\/time>/i);
 
       const postDate = timeMatch ? timeMatch[1] : new Date().toISOString();
       const photoUrl = photoMatch ? photoMatch[1] : null;
       const videoUrl = videoMatch ? videoMatch[1] : null;
+      const isVideo = isVideoPlayer || Boolean(videoUrl);
+      const videoDuration = durationMatch ? durationMatch[1].trim() : null;
 
       let rawText = "";
       if (textMatch) {
@@ -59,7 +63,7 @@ async function scrapeLatestFromChannel(): Promise<AnnouncementItem[]> {
           .trim();
       }
 
-      if (!rawText && !photoUrl && !videoUrl) continue;
+      if (!rawText && !photoUrl && !videoUrl && !isVideo) continue;
 
       const youtubeId = extractYoutubeId(rawText);
       const { viText, enText } = parseBilingualPost(rawText);
@@ -84,6 +88,8 @@ async function scrapeLatestFromChannel(): Promise<AnnouncementItem[]> {
         translations,
         imageUrl: photoUrl,
         videoUrl,
+        isVideo,
+        videoDuration,
         youtubeId,
         telegramUrl: `https://t.me/${postId}`,
       });

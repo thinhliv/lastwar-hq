@@ -27,7 +27,8 @@
     "imageUrl": "https://cdn5.telesco.pe/file/i-WzfzieyWpuH7vRZh3uYy7xVdcDggxdb_MM0mBOrbmVL0G1o8TnmedO_0ikya1swUJicDLulLoj0pFZ-URtnaOxEyxkxGSqvWy99fyXtqreGIBwbtGfMosNAjeBf0Y03SOSV2T3YZdoK2CRjk3107_zzgqz92dPImhsgsvcPCpQ3uH-my2E1-OfIEOIE8cjs_VnDOTat-97WNZJAbge524W2dvz4gM9Tmhn_XQz_Ax4SwptKG-nZnDCWI5RIpnKDE6UkoL920vAhQTHmfKtOtKvlFj3WeUJrHWLbeMCD1waoWV15knanazJl0Lm511yN1X-MC1_t7URVOJ7oKKGvQ.jpg",
     "videoUrl": null,
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/127"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/127",
+    "isVideo": false
   },
   {
     "id": "tool_lastwar_channel/126",
@@ -57,7 +58,8 @@
     "imageUrl": "https://cdn5.telesco.pe/file/nKLi0cKKgajK9CNl2OrBnDJE4MxtagUrxtTwpJvHVbhvtFJ-zftUgoLsOg1S-KwbaE0_GYHVJo5vnsOCXpDLylMc0DFyLz246968BHA_OGPpWbf0ef7beV8eJsWbKeUD-74em5tPt6EHHumIt7T_FG-aFlF1NEkTJ1YfnHXCBGvD9N5DVsgzw_oXAB_0UtvBnVI8Gj7asvoTfe9usvczvm680zLUeELfRM1vZVWdKKFeytiFDLIYcrYDUm_UJUnLLFOfFae1y8FHdgaM1YMEmHNZckadbXVPVAM-BbMCLuuv3q74Ukv6S-PPjmz83JDhkgjdVAFV_o671qAPgVf5nA.jpg",
     "videoUrl": null,
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/126"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/126",
+    "isVideo": false
   },
   {
     "id": "tool_lastwar_channel/125",
@@ -87,7 +89,9 @@
     "imageUrl": "https://cdn5.telesco.pe/file/Hqy_fBSOVynkplkXNk4icRNrpQf_6eYSdiWlPGGOaCBv8OWQIP0zozHgrZVl25EMMsHfrl3sv7-Z5uJPvThBUQOQbdgFRlo7iY6vDTOUwbwH05CSmhIUrD0xRAbc6wvq81a0ioLLZeV2RF6yiR7DFTMrbfJrD8W3gEuU-3iV6ddDzJhY4NUF1ug-EenmJWTugUK6l-ELNQLNeQ518SSKVVUousJSZ9Ju7tUqUffCtQD0WWS1Ufr2H_rZKmMNVElR0uw4La20vuJomjDXODSPNdtlhsU7253ylJ26TyuyHbLMDUmreqL_BcqPDE_dc1y5iL2lOkyzU2-7jiMJ_FwvxA",
     "videoUrl": null,
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/125"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/125",
+    "isVideo": true,
+    "videoDuration": "0:33"
   },
   {
     "id": "tool_lastwar_channel/124",
@@ -116,7 +120,8 @@
     "imageUrl": "https://cdn5.telesco.pe/file/MnQrboWjCyibt-tWdbIskxqk2gFv-qzk64VQxzrqb_ZVLNCR1tdYzlrUvofwyFQXxlGZxnE7WqMxb19LAcGslVXhDjel-lrMjQgCneaLJcWcMLzBuw2Qi9EgukzHntttWO3Zfcm_UWCOdbRh_A8nQT_BOOY3VfhuLfMYD3QsEn6u4sCbPvpLSrRm3YPA0R20G3-lMArTx-KiKsxGGBzHjNrPo62Ip_zwDs23isXGrkxBTylKsO-PzakRGO2POXGWwQ8cPZd5Y0BzTfLXoxDDvnMvsXEmJno8fLYGJnu0Mi2bgyMkTT5z0-4hkp3mQXaDTu0j_R3b8nWEchh1nzQpZA.jpg",
     "videoUrl": null,
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/124"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/124",
+    "isVideo": false
   },
   {
     "id": "tool_lastwar_channel/122",
@@ -145,7 +150,8 @@
     "imageUrl": "https://cdn5.telesco.pe/file/CdW_uqjjuH3Msv-_JO4cJ5Ppz5wBVlV70wJHGoI35omNTEA_tOh-jCYPYGrbdRSE4dxLn-KYCY7yJxP-PAP44BPAcwQQecYqvN8GgR1tJIyTRKSoHJzBUBLOo6qH4PnRceFTsyaHC1gxQNu-2PcBWU9CYB3R-G1qGDDNx3ivlBGpc49sOBLOmqqrC0WgPZMHrBPajEhEKTi8GReFb_4XeNbNc8sW9kIHtEYnWRPSeh9S37tX3xS0ReLOMSCbaiQbeJcb-nFvbep6PIXrKw9ONq6lBlKn0l5jJwt6MPcZmDel7JDPzOPm-m6KrHZvCeMNYTtKnTuNlR4SMkBAKkePVQ.jpg",
     "videoUrl": null,
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/122"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/122",
+    "isVideo": false
   },
   {
     "id": "tool_lastwar_channel/120",
@@ -174,7 +180,9 @@
     "imageUrl": "https://cdn5.telesco.pe/file/ZFfwzoV_LmuhB3j7rdjCAQ-5a3HixB9qo0h1IqQqNg7E9JSRyhUau5TrTuQjpLSynbe0FuigdUnoK5BBwFsCovF60BDet0Bp2Yxrk0CJpiMelEjtbzEnQsxvCNE4W7Cc8NtgOV5cIylaki68bTnzrDGqexDVam_lO1hrwe8wR7Nq2uT9NHHz8ZVqdFuh8T3IE8xSoQIKlU9_wVGMWokupFQ60IaH3jr5ta4ZScCuoOyaZ_G5mJXJh5CKjVyhNapsZYueVxRo9G-gGd7NlYgZnLyWwipvroWQXj88-MGYR1_50rBXviiPV4FqF9nloffBNZZGcDIIw4vJMRrW3Z8DOg",
     "videoUrl": null,
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/120"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/120",
+    "isVideo": true,
+    "videoDuration": "1:00"
   },
   {
     "id": "tool_lastwar_channel/113",
@@ -204,6 +212,8 @@
     "imageUrl": "https://cdn5.telesco.pe/file/WGoYJavSCqzBlB926LljHx2ubUfMj14vzorKM12VQ2tow9lnvgWJ4PI0EQKNvoCrmFOkKpR",
     "videoUrl": "https://cdn5.telesco.pe/file/b192f2e61c.mp4?token=DR1uCbKfpF7lm9jFFTiDTc5NB1GZVX9lGs2yEZ0fTIiCBYptxTtCSv-uwTNQNUARR7Ey0xKK36Biva3n3WA6kAT5hgTTAosM2E6mlVnzbSaodQdZ4yBTCWPtovxG6u93qNY0gYstwEbpGv2JUBtKz8U8V9lIKLA2Ih_pLRybH3kqr4uiPoCIpq82CjUA9puGMN238dzPEGxkCl5JCzHY9te7ne8is8YykKP1sVk2zlbYrK1rkAxKe6EelEsyKAyGxnpWwWaEd6w4vf2HIfV0kME2WHk4yS5jxYRLFsXOEOHQi6rOs12rJ5l6DP7V24Xc57uoe3kplCKZMxX-YSFUb4QYtG83DQQutTrusL7ubp0TSOU5O5n1_gGXYFoR9ImhfWFAKD0r_UuD_t7b6G01opDObezUGnLkV8RiEHopoIdI3WPl-vRhNed7AwMyUiGS00f-l7RI1ZDBmESbTwlUA5_QcfaUMd5CBBbeQmUUNd2TEQwysDzVAspyoIb_J2gez33uxVQJQAw9rOUSj-i0ct7SjPnYyWYYiPCB3xQIofH7RpybNZwsOWdvbJGk9_bkX17-xrCGhwPejDXLe0MP5eOu8JscsWa7MbnNBM3grIs8p9G9toBidImuTP1ABKBnMAWaeIGQpJ9VoukP-9gzJT2IVomfEiYiQxAWQqIQMgM",
     "youtubeId": null,
-    "telegramUrl": "https://t.me/tool_lastwar_channel/113"
+    "telegramUrl": "https://t.me/tool_lastwar_channel/113",
+    "isVideo": true,
+    "videoDuration": "0:28"
   }
 ]
