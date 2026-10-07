@@ -30,28 +30,49 @@ export async function GET(req: NextRequest) {
     }
 
     if (!targetUrl) {
-      return new NextResponse("Missing image path or url", { status: 400 });
+      return new NextResponse("Missing file path or url", { status: 400 });
     }
 
-    const imageRes = await fetch(targetUrl);
-    if (!imageRes.ok) {
-      return new NextResponse("Failed to fetch image from Telegram", {
-        status: imageRes.status,
+    // Forward Range header if requested by video player
+    const fetchHeaders: Record<string, string> = {};
+    const clientRange = req.headers.get("range");
+    if (clientRange) {
+      fetchHeaders["range"] = clientRange;
+    }
+
+    const upstreamRes = await fetch(targetUrl, { headers: fetchHeaders });
+    if (!upstreamRes.ok && upstreamRes.status !== 206) {
+      return new NextResponse("Failed to fetch file from Telegram", {
+        status: upstreamRes.status,
       });
     }
 
-    const contentType = imageRes.headers.get("content-type") || "image/jpeg";
-    const buffer = await imageRes.arrayBuffer();
+    const contentType =
+      upstreamRes.headers.get("content-type") ||
+      (targetUrl.endsWith(".mp4") ? "video/mp4" : "image/jpeg");
 
-    return new NextResponse(buffer, {
-      status: 200,
-      headers: {
-        "Content-Type": contentType,
-        "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800",
-      },
+    const resHeaders = new Headers();
+    resHeaders.set("Content-Type", contentType);
+    resHeaders.set("Accept-Ranges", "bytes");
+
+    if (upstreamRes.headers.get("content-range")) {
+      resHeaders.set("Content-Range", upstreamRes.headers.get("content-range")!);
+    }
+    if (upstreamRes.headers.get("content-length")) {
+      resHeaders.set("Content-Length", upstreamRes.headers.get("content-length")!);
+    }
+
+    resHeaders.set(
+      "Cache-Control",
+      "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800"
+    );
+
+    return new NextResponse(upstreamRes.body, {
+      status: upstreamRes.status,
+      headers: resHeaders,
     });
   } catch (error) {
-    console.error("Telegram image proxy error:", error);
+    console.error("Telegram media proxy error:", error);
     return new NextResponse("Internal server error", { status: 500 });
   }
 }

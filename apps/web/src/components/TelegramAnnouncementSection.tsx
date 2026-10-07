@@ -14,9 +14,12 @@ import {
   Radio,
   Maximize2,
   Globe,
+  Camera,
+  Film,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import HoverVideoPreview from "@/components/HoverVideoPreview";
+import TelegramVideoPlayer from "@/components/TelegramVideoPlayer";
 
 export interface AnnouncementItem {
   id: string;
@@ -191,18 +194,20 @@ export default function TelegramAnnouncementSection() {
                       </div>
                     </div>
 
-                    {/* Media: YouTube Video Embed or Image Thumbnail */}
-                    {item.youtubeId ? (
-                      <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-black border border-red-500/20">
-                        <HoverVideoPreview
-                          youtubeId={item.youtubeId}
-                          title={`Monica Bot Update #${item.postNumber}`}
+                    {/* Media: 1. Direct Telegram Video, 2. Direct Telegram Image, 3. YouTube Fallback */}
+                    {item.videoUrl ? (
+                      <div className="mb-3">
+                        <TelegramVideoPlayer
+                          videoUrl={item.videoUrl}
+                          posterUrl={item.imageUrl || undefined}
+                          title={`Monica Bot Update #${item.postNumber || item.id}`}
+                          telegramUrl={item.telegramUrl}
                         />
                       </div>
                     ) : item.imageUrl ? (
                       <div
                         onClick={() => setSelectedImage(item.imageUrl || null)}
-                        className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-black/40 border border-red-500/20 cursor-zoom-in group/img"
+                        className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-black/40 border border-red-500/20 cursor-zoom-in group/img shadow-md"
                       >
                         <Image
                           src={item.imageUrl}
@@ -213,9 +218,23 @@ export default function TelegramAnnouncementSection() {
                           unoptimized
                         />
                         <div className="absolute inset-0 bg-black/20 group-hover/img:bg-transparent transition-colors" />
+
+                        {/* Photo indicator badge */}
+                        <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-sm border border-red-500/30 text-slate-300 text-[10px] font-bold">
+                          <Camera className="w-3 h-3 text-amber-400" />
+                          <span>{locale === "vi" ? "Hình ảnh Telegram" : "Telegram Photo"}</span>
+                        </div>
+
                         <div className="absolute bottom-2 right-2 p-1.5 rounded-lg bg-black/70 backdrop-blur-sm text-slate-300 opacity-80 group-hover/img:opacity-100 transition-opacity">
                           <Maximize2 className="w-3.5 h-3.5" />
                         </div>
+                      </div>
+                    ) : item.youtubeId ? (
+                      <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-black border border-red-500/20">
+                        <HoverVideoPreview
+                          youtubeId={item.youtubeId}
+                          title={`Monica Bot Update #${item.postNumber}`}
+                        />
                       </div>
                     ) : null}
 

@@ -175,5 +175,35 @@
     "videoUrl": null,
     "youtubeId": null,
     "telegramUrl": "https://t.me/tool_lastwar_channel/120"
+  },
+  {
+    "id": "tool_lastwar_channel/113",
+    "postNumber": "113",
+    "date": "2026-09-19T09:27:00+00:00",
+    "versionBadge": "Update 1909",
+    "content": "Update 1909:\nCần tắt Monica và mở lại để update, sau đó chọn version \"1909_Multi_Account\"\n✅ Fix lỗi nhiều cửa sổ\n✅ Thêm lại tính năng điều quân và đánh nhanh\n💋 Đặc biệt có RÚT QUÂN NHANH!",
+    "originalContent": "Update 1909:\nCần tắt Monica và mở lại để update, sau đó chọn version \"1909_Multi_Account\"\n✅ Fix lỗi nhiều cửa sổ\n✅ Thêm lại tính năng điều quân và đánh nhanh\n💋 Đặc biệt có RÚT QUÂN NHANH!",
+    "translations": {
+      "vi": "Update 1909:\nCần tắt Monica và mở lại để update, sau đó chọn version \"1909_Multi_Account\"\n✅ Fix lỗi nhiều cửa sổ\n✅ Thêm lại tính năng điều quân và đánh nhanh\n💋 Đặc biệt có RÚT QUÂN NHANH!",
+      "en": "Update 1909:\nClose Monica and reopen to update, then select version \"1909_Multi_Account\"\n✅ Fixed multi-window bug\n✅ Re-added troop dispatch and rapid attack features\n💋 Special: FAST TROOP RETREAT available!",
+      "zh-CN": "更新 1909：\n关闭Monica并重新打开更新，然后选择版本“1909_Multi_Account”\n✅ 修复多窗口错误\n✅ 重新添加部队派遣和快速攻击功能\n💋特别：部队可快速撤退！",
+      "zh-TW": "更新 1909：\n關閉Monica並重新開啟更新，然後選擇版本“1909_Multi_Account”\n✅ 修復多視窗錯誤\n✅ 重新加入部隊派遣和快速攻擊功能\n💋特別：部隊可快速撤退！",
+      "ko": "업데이트 1909:\nMonica를 닫고 다시 열어 업데이트한 다음 \"1909_Multi_Account\" 버전을 선택하세요.\n✅ 다중 창 버그 수정\n✅ 병력 파견 및 신속한 공격 기능이 다시 추가되었습니다.\n😋 스페셜: FAST TROOP RETREAT 가능!",
+      "ja": "アップデート 1909:\nMonica を閉じて再度更新し、バージョン「1909_Multi_Account」を選択します\n✅ マルチウィンドウのバグを修正\n✅ 部隊派遣と迅速な攻撃機能を再追加\n💋 スペシャル: 高速部隊退却が利用可能!",
+      "th": "อัปเดต 1909:\nปิดโมนิกาแล้วเปิดใหม่เพื่ออัปเดต จากนั้นเลือกเวอร์ชัน \"1909_Multi_Account\"\n✅ แก้ไขข้อผิดพลาดหลายหน้าต่าง\n✅ เพิ่มการส่งกองกำลังและคุณสมบัติการโจมตีอย่างรวดเร็วอีกครั้ง\n💋 พิเศษ: FAST TROOP RETREAT พร้อมแล้ว!",
+      "ar": "تحديث 1909:\nأغلق Monica وأعد فتحه للتحديث، ثم حدد الإصدار \"1909_Multi_Account\"\n✅ إصلاح الخلل في النوافذ المتعددة\n✅ إعادة إضافة ميزات إرسال القوات والهجوم السريع\n💋 خاص: انسحاب القوات السريع متاح!",
+      "ru": "Обновление 1909 года:\nЗакройте Monica и снова откройте для обновления, затем выберите версию «1909_Multi_Account».\n✅ Исправлена ошибка с несколькими окнами.\n✅ Повторно добавлены функции отправки войск и быстрой атаки.\n💋 Специальное предложение: доступен БЫСТРЫЙ ОТДЫХ ВОЙСК!",
+      "tr": "1909 Güncellemesi:\nMonica'yı kapatın ve güncellemek için yeniden açın, ardından \"1909_Multi_Account\" sürümünü seçin\n✅ Çoklu pencere hatası düzeltildi\n✅ Birlik sevkıyatı ve hızlı saldırı özellikleri yeniden eklendi\n💋 Özel: HIZLI BİRLİK GERİ ÇEKİLİŞİ mevcut!",
+      "fr": "Mise à jour 1909 :\nFermez Monica et rouvrez pour mettre à jour, puis sélectionnez la version \"1909_Multi_Account\"\n✅ Correction d'un bug multi-fenêtre\n✅ Réajout de fonctionnalités d'envoi de troupes et d'attaque rapide\n💋 Spécial : RETRAITE RAPIDE DES TROUPES disponible !",
+      "de": "Update 1909:\nSchließen Sie Monica und öffnen Sie es erneut, um es zu aktualisieren. Wählen Sie dann die Version „1909_Multi_Account“ aus.\n✅ Fehler bei mehreren Fenstern behoben\n✅ Truppenentsende- und Schnellangriffsfunktionen wieder hinzugefügt\n💋 Besonderheit: SCHNELLER TROOP-RÜCKZUG verfügbar!",
+      "pt": "Atualização 1909:\nFeche Monica e reabra para atualizar, depois selecione a versão \"1909_Multi_Account\"\n✅ Corrigido bug de múltiplas janelas\n✅ Adicionado novamente envio de tropas e recursos de ataque rápido\n💋 Especial: RETIRO RÁPIDO DE TROPA disponível!",
+      "es": "Actualización 1909:\nCierra Monica y vuelve a abrirla para actualizar, luego selecciona la versión \"1909_Multi_Account\"\n✅ Se corrigió el error de ventanas múltiples\n✅ Funciones de envío de tropas y ataque rápido reagregadas\n💋 Especial: ¡RETIRO RÁPIDO DE TROPA disponible!",
+      "id": "Pembaruan 1909:\nTutup Monica dan buka kembali untuk memperbarui, lalu pilih versi \"1909_Multi_Account\"\n✅ Memperbaiki bug multi-jendela\n✅ Menambahkan kembali fitur pengiriman pasukan dan serangan cepat\n💋 Spesial: RETREAT PASUKAN CEPAT tersedia!",
+      "ms": "Kemas kini 1909:\nTutup Monica dan buka semula untuk mengemas kini, kemudian pilih versi \"1909_Multi_Account\"\n✅ Membetulkan pepijat berbilang tetingkap\n✅ Menambah semula penghantaran pasukan dan ciri serangan pantas\n💋 Istimewa: FAST TROOP RETREAT tersedia!"
+    },
+    "imageUrl": "https://cdn5.telesco.pe/file/WGoYJavSCqzBlB926LljHx2ubUfMj14vzorKM12VQ2tow9lnvgWJ4PI0EQKNvoCrmFOkKpR",
+    "videoUrl": "https://cdn5.telesco.pe/file/b192f2e61c.mp4?token=DR1uCbKfpF7lm9jFFTiDTc5NB1GZVX9lGs2yEZ0fTIiCBYptxTtCSv-uwTNQNUARR7Ey0xKK36Biva3n3WA6kAT5hgTTAosM2E6mlVnzbSaodQdZ4yBTCWPtovxG6u93qNY0gYstwEbpGv2JUBtKz8U8V9lIKLA2Ih_pLRybH3kqr4uiPoCIpq82CjUA9puGMN238dzPEGxkCl5JCzHY9te7ne8is8YykKP1sVk2zlbYrK1rkAxKe6EelEsyKAyGxnpWwWaEd6w4vf2HIfV0kME2WHk4yS5jxYRLFsXOEOHQi6rOs12rJ5l6DP7V24Xc57uoe3kplCKZMxX-YSFUb4QYtG83DQQutTrusL7ubp0TSOU5O5n1_gGXYFoR9ImhfWFAKD0r_UuD_t7b6G01opDObezUGnLkV8RiEHopoIdI3WPl-vRhNed7AwMyUiGS00f-l7RI1ZDBmESbTwlUA5_QcfaUMd5CBBbeQmUUNd2TEQwysDzVAspyoIb_J2gez33uxVQJQAw9rOUSj-i0ct7SjPnYyWYYiPCB3xQIofH7RpybNZwsOWdvbJGk9_bkX17-xrCGhwPejDXLe0MP5eOu8JscsWa7MbnNBM3grIs8p9G9toBidImuTP1ABKBnMAWaeIGQpJ9VoukP-9gzJT2IVomfEiYiQxAWQqIQMgM",
+    "youtubeId": null,
+    "telegramUrl": "https://t.me/tool_lastwar_channel/113"
   }
 ]

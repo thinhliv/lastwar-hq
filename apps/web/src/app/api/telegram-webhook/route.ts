@@ -52,23 +52,71 @@ export async function POST(req: NextRequest) {
 
     const rawText = (msg.text || msg.caption || "").trim();
 
-    // Extract photo if present
     let imageUrl: string | null = null;
-    if (Array.isArray(msg.photo) && msg.photo.length > 0) {
-      // Pick highest resolution photo
+    let videoUrl: string | null = null;
+
+    // 1. Direct Telegram Video
+    if (msg.video) {
+      const filePath = await getTelegramFilePath(msg.video.file_id);
+      if (filePath) {
+        videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
+      }
+      const thumbId = msg.video.thumbnail?.file_id || msg.video.thumb?.file_id;
+      if (thumbId) {
+        const thumbPath = await getTelegramFilePath(thumbId);
+        if (thumbPath) {
+          imageUrl = `/api/telegram-image?path=${encodeURIComponent(thumbPath)}`;
+        }
+      }
+    } else if (msg.animation) {
+      // 2. Direct Telegram GIF / Animation (MP4)
+      const filePath = await getTelegramFilePath(msg.animation.file_id);
+      if (filePath) {
+        videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
+      }
+      const thumbId = msg.animation.thumbnail?.file_id || msg.animation.thumb?.file_id;
+      if (thumbId) {
+        const thumbPath = await getTelegramFilePath(thumbId);
+        if (thumbPath) {
+          imageUrl = `/api/telegram-image?path=${encodeURIComponent(thumbPath)}`;
+        }
+      }
+    } else if (msg.video_note) {
+      // 3. Round video notes
+      const filePath = await getTelegramFilePath(msg.video_note.file_id);
+      if (filePath) {
+        videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
+      }
+    } else if (
+      msg.document &&
+      (msg.document.mime_type?.startsWith("video/") ||
+        msg.document.file_name?.match(/\.(mp4|mov|webm|m4v)$/i))
+    ) {
+      // 4. Video sent as uncompressed document
+      const filePath = await getTelegramFilePath(msg.document.file_id);
+      if (filePath) {
+        videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
+      }
+      const thumbId = msg.document.thumbnail?.file_id || msg.document.thumb?.file_id;
+      if (thumbId) {
+        const thumbPath = await getTelegramFilePath(thumbId);
+        if (thumbPath) {
+          imageUrl = `/api/telegram-image?path=${encodeURIComponent(thumbPath)}`;
+        }
+      }
+    }
+
+    // 5. Direct Telegram Photo (if not already set by video poster)
+    if (!imageUrl && Array.isArray(msg.photo) && msg.photo.length > 0) {
       const largestPhoto = msg.photo[msg.photo.length - 1];
       const filePath = await getTelegramFilePath(largestPhoto.file_id);
       if (filePath) {
         imageUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
       }
-    }
-
-    // Extract video if present
-    let videoUrl: string | null = null;
-    if (msg.video) {
-      const filePath = await getTelegramFilePath(msg.video.file_id);
+    } else if (!imageUrl && msg.document && msg.document.mime_type?.startsWith("image/")) {
+      const filePath = await getTelegramFilePath(msg.document.file_id);
       if (filePath) {
-        videoUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
+        imageUrl = `/api/telegram-image?path=${encodeURIComponent(filePath)}`;
       }
     }
 
