@@ -28,12 +28,18 @@ export const metadata: Metadata = {
   },
   description:
     "Monica Bot đại lý chính thức Team Murphy: công cụ hỗ trợ tự động hóa thông minh cho game Last War: Survival trên PC & giả lập. Kích hoạt tự động qua Telegram bot trong 15 giây.",
+  icons: {
+    icon: "/icon-192.png",
+    shortcut: "/icon-192.png",
+    apple: "/apple-icon.png",
+  },
   manifest: "/manifest.json",
   openGraph: {
     title: "Monica Bot — Trợ Lý Tác Chiến Last War: Survival | Team Murphy",
     description:
       "Tối ưu sự kiện, tự động hóa farm & rally, quản lý nhiều tài khoản Last War: Survival an toàn và nhẹ máy. Mua key tự động qua Telegram Bot.",
     type: "website",
+    images: ["/images/bot/monica-logo.png"],
   },
 };
 

@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Send, Menu, X, Flame, ExternalLink, Download } from "lucide-react";
+import { Send, Menu, X, ExternalLink, Download } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { TELEGRAM_BUY_BOT, TELEGRAM_SUPPORT_GROUP } from "@/lib/telegram";
@@ -26,8 +27,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 via-rose-600 to-amber-500 flex items-center justify-center shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform flex-shrink-0">
-            <Flame className="w-5 h-5 text-white fill-white" />
+          <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform flex-shrink-0 bg-[#16060c]">
+            <Image
+              src="/images/bot/monica-logo.png"
+              alt="Monica Bot Logo"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
           <div className="flex items-center gap-2">
             <span className="text-base font-black tracking-wider text-white group-hover:text-red-400 transition-colors whitespace-nowrap">

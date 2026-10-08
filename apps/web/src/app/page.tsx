@@ -260,7 +260,15 @@ export default function HomePage() {
       <footer className="py-8 sm:py-10 lg:py-12 border-t border-red-500/20 bg-[#060203] text-slate-400 text-[11px] sm:text-xs overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-            <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="relative w-6 h-6 rounded-lg overflow-hidden border border-red-500/40 shadow-sm shadow-red-600/20 shrink-0 bg-[#16060c]">
+                <Image
+                  src="/images/bot/monica-logo.png"
+                  alt="Monica Bot"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <span className="font-black text-white tracking-wide text-xs sm:text-sm">MONICA BOT</span>
               <span className="text-red-500">·</span>
               <span className="text-slate-300">
