@@ -2,7 +2,8 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 
-export const BOT_TOKEN = "8620999064:AAE345N3neM2pesCGFF8-2NL9GbByyl04ps";
+// PURGE 08/10 (Bae): old token revoked - read from env, never hardcode secrets
+export const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN ?? "";
 export const CHANNEL_USERNAME = "tool_lastwar_channel";
 
 export const SUPPORTED_LANGS = [
