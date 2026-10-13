@@ -227,7 +227,9 @@ export async function buildTranslationsForAnnouncement(
 ): Promise<Record<string, string>> {
   const translations: Record<string, string> = {};
   translations["vi"] = viText;
-  translations["en"] = enText || (await translateText(viText, "vi", "en"));
+  // 13/10 (anh Thinh): thong bao da dinh kem tieng Anh -> KHONG machine-translate vi->en;
+  // khong co san EN thi dung nguyen ban (viText = full original khi post khong tach duoc section).
+  translations["en"] = enText || viText;
 
   const baseForTranslation = enText || translations["en"] || viText;
   const baseLang = enText ? "en" : "vi";

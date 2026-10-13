@@ -160,12 +160,17 @@ export async function GET(req: NextRequest) {
 
         // If translation is missing for this lang, translate dynamically
         if (!content) {
-          const baseText =
-            item.translations?.["en"] ||
-            item.translations?.["vi"] ||
-            item.originalContent;
-          const sourceLang = item.translations?.["en"] ? "en" : "vi";
-          content = await translateText(baseText, sourceLang, lang);
+          if (lang === "en") {
+            // 13/10 (anh Thinh): thong bao da kem tieng Anh -> khong machine-dich sang EN; dung nguyen ban
+            content = item.originalContent || item.translations?.["vi"] || "";
+          } else {
+            const baseText =
+              item.translations?.["en"] ||
+              item.translations?.["vi"] ||
+              item.originalContent;
+            const sourceLang = item.translations?.["en"] ? "en" : "vi";
+            content = await translateText(baseText, sourceLang, lang);
+          }
           if (item.translations) {
             item.translations[lang] = content;
           }
@@ -181,6 +186,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       ok: true,
+      build: "fwd-original-1013",
       currentLang: lang,
       total: localized.length,
       announcements: localized,
